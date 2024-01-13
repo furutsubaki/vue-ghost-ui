@@ -27,9 +27,11 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "eslint": "eslint . --ext .vue,.js,.cjs,.mjs,.ts,.cts,.mts --fix --ignore-path .gitignore",
+    "eslint": "eslint . --ext .vue,.js,.cjs,.mjs,.ts,.cts,.mts --ignore-path .gitignore",
+    "eslint:fix": "pnpm eslint --fix",
     "format": "prettier --write src/",
-    "lint": "pnpm eslint && pnpm format",
+    "lint": "pnpm eslint",
+    "lint:fix": "pnpm eslint:fix && pnpm format",
     "sb": "pnpm storybook dev --port 6006 --no-open",
     "sb:test": "test-storybook --url http://localhost:6006",
     "prepare": "husky install"
