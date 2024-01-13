@@ -8,15 +8,36 @@ dependencies:
   '@acab/reset.css':
     specifier: ^0.8.0
     version: 0.8.0
+  '@vee-validate/i18n':
+    specifier: ^4.12.4
+    version: 4.12.4
+  '@vee-validate/rules':
+    specifier: ^4.12.4
+    version: 4.12.4(vue@3.4.13)
+  '@vee-validate/zod':
+    specifier: ^4.12.4
+    version: 4.12.4(vue@3.4.13)
+  i18next:
+    specifier: ^23.7.16
+    version: 23.7.16
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.3.3)(vue@3.4.13)
+  vee-validate:
+    specifier: ^4.12.4
+    version: 4.12.4(vue@3.4.13)
   vue:
     specifier: ^3.4.13
     version: 3.4.13(typescript@5.3.3)
   vue-router:
     specifier: ^4.2.5
     version: 4.2.5(vue@3.4.13)
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
+  zod-i18n-map:
+    specifier: ^2.25.0
+    version: 2.25.0(i18next@23.7.16)(zod@3.22.4)
 
 devDependencies:
   '@rushstack/eslint-patch':
@@ -58,15 +79,6 @@ devDependencies:
   '@types/node':
     specifier: ^18.19.3
     version: 18.19.6
-  '@vee-validate/i18n':
-    specifier: ^4.12.4
-    version: 4.12.4
-  '@vee-validate/rules':
-    specifier: ^4.12.4
-    version: 4.12.4(vue@3.4.13)
-  '@vee-validate/zod':
-    specifier: ^4.12.4
-    version: 4.12.4(vue@3.4.13)
   '@vitejs/plugin-vue':
     specifier: ^4.5.2
     version: 4.6.2(vite@5.0.11)(vue@3.4.13)
@@ -88,9 +100,6 @@ devDependencies:
   husky:
     specifier: ^8.0.3
     version: 8.0.3
-  i18next:
-    specifier: ^23.7.16
-    version: 23.7.16
   lint-staged:
     specifier: ^15.2.0
     version: 15.2.0
@@ -112,9 +121,6 @@ devDependencies:
   typescript:
     specifier: ~5.3.0
     version: 5.3.3
-  vee-validate:
-    specifier: ^4.12.4
-    version: 4.12.4(vue@3.4.13)
   vite:
     specifier: ^5.0.10
     version: 5.0.11(@types/node@18.19.6)
@@ -124,12 +130,6 @@ devDependencies:
   vue-tsc:
     specifier: ^1.8.25
     version: 1.8.27(typescript@5.3.3)
-  zod:
-    specifier: ^3.22.4
-    version: 3.22.4
-  zod-i18n-map:
-    specifier: ^2.25.0
-    version: 2.25.0(i18next@23.7.16)(zod@3.22.4)
 
 packages:
 
@@ -1375,7 +1375,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: true
 
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
@@ -3784,7 +3783,7 @@ packages:
 
   /@vee-validate/i18n@4.12.4:
     resolution: {integrity: sha512-/OJTonHFRtCHfR+W1IIFTDG1cAlIXZmLNPF6M/X2RbmVRefcQm4yDgdzq22HJm5dpllMw+2TflYqCShAscBI1A==}
-    dev: true
+    dev: false
 
   /@vee-validate/rules@4.12.4(vue@3.4.13):
     resolution: {integrity: sha512-r/BGZAst/0OkFJ9m+YGOzULVPZc7WQAFbAZk4UO9epDzz6KYt9fEC0rh6BbzwSf/Xw9U0JSCDOkNZ1gYNDoR5g==}
@@ -3792,7 +3791,7 @@ packages:
       vee-validate: 4.12.4(vue@3.4.13)
     transitivePeerDependencies:
       - vue
-    dev: true
+    dev: false
 
   /@vee-validate/zod@4.12.4(vue@3.4.13):
     resolution: {integrity: sha512-iNFhkBfGkre2b+eBXgBpNlNVStxDrI59sJUbzBr01EjyTkFOUgc/0wPJrhY/kBp+0pnGzNi04jklJaKfNK2ibg==}
@@ -3802,7 +3801,7 @@ packages:
       zod: 3.22.4
     transitivePeerDependencies:
       - vue
-    dev: true
+    dev: false
 
   /@vitejs/plugin-vue@4.6.2(vite@5.0.11)(vue@3.4.13):
     resolution: {integrity: sha512-kqf7SGFoG+80aZG6Pf+gsZIVvGSCKE98JbiWqcCV9cThtg91Jav0yvYFC9Zb+jKetNGF6ZKeoaxgZfND21fWKw==}
@@ -3908,6 +3907,7 @@ packages:
 
   /@vue/devtools-api@6.5.1:
     resolution: {integrity: sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==}
+    dev: false
 
   /@vue/eslint-config-prettier@8.0.0(eslint@8.56.0)(prettier@3.2.1):
     resolution: {integrity: sha512-55dPqtC4PM/yBjhAr+yEw6+7KzzdkBuLmnhBrDfp4I48+wy+Giqqj9yUr5T2uD/BkBROjjmqnLZmXRdOx/VtQg==}
@@ -5787,7 +5787,7 @@ packages:
     resolution: {integrity: sha512-SrqFkMn9W6Wb43ZJ9qrO6U2U4S80RsFMA7VYFSqp7oc7RllQOYDCdRfsse6A7Cq/V8MnpxKvJCYgM8++27n4Fw==}
     dependencies:
       '@babel/runtime': 7.23.8
-    dev: true
+    dev: false
 
   /iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -7485,7 +7485,6 @@ packages:
 
   /regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-    dev: true
 
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
@@ -8159,7 +8158,6 @@ packages:
   /type-fest@4.9.0:
     resolution: {integrity: sha512-KS/6lh/ynPGiHD/LnAobrEFq3Ad4pBzOlJ1wAnJx9N4EYoqFhMfLIBjUT2UEx4wg5ZE+cC1ob6DCSpppVo+rtg==}
     engines: {node: '>=16'}
-    dev: true
 
   /type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
@@ -8378,7 +8376,7 @@ packages:
       '@vue/devtools-api': 6.5.1
       type-fest: 4.9.0
       vue: 3.4.13(typescript@5.3.3)
-    dev: true
+    dev: false
 
   /vite-plugin-dts@3.7.0(@types/node@18.19.6)(typescript@5.3.3)(vite@5.0.11):
     resolution: {integrity: sha512-np1uPaYzu98AtPReB8zkMnbjwcNHOABsLhqVOf81b3ol9b5M2wPcAVs8oqPnOpr6Us+7yDXVauwkxsk5+ldmRA==}
@@ -8754,8 +8752,8 @@ packages:
     dependencies:
       i18next: 23.7.16
       zod: 3.22.4
-    dev: true
+    dev: false
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
-    dev: true
+    dev: false
