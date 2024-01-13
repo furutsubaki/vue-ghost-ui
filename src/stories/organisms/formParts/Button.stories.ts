@@ -2,35 +2,58 @@ import Button from '../../../components/organisms/formParts/Button.vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta: Meta<typeof Button> = {
-    component: Button,
+  component: Button,
   render: (args) => ({
     components: { Button },
     setup() {
       return { args }
     },
-    template: '<Button v-bind="args">ボタン</Button>'
+    template: '<Button v-bind="args">{{args.default}}</Button>'
   }),
+  tags: ['autodocs'],
+  args: {
+    default: 'ボタン'
+  },
+  argTypes: {
+    // TODO: script setupに未対応のため二重定義
+    variant: {
+      options: ['primary', 'secondary', 'info', 'success', 'warning', 'danger']
+    },
+    size: {
+      options: ['small', 'medium', 'large']
+    },
+    shape: {
+      options: ['normal', 'square']
+    },
+    onClick: { action: 'onClick' }
+  }
 }
 
 export default meta
 type Story = StoryObj<typeof Button>
 
-export const Default: Story = {
+export const Default: Story = {}
+
+export const Info: Story = {
   args: {
-    // valiant: 'secondary',
-    // size: 'medium',
-    // shape: 'normal'
+    variant: 'info'
   }
 }
 
-export const Primary: Story = {
+export const Success: Story = {
   args: {
-    valiant: 'primary'
+    variant: 'success'
   }
 }
 
-export const Secondary: Story = {
+export const Warning: Story = {
   args: {
-    valiant: 'secondary'
+    variant: 'warning'
+  }
+}
+
+export const Danger: Story = {
+  args: {
+    variant: 'danger'
   }
 }

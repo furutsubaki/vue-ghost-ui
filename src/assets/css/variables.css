@@ -40,8 +40,6 @@
   --color-base-black: #2d2d2d;
   --color-base-black-true: #000;
   --color-base-black-alpha: #2d2d2dcc;
-  --color-base-primary: var(--color-base-red);
-  --color-base-primary-alpha: var(--color-base-red-alpha);
 
   /* base color */
   --color-base-red: #dc143c;
@@ -66,6 +64,8 @@
   --color-base-pink-alpha: #ffa9e7cc;
 
   /* status */
+  --color-base-primary: var(--color-base-orange);
+  --color-base-primary-alpha: var(--color-base-orange-alpha);
   --color-status-info: var(--color-base-lime);
   --color-status-info-alpha: var(--color-base-lime-alpha);
   --color-status-success: var(--color-base-blue);

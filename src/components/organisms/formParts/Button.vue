@@ -1,26 +1,45 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
+    /**
+     * 表示色
+     */
+    variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
+    /**
+     * サイズ
+     */
     size?: 'small' | 'medium' | 'large'
+    /**
+     * 角丸
+     */
     shape?: 'normal' | 'square'
   }>(),
   {
-    valiant: 'secondary',
+    variant: 'secondary',
     size: 'medium',
     shape: 'normal'
   }
 )
+defineEmits<{
+  /**
+   * test
+   */
+  click: []
+}>()
 </script>
 
 <template>
-  <button type="button" class="button" :class="[valiant, size, shape]">
+  <button type="button" class="button" :class="[variant, size, shape]" @click="$emit('click')">
     <slot></slot>
   </button>
 </template>
 
 <style scoped>
 .button {
+  --size-large: 40px;
+  --size-medium: 32px;
+  --size-small: 24px;
+
   display: flex;
   gap: 16px;
   align-items: center;
@@ -173,22 +192,30 @@ withDefaults(
 }
 
 .large {
-  height: 40px;
+  height: var(--size-large);
   font-size: var(--font-size-large);
 }
 
 .medium {
-  height: 32px;
+  height: var(--size-medium);
   font-size: var(--font-size-common);
 }
 
 .small {
-  height: 24px;
+  height: var(--size-small);
   font-size: var(--font-size-small);
 }
 
 .square {
-  width: 32px;
   min-width: auto;
+  &.large {
+    width: var(--size-large);
+  }
+  &.medium {
+    width: var(--size-medium);
+  }
+  &.small {
+    width: var(--size-small);
+  }
 }
 </style>
