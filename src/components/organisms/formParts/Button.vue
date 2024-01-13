@@ -10,7 +10,7 @@ withDefaults(
      */
     size?: 'small' | 'medium' | 'large'
     /**
-     * 角丸
+     * 形状
      */
     shape?: 'normal' | 'square'
   }>(),
