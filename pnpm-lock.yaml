@@ -43,6 +43,9 @@ devDependencies:
   '@storybook/addon-viewport':
     specifier: ^7.6.8
     version: 7.6.8
+  '@storybook/preview-api':
+    specifier: ^7.6.8
+    version: 7.6.8
   '@storybook/vue3':
     specifier: ^7.6.8
     version: 7.6.8(vue@3.4.12)
