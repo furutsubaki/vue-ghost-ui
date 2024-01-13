@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue';
+import {computed, watch} from 'vue';
 import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
 import InputTextCounter from '@/components/organisms/formParts/InputTextCounter.vue';
 
-const model = defineModel<string>();
+const model = defineModel<string>()
 const props = withDefaults(
     defineProps<{
         /**
@@ -28,6 +28,10 @@ const props = withDefaults(
          */
         disabled?: boolean;
         /**
+         * 種類
+         */
+        type?: 'text' | 'email' | 'password';
+        /**
          * 表示種類
          */
         valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
@@ -35,18 +39,6 @@ const props = withDefaults(
          * サイズ
          */
         size?: 'small' | 'medium' | 'large';
-        /**
-         * デフォルト行数
-         */
-        line?: number;
-        /**
-         * 最小行数
-         */
-        minLine?: number | null;
-        /**
-         * 最大行数
-         */
-        maxLine?: number | null;
     }>(),
     {
         name: Math.random().toString(),
@@ -54,9 +46,9 @@ const props = withDefaults(
         label: ' ',
         placeholder: '',
         disabled: false,
+        type: 'text',
         valiant: 'secondary',
         size: 'medium',
-        line: 3
     }
 );
 
@@ -67,32 +59,22 @@ const isRequired = computed(
 );
 const max = computed(() => schemaChunks.value.find((check) => check.kind === 'max')?.value || null);
 
-const cssMinLine = computed(() => `${props.minLine ?? props.line}lh`);
-const cssMaxLine = computed(() => (props.maxLine ? `${props.maxLine}lh` : null));
-const textareaRef = ref();
-
-
 watch(value, (v) => {model.value = v as string})
 
 if(!value.value && model.value) {
     value.value = model.value;
 }
-
-watch(value, (value) => {
-    let lines = (value + '\n').match(/\n/g)?.length ?? 1;
-    textareaRef.value.style.height = lines + 'lh';
-});
 </script>
 
 <template>
     <label class="label">
         <InputTextCounter v-if="max" class="counter" :text="value" :max="max" />
-        <textarea
-            ref="textareaRef"
-            v-model="value"
-            class="textarea"
+        <input
+            v-model.trim="value"
+            class="input"
             :class="[valiant, size]"
             placeholder=" "
+            :type="type"
             :required="isRequired"
             :disabled="disabled"
         />
@@ -117,7 +99,7 @@ watch(value, (value) => {
         right: 0;
     }
 
-    .textarea {
+    .input {
         display: flex;
         gap: 16px;
         align-items: center;
@@ -129,10 +111,6 @@ watch(value, (value) => {
         padding: 0 8px;
         border: 1px solid var(--color-theme-border);
         border-radius: 4px;
-        /* field-sizing: content; 後に登場予定。まだ未実装 */
-        resize: none;
-        min-height: v-bind(cssMinLine);
-        max-height: v-bind(cssMaxLine);
         background-color: var(--color-theme-bg-primary);
         transition:
             color 0.2s,
@@ -177,8 +155,8 @@ watch(value, (value) => {
             content: '*';
         }
     }
-    .textarea:not(:placeholder-shown) + .label-placeholder,
-    .textarea:focus + .label-placeholder {
+    .input:not(:placeholder-shown) + .label-placeholder,
+    .input:focus + .label-placeholder {
         top: -1em;
         left: 0em;
         font-size: var(--font-size-small);

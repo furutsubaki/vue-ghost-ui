@@ -1,20 +1,21 @@
-import Textarea from '@/components/organisms/formParts/Textarea.vue';
+import Number from '@/components/organisms/formParts/Number.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { string, object } from 'zod';
+import { number, object } from 'zod';
 
 const TEST_SCHEMA = object({
-    test: string().max(50).min(1)
+    test: number().max(50).min(1)
 }).required();
-const meta: Meta<typeof Textarea> = {
-    component: Textarea,
+
+const meta: Meta<typeof Number> = {
+    component: Number,
     render: (args) => ({
-        components: { Textarea },
+        components: { Number },
         setup() {
-            useFormData(TEST_SCHEMA, { test: '入力済み' });
+            useFormData(TEST_SCHEMA, { test: 10 });
             return { args };
         },
-        template: '<Textarea v-bind="args" />'
+        template: '<Number v-bind="args" />'
     }),
     tags: ['autodocs'],
     args: {
@@ -28,29 +29,28 @@ const meta: Meta<typeof Textarea> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Textarea>;
+type Story = StoryObj<typeof Number>;
 
-export const Default: Story = {
-};
+export const Default: Story = {};
 
 export const Label: Story = {
     args: {
-        modelValue: '入力',
-        label: '備考'
+        modelValue: '0',
+        label: '数字'
     }
 };
 
 export const Placeholder: Story = {
     args: {
         ...Label.args,
-        placeholder: 'なにか入力してください'
+        placeholder: '0'
     }
 };
 
 export const Disabled: Story = {
     args: {
         ...Label.args,
-        placeholder: 'なにか入力してください',
+        placeholder: '0',
         disabled: true
     }
 };
@@ -60,6 +60,6 @@ export const Schema: Story = {
         ...Label.args,
         name: 'test',
         schema:TEST_SCHEMA.shape.test,
-        placeholder: 'なにか入力してください',
+        placeholder: '0',
     }
 };
