@@ -43,7 +43,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 const model = ref<string>('初期値');
 
 // template
-<Input v-model="model" />
+<VguInput v-model="model" />
 ```
 
 ### useFormを使用
@@ -59,7 +59,7 @@ const TEST_SCHEMA = object({
 const { canSubmit, resetForm } = useFormData(TEST_SCHEMA, { test: '初期値' });
 
 // template
-<Input name="test" :schema="TEST_SCHEMA.shape.test" />
+<VguInput name="test" :schema="TEST_SCHEMA.shape.test" />
 ```
 
 ## コマンド
