@@ -31,7 +31,8 @@
     "format": "prettier --write src/",
     "lint": "pnpm eslint && pnpm format",
     "sb": "pnpm storybook dev --port 6006 --no-open",
-    "sb:test": "test-storybook --url http://localhost:6006"
+    "sb:test": "test-storybook --url http://localhost:6006",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@acab/reset.css": "^0.8.0",
@@ -59,6 +60,7 @@
     "@vue/tsconfig": "^0.5.0",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
+    "husky": "^8.0.3",
     "npm-run-all2": "^6.1.1",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
