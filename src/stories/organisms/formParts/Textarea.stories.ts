@@ -30,8 +30,7 @@ const meta: Meta<typeof Textarea> = {
 export default meta;
 type Story = StoryObj<typeof Textarea>;
 
-export const Default: Story = {
-};
+export const Default: Story = {};
 
 export const Label: Story = {
     args: {
@@ -59,7 +58,7 @@ export const Schema: Story = {
     args: {
         ...Label.args,
         name: 'test',
-        schema:TEST_SCHEMA.shape.test,
-        placeholder: 'なにか入力してください',
+        schema: TEST_SCHEMA.shape.test,
+        placeholder: 'なにか入力してください'
     }
 };

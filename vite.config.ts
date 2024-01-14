@@ -4,8 +4,8 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
+import postcssNesting from "postcss-nesting";
 
-// https://vitejs.dev/config/
 export default defineConfig({
     build: {
         lib: {
@@ -19,17 +19,25 @@ export default defineConfig({
             output: {
                 globals: {
                     vue: 'Vue'
-                }
-            }
+                },
+                exports: 'named'
+            },
         }
     },
     plugins: [
         vue(),
-        dts({ exclude: ['src/main.ts'] })
+        dts({ exclude: ['src/main.ts'] }),
     ],
     resolve: {
+        dedupe: ['vue'],
         alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            vue: resolve(__dirname, './node_modules/vue'),
+        }
+    },
+    css: {
+        postcss: {
+            plugins: [postcssNesting]
         }
     }
 })

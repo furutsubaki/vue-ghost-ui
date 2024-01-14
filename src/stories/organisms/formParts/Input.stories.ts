@@ -26,14 +26,12 @@ const meta: Meta<typeof Input> = {
         // @ts-ignore
         'onUpdate:modelValue': { action: 'onUpdate:modelValue' }
     }
-
 };
 
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const Default: Story = {
-};
+export const Default: Story = {};
 
 export const Label: Story = {
     args: {
@@ -61,7 +59,7 @@ export const Schema: Story = {
     args: {
         ...Label.args,
         name: 'test',
-        schema:TEST_SCHEMA.shape.test,
-        placeholder: '山田 太郎',
+        schema: TEST_SCHEMA.shape.test,
+        placeholder: '山田 太郎'
     }
 };

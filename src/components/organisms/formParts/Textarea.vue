@@ -71,10 +71,11 @@ const cssMinLine = computed(() => `${props.minLine ?? props.line}lh`);
 const cssMaxLine = computed(() => (props.maxLine ? `${props.maxLine}lh` : null));
 const textareaRef = ref();
 
+watch(value, (v) => {
+    model.value = v as string;
+});
 
-watch(value, (v) => {model.value = v as string})
-
-if(!value.value && model.value) {
+if (!value.value && model.value) {
     value.value = model.value;
 }
 
@@ -96,12 +97,10 @@ watch(value, (value) => {
             :required="isRequired"
             :disabled="disabled"
         />
-        <div class="label-placeholder"
-            ><span class="label">{{ label
-            }}</span><span v-if="placeholder" class="placeholder"
-                >（例：{{ placeholder }}）</span
-            ></div
-        >
+        <div class="label-placeholder">
+            <span class="label">{{ label }}</span
+            ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
+        </div>
         <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
     </label>
 </template>
@@ -125,7 +124,7 @@ watch(value, (value) => {
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
-        margin:0.5em 0;
+        margin: 0.5em 0;
         padding: 0 8px;
         border: 1px solid var(--color-theme-border);
         border-radius: 4px;
@@ -156,10 +155,10 @@ watch(value, (value) => {
         align-items: baseline;
 
         .label {
-        transition: color 0.2s;
+            transition: color 0.2s;
             color: var(--color-theme-border);
-        height: 1em;
-        line-height: 1em;
+            height: 1em;
+            line-height: 1em;
         }
 
         .placeholder {
@@ -182,7 +181,7 @@ watch(value, (value) => {
         top: -1em;
         left: 0em;
         font-size: var(--font-size-small);
-        .label{
+        .label {
             color: var(--color-theme-text-primary);
         }
     }

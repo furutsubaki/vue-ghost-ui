@@ -59,7 +59,7 @@ export const Schema: Story = {
     args: {
         ...Label.args,
         name: 'test',
-        schema:TEST_SCHEMA.shape.test,
-        placeholder: '0',
+        schema: TEST_SCHEMA.shape.test,
+        placeholder: '0'
     }
 };

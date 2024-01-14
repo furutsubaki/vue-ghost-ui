@@ -2,6 +2,8 @@
 
 vue/nuxt用のGHOST UIコンポーネントライブラリ
 
+※nuxt ^3
+
 ## リソース
 
 reset cssとして[@acab/reset.css](https://github.com/mayank99/reset.css)を導入しています。
@@ -15,7 +17,7 @@ reset cssとして[@acab/reset.css](https://github.com/mayank99/reset.css)を導
 ## use
 
 ```shell
-pnpm i -D vue-ghost-ui
+pnpm i -D vue-ghost-ui zod
 ```
 
 ### Nuxt
@@ -23,11 +25,16 @@ pnpm i -D vue-ghost-ui
 `plugins/vue-ghost-ui.ts`
 
 ```ts
-import VueGhostUi from 'vue-ghost-ui';
+import VueGhostUi, { useFormData } from 'vue-ghost-ui';
 import 'vue-ghost-ui/dist/style.css';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(VueGhostUi);
+    return {
+        provide: {
+            useFormData
+        }
+    };
 });
 ```
 
@@ -53,6 +60,9 @@ const model = ref<string>('初期値');
 
 ```jsx
 // script
+import { string, object } from 'zod';
+
+const { $useFormData } = useNuxtApp();
 const TEST_SCHEMA = object({
     test: string().max(50).min(1)
 }).required();

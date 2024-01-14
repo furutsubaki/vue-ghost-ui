@@ -10,7 +10,7 @@ const meta: Meta<typeof InputTextCounter> = {
         },
         template: '<InputTextCounter v-bind="args" />'
     }),
-    tags: ['autodocs'],
+    tags: ['autodocs']
 };
 
 export default meta;
