@@ -16,7 +16,7 @@ const Components: { [key: string]: Component } = {
     Textarea,
     Input,
     Number,
-    InputTextCounter,
+    InputTextCounter
 };
 
 export { useFormData };
