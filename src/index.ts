@@ -30,6 +30,6 @@ export default {
         app.config.globalProperties.$useFormData = useFormData;
         app.provide('useFormData', useFormData);
 
-        Validate(app);
+        Validate();
     }
 };
