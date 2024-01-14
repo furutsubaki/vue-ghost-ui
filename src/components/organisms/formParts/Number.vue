@@ -3,7 +3,7 @@ import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber } from 'zod';
 
-const model = defineModel<string>();
+const model = defineModel<number>();
 const props = withDefaults(
     defineProps<{
         /**
@@ -51,14 +51,14 @@ const props = withDefaults(
     }
 );
 
-const { value, errors } = useField<string>(props.name);
+const { value, errors } = useField<number>(props.name);
 const schemaChunks = computed(() => props.schema?._def.checks || []);
 const isRequired = computed(
     () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
 );
 
 watch(value, (v) => {
-    model.value = v as string;
+    model.value = v;
 });
 
 if (!value.value && model.value) {
@@ -69,7 +69,7 @@ if (!value.value && model.value) {
 <template>
     <label class="label">
         <input
-            v-model.trim.number="value"
+            v-model.number.trim="value"
             class="input"
             :class="[valiant, size]"
             placeholder=" "

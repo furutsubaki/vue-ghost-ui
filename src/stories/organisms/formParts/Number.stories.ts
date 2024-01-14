@@ -19,9 +19,12 @@ const meta: Meta<typeof Number> = {
     }),
     tags: ['autodocs'],
     args: {
-        modelValue: ''
+        modelValue: undefined
     },
     argTypes: {
+        modelValue: {
+            control: { type: 'number' },
+        },
         // TODO: 現状lintエラーの回避策なし
         // @ts-ignore
         'onUpdate:modelValue': { action: 'onUpdate:modelValue' }
