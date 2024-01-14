@@ -23,7 +23,7 @@ const meta: Meta<typeof Number> = {
     },
     argTypes: {
         modelValue: {
-            control: { type: 'number' },
+            control: { type: 'number' }
         },
         // TODO: 現状lintエラーの回避策なし
         // @ts-ignore
