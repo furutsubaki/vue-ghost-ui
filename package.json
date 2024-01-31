@@ -52,7 +52,7 @@
     "@storybook/addon-outline": "^7.6.8",
     "@storybook/addon-viewport": "^7.6.11",
     "@storybook/preview-api": "^7.6.8",
-    "@storybook/vue3": "^7.6.11",
+    "@storybook/vue3": "^7.6.12",
     "@storybook/vue3-vite": "^7.6.8",
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^18.19.3",
