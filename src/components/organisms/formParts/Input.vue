@@ -86,6 +86,7 @@ if (!value.value && model.value) {
             :class="[valiant, size]"
             placeholder=" "
             :type="type"
+            :name="name"
             :required="isRequired"
             :disabled="disabled"
         />

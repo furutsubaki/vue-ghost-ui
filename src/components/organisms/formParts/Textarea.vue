@@ -103,6 +103,7 @@ watch(value, (value) => {
             class="textarea"
             :class="[valiant, size]"
             placeholder=" "
+            :name="name"
             :required="isRequired"
             :disabled="disabled"
         />
