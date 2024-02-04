@@ -38,7 +38,7 @@ export const Default: Story = {};
 
 export const Label: Story = {
     args: {
-        modelValue: '0',
+        modelValue: 0,
         label: '数字'
     }
 };

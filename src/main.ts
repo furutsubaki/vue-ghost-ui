@@ -11,6 +11,6 @@ const app = createApp(App);
 
 app.use(createPinia());
 
-useValidate(app);
+useValidate();
 
 app.mount('#app');
