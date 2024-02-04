@@ -57,11 +57,16 @@ const schemaChunks = computed(() => props.schema?._def.checks || []);
 const isRequired = computed(
     () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
 );
-const max = computed(() => (schemaChunks.value.find((check) => check.kind === 'max') as {
-    kind: "max";
-    value: number;
-    message?: string;
-})?.value || null);
+const max = computed(
+    () =>
+        (
+            schemaChunks.value.find((check) => check.kind === 'max') as {
+                kind: 'max';
+                value: number;
+                message?: string;
+            }
+        )?.value || null
+);
 
 watch(value, (v) => {
     model.value = v as string;
