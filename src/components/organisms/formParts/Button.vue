@@ -29,13 +29,18 @@ defineEmits<{
 </script>
 
 <template>
-    <button type="button" class="button" :class="[variant, size, shape]" @click="$emit('click')">
+    <button
+        type="button"
+        class="component-button"
+        :class="[variant, size, shape]"
+        @click="$emit('click')"
+    >
         <slot></slot>
     </button>
 </template>
 
 <style scoped>
-.button {
+.component-button {
     --size-large: 40px;
     --size-medium: 32px;
     --size-small: 24px;

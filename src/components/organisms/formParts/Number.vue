@@ -67,7 +67,7 @@ if (!value.value && model.value) {
 </script>
 
 <template>
-    <label class="label">
+    <label class="component-number">
         <input
             v-model.number.trim="value"
             class="input"
@@ -87,9 +87,11 @@ if (!value.value && model.value) {
 </template>
 
 <style scoped>
-.label {
+.component-number {
     position: relative;
     text-align: left;
+    display: block;
+    margin: 1em 0;
 
     .input {
         display: flex;
@@ -99,7 +101,6 @@ if (!value.value && model.value) {
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
-        margin: 0.5em 0;
         padding: 0 8px;
         border: 1px solid var(--color-theme-border);
         border-radius: 4px;
@@ -116,7 +117,7 @@ if (!value.value && model.value) {
     }
     .label-placeholder {
         position: absolute;
-        top: 0.5em;
+        top: calc(50% - 0.5em);
         left: 1em;
         height: 1em;
         line-height: 1em;
