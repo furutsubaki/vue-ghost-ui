@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { ZodNumber } from 'zod';
+import { ZodNumber, ZodString, ZodNullable } from 'zod';
 
-const model = defineModel<number>();
+interface Item {
+    label: string;
+    value: string | number | null;
+    disabled?: boolean;
+}
+
+const model = defineModel<string | number>();
 const props = withDefaults(
     defineProps<{
+        /**
+         * 項目
+         */
+        items: Item[];
         /**
          * フィールド名
          */
@@ -13,23 +23,15 @@ const props = withDefaults(
         /**
          * zodスキーマ
          */
-        schema?: ZodNumber;
+        schema?: ZodString | ZodNullable<ZodString> | ZodNumber | ZodNullable<ZodNumber>;
         /**
          * 見出し
          */
         label?: string;
         /**
-         * 見本
-         */
-        placeholder?: string;
-        /**
          * 無効か
          */
         disabled?: boolean;
-        /**
-         * 種類
-         */
-        type?: 'text' | 'email' | 'password' | 'number';
         /**
          * 表示種類
          */
@@ -43,16 +45,14 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
-        placeholder: '',
         disabled: false,
-        type: 'text',
         valiant: 'secondary',
         size: 'medium'
     }
 );
 
-const { value, errors } = useField<number>(props.name);
-const schemaChunks = computed(() => props.schema?._def.checks || []);
+const { value, errors } = useField<string | number>(props.name);
+const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
 const isRequired = computed(
     () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
 );
@@ -67,44 +67,78 @@ if (!value.value && model.value) {
 </script>
 
 <template>
-    <label class="component-number">
-        <input
-            v-model.number.trim="value"
-            class="input"
-            :class="[valiant, size]"
-            placeholder=" "
-            type="number"
-            :name="name"
-            :required="isRequired"
-            :disabled="disabled"
-        />
-        <div class="label-placeholder">
-            <span class="label">{{ label }}</span
-            ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
+    <label class="component-radio">
+        <div class="label-placeholder" :class="{ required: isRequired }">
+            {{ label }}
+        </div>
+        <div class="item-label">
+            <label
+                class="input"
+                :class="[valiant, size, { disabled: disabled || item.disabled }]"
+                v-for="item in items"
+                :key="item.label"
+            >
+                <input
+                    v-model="value"
+                    class="checkbox"
+                    type="radio"
+                    :value="item.value"
+                    :name="name"
+                    :required="isRequired"
+                    :disabled="disabled || item.disabled"
+                />
+                {{ item.label }}
+            </label>
         </div>
         <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
     </label>
 </template>
 
 <style scoped>
-.component-number {
+.component-radio {
     position: relative;
     text-align: left;
     display: block;
     margin: 1em 0;
+}
+
+.label-placeholder {
+    position: absolute;
+    top: -1em;
+    left: 0em;
+    height: 1em;
+    line-height: 1em;
+    pointer-events: none;
+    transition: 0.2s;
+    display: flex;
+    align-items: baseline;
+    font-size: var(--font-size-small);
+    color: var(--color-theme-text-primary);
+    &.required {
+        &::after {
+            left: -0.5em;
+            color: var(--color-status-danger);
+            content: '*';
+        }
+    }
+}
+
+.item-label {
+    position: relative;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
 
     .input {
         display: flex;
         gap: 16px;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         min-width: 100px;
-        width: 100%;
         line-height: 1.5em;
         padding: 0 8px;
-        border: 1px solid var(--color-theme-border);
-        border-radius: 4px;
-        background-color: var(--color-theme-bg-primary);
         transition:
             color 0.2s,
             background-color 0.2s,
@@ -113,48 +147,6 @@ if (!value.value && model.value) {
         &:disabled {
             pointer-events: none;
             opacity: 0.5;
-        }
-    }
-    .label-placeholder {
-        position: absolute;
-        top: calc(50% - 0.5em);
-        left: 1em;
-        height: 1em;
-        line-height: 1em;
-        pointer-events: none;
-        transition: 0.2s;
-        display: flex;
-        align-items: baseline;
-
-        .label {
-            transition: color 0.2s;
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-
-        .placeholder {
-            font-size: var(--font-size-small);
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-    }
-
-    [required] + .label-placeholder > .label {
-        &::after {
-            left: -0.5em;
-            color: var(--color-status-danger);
-            content: '*';
-        }
-    }
-    .input:not(:placeholder-shown) + .label-placeholder,
-    .input:focus + .label-placeholder {
-        top: -1em;
-        left: 0em;
-        font-size: var(--font-size-small);
-        .label {
-            color: var(--color-theme-text-primary);
         }
     }
 }

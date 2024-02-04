@@ -12,13 +12,13 @@ const currentTextCount = computed(() => props.text?.length || 0);
 </script>
 
 <template>
-    <span class="counter" :class="{ 'is-error': currentTextCount > max }"
+    <span class="component-counter" :class="{ 'is-error': currentTextCount > max }"
         >{{ currentTextCount }}/{{ max }}</span
     >
 </template>
 
 <style scoped>
-.counter {
+.component-counter {
     font-size: var(--font-size-small);
 
     &.is-error {

@@ -95,7 +95,7 @@ watch(value, (value) => {
 </script>
 
 <template>
-    <label class="label">
+    <label class="component-textarea">
         <InputTextCounter v-if="max" class="counter" :text="value" :max="max" />
         <textarea
             ref="textareaRef"
@@ -103,6 +103,7 @@ watch(value, (value) => {
             class="textarea"
             :class="[valiant, size]"
             placeholder=" "
+            :name="name"
             :required="isRequired"
             :disabled="disabled"
         />
@@ -115,9 +116,11 @@ watch(value, (value) => {
 </template>
 
 <style scoped>
-.label {
+.component-textarea {
     position: relative;
     text-align: left;
+    display: block;
+    margin: 1em 0;
 
     .counter {
         position: absolute;
@@ -133,7 +136,6 @@ watch(value, (value) => {
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
-        margin: 0.5em 0;
         padding: 0 8px;
         border: 1px solid var(--color-theme-border);
         border-radius: 4px;
@@ -154,7 +156,7 @@ watch(value, (value) => {
     }
     .label-placeholder {
         position: absolute;
-        top: 0.5em;
+        top: calc(50% - 0.5em);
         left: 1em;
         height: 1em;
         line-height: 1em;
