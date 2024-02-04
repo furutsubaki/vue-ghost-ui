@@ -1,5 +1,3 @@
-import { defineRule } from 'vee-validate';
-import * as AllRules from '@vee-validate/rules';
 import { init } from 'i18next';
 import { z } from 'zod';
 import { zodI18nMap } from 'zod-i18n-map';
@@ -16,11 +14,6 @@ const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
 };
 
 export default () => {
-    // vee-validate
-    Object.entries(AllRules).forEach(([id, validator]) => {
-        defineRule(id, validator);
-    });
-
     // zod
     init({
         lng: 'ja',

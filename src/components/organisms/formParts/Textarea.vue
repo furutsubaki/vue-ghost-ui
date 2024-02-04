@@ -65,7 +65,11 @@ const schemaChunks = computed(() => props.schema?._def.checks || []);
 const isRequired = computed(
     () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
 );
-const max = computed(() => schemaChunks.value.find((check) => check.kind === 'max')?.value || null);
+const max = computed(() => (schemaChunks.value.find((check) => check.kind === 'max') as {
+    kind: "max";
+    value: number;
+    message?: string;
+})?.value || null);
 
 const cssMinLine = computed(() => `${props.minLine ?? props.line}lh`);
 const cssMaxLine = computed(() => (props.maxLine ? `${props.maxLine}lh` : null));

@@ -8,7 +8,6 @@ import Textarea from '@/components/organisms/formParts/Textarea.vue';
 import Input from '@/components/organisms/formParts/Input.vue';
 import Number from '@/components/organisms/formParts/Number.vue';
 import InputTextCounter from '@/components/organisms/formParts/InputTextCounter.vue';
-import Validate from '@/plugins/validate';
 import useFormData from '@/composables/useFormData';
 
 const Components: { [key: string]: Component } = {
@@ -29,7 +28,5 @@ export default {
 
         app.config.globalProperties.$useFormData = useFormData;
         app.provide('useFormData', useFormData);
-
-        Validate();
     }
 };

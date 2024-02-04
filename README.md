@@ -72,6 +72,46 @@ const { canSubmit, resetForm } = useFormData(TEST_SCHEMA, { test: '初期値' })
 <VguInput name="test" :schema="TEST_SCHEMA.shape.test" />
 ```
 
+## バリデーションの日本語化
+
+必要に応じて各プロジェクトで実施してください
+
+```shell
+pnpm i -D zod-i18n-map i18next vee-validate
+```
+
+`plugins/zod-validate.ts`
+
+```ts
+import { init } from 'i18next';
+import { z } from 'zod';
+import { zodI18nMap } from 'zod-i18n-map';
+import translation from 'zod-i18n-map/locales/ja/zod.json';
+
+const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
+    switch (issue.code) {
+        case z.ZodIssueCode.too_small:
+            if (['string'].includes(issue.type) && issue.minimum === 1) {
+                return { message: 'この項目は必須項目です。' };
+            }
+    }
+    return zodI18nMap(issue, ctx);
+};
+
+export default defineNuxtPlugin(() => {
+    // zod
+    init({
+        lng: 'ja',
+        resources: {
+            ja: { zod: translation }
+        }
+    });
+    z.setErrorMap(customErrorMap);
+
+});
+
+```
+
 ## コマンド
 
 |コマンド|機能|
