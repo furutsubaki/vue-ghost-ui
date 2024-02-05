@@ -127,7 +127,7 @@ watch(value, (value) => {
     position: relative;
     text-align: left;
     display: block;
-    margin: 1em 0;
+    padding: 8px 0;
 
     .counter {
         position: absolute;
@@ -196,7 +196,7 @@ watch(value, (value) => {
     }
     .textarea:not(:placeholder-shown) + .label-placeholder,
     .textarea:focus + .label-placeholder {
-        top: -1em;
+        top: -0.5em;
         left: 0em;
         font-size: var(--font-size-small);
         .label {

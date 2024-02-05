@@ -98,7 +98,7 @@ if (!value.value && model.value) {
     position: relative;
     text-align: left;
     display: block;
-    margin: 1em 0;
+    padding: 8px 0;
 
     .input {
         display: flex;
@@ -157,7 +157,7 @@ if (!value.value && model.value) {
     }
     .input:not(:placeholder-shown) + .label-placeholder,
     .input:focus + .label-placeholder {
-        top: -1em;
+        top: -0.5em;
         left: 0em;
         font-size: var(--font-size-small);
         .label {

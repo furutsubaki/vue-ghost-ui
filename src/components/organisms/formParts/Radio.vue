@@ -105,12 +105,12 @@ if (!value.value && model.value) {
     position: relative;
     text-align: left;
     display: block;
-    margin: 1em 0;
+    padding: 8px 0;
 }
 
 .label-placeholder {
     position: absolute;
-    top: -1em;
+    top: -0.5em;
     left: 0em;
     height: 1em;
     line-height: 1em;
