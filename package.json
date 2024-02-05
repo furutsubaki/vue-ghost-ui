@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@acab/reset.css": "^0.8.0",
-    "@vee-validate/rules": "^4.12.4",
+    "@vee-validate/rules": "^4.12.5",
     "@vee-validate/zod": "^4.12.5",
     "i18next": "^23.7.16",
     "pinia": "^2.1.7",
