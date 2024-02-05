@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { ZodString } from 'zod';
-import InputTextCounter from '@/components/organisms/formParts/InputTextCounter.vue';
+import { ZodNumber, ZodString, ZodBoolean } from 'zod';
+import Radio from '@/components/organisms/controls/Radio.vue';
 
-const model = defineModel<string>();
+interface Item {
+    label: string;
+    value: string | number | boolean;
+    disabled?: boolean;
+}
+
+const model = defineModel<string | number | boolean>();
 const props = withDefaults(
     defineProps<{
+        /**
+         * 項目
+         */
+        items: Item[];
         /**
          * フィールド名
          */
@@ -14,23 +24,15 @@ const props = withDefaults(
         /**
          * zodスキーマ
          */
-        schema?: ZodString;
+        schema?: ZodBoolean | ZodString | ZodNumber;
         /**
          * 見出し
          */
         label?: string;
         /**
-         * 見本
-         */
-        placeholder?: string;
-        /**
          * 無効か
          */
         disabled?: boolean;
-        /**
-         * 種類
-         */
-        type?: 'text' | 'email' | 'password';
         /**
          * 表示種類
          */
@@ -48,29 +50,17 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
-        placeholder: '',
         disabled: false,
-        type: 'text',
         valiant: 'secondary',
         size: 'medium',
         isErrorMessage: true
     }
 );
 
-const { value, errors } = useField<string>(props.name);
-const schemaChunks = computed(() => props.schema?._def.checks || []);
+const { value, errors } = useField<string | number | boolean>(props.name);
+const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
 const isRequired = computed(
     () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
-);
-const max = computed(
-    () =>
-        (
-            schemaChunks.value.find((check) => check.kind === 'max') as {
-                kind: 'max';
-                value: number;
-                message?: string;
-            }
-        )?.value || null
 );
 
 watch(value, (v) => {
@@ -84,105 +74,63 @@ if (value.value == null && model.value != null) {
 </script>
 
 <template>
-    <label class="component-input">
-        <InputTextCounter v-if="max" class="counter" :text="value" :max="max" />
-        <input
-            v-model.trim="value"
-            class="input"
-            :class="[valiant, size]"
-            placeholder=" "
-            :type="type"
-            :name="name"
-            :required="isRequired"
-            :disabled="disabled"
-        />
-        <div class="label-placeholder">
-            <span class="label">{{ label }}</span
-            ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
+    <div class="component-radio-group">
+        <div class="label-placeholder" :class="{ required: isRequired }">
+            {{ label }}
+        </div>
+        <div class="items">
+            <Radio
+                v-for="item in items"
+                :key="item.label"
+                :value="item.value"
+                :name="name"
+                :disabled="disabled || item.disabled"
+                :valiant="valiant"
+                :size="size"
+                :isErrorMessage="false"
+                >{{ item.label }}</Radio
+            >
         </div>
         <template v-if="isErrorMessage">
             <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
         </template>
-    </label>
+    </div>
 </template>
 
 <style scoped>
-.component-input {
+.component-radio-group {
     position: relative;
     text-align: left;
-    display: block;
     padding: 8px 0;
-
-    .counter {
-        position: absolute;
-        top: -1.5em;
-        right: 0;
+    .component-radio {
+        padding: 0;
     }
+}
 
-    .input {
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        justify-content: center;
-        min-width: 100px;
-        width: 100%;
-        line-height: 1.5em;
-        padding: 0 8px;
-        border: 1px solid var(--color-theme-border);
-        border-radius: 4px;
-        background-color: var(--color-theme-bg-primary);
-        transition:
-            color 0.2s,
-            background-color 0.2s,
-            border-color 0.2s,
-            opacity 0.2s;
-        &:disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-    }
-    .label-placeholder {
-        position: absolute;
-        top: calc(50% - 0.5em);
-        left: 1em;
-        height: 1em;
-        line-height: 1em;
-        pointer-events: none;
-        transition: 0.2s;
-        display: flex;
-        align-items: baseline;
-
-        .label {
-            transition: color 0.2s;
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-
-        .placeholder {
-            font-size: var(--font-size-small);
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-    }
-
-    [required] + .label-placeholder > .label {
+.label-placeholder {
+    position: absolute;
+    top: -0.5em;
+    left: 0em;
+    height: 1em;
+    line-height: 1em;
+    pointer-events: none;
+    transition: 0.2s;
+    display: flex;
+    align-items: baseline;
+    font-size: var(--font-size-small);
+    color: var(--color-theme-text-primary);
+    &.required {
         &::after {
             left: -0.5em;
             color: var(--color-status-danger);
             content: '*';
         }
     }
-    .input:not(:placeholder-shown) + .label-placeholder,
-    .input:focus + .label-placeholder {
-        top: -0.5em;
-        left: 0em;
-        font-size: var(--font-size-small);
-        .label {
-            color: var(--color-theme-text-primary);
-        }
-    }
+}
+
+.items {
+    display: flex;
+    gap: 8px;
 }
 
 .primary {

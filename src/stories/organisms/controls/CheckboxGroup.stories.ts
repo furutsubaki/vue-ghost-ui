@@ -1,4 +1,4 @@
-import CheckboxGroup from '@/components/organisms/formParts/CheckboxGroup.vue';
+import CheckboxGroup from '@/components/organisms/controls/CheckboxGroup.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';

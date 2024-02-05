@@ -1,30 +1,27 @@
-import Number from '@/components/organisms/formParts/Number.vue';
+import Input from '@/components/organisms/controls/Input.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { number, object } from 'zod';
+import { string, object } from 'zod';
 
 const TEST_SCHEMA = object({
-    test: number().max(50).min(1)
+    test: string().max(50).min(1)
 }).required();
 
-const meta: Meta<typeof Number> = {
-    component: Number,
+const meta: Meta<typeof Input> = {
+    component: Input,
     render: (args) => ({
-        components: { Number },
+        components: { Input },
         setup() {
-            useFormData(TEST_SCHEMA, { test: 10 });
+            useFormData(TEST_SCHEMA, { test: 'ヤマダ タロウ' });
             return { args };
         },
-        template: '<Number v-bind="args" />'
+        template: '<Input v-bind="args" />'
     }),
     tags: ['autodocs'],
     args: {
-        modelValue: 0
+        modelValue: ''
     },
     argTypes: {
-        modelValue: {
-            control: { type: 'number' }
-        },
         // TODO: 現状lintエラーの回避策なし
         // @ts-ignore
         'onUpdate:modelValue': { action: 'onUpdate:modelValue' }
@@ -32,28 +29,28 @@ const meta: Meta<typeof Number> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Number>;
+type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {};
 
 export const Label: Story = {
     args: {
-        modelValue: 0,
-        label: '数字'
+        modelValue: '太郎',
+        label: '名前'
     }
 };
 
 export const Placeholder: Story = {
     args: {
         ...Label.args,
-        placeholder: '0'
+        placeholder: '山田 太郎'
     }
 };
 
 export const Disabled: Story = {
     args: {
         ...Label.args,
-        placeholder: '0',
+        placeholder: '山田 太郎',
         disabled: true
     }
 };
@@ -63,6 +60,6 @@ export const Schema: Story = {
         ...Label.args,
         name: 'test',
         schema: TEST_SCHEMA.shape.test,
-        placeholder: '0'
+        placeholder: '山田 太郎'
     }
 };

@@ -1,4 +1,4 @@
-import RadioGroup from '@/components/organisms/formParts/RadioGroup.vue';
+import RadioGroup from '@/components/organisms/controls/RadioGroup.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
