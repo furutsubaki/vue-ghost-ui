@@ -67,8 +67,6 @@ watch(value, (v) => {
     model.value = v;
 });
 
-console.log(value.value, model.value);
-
 // NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
 if (value.value == null && model.value != null) {
     value.value = model.value;
@@ -86,7 +84,7 @@ if (value.value == null && model.value != null) {
                 :key="item.label"
                 :value="item.value"
                 :name="name"
-                :disabled="item.disabled"
+                :disabled="disabled || item.disabled"
                 :valiant="valiant"
                 :size="size"
                 :isErrorMessage="false"
