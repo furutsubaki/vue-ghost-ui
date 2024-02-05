@@ -27,10 +27,6 @@ const props = withDefaults(
          */
         disabled?: boolean;
         /**
-         * 種類
-         */
-        type?: 'text' | 'email' | 'password' | 'number';
-        /**
          * 表示種類
          */
         valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
@@ -66,7 +62,8 @@ watch(value, (v) => {
     model.value = v;
 });
 
-if (!value.value && model.value) {
+// NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
+if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 </script>

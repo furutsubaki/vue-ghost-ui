@@ -66,7 +66,8 @@ watch(value, (v) => {
     model.value = v;
 });
 
-if (!value.value && model.value) {
+// NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
+if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 </script>
