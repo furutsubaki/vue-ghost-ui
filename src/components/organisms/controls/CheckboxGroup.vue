@@ -101,7 +101,7 @@ if (value.value == null && model.value != null) {
 .component-checkbox-group {
     position: relative;
     text-align: left;
-    padding: 8px 0;
+    padding: 1em 0;
     .component-checkbox {
         padding: 0;
     }
@@ -109,7 +109,7 @@ if (value.value == null && model.value != null) {
 
 .label-placeholder {
     position: absolute;
-    top: -0.5em;
+    top: 0;
     left: 0em;
     height: 1em;
     line-height: 1em;
@@ -189,7 +189,7 @@ if (value.value == null && model.value != null) {
     border-color: var(--color-status-info);
 
     &:focus {
-        border-color: var(--color-theme-info);
+        border-color: var(--color-status-info);
     }
 
     @media (hover: hover) {
@@ -213,7 +213,7 @@ if (value.value == null && model.value != null) {
     border-color: var(--color-status-success);
 
     &:focus {
-        border-color: var(--color-theme-success);
+        border-color: var(--color-status-success);
     }
 
     @media (hover: hover) {
@@ -237,7 +237,7 @@ if (value.value == null && model.value != null) {
     border-color: var(--color-status-warning);
 
     &:focus {
-        border-color: var(--color-theme-warning);
+        border-color: var(--color-status-warning);
     }
 
     @media (hover: hover) {
@@ -261,7 +261,7 @@ if (value.value == null && model.value != null) {
     border-color: var(--color-status-danger);
 
     &:focus {
-        border-color: var(--color-theme-danger);
+        border-color: var(--color-status-danger);
     }
 
     @media (hover: hover) {
