@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import { type Ref, computed, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { ZodNumber, ZodString, ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
+import { ZodNumber, ZodString, ZodBoolean } from 'zod';
+import Radio from '@/components/organisms/formParts/Radio.vue';
+
+interface Item {
+    label: string;
+    value: string | number | boolean;
+    disabled?: boolean;
+}
 
 const model = defineModel<string | number | boolean>();
 const props = withDefaults(
     defineProps<{
         /**
-         * 項目値
+         * 項目
          */
-        value?: string | number | boolean;
+        items: Item[];
         /**
          * フィールド名
          */
@@ -17,14 +24,7 @@ const props = withDefaults(
         /**
          * zodスキーマ
          */
-        schema?:
-            | ZodLiteral<string | number | boolean>
-            | ZodBoolean
-            | ZodNullable<ZodBoolean>
-            | ZodString
-            | ZodNullable<ZodString>
-            | ZodNumber
-            | ZodNullable<ZodNumber>;
+        schema?: ZodBoolean | ZodString | ZodNumber;
         /**
          * 見出し
          */
@@ -47,70 +47,49 @@ const props = withDefaults(
         isErrorMessage?: boolean;
     }>(),
     {
-        value: true,
         name: Math.random().toString(),
         schema: undefined,
-        label: '',
+        label: ' ',
         disabled: false,
         valiant: 'secondary',
         size: 'medium',
         isErrorMessage: true
     }
 );
-const unCheckValue = computed(() => (typeof props.value === 'boolean' ? false : ''));
 
-const {
-    value: fieldVal,
-    checked,
-    errors,
-    handleChange
-} = useField<string | number | boolean>(props.name, undefined, {
-    type: 'radio',
-    checkedValue: props.value,
-    uncheckedValue: unCheckValue.value
-});
-
+const { value, errors } = useField<string | number | boolean>(props.name);
 const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
 const isRequired = computed(
     () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
 );
 
-const onChange = (event: Event) => {
-    let val = (event.target as HTMLInputElement).value as string | number | boolean;
-
-    if (!(event.target as HTMLInputElement).checked) {
-        val = unCheckValue.value;
-    }
-    handleChange(val);
-};
-
-watch(checked as Ref<boolean>, (flg) => {
-    model.value = flg ? props.value : unCheckValue.value;
+watch(value, (v) => {
+    model.value = v;
 });
 
-if (fieldVal.value == null && model.value != null) {
-    fieldVal.value = model.value;
+// NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
+if (value.value == null && model.value != null) {
+    value.value = model.value;
 }
 </script>
 
 <template>
-    <div class="component-radio">
-        <div v-if="label" class="label-placeholder" :class="{ required: isRequired }">
+    <div class="component-radio-group">
+        <div class="label-placeholder" :class="{ required: isRequired }">
             {{ label }}
         </div>
-        <div class="item-label">
-            <label class="input" :class="[valiant, size, { disabled: disabled }]">
-                <input
-                    class="radio"
-                    type="radio"
-                    :value="value"
-                    :name="name"
-                    :disabled="disabled"
-                    :checked="checked"
-                    @change="onChange"
-                />
-                <slot />
-            </label>
+        <div class="items">
+            <Radio
+                v-for="item in items"
+                :key="item.label"
+                :value="item.value"
+                :name="name"
+                :disabled="disabled || item.disabled"
+                :valiant="valiant"
+                :size="size"
+                :isErrorMessage="false"
+                >{{ item.label }}</Radio
+            >
         </div>
         <template v-if="isErrorMessage">
             <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
@@ -119,11 +98,13 @@ if (fieldVal.value == null && model.value != null) {
 </template>
 
 <style scoped>
-.component-radio {
+.component-radio-group {
     position: relative;
     text-align: left;
-    display: block;
     padding: 8px 0;
+    .component-radio {
+        padding: 0;
+    }
 }
 
 .label-placeholder {
@@ -147,30 +128,9 @@ if (fieldVal.value == null && model.value != null) {
     }
 }
 
-.item-label {
-    position: relative;
-    text-align: left;
+.items {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    white-space: nowrap;
-
-    .input {
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        justify-content: flex-start;
-        line-height: 1.5em;
-        transition:
-            color 0.2s,
-            background-color 0.2s,
-            border-color 0.2s,
-            opacity 0.2s;
-        &:disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-    }
+    gap: 8px;
 }
 
 .primary {

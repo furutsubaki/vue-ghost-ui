@@ -1,10 +1,10 @@
 import Radio from '@/components/organisms/formParts/Radio.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { string, object } from 'zod';
+import { literal, object } from 'zod';
 
 const TEST_SCHEMA = object({
-    test: string().min(1)
+    test: literal(true)
 }).required();
 
 const meta: Meta<typeof Radio> = {
@@ -12,14 +12,14 @@ const meta: Meta<typeof Radio> = {
     render: (args) => ({
         components: { Radio },
         setup() {
-            useFormData(TEST_SCHEMA, { test: 'dog' });
+            useFormData(TEST_SCHEMA, { test: false });
             return { args };
         },
-        template: '<Radio v-bind="args" />'
+        template: '<Radio v-bind="args">規約に同意</Radio>'
     }),
     tags: ['autodocs'],
     args: {
-        modelValue: ''
+        modelValue: false
     },
     argTypes: {
         // TODO: 現状lintエラーの回避策なし
@@ -33,19 +33,15 @@ type Story = StoryObj<typeof Radio>;
 
 export const Default: Story = {
     args: {
-        items: [
-            { label: '犬', value: 'dog' },
-            { label: '猫', value: 'cat' },
-            { label: '兎', value: 'rabbit' }
-        ]
+        value: true
     }
 };
 
 export const Label: Story = {
     args: {
         ...Default.args,
-        modelValue: 'dog',
-        label: '好きな動物'
+        modelValue: true,
+        label: '同意'
     }
 };
 
@@ -56,31 +52,10 @@ export const Disabled: Story = {
     }
 };
 
-export const Item_Disabled: Story = {
-    args: {
-        ...Label.args,
-        items: [
-            ...Label.args!.items!,
-            {
-                label: '烏',
-                value: 'crow',
-                disabled: true
-            }
-        ]
-    }
-};
-
 export const Schema: Story = {
     args: {
         ...Label.args,
         name: 'test',
-        schema: TEST_SCHEMA.shape.test,
-        items: [
-            ...Label.args!.items!,
-            {
-                label: '未入力',
-                value: ''
-            }
-        ]
+        schema: TEST_SCHEMA.shape.test
     }
 };
