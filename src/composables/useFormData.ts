@@ -12,7 +12,7 @@ import { toTypedSchema } from '@vee-validate/zod';
 
 export default function (
     schema: ZodEffects<ZodObject<ZodRawShape>> | ZodObject<ZodRawShape>,
-    initialValues: { [key: string]: string | number } = {}
+    initialValues: { [key: string]: any } = {}
 ) {
     const { handleSubmit, meta, isSubmitting, resetForm } = useForm({
         validationSchema: toTypedSchema(schema),

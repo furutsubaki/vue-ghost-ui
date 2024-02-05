@@ -39,6 +39,10 @@ const props = withDefaults(
          * サイズ
          */
         size?: 'small' | 'medium' | 'large';
+        /**
+         * エラーメッセージを表示するか
+         */
+        isErrorMessage?: boolean;
     }>(),
     {
         name: Math.random().toString(),
@@ -48,7 +52,8 @@ const props = withDefaults(
         disabled: false,
         type: 'text',
         valiant: 'secondary',
-        size: 'medium'
+        size: 'medium',
+        isErrorMessage: true
     }
 );
 
@@ -69,10 +74,11 @@ const max = computed(
 );
 
 watch(value, (v) => {
-    model.value = v as string;
+    model.value = v;
 });
 
-if (!value.value && model.value) {
+// NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
+if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 </script>
@@ -94,7 +100,9 @@ if (!value.value && model.value) {
             <span class="label">{{ label }}</span
             ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
         </div>
-        <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        <template v-if="isErrorMessage">
+            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        </template>
     </label>
 </template>
 
@@ -103,7 +111,7 @@ if (!value.value && model.value) {
     position: relative;
     text-align: left;
     display: block;
-    margin: 8px 0;
+    padding: 8px 0;
 
     .counter {
         position: absolute;
@@ -168,7 +176,7 @@ if (!value.value && model.value) {
     }
     .input:not(:placeholder-shown) + .label-placeholder,
     .input:focus + .label-placeholder {
-        top: -1em;
+        top: -0.5em;
         left: 0em;
         font-size: var(--font-size-small);
         .label {

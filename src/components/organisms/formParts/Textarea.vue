@@ -47,6 +47,10 @@ const props = withDefaults(
          * 最大行数
          */
         maxLine?: number | null;
+        /**
+         * エラーメッセージを表示するか
+         */
+        isErrorMessage?: boolean;
     }>(),
     {
         name: Math.random().toString(),
@@ -56,7 +60,8 @@ const props = withDefaults(
         disabled: false,
         valiant: 'secondary',
         size: 'medium',
-        line: 3
+        line: 3,
+        isErrorMessage: true
     }
 );
 
@@ -81,10 +86,11 @@ const cssMaxLine = computed(() => (props.maxLine ? `${props.maxLine}lh` : null))
 const textareaRef = ref();
 
 watch(value, (v) => {
-    model.value = v as string;
+    model.value = v;
 });
 
-if (!value.value && model.value) {
+// NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
+if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 
@@ -111,7 +117,9 @@ watch(value, (value) => {
             <span class="label">{{ label }}</span
             ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
         </div>
-        <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        <template v-if="isErrorMessage">
+            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        </template>
     </label>
 </template>
 
@@ -120,7 +128,7 @@ watch(value, (value) => {
     position: relative;
     text-align: left;
     display: block;
-    margin: 1em 0;
+    padding: 8px 0;
 
     .counter {
         position: absolute;
@@ -189,7 +197,7 @@ watch(value, (value) => {
     }
     .textarea:not(:placeholder-shown) + .label-placeholder,
     .textarea:focus + .label-placeholder {
-        top: -1em;
+        top: -0.5em;
         left: 0em;
         font-size: var(--font-size-small);
         .label {

@@ -40,6 +40,10 @@ const props = withDefaults(
          * サイズ
          */
         size?: 'small' | 'medium' | 'large';
+        /**
+         * エラーメッセージを表示するか
+         */
+        isErrorMessage?: boolean;
     }>(),
     {
         name: Math.random().toString(),
@@ -47,7 +51,8 @@ const props = withDefaults(
         label: ' ',
         disabled: false,
         valiant: 'secondary',
-        size: 'medium'
+        size: 'medium',
+        isErrorMessage: true
     }
 );
 
@@ -61,7 +66,8 @@ watch(value, (v) => {
     model.value = v;
 });
 
-if (!value.value && model.value) {
+// NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
+if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 </script>
@@ -84,13 +90,14 @@ if (!value.value && model.value) {
                     type="radio"
                     :value="item.value"
                     :name="name"
-                    :required="isRequired"
                     :disabled="disabled || item.disabled"
                 />
                 {{ item.label }}
             </label>
         </div>
-        <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        <template v-if="isErrorMessage">
+            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        </template>
     </label>
 </template>
 
@@ -99,12 +106,12 @@ if (!value.value && model.value) {
     position: relative;
     text-align: left;
     display: block;
-    margin: 1em 0;
+    padding: 8px 0;
 }
 
 .label-placeholder {
     position: absolute;
-    top: -1em;
+    top: -0.5em;
     left: 0em;
     height: 1em;
     line-height: 1em;

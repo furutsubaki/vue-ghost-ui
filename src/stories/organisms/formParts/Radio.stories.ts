@@ -12,7 +12,7 @@ const meta: Meta<typeof Radio> = {
     render: (args) => ({
         components: { Radio },
         setup() {
-            useFormData(TEST_SCHEMA, { test: 'ヤマダ タロウ' });
+            useFormData(TEST_SCHEMA, { test: 'dog' });
             return { args };
         },
         template: '<Radio v-bind="args" />'
