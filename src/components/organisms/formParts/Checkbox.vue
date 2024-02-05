@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T">
+<script setup lang="ts">
 import { type Ref, computed, watch } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
@@ -18,7 +18,7 @@ const props = withDefaults(
          * zodスキーマ
          */
         schema?:
-            | ZodLiteral<T>
+            | ZodLiteral<string | number | boolean>
             | ZodBoolean
             | ZodNullable<ZodBoolean>
             | ZodString

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/zod';
 import { ZodNumber, ZodString, ZodArray, ZodBoolean } from 'zod';
 import Checkbox from '@/components/organisms/formParts/Checkbox.vue';
 
