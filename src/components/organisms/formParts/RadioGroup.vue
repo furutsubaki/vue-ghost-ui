@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { ZodNumber, ZodString, ZodArray, ZodBoolean } from 'zod';
-import Checkbox from '@/components/organisms/formParts/Checkbox.vue';
+import { ZodNumber, ZodString, ZodBoolean } from 'zod';
+import Radio from '@/components/organisms/formParts/Radio.vue';
 
 interface Item {
     label: string;
@@ -10,7 +10,7 @@ interface Item {
     disabled?: boolean;
 }
 
-const model = defineModel<(string | number | boolean)[]>();
+const model = defineModel<string | number | boolean>();
 const props = withDefaults(
     defineProps<{
         /**
@@ -24,7 +24,7 @@ const props = withDefaults(
         /**
          * zodスキーマ
          */
-        schema?: ZodArray<ZodBoolean> | ZodArray<ZodString> | ZodArray<ZodNumber>;
+        schema?: ZodBoolean | ZodString | ZodNumber;
         /**
          * 見出し
          */
@@ -57,10 +57,10 @@ const props = withDefaults(
     }
 );
 
-const { value, errors } = useField<(string | number | boolean)[]>(props.name);
-
+const { value, errors } = useField<string | number | boolean>(props.name);
+const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
 const isRequired = computed(
-    () => (props.schema as ZodArray<ZodString>)?._def.minLength?.value === 1 || false
+    () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
 );
 
 watch(value, (v) => {
@@ -74,12 +74,12 @@ if (value.value == null && model.value != null) {
 </script>
 
 <template>
-    <div class="component-checkbox-group">
+    <div class="component-radio-group">
         <div class="label-placeholder" :class="{ required: isRequired }">
             {{ label }}
         </div>
         <div class="items">
-            <Checkbox
+            <Radio
                 v-for="item in items"
                 :key="item.label"
                 :value="item.value"
@@ -88,7 +88,7 @@ if (value.value == null && model.value != null) {
                 :valiant="valiant"
                 :size="size"
                 :isErrorMessage="false"
-                >{{ item.label }}</Checkbox
+                >{{ item.label }}</Radio
             >
         </div>
         <template v-if="isErrorMessage">
@@ -98,11 +98,11 @@ if (value.value == null && model.value != null) {
 </template>
 
 <style scoped>
-.component-checkbox-group {
+.component-radio-group {
     position: relative;
     text-align: left;
     padding: 8px 0;
-    .component-checkbox {
+    .component-radio {
         padding: 0;
     }
 }
