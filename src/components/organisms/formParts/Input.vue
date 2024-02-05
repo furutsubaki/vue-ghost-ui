@@ -39,6 +39,10 @@ const props = withDefaults(
          * サイズ
          */
         size?: 'small' | 'medium' | 'large';
+        /**
+         * エラーメッセージを表示するか
+         */
+        isErrorMessage?: boolean;
     }>(),
     {
         name: Math.random().toString(),
@@ -48,7 +52,8 @@ const props = withDefaults(
         disabled: false,
         type: 'text',
         valiant: 'secondary',
-        size: 'medium'
+        size: 'medium',
+        isErrorMessage: true
     }
 );
 
@@ -94,7 +99,9 @@ if (!value.value && model.value) {
             <span class="label">{{ label }}</span
             ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
         </div>
-        <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        <template v-if="isErrorMessage">
+            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        </template>
     </label>
 </template>
 

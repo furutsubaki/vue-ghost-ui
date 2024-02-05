@@ -47,6 +47,10 @@ const props = withDefaults(
          * 最大行数
          */
         maxLine?: number | null;
+        /**
+         * エラーメッセージを表示するか
+         */
+        isErrorMessage?: boolean;
     }>(),
     {
         name: Math.random().toString(),
@@ -56,7 +60,8 @@ const props = withDefaults(
         disabled: false,
         valiant: 'secondary',
         size: 'medium',
-        line: 3
+        line: 3,
+        isErrorMessage: true
     }
 );
 
@@ -111,7 +116,9 @@ watch(value, (value) => {
             <span class="label">{{ label }}</span
             ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
         </div>
-        <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        <template v-if="isErrorMessage">
+            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        </template>
     </label>
 </template>
 

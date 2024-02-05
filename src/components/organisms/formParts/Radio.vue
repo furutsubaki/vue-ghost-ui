@@ -40,6 +40,10 @@ const props = withDefaults(
          * サイズ
          */
         size?: 'small' | 'medium' | 'large';
+        /**
+         * エラーメッセージを表示するか
+         */
+        isErrorMessage?: boolean;
     }>(),
     {
         name: Math.random().toString(),
@@ -47,7 +51,8 @@ const props = withDefaults(
         label: ' ',
         disabled: false,
         valiant: 'secondary',
-        size: 'medium'
+        size: 'medium',
+        isErrorMessage: true
     }
 );
 
@@ -84,13 +89,14 @@ if (!value.value && model.value) {
                     type="radio"
                     :value="item.value"
                     :name="name"
-                    :required="isRequired"
                     :disabled="disabled || item.disabled"
                 />
                 {{ item.label }}
             </label>
         </div>
-        <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        <template v-if="isErrorMessage">
+            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        </template>
     </label>
 </template>
 
