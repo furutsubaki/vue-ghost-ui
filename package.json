@@ -37,7 +37,7 @@
     "lint:fix": "pnpm eslint:fix && pnpm format",
     "sb": "pnpm storybook dev --port 6006 --no-open",
     "sb:test": "test-storybook --url http://localhost:6006",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "peerDependencies": {
     "@acab/reset.css": "^0.8",
