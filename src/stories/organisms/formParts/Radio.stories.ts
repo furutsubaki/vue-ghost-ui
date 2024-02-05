@@ -1,10 +1,10 @@
 import Radio from '@/components/organisms/formParts/Radio.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { string, object, array } from 'zod';
+import { string, object } from 'zod';
 
 const TEST_SCHEMA = object({
-    test: array(string()).min(1)
+    test: string().min(1)
 }).required();
 
 const meta: Meta<typeof Radio> = {
