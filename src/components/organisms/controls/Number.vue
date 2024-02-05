@@ -91,13 +91,19 @@ if (value.value == null && model.value != null) {
 </template>
 
 <style scoped>
-.component-number {
+.component-input {
     position: relative;
     text-align: left;
     display: block;
-    padding: 8px 0;
+    padding: 1em 0;
 
-    .input {
+    .counter {
+        position: absolute;
+        top: -1.5em;
+        right: 0;
+    }
+
+    :where(.input) {
         display: flex;
         gap: 16px;
         align-items: center;
@@ -108,7 +114,8 @@ if (value.value == null && model.value != null) {
         padding: 0 8px;
         border: 1px solid var(--color-theme-border);
         border-radius: 4px;
-        background-color: var(--color-theme-bg-primary);
+        background-color: transparent;
+        color: var(--color-theme-text-primary);
         transition:
             color 0.2s,
             background-color 0.2s,
@@ -154,7 +161,7 @@ if (value.value == null && model.value != null) {
     }
     .input:not(:placeholder-shown) + .label-placeholder,
     .input:focus + .label-placeholder {
-        top: -0.5em;
+        top: 0;
         left: 0em;
         font-size: var(--font-size-small);
         .label {
@@ -164,8 +171,6 @@ if (value.value == null && model.value != null) {
 }
 
 .primary {
-    color: var(--color-base-white);
-    background-color: var(--color-theme-active);
     border-color: var(--color-theme-active);
 
     &:focus {
@@ -174,24 +179,18 @@ if (value.value == null && model.value != null) {
 
     @media (hover: hover) {
         &:hover {
-            color: var(--color-theme-active);
-            background-color: transparent;
             border-color: var(--color-theme-active);
         }
     }
 
     @media (hover: none) {
         &:active {
-            color: var(--color-theme-active);
-            background-color: transparent;
             border-color: var(--color-theme-active);
         }
     }
 }
 
 .secondary {
-    color: var(--color-theme-text-primary);
-    background-color: transparent;
     border-color: var(--color-theme-border);
 
     &:focus {
@@ -200,110 +199,92 @@ if (value.value == null && model.value != null) {
 
     @media (hover: hover) {
         &:hover {
-            background-color: transparent;
             border-color: var(--color-theme-active);
         }
     }
 
     @media (hover: none) {
         &:active {
-            background-color: transparent;
             border-color: var(--color-theme-active);
         }
     }
 }
 
 .info {
-    color: var(--color-theme-text-primary);
-    background-color: var(--color-status-info);
     border-color: var(--color-status-info);
 
     &:focus {
-        border-color: var(--color-theme-info);
+        border-color: var(--color-status-info);
     }
 
     @media (hover: hover) {
         &:hover {
-            background-color: transparent;
             border-color: var(--color-status-info);
         }
     }
 
     @media (hover: none) {
         &:active {
-            background-color: transparent;
             border-color: var(--color-status-info);
         }
     }
 }
 
 .success {
-    color: var(--color-base-white);
-    background-color: var(--color-status-success);
     border-color: var(--color-status-success);
 
     &:focus {
-        border-color: var(--color-theme-success);
+        border-color: var(--color-status-success);
     }
 
     @media (hover: hover) {
         &:hover {
-            background-color: transparent;
             border-color: var(--color-status-success);
         }
     }
 
     @media (hover: none) {
         &:active {
-            background-color: transparent;
             border-color: var(--color-status-success);
         }
     }
 }
 
 .warning {
-    color: var(--color-base-black);
-    background-color: var(--color-status-warning);
     border-color: var(--color-status-warning);
 
     &:focus {
-        border-color: var(--color-theme-warning);
+        border-color: var(--color-status-warning);
     }
 
     @media (hover: hover) {
         &:hover {
-            background-color: transparent;
             border-color: var(--color-status-warning);
         }
     }
 
     @media (hover: none) {
         &:active {
-            background-color: transparent;
             border-color: var(--color-status-warning);
         }
     }
 }
 
 .danger {
-    color: var(--color-base-white);
-    background-color: var(--color-status-danger);
     border-color: var(--color-status-danger);
 
     &:focus {
-        border-color: var(--color-theme-danger);
+        border-color: var(--color-status-danger);
     }
 
     @media (hover: hover) {
         &:hover {
-            background-color: transparent;
             border-color: var(--color-status-danger);
         }
     }
 
     @media (hover: none) {
         &:active {
-            background-color: transparent;
             border-color: var(--color-status-danger);
         }
     }
