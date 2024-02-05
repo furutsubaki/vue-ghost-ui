@@ -1,12 +1,21 @@
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue';
+import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { ZodString } from 'zod';
-import InputTextCounter from '@/components/organisms/formParts/InputTextCounter.vue';
+import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 
-const model = defineModel<string>();
+interface Item {
+    label: string;
+    value: string | number | boolean;
+    disabled?: boolean;
+}
+
+const model = defineModel<string | number | boolean>();
 const props = withDefaults(
     defineProps<{
+        /**
+         * 項目
+         */
+        items: Item[];
         /**
          * フィールド名
          */
@@ -14,15 +23,11 @@ const props = withDefaults(
         /**
          * zodスキーマ
          */
-        schema?: ZodString;
+        schema?: ZodBoolean | ZodString | ZodNumber;
         /**
          * 見出し
          */
         label?: string;
-        /**
-         * 見本
-         */
-        placeholder?: string;
         /**
          * 無効か
          */
@@ -36,18 +41,6 @@ const props = withDefaults(
          */
         size?: 'small' | 'medium' | 'large';
         /**
-         * デフォルト行数
-         */
-        line?: number;
-        /**
-         * 最小行数
-         */
-        minLine?: number | null;
-        /**
-         * 最大行数
-         */
-        maxLine?: number | null;
-        /**
          * エラーメッセージを表示するか
          */
         isErrorMessage?: boolean;
@@ -56,34 +49,18 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
-        placeholder: '',
         disabled: false,
         valiant: 'secondary',
         size: 'medium',
-        line: 3,
         isErrorMessage: true
     }
 );
 
-const { value, errors } = useField<string>(props.name);
-const schemaChunks = computed(() => props.schema?._def.checks || []);
+const { value, errors } = useField<string | number | boolean>(props.name);
+const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
 const isRequired = computed(
     () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
 );
-const max = computed(
-    () =>
-        (
-            schemaChunks.value.find((check) => check.kind === 'max') as {
-                kind: 'max';
-                value: number;
-                message?: string;
-            }
-        )?.value || null
-);
-
-const cssMinLine = computed(() => `${props.minLine ?? props.line}lh`);
-const cssMaxLine = computed(() => (props.maxLine ? `${props.maxLine}lh` : null));
-const textareaRef = ref();
 
 watch(value, (v) => {
     model.value = v;
@@ -93,50 +70,41 @@ watch(value, (v) => {
 if (value.value == null && model.value != null) {
     value.value = model.value;
 }
-
-watch(value, (value) => {
-    let lines = (value + '\n').match(/\n/g)?.length ?? 1;
-    textareaRef.value.style.height = lines + 'lh';
-});
 </script>
 
 <template>
-    <label class="component-textarea">
-        <InputTextCounter v-if="max" class="counter" :text="value" :max="max" />
-        <textarea
-            ref="textareaRef"
-            v-model="value"
-            class="textarea"
-            :class="[valiant, size]"
-            placeholder=" "
-            :name="name"
-            :required="isRequired"
-            :disabled="disabled"
-        />
-        <div class="label-placeholder">
-            <span class="label">{{ label }}</span
-            ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
+    <div class="component-select-group">
+        <div class="label-placeholder" :class="{ required: isRequired }">
+            {{ label }}
         </div>
+        <select
+            class="select"
+            :class="[valiant, size]"
+            v-model="value"
+            :name="name"
+            :disabled="disabled"
+        >
+            <option
+                v-for="item in items"
+                :key="item.label"
+                :value="item.value"
+                :disabled="item.disabled"
+            >
+                {{ item.label }}
+            </option>
+        </select>
         <template v-if="isErrorMessage">
             <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
         </template>
-    </label>
+    </div>
 </template>
 
 <style scoped>
-.component-textarea {
+.component-select-group {
     position: relative;
     text-align: left;
-    display: block;
     padding: 8px 0;
-
-    .counter {
-        position: absolute;
-        top: -1.5em;
-        right: 0;
-    }
-
-    .textarea {
+    .select {
         display: flex;
         gap: 16px;
         align-items: center;
@@ -147,10 +115,6 @@ watch(value, (value) => {
         padding: 0 8px;
         border: 1px solid var(--color-theme-border);
         border-radius: 4px;
-        /* field-sizing: content; 後に登場予定。まだ未実装 */
-        resize: none;
-        min-height: v-bind(cssMinLine);
-        max-height: v-bind(cssMaxLine);
         background-color: var(--color-theme-bg-primary);
         transition:
             color 0.2s,
@@ -162,46 +126,25 @@ watch(value, (value) => {
             opacity: 0.5;
         }
     }
-    .label-placeholder {
-        position: absolute;
-        top: calc(50% - 0.5em);
-        left: 1em;
-        height: 1em;
-        line-height: 1em;
-        pointer-events: none;
-        transition: 0.2s;
-        display: flex;
-        align-items: baseline;
+}
 
-        .label {
-            transition: color 0.2s;
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-
-        .placeholder {
-            font-size: var(--font-size-small);
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-    }
-
-    [required] + .label-placeholder > .label {
+.label-placeholder {
+    position: absolute;
+    top: -0.5em;
+    left: 0em;
+    height: 1em;
+    line-height: 1em;
+    pointer-events: none;
+    transition: 0.2s;
+    display: flex;
+    align-items: baseline;
+    font-size: var(--font-size-small);
+    color: var(--color-theme-text-primary);
+    &.required {
         &::after {
             left: -0.5em;
             color: var(--color-status-danger);
             content: '*';
-        }
-    }
-    .textarea:not(:placeholder-shown) + .label-placeholder,
-    .textarea:focus + .label-placeholder {
-        top: -0.5em;
-        left: 0em;
-        font-size: var(--font-size-small);
-        .label {
-            color: var(--color-theme-text-primary);
         }
     }
 }

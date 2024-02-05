@@ -1,4 +1,4 @@
-import Checkbox from '@/components/organisms/formParts/Checkbox.vue';
+import Checkbox from '@/components/organisms/controls/Checkbox.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { literal, object } from 'zod';

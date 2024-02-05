@@ -2,7 +2,7 @@
 import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
-import InputTextCounter from '@/components/organisms/formParts/InputTextCounter.vue';
+import InputTextCounter from '@/components/organisms/controls/InputTextCounter.vue';
 
 const model = defineModel<string>();
 const props = withDefaults(

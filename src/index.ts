@@ -3,12 +3,12 @@ import '@/assets/css/style.css';
 import '@/assets/css/variables.css';
 
 import type { Component, App } from 'vue';
-import Button from '@/components/organisms/formParts/Button.vue';
-import Textarea from '@/components/organisms/formParts/Textarea.vue';
-import Input from '@/components/organisms/formParts/Input.vue';
-import Radio from '@/components/organisms/formParts/Radio.vue';
-import Number from '@/components/organisms/formParts/Number.vue';
-import InputTextCounter from '@/components/organisms/formParts/InputTextCounter.vue';
+import Button from '@/components/organisms/common/Button.vue';
+import Textarea from '@/components/organisms/controls/Textarea.vue';
+import Input from '@/components/organisms/controls/Input.vue';
+import Radio from '@/components/organisms/controls/Radio.vue';
+import Number from '@/components/organisms/controls/Number.vue';
+import InputTextCounter from '@/components/organisms/controls/InputTextCounter.vue';
 import useFormData from '@/composables/useFormData';
 
 const Components: { [key: string]: Component } = {

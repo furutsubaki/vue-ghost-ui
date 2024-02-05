@@ -1,4 +1,4 @@
-import Textarea from '@/components/organisms/formParts/Textarea.vue';
+import Textarea from '@/components/organisms/controls/Textarea.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';

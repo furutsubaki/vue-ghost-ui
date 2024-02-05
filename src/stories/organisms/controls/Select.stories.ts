@@ -1,25 +1,25 @@
-import CheckboxGroup from '@/components/organisms/formParts/CheckboxGroup.vue';
+import Select from '@/components/organisms/controls/Select.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
 
 const TEST_SCHEMA = object({
-    test: string().array().min(1)
+    test: string().min(1)
 }).required();
 
-const meta: Meta<typeof CheckboxGroup> = {
-    component: CheckboxGroup,
+const meta: Meta<typeof Select> = {
+    component: Select,
     render: (args) => ({
-        components: { CheckboxGroup },
+        components: { Select },
         setup() {
-            useFormData(TEST_SCHEMA, { test: ['dog'] });
+            useFormData(TEST_SCHEMA, { test: 'dog' });
             return { args };
         },
-        template: '<CheckboxGroup v-bind="args" />'
+        template: '<Select v-bind="args" />'
     }),
     tags: ['autodocs'],
     args: {
-        modelValue: []
+        modelValue: ''
     },
     argTypes: {
         // TODO: 現状lintエラーの回避策なし
@@ -29,7 +29,7 @@ const meta: Meta<typeof CheckboxGroup> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CheckboxGroup>;
+type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
     args: {
@@ -44,7 +44,7 @@ export const Default: Story = {
 export const Label: Story = {
     args: {
         ...Default.args,
-        modelValue: ['dog'],
+        modelValue: 'dog',
         label: '好きな動物'
     }
 };
