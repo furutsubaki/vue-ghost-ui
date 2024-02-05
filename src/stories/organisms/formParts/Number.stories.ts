@@ -19,7 +19,7 @@ const meta: Meta<typeof Number> = {
     }),
     tags: ['autodocs'],
     args: {
-        modelValue: undefined
+        modelValue: 0
     },
     argTypes: {
         modelValue: {

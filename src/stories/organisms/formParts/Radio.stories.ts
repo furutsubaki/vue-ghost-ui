@@ -1,10 +1,10 @@
 import Radio from '@/components/organisms/formParts/Radio.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { string, object } from 'zod';
+import { string, object, array } from 'zod';
 
 const TEST_SCHEMA = object({
-    test: string().min(1)
+    test: array(string()).min(1)
 }).required();
 
 const meta: Meta<typeof Radio> = {
@@ -12,7 +12,7 @@ const meta: Meta<typeof Radio> = {
     render: (args) => ({
         components: { Radio },
         setup() {
-            useFormData(TEST_SCHEMA, { test: 'ヤマダ タロウ' });
+            useFormData(TEST_SCHEMA, { test: 'dog' });
             return { args };
         },
         template: '<Radio v-bind="args" />'
