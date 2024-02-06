@@ -1,0 +1,354 @@
+<script setup lang="ts">
+import InputTextCounter from '@/components/organisms/controls/InputTextCounter.vue';
+withDefaults(
+    defineProps<{
+        /**
+         * 見出し
+         */
+        label?: string;
+        /**
+         * 見本
+         */
+        placeholder?: string;
+        /**
+         * 無効か
+         */
+        disabled?: boolean;
+        /**
+         * 必須か
+         */
+        required?: boolean;
+        /**
+         * 表示種類
+         */
+        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        /**
+         * サイズ
+         */
+        size?: 'small' | 'medium' | 'large';
+        /**
+         * フォーカス中か
+         */
+        isFocus?: boolean;
+        /**
+         * 最大文字数
+         */
+        maxLength?: number | null;
+        /**
+         * 値
+         */
+        value?: string;
+        /**
+         * エラーメッセージを表示するか
+         */
+        isErrorMessage?: boolean;
+        /**
+         * エラーメッセージ配列
+         */
+        errors?: string[];
+    }>(),
+    {
+        label: ' ',
+        placeholder: '',
+        disabled: false,
+        required: false,
+        valiant: 'secondary',
+        size: 'medium',
+        isFocus: false,
+        maxLength: null,
+        value: '',
+        isErrorMessage: true,
+        errors: () => []
+    }
+);
+</script>
+
+<template>
+    <div
+        class="component-input-frame"
+        :class="[
+            valiant,
+            size,
+            {
+                'is-focus': isFocus,
+                'is-required': required,
+                'is-inputed': !!value,
+                'is-disabled': disabled
+            }
+        ]"
+    >
+        <div class="frame-box">
+            <div class="frame-label">
+                <div class="label-box">
+                    <span v-if="label" class="label">{{ label }}</span
+                    ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
+                </div>
+            </div>
+            <div class="frame-grow" />
+            <div class="frame-counter">
+                <InputTextCounter v-if="maxLength" class="counter" :text="value" :max="maxLength" />
+            </div>
+            <div class="frame-body">
+                <slot />
+            </div>
+        </div>
+        <template v-if="isErrorMessage">
+            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
+        </template>
+    </div>
+</template>
+
+<style scoped>
+.component-input-frame {
+    --start-end-padding: 8px;
+    .frame-box {
+        position: relative;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        min-width: 100px;
+        width: 100%;
+        height: 100%;
+        line-height: 1.5em;
+
+        &::before,
+        &::after {
+            content: '';
+            width: var(--start-end-padding);
+            border: 1px solid var(--color-theme-border);
+        }
+        &::before {
+            border-right: 0;
+            border-radius: 4px 0 0 4px;
+        }
+        &::after {
+            border-left: 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .frame-label,
+        .frame-grow,
+        .frame-counter {
+            border: 1px solid var(--color-theme-border);
+            border-right: 0;
+            border-left: 0;
+        }
+
+        .frame-label {
+            position: relative;
+            display: flex;
+            align-items: center;
+            transition: border-top 0.2s;
+            .label-box {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                transition: 0.2s;
+                .label {
+                    transition: color 0.2s;
+                    color: var(--color-theme-border);
+                    height: 1em;
+                    line-height: 1em;
+                    vertical-align: baseline;
+                }
+
+                .placeholder {
+                    font-size: var(--font-size-small);
+                    color: var(--color-theme-border);
+                    height: 1em;
+                    line-height: 1em;
+                    vertical-align: baseline;
+                }
+            }
+        }
+
+        .frame-grow {
+            flex-grow: 1;
+        }
+
+        .frame-counter {
+            border-top: 0;
+            .counter {
+                transform: translateY(-50%);
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .frame-body {
+            position: absolute;
+            left: var(--start-end-padding);
+            right: var(--start-end-padding);
+        }
+    }
+
+    /* required */
+    &.is-required > .frame-box > .frame-label > .label-box > .label {
+        &::after {
+            left: -0.5em;
+            color: var(--color-status-danger);
+            content: '*';
+        }
+    }
+
+    /* disabled */
+    &.is-disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    /* focus */
+    &:is(.is-inputed, .is-focus) > .frame-box > .frame-label {
+        border-top: 0;
+
+        > .label-box {
+            transform: translateY(-50%);
+            font-size: var(--font-size-small);
+            .label {
+                color: var(--color-theme-text-primary);
+            }
+        }
+    }
+}
+
+.primary {
+    border-color: var(--color-theme-active);
+
+    &:focus {
+        border-color: var(--color-theme-active);
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--color-theme-active);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            border-color: var(--color-theme-active);
+        }
+    }
+}
+
+.secondary {
+    border-color: var(--color-theme-border);
+
+    &:focus {
+        border-color: var(--color-theme-active);
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--color-theme-active);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            border-color: var(--color-theme-active);
+        }
+    }
+}
+
+.info {
+    border-color: var(--color-status-info);
+
+    &:focus {
+        border-color: var(--color-status-info);
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--color-status-info);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            border-color: var(--color-status-info);
+        }
+    }
+}
+
+.success {
+    border-color: var(--color-status-success);
+
+    &:focus {
+        border-color: var(--color-status-success);
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--color-status-success);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            border-color: var(--color-status-success);
+        }
+    }
+}
+
+.warning {
+    border-color: var(--color-status-warning);
+
+    &:focus {
+        border-color: var(--color-status-warning);
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--color-status-warning);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            border-color: var(--color-status-warning);
+        }
+    }
+}
+
+.danger {
+    border-color: var(--color-status-danger);
+
+    &:focus {
+        border-color: var(--color-status-danger);
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--color-status-danger);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            border-color: var(--color-status-danger);
+        }
+    }
+}
+
+.large {
+    height: 40px;
+    font-size: var(--font-size-large);
+}
+
+.medium {
+    height: 32px;
+    font-size: var(--font-size-common);
+}
+
+.small {
+    height: 24px;
+    font-size: var(--font-size-small);
+}
+
+.error {
+    font-size: var(--font-size-small);
+    color: var(--color-status-danger);
+}
+</style>
