@@ -38,7 +38,7 @@ withDefaults(
         /**
          * 値
          */
-        value?: string | number;
+        value?: string;
         /**
          * エラーメッセージを表示するか
          */
