@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import InputTextCounter from '@/components/organisms/controls/InputTextCounter.vue';
 withDefaults(
     defineProps<{
@@ -37,7 +38,7 @@ withDefaults(
         /**
          * 値
          */
-        value?: string;
+        value?: string | number;
         /**
          * エラーメッセージを表示するか
          */
@@ -55,29 +56,30 @@ withDefaults(
         valiant: 'secondary',
         size: 'medium',
         isFocus: false,
+        line: 1,
         maxLength: null,
         value: '',
         isErrorMessage: true,
         errors: () => []
     }
 );
+
+const frameRef = ref();
+
+defineExpose({ frameRef });
 </script>
 
 <template>
     <div
         class="component-input-frame"
-        :class="[
-            valiant,
-            size,
-            {
-                'is-focus': isFocus,
-                'is-required': required,
-                'is-inputed': !!value,
-                'is-disabled': disabled
-            }
-        ]"
+        :class="{
+            'is-focus': isFocus,
+            'is-required': required,
+            'is-inputed': value != null && value !== '',
+            'is-disabled': disabled
+        }"
     >
-        <div class="frame-box">
+        <div ref="frameRef" class="frame-box" :class="[valiant, size]">
             <div class="frame-label">
                 <div class="label-box">
                     <span v-if="label" class="label">{{ label }}</span
@@ -101,6 +103,8 @@ withDefaults(
 <style scoped>
 .component-input-frame {
     --start-end-padding: 8px;
+    /* min-height: v-bind(cssMinLine);
+        max-height: v-bind(cssMaxLine); */
     .frame-box {
         position: relative;
         text-align: left;
@@ -144,6 +148,7 @@ withDefaults(
                 align-items: center;
                 height: 100%;
                 transition: 0.2s;
+                pointer-events: none;
                 .label {
                     transition: color 0.2s;
                     color: var(--color-theme-border);
@@ -169,8 +174,8 @@ withDefaults(
         .frame-counter {
             border-top: 0;
             .counter {
+                pointer-events: none;
                 transform: translateY(-50%);
-                height: 100%;
                 display: flex;
                 align-items: center;
             }
@@ -333,17 +338,17 @@ withDefaults(
 }
 
 .large {
-    height: 40px;
+    min-height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    height: 32px;
+    min-height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    height: 24px;
+    min-height: 24px;
     font-size: var(--font-size-small);
 }
 
