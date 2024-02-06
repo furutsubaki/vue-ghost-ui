@@ -91,6 +91,7 @@ const onSelectItem = (item: Item) => {
             :valiant="valiant"
             :size="size"
             :is-focus="isOpen"
+            :value="value"
             :isErrorMessage="isErrorMessage"
             :errors="errors"
         >

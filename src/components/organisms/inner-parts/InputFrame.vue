@@ -38,7 +38,7 @@ withDefaults(
         /**
          * 値
          */
-        value?: string;
+        value?: string | number | boolean;
         /**
          * エラーメッセージを表示するか
          */
@@ -88,7 +88,7 @@ defineExpose({ frameRef });
             </div>
             <div class="frame-grow" />
             <div class="frame-counter">
-                <InputTextCounter v-if="maxLength" class="counter" :text="value" :max="maxLength" />
+                <InputTextCounter v-if="maxLength" class="counter" :text="value as string" :max="maxLength" />
             </div>
             <div class="frame-body">
                 <slot />
