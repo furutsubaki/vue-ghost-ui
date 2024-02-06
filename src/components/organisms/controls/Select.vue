@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 
@@ -70,6 +70,13 @@ watch(value, (v) => {
 if (value.value == null && model.value != null) {
     value.value = model.value;
 }
+
+const isOpen = ref(false);
+const selectedItem = computed(() => props.items.find((item) => item.value === value.value) ?? {});
+const onSelectItem = (item: Item) => {
+    value.value = item.value;
+    isOpen.value = false;
+};
 </script>
 
 <template>
@@ -77,7 +84,32 @@ if (value.value == null && model.value != null) {
         <div class="label-placeholder" :class="{ required: isRequired }">
             {{ label }}
         </div>
-        <select
+        <div
+            class="select"
+            :class="[valiant, size, { 'is-focus': isOpen }]"
+            :name="name"
+            :disabled="disabled"
+            @click="isOpen = !isOpen"
+        >
+            <span>{{ selectedItem.label }}</span>
+            <span class="select-icon">▼</span>
+        </div>
+        <div class="select-list" :class="{ 'is-open': isOpen }">
+            <div class="select-list-body">
+                <div
+                    class="select-list-item"
+                    :class="{ 'is-selected': selectedItem.value === item.value }"
+                    v-for="item in items"
+                    :key="item.label"
+                    :value="item.value"
+                    :disabled="item.disabled"
+                    @click="onSelectItem(item)"
+                >
+                    {{ item.label }}
+                </div>
+            </div>
+        </div>
+        <!-- <select
             class="select"
             :class="[valiant, size]"
             v-model="value"
@@ -92,7 +124,7 @@ if (value.value == null && model.value != null) {
             >
                 {{ item.label }}
             </option>
-        </select>
+        </select> -->
         <template v-if="isErrorMessage">
             <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
         </template>
@@ -108,7 +140,7 @@ if (value.value == null && model.value != null) {
         display: flex;
         gap: 16px;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
@@ -125,6 +157,58 @@ if (value.value == null && model.value != null) {
         &:disabled {
             pointer-events: none;
             opacity: 0.5;
+        }
+        .select-icon {
+            color: var(--color-theme-text-secondary);
+            font-size: var(--font-size-small);
+            transition: transform 0.2s;
+        }
+        &.is-focus .select-icon {
+            transform: rotateX(180deg);
+        }
+    }
+    :where(.select-list) {
+        position: absolute;
+        min-width: 100px;
+        width: 100%;
+        line-height: 1.5em;
+        border: 1px solid var(--color-theme-border);
+        border-radius: 4px;
+        color: var(--color-theme-text-primary);
+        display: grid;
+        grid-template-rows: 0fr;
+        transition:
+            color 0.2s,
+            background-color 0.2s,
+            border-color 0.2s,
+            opacity 0.2s,
+            grid-template-rows 0.2s ease;
+        max-height: 50vh;
+        overflow-y: auto;
+        background-color: var(--color-theme-bg-primary);
+        z-index: 1;
+        &.is-open {
+            grid-template-rows: 1fr;
+        }
+        .select-list-body {
+            overflow: hidden;
+            .select-list-item {
+                padding: 0 8px;
+                @media (hover: hover) {
+                    &:hover {
+                        background-color: var(--color-theme-bg-secondary);
+                    }
+                }
+
+                @media (hover: none) {
+                    &:active {
+                        background-color: var(--color-theme-bg-secondary);
+                    }
+                }
+                &.is-selected {
+                    background-color: var(--color-theme-bg-secondary);
+                }
+            }
         }
     }
 }
@@ -153,6 +237,7 @@ if (value.value == null && model.value != null) {
 .primary {
     border-color: var(--color-theme-active);
 
+    &.is-focus,
     &:focus {
         border-color: var(--color-theme-active);
     }
@@ -173,6 +258,7 @@ if (value.value == null && model.value != null) {
 .secondary {
     border-color: var(--color-theme-border);
 
+    &.is-focus,
     &:focus {
         border-color: var(--color-theme-active);
     }
@@ -193,6 +279,7 @@ if (value.value == null && model.value != null) {
 .info {
     border-color: var(--color-status-info);
 
+    &.is-focus,
     &:focus {
         border-color: var(--color-status-info);
     }
@@ -213,6 +300,7 @@ if (value.value == null && model.value != null) {
 .success {
     border-color: var(--color-status-success);
 
+    &.is-focus,
     &:focus {
         border-color: var(--color-status-success);
     }
@@ -233,6 +321,7 @@ if (value.value == null && model.value != null) {
 .warning {
     border-color: var(--color-status-warning);
 
+    &.is-focus,
     &:focus {
         border-color: var(--color-status-warning);
     }
@@ -253,6 +342,7 @@ if (value.value == null && model.value != null) {
 .danger {
     border-color: var(--color-status-danger);
 
+    &.is-focus,
     &:focus {
         border-color: var(--color-status-danger);
     }
