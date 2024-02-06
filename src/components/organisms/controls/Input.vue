@@ -130,17 +130,17 @@ const isFocus = ref(false);
 }
 
 .large {
-    height: 40px;
+    min-height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    height: 32px;
+    min-height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    height: 24px;
+    min-height: 24px;
     font-size: var(--font-size-small);
 }
 </style>
