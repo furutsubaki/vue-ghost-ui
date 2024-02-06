@@ -88,7 +88,12 @@ defineExpose({ frameRef });
             </div>
             <div class="frame-grow" />
             <div class="frame-counter">
-                <InputTextCounter v-if="maxLength" class="counter" :text="value as string" :max="maxLength" />
+                <InputTextCounter
+                    v-if="maxLength"
+                    class="counter"
+                    :text="value as string"
+                    :max="maxLength"
+                />
             </div>
             <div class="frame-body">
                 <slot />
@@ -149,6 +154,7 @@ defineExpose({ frameRef });
                 height: 100%;
                 transition: 0.2s;
                 pointer-events: none;
+                transform: translateY(calc(-50% + 1em - 2px));
                 .label {
                     transition: color 0.2s;
                     color: var(--color-theme-border);
