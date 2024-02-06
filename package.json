@@ -70,7 +70,7 @@
     "@storybook/addon-docs": "^7.6.12",
     "@storybook/addon-measure": "^7.6.8",
     "@storybook/addon-outline": "^7.6.12",
-    "@storybook/addon-viewport": "^7.6.11",
+    "@storybook/addon-viewport": "^7.6.13",
     "@storybook/preview-api": "^7.6.12",
     "@storybook/vue3": "^7.6.11",
     "@storybook/vue3-vite": "^7.6.8",
