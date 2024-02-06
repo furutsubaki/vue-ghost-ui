@@ -72,7 +72,7 @@ if (value.value == null && model.value != null) {
 }
 
 const isOpen = ref(false);
-const selectedItem = computed(() => props.items.find((item) => item.value === value.value) ?? { label: '' });
+const selectedItem = computed(() => props.items.find((item) => item.value === value.value) ?? { label: '', value: null });
 const onSelectItem = (item: Item) => {
     value.value = item.value;
     isOpen.value = false;
