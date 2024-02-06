@@ -15,8 +15,8 @@ dependencies:
     specifier: ^4.12.5
     version: 4.12.5(vue@3.4.15)
   i18next:
-    specifier: ^23.7.16
-    version: 23.7.16
+    specifier: ^23.8.2
+    version: 23.8.2
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.3.3)(vue@3.4.15)
@@ -34,7 +34,7 @@ dependencies:
     version: 3.22.4
   zod-i18n-map:
     specifier: ^2.27.0
-    version: 2.27.0(i18next@23.7.16)(zod@3.22.4)
+    version: 2.27.0(i18next@23.8.2)(zod@3.22.4)
 
 devDependencies:
   '@rushstack/eslint-patch':
@@ -6075,8 +6075,8 @@ packages:
     hasBin: true
     dev: true
 
-  /i18next@23.7.16:
-    resolution: {integrity: sha512-SrqFkMn9W6Wb43ZJ9qrO6U2U4S80RsFMA7VYFSqp7oc7RllQOYDCdRfsse6A7Cq/V8MnpxKvJCYgM8++27n4Fw==}
+  /i18next@23.8.2:
+    resolution: {integrity: sha512-Z84zyEangrlERm0ZugVy4bIt485e/H8VecGUZkZWrH7BDePG6jT73QdL9EA1tRTTVVMpry/MgWIP1FjEn0DRXA==}
     dependencies:
       '@babel/runtime': 7.23.8
     dev: false
@@ -9050,13 +9050,13 @@ packages:
       commander: 9.5.0
     dev: true
 
-  /zod-i18n-map@2.27.0(i18next@23.7.16)(zod@3.22.4):
+  /zod-i18n-map@2.27.0(i18next@23.8.2)(zod@3.22.4):
     resolution: {integrity: sha512-ORu9XpiVh3WDiEUs5Cr9siGgnpeODoBsTIgSD8sQCH9B//f9KowlzqHUEdPYb3vFonaSH8yPvPCOFM4niwp3Sg==}
     peerDependencies:
       i18next: '>=21.3.0'
       zod: '>=3.17.0'
     dependencies:
-      i18next: 23.7.16
+      i18next: 23.8.2
       zod: 3.22.4
     dev: false
 
