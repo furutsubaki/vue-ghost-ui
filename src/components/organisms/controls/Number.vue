@@ -72,7 +72,7 @@ if (value.value == null && model.value != null) {
     <label class="component-number">
         <input
             v-model.number.trim="value"
-            class="input"
+            class="number"
             :class="[valiant, size]"
             placeholder=" "
             type="number"
@@ -91,7 +91,7 @@ if (value.value == null && model.value != null) {
 </template>
 
 <style scoped>
-.component-input {
+.component-number {
     position: relative;
     text-align: left;
     display: block;
@@ -103,7 +103,7 @@ if (value.value == null && model.value != null) {
         right: 0;
     }
 
-    :where(.input) {
+    :where(.number) {
         display: flex;
         gap: 16px;
         align-items: center;
