@@ -81,7 +81,6 @@ const isFocus = ref(false);
             :valiant="valiant"
             :size="size"
             :is-focus="isFocus"
-            :value="value"
             :isErrorMessage="isErrorMessage"
             :errors="errors"
         >
