@@ -73,7 +73,7 @@
     "@storybook/addon-viewport": "^7.6.13",
     "@storybook/preview-api": "^7.6.13",
     "@storybook/vue3": "^7.6.13",
-    "@storybook/vue3-vite": "^7.6.8",
+    "@storybook/vue3-vite": "^7.6.13",
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.11.16",
     "@vitejs/plugin-vue": "^5.0.3",
