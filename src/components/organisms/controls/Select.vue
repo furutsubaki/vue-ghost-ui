@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue';
+import { computed, watch, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import InputAccordionList from '@/components/organisms/inner-parts/InputAccordionList.vue';
 
 interface Item {
     label: string;
@@ -76,14 +77,16 @@ const isOpen = ref(false);
 const selectedItem = computed(
     () => props.items.find((item) => item.value === value.value) ?? { label: '', value: null }
 );
-const onSelectItem = (item: Item) => {
-    value.value = item.value;
-    isOpen.value = false;
+
+const onChange = (event: string | number | boolean) => {
+    value.value = event;
 };
+
+const selectRef = ref();
 </script>
 
 <template>
-    <div class="component-select-group" :class="[valiant, size]">
+    <div ref="selectRef" class="component-select-group" :class="[valiant, size]">
         <InputFrame
             :label="label"
             :required="isRequired"
@@ -105,23 +108,15 @@ const onSelectItem = (item: Item) => {
                 <span>{{ selectedItem.label }}</span>
                 <span class="select-icon">▼</span>
             </div>
-            <div class="select-list" :class="{ 'is-open': isOpen }">
-                <div class="select-list-body">
-                    <div
-                        class="select-list-item"
-                        :class="{
-                            'is-selected': selectedItem.value === item.value,
-                            'is-disabled': item.disabled
-                        }"
-                        v-for="item in items"
-                        :key="item.label"
-                        :value="item.value"
-                        @click="onSelectItem(item)"
-                    >
-                        {{ item.label }}
-                    </div>
-                </div>
-            </div>
+            <InputAccordionList
+                v-model="isOpen"
+                :items="items"
+                :value="value"
+                :parentRef="selectRef"
+                :valiant="valiant"
+                :size="size"
+                @change="onChange"
+            />
         </InputFrame>
     </div>
 </template>
