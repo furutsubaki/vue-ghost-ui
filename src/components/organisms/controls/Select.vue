@@ -2,6 +2,7 @@
 import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
+import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
 
 interface Item {
     label: string;
@@ -72,7 +73,9 @@ if (value.value == null && model.value != null) {
 }
 
 const isOpen = ref(false);
-const selectedItem = computed(() => props.items.find((item) => item.value === value.value) ?? { label: '', value: null });
+const selectedItem = computed(
+    () => props.items.find((item) => item.value === value.value) ?? { label: '', value: null }
+);
 const onSelectItem = (item: Item) => {
     value.value = item.value;
     isOpen.value = false;
@@ -80,63 +83,54 @@ const onSelectItem = (item: Item) => {
 </script>
 
 <template>
-    <div class="component-select-group">
-        <div class="label-placeholder" :class="{ required: isRequired }">
-            {{ label }}
-        </div>
-        <div
-            class="select"
-            :class="[valiant, size, { 'is-focus': isOpen }]"
-            :name="name"
+    <div class="component-select-group" :class="[valiant, size]">
+        <InputFrame
+            :label="label"
+            :required="isRequired"
             :disabled="disabled"
-            @click="isOpen = !isOpen"
+            :valiant="valiant"
+            :size="size"
+            :is-focus="isOpen"
+            :value="value"
+            :isErrorMessage="isErrorMessage"
+            :errors="errors"
         >
-            <span>{{ selectedItem.label }}</span>
-            <span class="select-icon">▼</span>
-        </div>
-        <div class="select-list" :class="{ 'is-open': isOpen }">
-            <div class="select-list-body">
-                <div
-                    class="select-list-item"
-                    :class="{ 'is-selected': selectedItem.value === item.value }"
-                    v-for="item in items"
-                    :key="item.label"
-                    :value="item.value"
-                    :disabled="item.disabled"
-                    @click="onSelectItem(item)"
-                >
-                    {{ item.label }}
+            <div
+                class="select"
+                :class="[valiant, size, { 'is-focus': isOpen }]"
+                :name="name"
+                :disabled="disabled"
+                @click="isOpen = !isOpen"
+            >
+                <span>{{ selectedItem.label }}</span>
+                <span class="select-icon">▼</span>
+            </div>
+            <div class="select-list" :class="{ 'is-open': isOpen }">
+                <div class="select-list-body">
+                    <div
+                        class="select-list-item"
+                        :class="{
+                            'is-selected': selectedItem.value === item.value,
+                            'is-disabled': item.disabled
+                        }"
+                        v-for="item in items"
+                        :key="item.label"
+                        :value="item.value"
+                        @click="onSelectItem(item)"
+                    >
+                        {{ item.label }}
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- <select
-            class="select"
-            :class="[valiant, size]"
-            v-model="value"
-            :name="name"
-            :disabled="disabled"
-        >
-            <option
-                v-for="item in items"
-                :key="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-            >
-                {{ item.label }}
-            </option>
-        </select> -->
-        <template v-if="isErrorMessage">
-            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
-        </template>
+        </InputFrame>
     </div>
 </template>
 
 <style scoped>
 .component-select-group {
-    position: relative;
-    text-align: left;
-    padding: 1em 0;
+    width: 100%;
     :where(.select) {
+        cursor: pointer;
         display: flex;
         gap: 16px;
         align-items: center;
@@ -144,20 +138,10 @@ const onSelectItem = (item: Item) => {
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
-        padding: 0 8px;
-        border: 1px solid var(--color-theme-border);
-        border-radius: 4px;
         color: var(--color-theme-text-primary);
         background-color: transparent;
-        transition:
-            color 0.2s,
-            background-color 0.2s,
-            border-color 0.2s,
-            opacity 0.2s;
-        &:disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
+        border: 0;
+        padding: 0;
         .select-icon {
             color: var(--color-theme-text-secondary);
             font-size: var(--font-size-small);
@@ -168,9 +152,11 @@ const onSelectItem = (item: Item) => {
         }
     }
     :where(.select-list) {
+        cursor: pointer;
         position: absolute;
+        left: -8px;
+        right: -8px;
         min-width: 100px;
-        width: 100%;
         line-height: 1.5em;
         border: 1px solid var(--color-theme-border);
         border-radius: 4px;
@@ -182,16 +168,25 @@ const onSelectItem = (item: Item) => {
             background-color 0.2s,
             border-color 0.2s,
             opacity 0.2s,
-            grid-template-rows 0.2s ease;
+            grid-template-rows 0.2s ease,
+            opacity 0s 0.2s;
         max-height: 50vh;
-        overflow-y: auto;
         background-color: var(--color-theme-bg-primary);
         z-index: 1;
+        opacity: 0;
         &.is-open {
             grid-template-rows: 1fr;
+            opacity: 1;
+            transition:
+                color 0.2s,
+                background-color 0.2s,
+                border-color 0.2s,
+                opacity 0.2s,
+                grid-template-rows 0.2s ease;
         }
         .select-list-body {
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             .select-list-item {
                 padding: 0 8px;
                 @media (hover: hover) {
@@ -208,28 +203,12 @@ const onSelectItem = (item: Item) => {
                 &.is-selected {
                     background-color: var(--color-theme-bg-secondary);
                 }
-            }
-        }
-    }
-}
+                &.is-disabled {
+                    pointer-events: none;
 
-.label-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0em;
-    height: 1em;
-    line-height: 1em;
-    pointer-events: none;
-    transition: 0.2s;
-    display: flex;
-    align-items: baseline;
-    font-size: var(--font-size-small);
-    color: var(--color-theme-text-primary);
-    &.required {
-        &::after {
-            left: -0.5em;
-            color: var(--color-status-danger);
-            content: '*';
+                    opacity: 0.5;
+                }
+            }
         }
     }
 }
@@ -237,8 +216,7 @@ const onSelectItem = (item: Item) => {
 .primary {
     border-color: var(--color-theme-active);
 
-    &.is-focus,
-    &:focus {
+    &.is-focus {
         border-color: var(--color-theme-active);
     }
 
@@ -258,8 +236,7 @@ const onSelectItem = (item: Item) => {
 .secondary {
     border-color: var(--color-theme-border);
 
-    &.is-focus,
-    &:focus {
+    &.is-focus {
         border-color: var(--color-theme-active);
     }
 
@@ -279,8 +256,7 @@ const onSelectItem = (item: Item) => {
 .info {
     border-color: var(--color-status-info);
 
-    &.is-focus,
-    &:focus {
+    &.is-focus {
         border-color: var(--color-status-info);
     }
 
@@ -300,8 +276,7 @@ const onSelectItem = (item: Item) => {
 .success {
     border-color: var(--color-status-success);
 
-    &.is-focus,
-    &:focus {
+    &.is-focus {
         border-color: var(--color-status-success);
     }
 
@@ -321,8 +296,7 @@ const onSelectItem = (item: Item) => {
 .warning {
     border-color: var(--color-status-warning);
 
-    &.is-focus,
-    &:focus {
+    &.is-focus {
         border-color: var(--color-status-warning);
     }
 
@@ -342,8 +316,7 @@ const onSelectItem = (item: Item) => {
 .danger {
     border-color: var(--color-status-danger);
 
-    &.is-focus,
-    &:focus {
+    &.is-focus {
         border-color: var(--color-status-danger);
     }
 
@@ -361,22 +334,17 @@ const onSelectItem = (item: Item) => {
 }
 
 .large {
-    height: 40px;
+    min-height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    height: 32px;
+    min-height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    height: 24px;
+    min-height: 24px;
     font-size: var(--font-size-small);
-}
-
-.error {
-    font-size: var(--font-size-small);
-    color: var(--color-status-danger);
 }
 </style>

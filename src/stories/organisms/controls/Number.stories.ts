@@ -63,6 +63,6 @@ export const Schema: Story = {
         ...Label.args,
         name: 'test',
         schema: TEST_SCHEMA.shape.test,
-        placeholder: '0'
+        placeholder: '1以上'
     }
 };

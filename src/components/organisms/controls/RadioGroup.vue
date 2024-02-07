@@ -101,16 +101,12 @@ if (value.value == null && model.value != null) {
 .component-radio-group {
     position: relative;
     text-align: left;
-    padding: 1em 0;
-    .component-radio {
-        padding: 0;
-    }
 }
 
 .label-placeholder {
     position: absolute;
-    top: 0;
-    left: 0em;
+    top: -0.5em;
+    left: 8px;
     height: 1em;
     line-height: 1em;
     pointer-events: none;

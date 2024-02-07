@@ -123,13 +123,12 @@ if (fieldVal.value == null && model.value != null) {
     position: relative;
     text-align: left;
     display: block;
-    padding: 1em 0;
 }
 
 .label-placeholder {
     position: absolute;
-    top: 0;
-    left: 0em;
+    top: -0.5em;
+    left: 8px;
     height: 1em;
     line-height: 1em;
     pointer-events: none;

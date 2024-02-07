@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber } from 'zod';
+import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
 
 const model = defineModel<number>();
 const props = withDefaults(
@@ -66,247 +67,66 @@ watch(value, (v) => {
 if (value.value == null && model.value != null) {
     value.value = model.value;
 }
+
+const isFocus = ref(false);
 </script>
 
 <template>
-    <label class="component-number">
-        <input
-            v-model.number.trim="value"
-            class="number"
-            :class="[valiant, size]"
-            placeholder=" "
-            type="number"
-            :name="name"
+    <label class="component-number" :class="[valiant, size]">
+        <InputFrame
+            :label="label"
+            :placeholder="placeholder"
             :required="isRequired"
             :disabled="disabled"
-        />
-        <div class="label-placeholder">
-            <span class="label">{{ label }}</span
-            ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
-        </div>
-        <template v-if="isErrorMessage">
-            <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
-        </template>
+            :valiant="valiant"
+            :size="size"
+            :is-focus="isFocus"
+            :value="value"
+            :isErrorMessage="isErrorMessage"
+            :errors="errors"
+        >
+            <input
+                v-model.number.trim="value"
+                class="number"
+                placeholder=" "
+                type="number"
+                :name="name"
+                :required="isRequired"
+                :disabled="disabled"
+                @focus="isFocus = true"
+                @blur="isFocus = false"
+            />
+        </InputFrame>
     </label>
 </template>
 
 <style scoped>
 .component-number {
-    position: relative;
-    text-align: left;
-    display: block;
-    padding: 1em 0;
-
-    .counter {
-        position: absolute;
-        top: -1.5em;
-        right: 0;
-    }
+    width: 100%;
 
     :where(.number) {
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        justify-content: center;
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
-        padding: 0 8px;
-        border: 1px solid var(--color-theme-border);
-        border-radius: 4px;
         background-color: transparent;
         color: var(--color-theme-text-primary);
-        transition:
-            color 0.2s,
-            background-color 0.2s,
-            border-color 0.2s,
-            opacity 0.2s;
-        &:disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-    }
-    .label-placeholder {
-        position: absolute;
-        top: calc(50% - 0.5em);
-        left: 1em;
-        height: 1em;
-        line-height: 1em;
-        pointer-events: none;
-        transition: 0.2s;
-        display: flex;
-        align-items: baseline;
-
-        .label {
-            transition: color 0.2s;
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-
-        .placeholder {
-            font-size: var(--font-size-small);
-            color: var(--color-theme-border);
-            height: 1em;
-            line-height: 1em;
-        }
-    }
-
-    [required] + .label-placeholder > .label {
-        &::after {
-            left: -0.5em;
-            color: var(--color-status-danger);
-            content: '*';
-        }
-    }
-    .input:not(:placeholder-shown) + .label-placeholder,
-    .input:focus + .label-placeholder {
-        top: 0;
-        left: 0em;
-        font-size: var(--font-size-small);
-        .label {
-            color: var(--color-theme-text-primary);
-        }
-    }
-}
-
-.primary {
-    border-color: var(--color-theme-active);
-
-    &:focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.secondary {
-    border-color: var(--color-theme-border);
-
-    &:focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.info {
-    border-color: var(--color-status-info);
-
-    &:focus {
-        border-color: var(--color-status-info);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-info);
-        }
-    }
-}
-
-.success {
-    border-color: var(--color-status-success);
-
-    &:focus {
-        border-color: var(--color-status-success);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-success);
-        }
-    }
-}
-
-.warning {
-    border-color: var(--color-status-warning);
-
-    &:focus {
-        border-color: var(--color-status-warning);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-warning);
-        }
-    }
-}
-
-.danger {
-    border-color: var(--color-status-danger);
-
-    &:focus {
-        border-color: var(--color-status-danger);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-danger);
-        }
+        border: 0;
+        padding: 0;
     }
 }
 
 .large {
-    height: 40px;
+    min-height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    height: 32px;
+    min-height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    height: 24px;
+    min-height: 24px;
     font-size: var(--font-size-small);
-}
-
-.error {
-    font-size: var(--font-size-small);
-    color: var(--color-status-danger);
 }
 </style>
