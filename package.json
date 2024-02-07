@@ -54,7 +54,7 @@
     "@acab/reset.css": "^0.8.0",
     "@vee-validate/rules": "^4.12.5",
     "@vee-validate/zod": "^4.12.5",
-    "i18next": "^23.7.16",
+    "i18next": "^23.8.2",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.5",
     "vue": "^3.4.15",
