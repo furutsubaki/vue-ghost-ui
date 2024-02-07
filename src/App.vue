@@ -90,7 +90,7 @@ const onSubmit = handleSubmit((values) => {
             <Radio :value="true" v-model="model.radio">規約に同意</Radio>
             <RadioGroup v-model="model.radioGroup" :items="items" label="らべる" />
             <Select v-model="model.select" :items="items" label="らべる" />
-            <Number v-model="model.number" name="number" :schema="TEST_SCHEMA.shape.number" />
+            <Number v-model="model.number" />
             {{ model }}
         </div>
     </main>
