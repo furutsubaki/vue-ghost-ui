@@ -2,6 +2,7 @@
 import { type Ref, computed, watch } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
+import { CheckSquare as IconCheckSquare, Square as IconSquare } from 'lucide-vue-next';
 
 const model = defineModel<string | number | boolean>();
 const props = withDefaults(
@@ -109,6 +110,8 @@ if (fieldVal.value == null && model.value != null) {
                     :checked="checked"
                     @change="onChange"
                 />
+                <IconCheckSquare v-show="checked" />
+                <IconSquare v-show="!checked" />
                 <slot />
             </label>
         </div>
@@ -123,6 +126,9 @@ if (fieldVal.value == null && model.value != null) {
     position: relative;
     text-align: left;
     display: block;
+    :where(.checkbox) {
+        display: none;
+    }
 }
 
 .label-placeholder {

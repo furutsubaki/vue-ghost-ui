@@ -4,6 +4,7 @@ import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
 import InputAccordionList from '@/components/organisms/inner-parts/InputAccordionList.vue';
+import { ChevronDown as IconChevronDown } from 'lucide-vue-next';
 
 interface Item {
     label: string;
@@ -111,7 +112,7 @@ const selectRef = ref();
                 @click="isOpen = !isOpen"
             >
                 <span>{{ selectedItem.label }}</span>
-                <span class="select-icon">▼</span>
+                <IconChevronDown class="select-icon" />
             </div>
             <InputAccordionList
                 v-model="isOpen"
@@ -150,7 +151,7 @@ const selectRef = ref();
             transition: transform 0.2s;
         }
         &.is-focus .select-icon {
-            transform: rotateX(180deg);
+            transform: rotateZ(180deg);
         }
     }
     :where(.select-list) {

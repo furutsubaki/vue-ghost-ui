@@ -2,6 +2,9 @@
 import { type Ref, computed, watch } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
+import { CircleDot as IconCircleDot, Circle as IconCircle } from 'lucide-vue-next';
+
+// TODO: ラジオボタンのチェック済みアイコンが適切ではないが、lucideにはまだないため、仮置き
 
 const model = defineModel<string | number | boolean>();
 const props = withDefaults(
@@ -109,6 +112,8 @@ if (fieldVal.value == null && model.value != null) {
                     :checked="checked"
                     @change="onChange"
                 />
+                <IconCircleDot v-show="checked" />
+                <IconCircle v-show="!checked" />
                 <slot />
             </label>
         </div>
@@ -123,6 +128,9 @@ if (fieldVal.value == null && model.value != null) {
     position: relative;
     text-align: left;
     display: block;
+    :where(.radio) {
+        display: none;
+    }
 }
 
 .label-placeholder {
