@@ -1,20 +1,14 @@
-name: Release Staging
+name: Create Release PR
 
 on:
   push:
     branches: [develop]
 
-env:
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-  SLACK_USERNAME: DeployBot
-  SLACK_CHANNEL: github notify
-  SLACK_ICON: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
-
 jobs:
   develop2mainPR:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Ruby 3.1
