@@ -200,3 +200,23 @@ pre > code {
     outline: none;
     box-shadow: none;
 }
+
+/* lucide */
+.large {
+    .lucide {
+        width: var(--font-size-large);
+        height: var(--font-size-large);
+    }
+}
+.medium {
+    .lucide {
+        width: var(--font-size-common);
+        height: var(--font-size-common);
+    }
+}
+.small {
+    .lucide {
+        width: var(--font-size-small);
+        height: var(--font-size-small);
+    }
+}
