@@ -36,7 +36,7 @@ const props = withDefaults(
         /**
          * 表示種類
          */
-        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
          * サイズ
          */
@@ -52,7 +52,7 @@ const props = withDefaults(
         schema: undefined,
         label: '',
         disabled: false,
-        valiant: 'secondary',
+        variant: 'secondary',
         size: 'medium',
         isErrorMessage: true
     }
@@ -99,7 +99,7 @@ if (fieldVal.value == null && model.value != null) {
             {{ label }}
         </div>
         <div class="item-label">
-            <label class="input" :class="[valiant, size, { disabled: disabled }]">
+            <label class="input" :class="[variant, size, { disabled: disabled }]">
                 <input
                     class="checkbox"
                     type="checkbox"
@@ -154,12 +154,13 @@ if (fieldVal.value == null && model.value != null) {
     justify-content: flex-start;
     white-space: nowrap;
 
-    .input {
+    :where(.input) {
         display: flex;
-        gap: 16px;
+        gap: 8px;
         align-items: center;
         justify-content: flex-start;
         line-height: 1.5em;
+        min-height: var(--height);
         transition:
             color 0.2s,
             background-color 0.2s,
@@ -319,17 +320,17 @@ if (fieldVal.value == null && model.value != null) {
 }
 
 .large {
-    height: 40px;
+    --height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    height: 32px;
+    --height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    height: 24px;
+    --height: 24px;
     font-size: var(--font-size-small);
 }
 

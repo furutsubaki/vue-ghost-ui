@@ -23,7 +23,7 @@ body {
     letter-spacing: 0.05em;
     word-break: break-word;
     text-size-adjust: 100%;
-    background-color: transparent;
+    background-color: var(--color-theme-bg-primary);
     transition: color 1s;
     .container {
         min-height: var(--height-vh);

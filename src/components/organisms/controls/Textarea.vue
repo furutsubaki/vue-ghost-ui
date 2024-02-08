@@ -30,7 +30,7 @@ const props = withDefaults(
         /**
          * 表示種類
          */
-        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
          * サイズ
          */
@@ -58,7 +58,7 @@ const props = withDefaults(
         label: ' ',
         placeholder: '',
         disabled: false,
-        valiant: 'secondary',
+        variant: 'secondary',
         size: 'medium',
         line: 3,
         isErrorMessage: true
@@ -113,7 +113,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <label class="component-textarea" :class="[valiant, size]">
+    <label class="component-textarea" :class="[variant, size]">
         <InputFrame
             ref="inputFrameRef"
             class="component-input-frame"
@@ -121,7 +121,7 @@ onMounted(() => {
             :placeholder="placeholder"
             :required="isRequired"
             :disabled="disabled"
-            :valiant="valiant"
+            :variant="variant"
             :size="size"
             :is-focus="isFocus"
             :maxLength="max"
@@ -147,8 +147,7 @@ onMounted(() => {
 <style scoped>
 .component-textarea {
     width: 100%;
-    /* min-height: v-bind(cssMinLine);
-    max-height: v-bind(cssMaxLine); */
+    min-height: var(--height);
 
     :deep(.component-input-frame) .frame-box {
         min-height: v-bind(cssMinLine);
@@ -172,17 +171,17 @@ onMounted(() => {
 }
 
 .large {
-    min-height: 40px;
+    --height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    min-height: 32px;
+    --height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    min-height: 24px;
+    --height: 24px;
     font-size: var(--font-size-small);
 }
 </style>

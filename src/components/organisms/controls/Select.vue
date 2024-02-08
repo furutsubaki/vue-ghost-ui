@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch, ref, onMounted, onBeforeUnmount } from 'vue';
+import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
@@ -37,11 +37,15 @@ const props = withDefaults(
         /**
          * 表示種類
          */
-        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
          * サイズ
          */
         size?: 'small' | 'medium' | 'large';
+        /**
+         * ポジション
+         */
+        position?: 'top' | 'bottom';
         /**
          * エラーメッセージを表示するか
          */
@@ -52,8 +56,9 @@ const props = withDefaults(
         schema: undefined,
         label: ' ',
         disabled: false,
-        valiant: 'secondary',
+        variant: 'secondary',
         size: 'medium',
+        position: 'bottom',
         isErrorMessage: true
     }
 );
@@ -86,12 +91,12 @@ const selectRef = ref();
 </script>
 
 <template>
-    <div ref="selectRef" class="component-select-group" :class="[valiant, size]">
+    <div ref="selectRef" class="component-select-group" :class="[variant, size, position]">
         <InputFrame
             :label="label"
             :required="isRequired"
             :disabled="disabled"
-            :valiant="valiant"
+            :variant="variant"
             :size="size"
             :is-focus="isOpen"
             :value="value"
@@ -100,7 +105,7 @@ const selectRef = ref();
         >
             <div
                 class="select"
-                :class="[valiant, size, { 'is-focus': isOpen }]"
+                :class="{ 'is-focus': isOpen }"
                 :name="name"
                 :disabled="disabled"
                 @click="isOpen = !isOpen"
@@ -113,8 +118,9 @@ const selectRef = ref();
                 :items="items"
                 :value="value"
                 :parentRef="selectRef"
-                :valiant="valiant"
+                :variant="variant"
                 :size="size"
+                :position="position"
                 @change="onChange"
             />
         </InputFrame>
@@ -124,6 +130,7 @@ const selectRef = ref();
 <style scoped>
 .component-select-group {
     width: 100%;
+    min-height: var(--height);
     :where(.select) {
         cursor: pointer;
         display: flex;
@@ -328,18 +335,19 @@ const selectRef = ref();
     }
 }
 
+/* size */
 .large {
-    min-height: 40px;
+    --height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    min-height: 32px;
+    --height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    min-height: 24px;
+    --height: 24px;
     font-size: var(--font-size-small);
 }
 </style>

@@ -14,6 +14,10 @@ reset cssとして[@acab/reset.css](https://github.com/mayank99/reset.css)を導
 
 バリデーションに関しては[zod](https://zod.dev/)のスキーマを用いて[vee-validate(v4)](https://vee-validate.logaretm.com/v4/)にて行っています。
 
+## スタイルの基本方針
+
+幅や余白はレスポンシブに準じつつ、8倍ルールを用いています。
+
 ## use
 
 ```shell

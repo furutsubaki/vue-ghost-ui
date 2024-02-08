@@ -22,7 +22,7 @@ withDefaults(
         /**
          * 表示種類
          */
-        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
          * サイズ
          */
@@ -53,7 +53,7 @@ withDefaults(
         placeholder: '',
         disabled: false,
         required: false,
-        valiant: 'secondary',
+        variant: 'secondary',
         size: 'medium',
         isFocus: false,
         line: 1,
@@ -79,7 +79,7 @@ defineExpose({ frameRef });
             'is-disabled': disabled
         }"
     >
-        <div ref="frameRef" class="frame-box" :class="[valiant, size]">
+        <div ref="frameRef" class="frame-box" :class="[variant, size]">
             <div class="frame-label">
                 <div class="label-box">
                     <span v-if="label" class="label">{{ label }}</span
@@ -108,8 +108,6 @@ defineExpose({ frameRef });
 <style scoped>
 .component-input-frame {
     --start-end-padding: 8px;
-    /* min-height: v-bind(cssMinLine);
-        max-height: v-bind(cssMaxLine); */
     .frame-box {
         position: relative;
         text-align: left;
@@ -118,6 +116,7 @@ defineExpose({ frameRef });
         min-width: 100px;
         width: 100%;
         height: 100%;
+        min-height: var(--height);
         line-height: 1.5em;
 
         &::before,
@@ -154,7 +153,7 @@ defineExpose({ frameRef });
                 height: 100%;
                 transition: 0.2s;
                 pointer-events: none;
-                transform: translateY(calc(-50% + 1em - 2px));
+                transform: translateY(calc(-50% + (var(--height) / 2) - 1px));
                 .label {
                     transition: color 0.2s;
                     color: var(--color-theme-border);
@@ -191,6 +190,9 @@ defineExpose({ frameRef });
             position: absolute;
             left: var(--start-end-padding);
             right: var(--start-end-padding);
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
     }
 
@@ -344,17 +346,17 @@ defineExpose({ frameRef });
 }
 
 .large {
-    min-height: 40px;
+    --height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    min-height: 32px;
+    --height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    min-height: 24px;
+    --height: 24px;
     font-size: var(--font-size-small);
 }
 

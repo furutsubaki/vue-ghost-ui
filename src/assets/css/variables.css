@@ -32,11 +32,13 @@
     /* base monokuro */
     --color-base-white-true: #fff;
     --color-base-white: #f7f7f7;
+    --color-base-white-dark: #dedede;
     --color-base-white-alpha: #f7f7f7cc;
     --color-base-gray-light: #cad0ce;
     --color-base-gray: #b4c1c8;
-    --color-base-gray-dark: #83959f;
+    --color-base-gray-dark: #696e70;
     --color-base-gray-alpha: #b6c2c9cc;
+    --color-base-black-light: #505050;
     --color-base-black: #2d2d2d;
     --color-base-black-true: #000;
     --color-base-black-alpha: #2d2d2dcc;
@@ -83,7 +85,7 @@
     --color-theme-link: var(--color-base-red-alpha);
     --color-theme-link-hover: var(--color-base-red);
     --color-theme-bg-primary: var(--color-base-white);
-    --color-theme-bg-secondary: var(--color-base-white-true);
+    --color-theme-bg-secondary: var(--color-base-gray-light);
     --color-theme-bg-alpha: var(--color-base-white-alpha);
     --color-theme-bg-select: #49f9aa;
     --color-theme-border: var(--color-base-gray);
@@ -107,7 +109,7 @@
     --color-theme-link: var(--color-base-orange-alpha);
     --color-theme-link-hover: var(--color-base-orange);
     --color-theme-bg-primary: var(--color-base-white);
-    --color-theme-bg-secondary: var(--color-base-white-true);
+    --color-theme-bg-secondary: var(--color-base-gray-light);
     --color-theme-bg-alpha: var(--color-base-white-alpha);
     --color-theme-bg-select: #49f9aa;
     --color-theme-border: var(--color-base-gray);
@@ -125,7 +127,7 @@
     --color-theme-link: var(--color-base-orange-alpha);
     --color-theme-link-hover: var(--color-base-orange);
     --color-theme-bg-primary: var(--color-base-black);
-    --color-theme-bg-secondary: #3d3d3d;
+    --color-theme-bg-secondary: var(--color-base-black-light);
     --color-theme-bg-alpha: var(--color-base-black-alpha);
     --color-theme-bg-select: #49f9aa;
     --color-theme-border: var(--color-base-gray-dark);
