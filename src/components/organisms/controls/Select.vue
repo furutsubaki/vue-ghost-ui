@@ -4,7 +4,7 @@ import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
 import InputAccordionList from '@/components/organisms/inner-parts/InputAccordionList.vue';
-import { ChevronDown as IconChevronDown } from 'lucide-vue-next';
+import { ChevronDown as IconChevronDown, XCircle as IconXCircle } from 'lucide-vue-next';
 
 interface Item {
     label: string;
@@ -32,6 +32,10 @@ const props = withDefaults(
          */
         label?: string;
         /**
+         * 削除ボタン
+         */
+        clearable?: boolean;
+        /**
          * 無効か
          */
         disabled?: boolean;
@@ -56,6 +60,7 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
+        clearable: false,
         disabled: false,
         variant: 'secondary',
         size: 'medium',
@@ -88,6 +93,11 @@ const onChange = (event: string | number | boolean) => {
     value.value = event;
 };
 
+const onDelete = () => {
+    value.value = '';
+    isOpen.value = false;
+};
+
 const selectRef = ref();
 </script>
 
@@ -111,8 +121,11 @@ const selectRef = ref();
                 :disabled="disabled"
                 @click="isOpen = !isOpen"
             >
-                <span>{{ selectedItem.label }}</span>
+                <span class="selected-label">{{ selectedItem.label }}</span>
                 <IconChevronDown class="select-icon" />
+            </div>
+            <div class="clearable-box" v-if="clearable">
+                <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
             </div>
             <InputAccordionList
                 v-model="isOpen"
@@ -145,6 +158,9 @@ const selectRef = ref();
         background-color: transparent;
         border: 0;
         padding: 0;
+        .selected-label {
+            flex-grow: 1;
+        }
         .select-icon {
             color: var(--color-theme-text-secondary);
             font-size: var(--font-size-small);
@@ -154,64 +170,34 @@ const selectRef = ref();
             transform: rotateZ(180deg);
         }
     }
-    :where(.select-list) {
-        cursor: pointer;
-        position: absolute;
-        left: -8px;
-        right: -8px;
-        min-width: 100px;
-        line-height: 1.5em;
-        border: 1px solid var(--color-theme-border);
-        border-radius: 4px;
-        color: var(--color-theme-text-primary);
-        display: grid;
-        grid-template-rows: 0fr;
-        transition:
-            color 0.2s,
-            background-color 0.2s,
-            border-color 0.2s,
-            opacity 0.2s,
-            grid-template-rows 0.2s ease,
-            opacity 0s 0.2s;
-        max-height: 50vh;
-        background-color: var(--color-theme-bg-primary);
-        z-index: 1;
-        opacity: 0;
-        &.is-open {
-            grid-template-rows: 1fr;
-            opacity: 1;
-            transition:
-                color 0.2s,
-                background-color 0.2s,
-                border-color 0.2s,
-                opacity 0.2s,
-                grid-template-rows 0.2s ease;
-        }
-        .select-list-body {
-            overflow-x: hidden;
-            overflow-y: auto;
-            .select-list-item {
-                padding: 0 8px;
-                @media (hover: hover) {
-                    &:hover {
-                        background-color: var(--color-theme-bg-secondary);
-                    }
-                }
-
-                @media (hover: none) {
-                    &:active {
-                        background-color: var(--color-theme-bg-secondary);
-                    }
-                }
-                &.is-selected {
-                    background-color: var(--color-theme-bg-secondary);
-                }
-                &.is-disabled {
-                    pointer-events: none;
-
-                    opacity: 0.5;
+    @media (hover: hover) {
+        /* PC */
+        &.is-focus,
+        &:hover {
+            .clearable-box {
+                .lucide {
+                    opacity: 1;
                 }
             }
+        }
+    }
+
+    @media (hover: none) {
+        /* mobile */
+        &.is-focus,
+        &:active {
+            .clearable-box {
+                .lucide {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .clearable-box {
+        width: var(--font-size);
+        .lucide {
+            opacity: 0;
+            transition: opacity 0.2s;
         }
     }
 }

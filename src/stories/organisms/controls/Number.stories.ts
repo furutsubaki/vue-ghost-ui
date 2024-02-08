@@ -43,6 +43,13 @@ export const Label: Story = {
     }
 };
 
+export const Clearable: Story = {
+    args: {
+        ...Label.args,
+        clearable: true
+    }
+};
+
 export const Placeholder: Story = {
     args: {
         ...Label.args,
