@@ -108,6 +108,8 @@ defineExpose({ frameRef });
 <style scoped>
 .component-input-frame {
     --start-end-padding: 8px;
+    min-height: var(--height);
+    font-size: var(--font-size);
     .frame-box {
         position: relative;
         text-align: left;
@@ -192,6 +194,7 @@ defineExpose({ frameRef });
             right: var(--start-end-padding);
             display: flex;
             align-items: center;
+            gap: 8px;
             height: 100%;
         }
     }
@@ -347,17 +350,17 @@ defineExpose({ frameRef });
 
 .large {
     --height: 40px;
-    font-size: var(--font-size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
     --height: 32px;
-    font-size: var(--font-size-common);
+    --font-size: var(--font-size-common);
 }
 
 .small {
     --height: 24px;
-    font-size: var(--font-size-small);
+    --font-size: var(--font-size-small);
 }
 
 .error {

@@ -120,6 +120,7 @@ onBeforeUnmount(() => {
     background-color: var(--color-theme-bg-primary);
     z-index: 1;
     opacity: 0;
+    font-size: var(--font-size);
     &.is-open {
         grid-template-rows: 1fr;
         opacity: 1;
@@ -283,17 +284,17 @@ onBeforeUnmount(() => {
 /* size */
 .large {
     --height: 40px;
-    font-size: var(--font-size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
     --height: 32px;
-    font-size: var(--font-size-common);
+    --font-size: var(--font-size-common);
 }
 
 .small {
     --height: 24px;
-    font-size: var(--font-size-small);
+    --font-size: var(--font-size-small);
 }
 
 /* position */

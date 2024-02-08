@@ -95,12 +95,12 @@ if (fieldVal.value == null && model.value != null) {
 </script>
 
 <template>
-    <div class="component-checkbox">
+    <div class="component-checkbox" :class="[variant, size, { 'is-disabled': disabled }]">
         <div v-if="label" class="label-placeholder" :class="{ required: isRequired }">
             {{ label }}
         </div>
         <div class="item-label">
-            <label class="input" :class="[variant, size, { disabled: disabled }]">
+            <label class="input">
                 <input
                     class="checkbox"
                     type="checkbox"
@@ -126,8 +126,14 @@ if (fieldVal.value == null && model.value != null) {
     position: relative;
     text-align: left;
     display: block;
+    min-height: var(--height);
+    font-size: var(--font-size);
     :where(.checkbox) {
         display: none;
+    }
+    &.is-disabled {
+        pointer-events: none;
+        opacity: 0.5;
     }
 }
 
@@ -172,10 +178,6 @@ if (fieldVal.value == null && model.value != null) {
             background-color 0.2s,
             border-color 0.2s,
             opacity 0.2s;
-        &:disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
     }
 }
 
@@ -327,17 +329,17 @@ if (fieldVal.value == null && model.value != null) {
 
 .large {
     --height: 40px;
-    font-size: var(--font-size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
     --height: 32px;
-    font-size: var(--font-size-common);
+    --font-size: var(--font-size-common);
 }
 
 .small {
     --height: 24px;
-    font-size: var(--font-size-small);
+    --font-size: var(--font-size-small);
 }
 
 .error {

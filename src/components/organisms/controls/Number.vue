@@ -3,6 +3,7 @@ import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import { XCircle as IconXCircle } from 'lucide-vue-next';
 
 const model = defineModel<number>();
 const props = withDefaults(
@@ -19,6 +20,10 @@ const props = withDefaults(
          * 見出し
          */
         label?: string;
+        /**
+         * 削除ボタン
+         */
+        clearable?: boolean;
         /**
          * 見本
          */
@@ -44,6 +49,7 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
+        clearable: false,
         placeholder: '',
         disabled: false,
         type: 'text',
@@ -69,10 +75,13 @@ if (value.value == null && model.value != null) {
 }
 
 const isFocus = ref(false);
+const onDelete = () => {
+    value.value = '' as unknown as number;
+};
 </script>
 
 <template>
-    <label class="component-number" :class="[variant, size]">
+    <label class="component-number" :class="[variant, size, { 'is-focus': isFocus }]">
         <InputFrame
             :label="label"
             :placeholder="placeholder"
@@ -96,6 +105,12 @@ const isFocus = ref(false);
                 @focus="isFocus = true"
                 @blur="isFocus = false"
             />
+            <div class="clearable-box" v-if="clearable">
+                <IconXCircle
+                    v-show="value != null && (value as unknown as string) !== ''"
+                    @click="onDelete"
+                />
+            </div>
         </InputFrame>
     </label>
 </template>
@@ -104,6 +119,7 @@ const isFocus = ref(false);
 .component-number {
     width: 100%;
     min-height: var(--height);
+    font-size: var(--font-size);
 
     :where(.number) {
         min-width: 100px;
@@ -114,20 +130,51 @@ const isFocus = ref(false);
         border: 0;
         padding: 0;
     }
+
+    @media (hover: hover) {
+        /* PC */
+        &.is-focus,
+        &:hover {
+            .clearable-box {
+                .lucide {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    @media (hover: none) {
+        /* mobile */
+        &.is-focus,
+        &:active {
+            .clearable-box {
+                .lucide {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .clearable-box {
+        width: var(--font-size);
+        .lucide {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+    }
 }
 
 .large {
     --height: 40px;
-    font-size: var(--font-size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
     --height: 32px;
-    font-size: var(--font-size-common);
+    --font-size: var(--font-size-common);
 }
 
 .small {
     --height: 24px;
-    font-size: var(--font-size-small);
+    --font-size: var(--font-size-small);
 }
 </style>
