@@ -142,7 +142,6 @@ onMounted(() => {
                 ref="textareaRef"
                 v-model="value"
                 class="textarea"
-                placeholder=" "
                 :name="name"
                 :required="isRequired"
                 :disabled="disabled"

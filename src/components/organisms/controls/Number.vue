@@ -97,7 +97,6 @@ const onDelete = () => {
             <input
                 v-model.number.trim="value"
                 class="number"
-                placeholder=" "
                 type="number"
                 :name="name"
                 :required="isRequired"
