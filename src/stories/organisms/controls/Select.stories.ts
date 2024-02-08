@@ -70,6 +70,14 @@ export const Item_Disabled: Story = {
     }
 };
 
+export const Position: Story = {
+    args: {
+        ...Label.args,
+        position: 'top',
+        style: 'margin-top: 96px'
+    }
+};
+
 export const Schema: Story = {
     args: {
         ...Label.args,

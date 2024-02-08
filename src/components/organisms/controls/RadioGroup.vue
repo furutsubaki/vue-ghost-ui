@@ -36,7 +36,7 @@ const props = withDefaults(
         /**
          * 表示種類
          */
-        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
          * サイズ
          */
@@ -51,7 +51,7 @@ const props = withDefaults(
         schema: undefined,
         label: ' ',
         disabled: false,
-        valiant: 'secondary',
+        variant: 'secondary',
         size: 'medium',
         isErrorMessage: true
     }
@@ -85,7 +85,7 @@ if (value.value == null && model.value != null) {
                 :value="item.value"
                 :name="name"
                 :disabled="disabled || item.disabled"
-                :valiant="valiant"
+                :variant="variant"
                 :size="size"
                 :isErrorMessage="false"
                 >{{ item.label }}</Radio
@@ -126,7 +126,7 @@ if (value.value == null && model.value != null) {
 
 .items {
     display: flex;
-    gap: 8px;
+    gap: 16px;
 }
 
 .primary {
@@ -273,21 +273,6 @@ if (value.value == null && model.value != null) {
             border-color: var(--color-status-danger);
         }
     }
-}
-
-.large {
-    height: 40px;
-    font-size: var(--font-size-large);
-}
-
-.medium {
-    height: 32px;
-    font-size: var(--font-size-common);
-}
-
-.small {
-    height: 24px;
-    font-size: var(--font-size-small);
 }
 
 .error {

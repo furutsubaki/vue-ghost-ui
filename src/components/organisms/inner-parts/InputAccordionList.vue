@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
+import { computed, onMounted, onBeforeUnmount } from 'vue';
 
 interface Item {
     label: string;
@@ -26,7 +26,7 @@ const props = withDefaults(
         /**
          * 表示種類
          */
-        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
          * サイズ
          */
@@ -37,7 +37,7 @@ const props = withDefaults(
         position?: 'top' | 'bottom';
     }>(),
     {
-        valiant: 'secondary',
+        variant: 'secondary',
         size: 'medium',
         position: 'bottom'
     }
@@ -74,7 +74,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="component-input-accordion-list" :class="{ 'is-open': model }">
+    <div
+        class="component-input-accordion-list"
+        :class="[variant, size, position, { 'is-open': model }]"
+    >
         <div class="list-body">
             <div
                 class="list-item"
@@ -132,6 +135,8 @@ onBeforeUnmount(() => {
         overflow-y: auto;
         .list-item {
             padding: 0 8px;
+            min-height: var(--height);
+            transition: background-color 0.2s;
             @media (hover: hover) {
                 &:hover {
                     background-color: var(--color-theme-bg-secondary);
@@ -148,13 +153,13 @@ onBeforeUnmount(() => {
             }
             &.is-disabled {
                 pointer-events: none;
-
                 opacity: 0.5;
             }
         }
     }
 }
 
+/* variant */
 .primary {
     border-color: var(--color-theme-active);
 
@@ -275,18 +280,28 @@ onBeforeUnmount(() => {
     }
 }
 
+/* size */
 .large {
-    min-height: 40px;
+    --height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    min-height: 32px;
+    --height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    min-height: 24px;
+    --height: 24px;
     font-size: var(--font-size-small);
+}
+
+/* position */
+
+.bottom {
+    top: var(--height);
+}
+.top {
+    bottom: var(--height);
 }
 </style>

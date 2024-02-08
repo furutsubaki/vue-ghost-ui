@@ -30,7 +30,7 @@ const props = withDefaults(
         /**
          * 表示種類
          */
-        valiant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
          * サイズ
          */
@@ -47,7 +47,7 @@ const props = withDefaults(
         placeholder: '',
         disabled: false,
         type: 'text',
-        valiant: 'secondary',
+        variant: 'secondary',
         size: 'medium',
         isErrorMessage: true
     }
@@ -72,13 +72,13 @@ const isFocus = ref(false);
 </script>
 
 <template>
-    <label class="component-number" :class="[valiant, size]">
+    <label class="component-number" :class="[variant, size]">
         <InputFrame
             :label="label"
             :placeholder="placeholder"
             :required="isRequired"
             :disabled="disabled"
-            :valiant="valiant"
+            :variant="variant"
             :size="size"
             :is-focus="isFocus"
             :value="value"
@@ -103,6 +103,7 @@ const isFocus = ref(false);
 <style scoped>
 .component-number {
     width: 100%;
+    min-height: var(--height);
 
     :where(.number) {
         min-width: 100px;
@@ -116,17 +117,17 @@ const isFocus = ref(false);
 }
 
 .large {
-    min-height: 40px;
+    --height: 40px;
     font-size: var(--font-size-large);
 }
 
 .medium {
-    min-height: 32px;
+    --height: 32px;
     font-size: var(--font-size-common);
 }
 
 .small {
-    min-height: 24px;
+    --height: 24px;
     font-size: var(--font-size-small);
 }
 </style>

@@ -68,6 +68,7 @@ const onSubmit = handleSubmit((values) => {
                 name="select"
                 :schema="TEST_SCHEMA.shape.select"
                 :items="items"
+                position="top"
                 label="らべる"
             />
             <Input
@@ -97,6 +98,12 @@ const onSubmit = handleSubmit((values) => {
 </template>
 
 <style scoped>
+main {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 .flex {
     display: flex;
     flex-direction: column;
