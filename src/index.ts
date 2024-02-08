@@ -3,22 +3,14 @@ import '@/assets/css/style.css';
 import '@/assets/css/variables.css';
 
 import type { Component, App } from 'vue';
-import Button from '@/components/organisms/common/Button.vue';
-import Textarea from '@/components/organisms/controls/Textarea.vue';
-import Input from '@/components/organisms/controls/Input.vue';
-import Radio from '@/components/organisms/controls/Radio.vue';
-import Number from '@/components/organisms/controls/Number.vue';
-import InputTextCounter from '@/components/organisms/controls/InputTextCounter.vue';
 import useFormData from '@/composables/useFormData';
-
-const Components: { [key: string]: Component } = {
-    Button,
-    Textarea,
-    Input,
-    Number,
-    InputTextCounter,
-    Radio
-};
+const files: Record<string, { default: Component }> = import.meta.glob('./components/**/*.vue', {
+    eager: true
+});
+const Components: { [key: string]: Component } = {};
+for (const key in files) {
+    Components[key.replace(/.*\/(.*)\..*/, '$1')] = files[key].default;
+}
 
 export { useFormData };
 
