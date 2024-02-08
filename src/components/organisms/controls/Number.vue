@@ -81,7 +81,7 @@ const onDelete = () => {
 </script>
 
 <template>
-    <label class="component-number" :class="[variant, size]">
+    <label class="component-number" :class="[variant, size, { 'is-focus': isFocus }]">
         <InputFrame
             :label="label"
             :placeholder="placeholder"
@@ -119,6 +119,7 @@ const onDelete = () => {
 .component-number {
     width: 100%;
     min-height: var(--height);
+    font-size: var(--font-size);
 
     :where(.number) {
         min-width: 100px;
@@ -164,16 +165,16 @@ const onDelete = () => {
 
 .large {
     --height: 40px;
-    font-size: var(--font-size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
     --height: 32px;
-    font-size: var(--font-size-common);
+    --font-size: var(--font-size-common);
 }
 
 .small {
     --height: 24px;
-    font-size: var(--font-size-small);
+    --font-size: var(--font-size-small);
 }
 </style>

@@ -45,6 +45,9 @@ defineEmits<{
     --size-medium: 32px;
     --size-small: 24px;
 
+    min-height: var(--height);
+    font-size: var(--font-size);
+
     display: flex;
     gap: 16px;
     align-items: center;
@@ -197,18 +200,18 @@ defineEmits<{
 }
 
 .large {
-    height: var(--size-large);
-    font-size: var(--font-size-large);
+    --height: var(--size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
-    height: var(--size-medium);
-    font-size: var(--font-size-common);
+    --height: var(--size-medium);
+    --font-size: var(--font-size-common);
 }
 
 .small {
-    height: var(--size-small);
-    font-size: var(--font-size-small);
+    --height: var(--size-small);
+    --font-size: var(--font-size-small);
 }
 
 .square {

@@ -102,7 +102,11 @@ const selectRef = ref();
 </script>
 
 <template>
-    <div ref="selectRef" class="component-select-group" :class="[variant, size, position]">
+    <div
+        ref="selectRef"
+        class="component-select-group"
+        :class="[variant, size, position, { 'is-focus': isOpen }]"
+    >
         <InputFrame
             :label="label"
             :required="isRequired"
@@ -145,6 +149,7 @@ const selectRef = ref();
 .component-select-group {
     width: 100%;
     min-height: var(--height);
+    font-size: var(--font-size);
     :where(.select) {
         cursor: pointer;
         display: flex;
@@ -325,16 +330,16 @@ const selectRef = ref();
 /* size */
 .large {
     --height: 40px;
-    font-size: var(--font-size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
     --height: 32px;
-    font-size: var(--font-size-common);
+    --font-size: var(--font-size-common);
 }
 
 .small {
     --height: 24px;
-    font-size: var(--font-size-small);
+    --font-size: var(--font-size-small);
 }
 </style>

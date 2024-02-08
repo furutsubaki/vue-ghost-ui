@@ -122,7 +122,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <label class="component-textarea" :class="[variant, size]">
+    <label class="component-textarea" :class="[variant, size, { 'is-focus': isFocus }]">
         <InputFrame
             ref="inputFrameRef"
             class="component-input-frame"
@@ -160,6 +160,7 @@ onMounted(() => {
 .component-textarea {
     width: 100%;
     min-height: var(--height);
+    font-size: var(--font-size);
 
     :deep(.component-input-frame) .frame-box {
         min-height: v-bind(cssMinLine);
@@ -217,16 +218,16 @@ onMounted(() => {
 
 .large {
     --height: 40px;
-    font-size: var(--font-size-large);
+    --font-size: var(--font-size-large);
 }
 
 .medium {
     --height: 32px;
-    font-size: var(--font-size-common);
+    --font-size: var(--font-size-common);
 }
 
 .small {
     --height: 24px;
-    font-size: var(--font-size-small);
+    --font-size: var(--font-size-small);
 }
 </style>
