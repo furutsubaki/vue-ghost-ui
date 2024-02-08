@@ -81,7 +81,7 @@ const onDelete = () => {
 </script>
 
 <template>
-    <label class="component-number" :class="[variant, size, { 'is-focus': isFocus }]">
+    <div class="component-number" :class="[variant, size, { 'is-focus': isFocus }]">
         <InputFrame
             :label="label"
             :placeholder="placeholder"
@@ -111,7 +111,7 @@ const onDelete = () => {
                 />
             </div>
         </InputFrame>
-    </label>
+    </div>
 </template>
 
 <style scoped>
