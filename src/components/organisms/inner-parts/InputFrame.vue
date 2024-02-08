@@ -79,7 +79,7 @@ defineExpose({ frameRef });
             'is-disabled': disabled
         }"
     >
-        <div ref="frameRef" class="frame-box" :class="[variant, size]">
+        <label ref="frameRef" class="frame-box" :class="[variant, size]">
             <div class="frame-label">
                 <div class="label-box">
                     <span v-if="label" class="label">{{ label }}</span
@@ -98,7 +98,7 @@ defineExpose({ frameRef });
             <div class="frame-body">
                 <slot />
             </div>
-        </div>
+        </label>
         <template v-if="isErrorMessage">
             <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
         </template>

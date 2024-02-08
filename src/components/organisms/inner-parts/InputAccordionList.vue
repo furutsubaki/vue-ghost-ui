@@ -76,7 +76,7 @@ onBeforeUnmount(() => {
 <template>
     <div
         class="component-input-accordion-list"
-        :class="[variant, size, position, { 'is-open': model }]"
+        :class="[variant, size, position, { 'is-open': model && items.length }]"
     >
         <div class="list-body">
             <div
@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
                 v-for="item in items"
                 :key="item.label"
                 :value="item.value"
-                @click="onSelectItem(item)"
+                @mouseup="onSelectItem(item)"
             >
                 {{ item.label }}
             </div>
@@ -100,8 +100,7 @@ onBeforeUnmount(() => {
 .component-input-accordion-list {
     cursor: pointer;
     position: absolute;
-    left: -8px;
-    right: -8px;
+    width: 100%;
     min-width: 100px;
     line-height: 1.5em;
     border: 1px solid var(--color-theme-border);
@@ -135,6 +134,8 @@ onBeforeUnmount(() => {
         overflow-x: hidden;
         overflow-y: auto;
         .list-item {
+            display: flex;
+            align-items: center;
             padding: 0 8px;
             min-height: var(--height);
             transition: background-color 0.2s;

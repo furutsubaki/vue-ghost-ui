@@ -84,6 +84,7 @@ if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 
+const selectRef = ref();
 const isOpen = ref(false);
 const selectedItem = computed(
     () => props.items.find((item) => item.value === value.value) ?? { label: '', value: null }
@@ -97,8 +98,6 @@ const onDelete = () => {
     value.value = '';
     isOpen.value = false;
 };
-
-const selectRef = ref();
 </script>
 
 <template>
@@ -131,17 +130,17 @@ const selectRef = ref();
             <div class="clearable-box" v-if="clearable">
                 <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
             </div>
-            <InputAccordionList
-                v-model="isOpen"
-                :items="items"
-                :value="value"
-                :parentRef="selectRef"
-                :variant="variant"
-                :size="size"
-                :position="position"
-                @change="onChange"
-            />
         </InputFrame>
+        <InputAccordionList
+            v-model="isOpen"
+            :items="items"
+            :value="value"
+            :parentRef="selectRef"
+            :variant="variant"
+            :size="size"
+            :position="position"
+            @change="onChange"
+        />
     </div>
 </template>
 
@@ -150,6 +149,7 @@ const selectRef = ref();
     width: 100%;
     min-height: var(--height);
     font-size: var(--font-size);
+    position: relative;
     :where(.select) {
         cursor: pointer;
         display: flex;
