@@ -19,6 +19,9 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
+      - name: npm module install
+        run: pnpm i
+
       - name: Run Build
         run: pnpm build
 
