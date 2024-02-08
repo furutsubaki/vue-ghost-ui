@@ -122,7 +122,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <label class="component-textarea" :class="[variant, size, { 'is-focus': isFocus }]">
+    <div class="component-textarea" :class="[variant, size, { 'is-focus': isFocus }]">
         <InputFrame
             ref="inputFrameRef"
             class="component-input-frame"
@@ -142,7 +142,6 @@ onMounted(() => {
                 ref="textareaRef"
                 v-model="value"
                 class="textarea"
-                placeholder=" "
                 :name="name"
                 :required="isRequired"
                 :disabled="disabled"
@@ -153,7 +152,7 @@ onMounted(() => {
                 <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
             </div>
         </InputFrame>
-    </label>
+    </div>
 </template>
 
 <style scoped>

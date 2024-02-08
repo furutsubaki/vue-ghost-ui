@@ -95,7 +95,7 @@ const onDelete = () => {
 </script>
 
 <template>
-    <label class="component-input" :class="[variant, size, { 'is-focus': isFocus }]">
+    <div class="component-input" :class="[variant, size, { 'is-focus': isFocus }]">
         <InputFrame
             :label="label"
             :placeholder="placeholder"
@@ -112,7 +112,6 @@ const onDelete = () => {
             <input
                 v-model.trim="value"
                 class="input"
-                placeholder=" "
                 :type="type"
                 :name="name"
                 :required="isRequired"
@@ -124,7 +123,7 @@ const onDelete = () => {
                 <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
             </div>
         </InputFrame>
-    </label>
+    </div>
 </template>
 
 <style scoped>
