@@ -132,6 +132,9 @@ const setDayClass = (date) => {
         pointer-events: none;
         opacity: 0.5;
     }
+    :deep(.component-input-frame) {
+        display: inline-block;
+    }
 
     :where(.datepicker) {
         :deep(.dp__menu) {
