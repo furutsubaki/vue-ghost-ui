@@ -4,6 +4,7 @@ import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
 import InputAccordionList from '@/components/organisms/inner-parts/InputAccordionList.vue';
+import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
 import { XCircle as IconXCircle } from 'lucide-vue-next';
 import {
     hira2Kata,
@@ -230,7 +231,9 @@ const onBlur = (event: Event) => {
                 @blur="onBlur"
             />
             <div class="clearable-box" v-if="clearable">
-                <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
+                <OpacityTransition>
+                    <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
+                </OpacityTransition>
             </div>
         </InputFrame>
         <InputAccordionList

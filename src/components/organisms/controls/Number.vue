@@ -3,6 +3,7 @@ import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
 import { XCircle as IconXCircle } from 'lucide-vue-next';
 
 const model = defineModel<number>();
@@ -105,10 +106,12 @@ const onDelete = () => {
                 @blur="isFocus = false"
             />
             <div class="clearable-box" v-if="clearable">
-                <IconXCircle
-                    v-show="value != null && (value as unknown as string) !== ''"
-                    @click="onDelete"
-                />
+                <OpacityTransition>
+                    <IconXCircle
+                        v-show="value != null && (value as unknown as string) !== ''"
+                        @click="onDelete"
+                    />
+                </OpacityTransition>
             </div>
         </InputFrame>
     </div>

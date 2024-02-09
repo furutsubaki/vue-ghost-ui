@@ -120,6 +120,7 @@ defineExpose({ frameRef });
         height: 100%;
         min-height: var(--height);
         line-height: 1.5em;
+        transition: height 0.2s;
 
         &::before,
         &::after {
