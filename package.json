@@ -60,7 +60,7 @@
     "lucide-vue-next": "^0.323.0",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.5",
-    "vue": "^3.4.16",
+    "vue": "^3.4.18",
     "vue-router": "^4.2.5",
     "zod": "^3.22.4",
     "zod-i18n-map": "^2.27.0"
