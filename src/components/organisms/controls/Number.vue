@@ -109,7 +109,7 @@ const onDelete = () => {
                 <OpacityTransition>
                     <IconXCircle
                         v-show="value != null && (value as unknown as string) !== ''"
-                        @click="onDelete"
+                        @click.prevent="onDelete"
                     />
                 </OpacityTransition>
             </div>
