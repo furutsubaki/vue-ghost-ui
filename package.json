@@ -54,6 +54,8 @@
     "@acab/reset.css": "^0.8.0",
     "@vee-validate/rules": "^4.12.5",
     "@vee-validate/zod": "^4.12.5",
+    "@vuepic/vue-datepicker": "^8.0.0",
+    "dayjs": "^1.11.10",
     "i18next": "^23.8.2",
     "lucide-vue-next": "^0.323.0",
     "pinia": "^2.1.7",
