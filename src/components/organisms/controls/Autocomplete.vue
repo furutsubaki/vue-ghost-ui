@@ -181,6 +181,11 @@ const matchItems = computed(() => {
     });
 });
 
+// NOTE: 初期値がリスト外の場合は初期化する
+if (!matchItems.value.length) {
+    value.value = '';
+}
+
 const onChange = (v: string | number | boolean) => {
     value.value = v as string;
 };
