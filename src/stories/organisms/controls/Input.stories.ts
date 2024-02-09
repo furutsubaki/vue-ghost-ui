@@ -62,6 +62,15 @@ export const Disabled: Story = {
     }
 };
 
+export const Date: Story = {
+    args: {
+        ...Label.args,
+        modelValue: '',
+        type: 'date',
+        clearable: true
+    }
+};
+
 export const Schema: Story = {
     args: {
         ...Label.args,

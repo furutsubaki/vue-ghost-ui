@@ -128,12 +128,10 @@ const setDayClass = (date) => {
     position: relative;
     text-align: left;
     display: block;
+    width: fit-content;
     &.is-disabled {
         pointer-events: none;
         opacity: 0.5;
-    }
-    :deep(.component-input-frame) {
-        display: inline-block;
     }
 
     :where(.datepicker) {
