@@ -1,4 +1,4 @@
-import { Preview } from '@storybook/vue3'
+import { Preview, setup } from '@storybook/vue3'
 import { useArgs } from '@storybook/preview-api'
 import '@acab/reset.css'
 import '../src/assets/css/style.css'
@@ -10,6 +10,8 @@ import { init } from 'i18next';
 import { z } from 'zod';
 import { zodI18nMap } from 'zod-i18n-map';
 import translation from 'zod-i18n-map/locales/ja/zod.json';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
     switch (issue.code) {
@@ -68,5 +70,9 @@ const preview: Preview = {
         }
     ]
 }
+
+setup((app) => {
+    app.component('VueDatePicker', VueDatePicker);
+})
 
 export default preview

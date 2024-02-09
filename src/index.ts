@@ -4,6 +4,8 @@ import '@/assets/css/variables.css';
 
 import type { Component, App } from 'vue';
 import useFormData from '@/composables/useFormData';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 const files: Record<string, { default: Component }> = import.meta.glob('./components/**/*.vue', {
     eager: true
 });
@@ -22,5 +24,6 @@ export default {
 
         app.config.globalProperties.$useFormData = useFormData;
         app.provide('useFormData', useFormData);
+        app.component('VueDatePicker', VueDatePicker);
     }
 };
