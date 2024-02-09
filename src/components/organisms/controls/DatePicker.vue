@@ -78,7 +78,7 @@ const convertVueDatepickerFormat = (format: DateFormat) => {
     return format.replace(/(Y)/g, 'y').replace(/(D)/g, 'd');
 };
 
-const setDayClass = (date) => {
+const setDayClass = (date: string) => {
     const weekDay = new Date(date).getDay();
     if (weekDay == 6) {
         // 土曜日の場合、classに"saturday"を追加
