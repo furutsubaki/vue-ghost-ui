@@ -209,7 +209,7 @@ onMounted(() => {
     }
     .clearable-box {
         width: var(--font-size);
-        height: 100%;
+        margin-bottom: auto;
         padding-top: 8px;
         .lucide {
             opacity: 0;

@@ -47,6 +47,10 @@ withDefaults(
          * エラーメッセージ配列
          */
         errors?: string[];
+        /**
+         * タグ
+         */
+        bodyTag?: string;
     }>(),
     {
         label: ' ',
@@ -60,7 +64,8 @@ withDefaults(
         maxLength: null,
         value: '',
         isErrorMessage: true,
-        errors: () => []
+        errors: () => [],
+        bodyTag: 'label'
     }
 );
 
@@ -79,7 +84,7 @@ defineExpose({ frameRef });
             'is-disabled': disabled
         }"
     >
-        <label ref="frameRef" class="frame-box" :class="[variant, size]">
+        <div ref="frameRef" class="frame-box" :class="[variant, size]">
             <div class="frame-label">
                 <div class="label-box">
                     <span v-if="label" class="label">{{ label }}</span
@@ -95,10 +100,10 @@ defineExpose({ frameRef });
                     :max="maxLength"
                 />
             </div>
-            <div class="frame-body">
-                <slot />
-            </div>
-        </label>
+        </div>
+        <component :is="bodyTag" class="frame-body">
+            <slot />
+        </component>
         <template v-if="isErrorMessage">
             <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
         </template>
@@ -108,10 +113,13 @@ defineExpose({ frameRef });
 <style scoped>
 .component-input-frame {
     --start-end-padding: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
     min-height: var(--height);
     font-size: var(--font-size);
     .frame-box {
-        position: relative;
+        position: absolute;
         text-align: left;
         display: flex;
         justify-content: space-between;
@@ -188,16 +196,16 @@ defineExpose({ frameRef });
                 align-items: center;
             }
         }
-
-        .frame-body {
-            position: absolute;
-            left: var(--start-end-padding);
-            right: var(--start-end-padding);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            height: 100%;
-        }
+    }
+    .frame-body {
+        position: relative;
+        padding-left: var(--start-end-padding);
+        padding-right: var(--start-end-padding);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        height: 100%;
     }
 
     /* required */
