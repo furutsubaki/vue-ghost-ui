@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue';
+import { computed, watch, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import DatePicker from '@/components/organisms/controls/DatePicker.vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
-import { XCircle as IconXCircle } from 'lucide-vue-next';
+import { XCircle as IconXCircle, CalendarDays as IconCalendarDays } from 'lucide-vue-next';
+import { DATE_FORMAT } from '@/assets/ts/const ';
+import dayjs from 'dayjs';
 
+type DateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
 const model = defineModel<string>();
 const props = withDefaults(
     defineProps<{
@@ -17,6 +21,14 @@ const props = withDefaults(
          * zodスキーマ
          */
         schema?: ZodString;
+        /**
+         * 表示フォーマット
+         */
+        format?: DateFormat;
+        /**
+         * modelフォーマット
+         */
+        dataFormat?: DateFormat;
         /**
          * 見出し
          */
@@ -36,7 +48,7 @@ const props = withDefaults(
         /**
          * 種類
          */
-        type?: 'text' | 'email' | 'password';
+        type?: 'text' | 'email' | 'password' | 'time' | 'date';
         /**
          * 表示種類
          */
@@ -54,6 +66,8 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
+        format: DATE_FORMAT.YYYYMMDD_JA,
+        dataFormat: DATE_FORMAT.YYYYMMDD,
         clearable: false,
         placeholder: '',
         disabled: false,
@@ -89,14 +103,39 @@ if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 
+const inputRef = ref();
 const isFocus = ref(false);
 const onDelete = () => {
     value.value = '';
 };
+const onDateButonClick = () => {
+    isFocus.value = true;
+};
+
+// DatePicker枠外制御
+const onCloseAccordion = (event: Event) => {
+    if (!isFocus.value || inputRef.value.contains(event.target as Node)) {
+        return;
+    }
+
+    isFocus.value = false;
+};
+
+onMounted(() => {
+    if (props.type === 'date') {
+        window.addEventListener('click', onCloseAccordion);
+    }
+});
+
+onBeforeUnmount(() => {
+    if (props.type === 'date') {
+        window.removeEventListener('click', onCloseAccordion);
+    }
+});
 </script>
 
 <template>
-    <div class="component-input" :class="[variant, size, { 'is-focus': isFocus }]">
+    <div ref="inputRef" class="component-input" :class="[variant, size, { 'is-focus': isFocus }]">
         <InputFrame
             :label="label"
             :placeholder="placeholder"
@@ -110,7 +149,12 @@ const onDelete = () => {
             :isErrorMessage="isErrorMessage"
             :errors="errors"
         >
+            <button v-if="type === 'date'" class="input" @click="onDateButonClick">
+                <span>{{ value ? dayjs(value).format(format) : '' }}</span>
+                <IconCalendarDays />
+            </button>
             <input
+                v-else
                 v-model.trim="value"
                 class="input"
                 :type="type"
@@ -122,10 +166,21 @@ const onDelete = () => {
             />
             <div class="clearable-box" v-if="clearable">
                 <OpacityTransition>
-                    <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
+                    <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
         </InputFrame>
+
+        <OpacityTransition>
+            <DatePicker
+                v-show="type === 'date' && isFocus"
+                v-model="value"
+                class="datepicker"
+                :format="format"
+                :dataFormat="dataFormat"
+                @update:model-value="isFocus = false"
+            />
+        </OpacityTransition>
     </div>
 </template>
 
@@ -135,6 +190,9 @@ const onDelete = () => {
     min-height: var(--height);
     font-size: var(--font-size);
     :where(.input) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
@@ -142,6 +200,9 @@ const onDelete = () => {
         color: var(--color-theme-text-primary);
         border: 0;
         padding: 0;
+        &.is-date {
+            cursor: pointer;
+        }
     }
     @media (hover: hover) {
         /* PC */
@@ -172,6 +233,9 @@ const onDelete = () => {
             opacity: 0;
             transition: opacity 0.2s;
         }
+    }
+    .datepicker {
+        position: absolute;
     }
 }
 

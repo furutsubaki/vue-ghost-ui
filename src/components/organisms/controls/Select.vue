@@ -130,7 +130,7 @@ const onDelete = () => {
             </div>
             <div class="clearable-box" v-if="clearable">
                 <OpacityTransition>
-                    <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
+                    <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
         </InputFrame>

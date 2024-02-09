@@ -1,4 +1,4 @@
-import Input from '@/components/organisms/controls/Input.vue';
+import DatePicker from '@/components/organisms/controls/DatePicker.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
@@ -7,15 +7,15 @@ const TEST_SCHEMA = object({
     test: string().max(50).min(1)
 }).required();
 
-const meta: Meta<typeof Input> = {
-    component: Input,
+const meta: Meta<typeof DatePicker> = {
+    component: DatePicker,
     render: (args) => ({
-        components: { Input },
+        components: { DatePicker },
         setup() {
-            useFormData(TEST_SCHEMA, { test: 'ヤマダ タロウ' });
+            useFormData(TEST_SCHEMA, { test: '20240201' });
             return { args };
         },
-        template: '<Input v-bind="args" />'
+        template: '<DatePicker v-bind="args" />'
     }),
     tags: ['autodocs'],
     args: {
@@ -29,45 +29,21 @@ const meta: Meta<typeof Input> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof DatePicker>;
 
 export const Default: Story = {};
 
 export const Label: Story = {
     args: {
-        modelValue: '太郎',
-        label: '名前'
-    }
-};
-
-export const Clearable: Story = {
-    args: {
-        ...Label.args,
-        clearable: true
-    }
-};
-
-export const Placeholder: Story = {
-    args: {
-        ...Label.args,
-        placeholder: '山田 太郎'
+        modelValue: '20240201',
+        label: '日付'
     }
 };
 
 export const Disabled: Story = {
     args: {
         ...Label.args,
-        placeholder: '山田 太郎',
         disabled: true
-    }
-};
-
-export const Date: Story = {
-    args: {
-        ...Label.args,
-        modelValue: '',
-        type: 'date',
-        clearable: true
     }
 };
 
@@ -75,7 +51,6 @@ export const Schema: Story = {
     args: {
         ...Label.args,
         name: 'test',
-        schema: TEST_SCHEMA.shape.test,
-        placeholder: '山田 太郎'
+        schema: TEST_SCHEMA.shape.test
     }
 };

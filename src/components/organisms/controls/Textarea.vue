@@ -151,7 +151,7 @@ onMounted(() => {
             />
             <div class="clearable-box" v-if="clearable">
                 <OpacityTransition>
-                    <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
+                    <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
         </InputFrame>
@@ -209,7 +209,7 @@ onMounted(() => {
     }
     .clearable-box {
         width: var(--font-size);
-        height: 100%;
+        margin-bottom: auto;
         padding-top: 8px;
         .lucide {
             opacity: 0;

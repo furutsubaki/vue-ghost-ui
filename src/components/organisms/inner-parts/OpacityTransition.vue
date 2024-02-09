@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = withDefaults(
+withDefaults(
     defineProps<{
         /**
          * 所要時間
@@ -15,7 +15,7 @@ const props = withDefaults(
         easeFunction?: string;
     }>(),
     {
-        duration: '2s',
+        duration: '0.2s',
         delay: '0s',
         easeFunction: 'ease'
     }
