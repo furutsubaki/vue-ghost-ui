@@ -4,6 +4,7 @@ import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
 import InputAccordionList from '@/components/organisms/inner-parts/InputAccordionList.vue';
+import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
 import { ChevronDown as IconChevronDown, XCircle as IconXCircle } from 'lucide-vue-next';
 
 interface Item {
@@ -128,7 +129,9 @@ const onDelete = () => {
                 <IconChevronDown class="select-icon" />
             </div>
             <div class="clearable-box" v-if="clearable">
-                <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
+                <OpacityTransition>
+                    <IconXCircle v-show="value != null && value !== ''" @click="onDelete" />
+                </OpacityTransition>
             </div>
         </InputFrame>
         <InputAccordionList
