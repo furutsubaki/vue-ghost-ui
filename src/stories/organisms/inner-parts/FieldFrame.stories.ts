@@ -1,14 +1,14 @@
-import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-const meta: Meta<typeof InputFrame> = {
-    component: InputFrame,
+const meta: Meta<typeof FieldFrame> = {
+    component: FieldFrame,
     render: (args) => ({
-        components: { InputFrame },
+        components: { FieldFrame },
         setup() {
             return { args };
         },
-        template: '<InputFrame v-bind="args" />'
+        template: '<FieldFrame v-bind="args" />'
     }),
     tags: ['autodocs'],
     args: {},
@@ -16,7 +16,7 @@ const meta: Meta<typeof InputFrame> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof InputFrame>;
+type Story = StoryObj<typeof FieldFrame>;
 
 export const Default: Story = {};
 
