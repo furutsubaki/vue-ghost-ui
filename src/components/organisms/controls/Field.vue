@@ -53,6 +53,14 @@ const props = withDefaults(
          */
         label?: string;
         /**
+         * prefix
+         */
+        prefix?: string;
+        /**
+         * suffix
+         */
+        suffix?: string;
+        /**
          * 削除ボタン
          */
         clearable?: boolean;
@@ -85,6 +93,8 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
+        prefix: ' ',
+        suffix: ' ',
         format: DATE_FORMAT.YYYYMMDD_JA,
         dataFormat: DATE_FORMAT.YYYYMMDD,
         formatter: (v: string) => v,
@@ -209,6 +219,7 @@ onBeforeUnmount(() => {
             :errors="errors"
         >
             <slot name="prefix" />
+            <div v-if="prefix" class="prefix-suffix">{{ prefix }}</div>
             <button v-if="type === 'date'" class="input" @click="onDateButonClick">
                 <span>{{ value ? dayjs(value).format(format) : '' }}</span>
                 <IconCalendarDays />
@@ -225,6 +236,8 @@ onBeforeUnmount(() => {
                 @focus="isFocus = true"
                 @blur="isFocus = false"
             />
+            <div v-if="suffix" class="prefix-suffix">{{ suffix }}</div>
+            <slot name="suffix" />
             <div class="icon-box" v-if="clearable">
                 <OpacityTransition>
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
@@ -312,6 +325,17 @@ onBeforeUnmount(() => {
                     opacity: 1;
                 }
             }
+        }
+    }
+
+    .prefix-suffix {
+        color: transparent;
+        flex-shrink: 0;
+    }
+    &.is-focus,
+    &.is-value {
+        .prefix-suffix {
+            color: var(--color-theme-text-primary);
         }
     }
 

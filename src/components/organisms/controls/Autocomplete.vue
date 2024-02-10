@@ -46,6 +46,14 @@ const props = withDefaults(
          */
         label?: string;
         /**
+         * prefix
+         */
+        prefix?: string;
+        /**
+         * suffix
+         */
+        suffix?: string;
+        /**
          * 削除ボタン
          */
         clearable?: boolean;
@@ -83,6 +91,8 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
+        prefix: ' ',
+        suffix: ' ',
         clearable: false,
         placeholder: '',
         disabled: false,
@@ -211,7 +221,11 @@ const onBlur = (event: Event) => {
 </script>
 
 <template>
-    <div ref="inputRef" class="component-input" :class="[variant, size, { 'is-focus': isFocus }]">
+    <div
+        ref="inputRef"
+        class="component-input"
+        :class="[variant, size, { 'is-focus': isFocus, 'is-value': value != null && value !== '' }]"
+    >
         <FieldFrame
             :label="label"
             :placeholder="placeholder"
@@ -225,6 +239,8 @@ const onBlur = (event: Event) => {
             :isErrorMessage="isErrorMessage"
             :errors="errors"
         >
+            <slot name="prefix" />
+            <div v-if="prefix" class="prefix-suffix">{{ prefix }}</div>
             <input
                 v-model.trim="value"
                 class="input"
@@ -235,6 +251,8 @@ const onBlur = (event: Event) => {
                 @focus="onFocus"
                 @blur="onBlur"
             />
+            <div v-if="suffix" class="prefix-suffix">{{ suffix }}</div>
+            <slot name="suffix" />
             <div class="clearable-box" v-if="clearable">
                 <OpacityTransition>
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
@@ -292,6 +310,17 @@ const onBlur = (event: Event) => {
                     opacity: 1;
                 }
             }
+        }
+    }
+
+    .prefix-suffix {
+        color: transparent;
+        flex-shrink: 0;
+    }
+    &.is-focus,
+    &.is-value {
+        .prefix-suffix {
+            color: var(--color-theme-text-primary);
         }
     }
 
