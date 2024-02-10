@@ -237,6 +237,7 @@ onBeforeUnmount(() => {
                 @blur="isFocus = false"
             />
             <div v-if="suffix" class="prefix-suffix">{{ suffix }}</div>
+            <slot name="suffix" />
             <div class="icon-box" v-if="clearable">
                 <OpacityTransition>
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
