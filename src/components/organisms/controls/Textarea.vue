@@ -170,9 +170,14 @@ onMounted(() => {
     min-height: var(--height);
     font-size: var(--font-size);
 
-    :deep(.component-input-frame) .frame-box {
-        min-height: v-bind(cssMinLine);
-        max-height: v-bind(cssMaxLine);
+    :deep(.component-input-frame) {
+        .frame-box {
+            min-height: v-bind(cssMinLine);
+            max-height: v-bind(cssMaxLine);
+        }
+        .frame-body {
+            align-items: flex-start;
+        }
     }
 
     :where(.textarea) {

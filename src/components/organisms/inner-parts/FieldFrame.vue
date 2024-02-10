@@ -120,7 +120,6 @@ defineExpose({ frameRef });
     --start-end-padding: 16px;
     position: relative;
     display: flex;
-    align-items: center;
     min-height: var(--height);
     font-size: var(--font-size);
     :where(.frame-box) {
