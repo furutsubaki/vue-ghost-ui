@@ -9,13 +9,14 @@ import {
     XCircle as IconXCircle,
     CalendarDays as IconCalendarDays,
     Eye as IconEye,
-    EyeOff as IconEyeOff
+    EyeOff as IconEyeOff,
+    Search as IconSearch
 } from 'lucide-vue-next';
 import { DATE_FORMAT } from '@/assets/ts/const ';
 import dayjs from 'dayjs';
 
 type DateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
-type FieldType = 'text' | 'email' | 'password' | 'time' | 'date' | 'number' | 'tel';
+type FieldType = 'text' | 'email' | 'password' | 'time' | 'date' | 'number' | 'tel' | 'search';
 const model = defineModel<string>();
 const props = withDefaults(
     defineProps<{
@@ -99,6 +100,10 @@ const props = withDefaults(
     }
 );
 
+defineEmits<{
+    search: [value: string];
+}>();
+
 const fieldType = ref(props.type === 'number' ? 'tel' : props.type);
 const { value, errors } = useField<string>(props.name);
 const schemaChunks = computed(() => props.schema?._def.checks || []);
@@ -171,13 +176,13 @@ const onCloseAccordion = (event: Event) => {
 };
 
 onMounted(() => {
-    if (fieldType.value === 'date') {
+    if (props.type === 'date') {
         window.addEventListener('click', onCloseAccordion);
     }
 });
 
 onBeforeUnmount(() => {
-    if (fieldType.value === 'date') {
+    if (props.type === 'date') {
         window.removeEventListener('click', onCloseAccordion);
     }
 });
@@ -204,7 +209,7 @@ onBeforeUnmount(() => {
             :errors="errors"
         >
             <slot name="prefix" />
-            <button v-if="fieldType === 'date'" class="input" @click="onDateButonClick">
+            <button v-if="type === 'date'" class="input" @click="onDateButonClick">
                 <span>{{ value ? dayjs(value).format(format) : '' }}</span>
                 <IconCalendarDays />
             </button>
@@ -233,9 +238,14 @@ onBeforeUnmount(() => {
                     </div>
                 </OpacityTransition>
             </div>
+            <div class="icon-box always-visible" v-if="type === 'search'">
+                <OpacityTransition>
+                    <IconSearch @click.prevent="$emit('search', value)" />
+                </OpacityTransition>
+            </div>
         </FieldFrame>
 
-        <OpacityTransition v-if="fieldType === 'date'">
+        <OpacityTransition v-if="type === 'date'">
             <DatePicker
                 v-show="isFocus"
                 v-model="value"
@@ -275,6 +285,12 @@ onBeforeUnmount(() => {
             color: var(--color-theme-text-primary);
         }
     }
+
+    [type='search'] {
+        &::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+        }
+    }
     @media (hover: hover) {
         /* PC */
         &.is-focus,
@@ -301,6 +317,11 @@ onBeforeUnmount(() => {
 
     .icon-box {
         width: var(--font-size);
+        &.always-visible {
+            .lucide {
+                opacity: 1;
+            }
+        }
         .lucide {
             opacity: 0;
             transition: opacity 0.2s;

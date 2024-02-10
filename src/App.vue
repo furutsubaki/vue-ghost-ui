@@ -49,6 +49,10 @@ const onSubmit = handleSubmit((values) => {
     // eslint-disable-next-line no-console
     console.log(values);
 });
+
+const onSearch = (v: string) =>
+    // eslint-disable-next-line no-console
+    console.log(v);
 </script>
 
 <template>
@@ -91,6 +95,7 @@ const onSubmit = handleSubmit((values) => {
             <RadioGroup v-model="model.radioGroup" :items="items" label="らべる" />
             <Select v-model="model.select" :items="items" label="らべる" />
             <Autocomplete v-model="model.select" :items="items" label="らべる" />
+            <Field label="Search" type="search" v-model="model.input" @search="onSearch" />
             {{ model }}
         </div>
     </main>
