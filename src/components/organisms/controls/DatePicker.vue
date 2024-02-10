@@ -93,13 +93,12 @@ const setDayClass = (date: string) => {
 </script>
 
 <template>
-    <div class="component-datepicker" :class="[variant, size, shape, { 'is-disabled': disabled }]">
+    <div class="component-datepicker" :class="[variant, shape, { 'is-disabled': disabled }]">
         <FieldFrame
             :label="label"
             :required="isRequired"
             :disabled="disabled"
             :variant="variant"
-            :size="size"
             :shape="shape"
             :is-focus="true"
             :value="value"
