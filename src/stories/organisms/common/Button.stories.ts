@@ -35,42 +35,83 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    storyName: 'Props/Variant',
     render: () => ({
         components: { Button },
-        template: `
-            <Button variant="primary">primary</Button>
-            <Button variant="secondary">secondary</Button>
-            <Button variant="info">info</Button>
-            <Button variant="success">success</Button>
-            <Button variant="warning">warning</Button>
-            <Button variant="danger">danger</Button>
-        `
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Button variant="${param.variant}" v-bind="args">${param.variant}</Button>`
+                )
+                .join('');
+        })()
     })
 };
 
 export const PropsSize: Story = {
-    storyName: 'Props/Variant',
     render: () => ({
         components: { Button },
-        template: `
-            <Button size="large">large</Button>
-            <Button size="medium">medium</Button>
-            <Button size="small">small</Button>
-        `
+        template: (() => {
+            return [
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ]
+                .map((param) => `<Button size="${param.size}" v-bind="args">${param.size}</Button>`)
+                .join('');
+        })()
     })
 };
 
 export const PropsShape: Story = {
-    storyName: 'Props/Variant',
     render: () => ({
         components: { Button },
-        template: `
-            <Button shape="normal">normal</Button>
-            <Button shape="rounded">rounded</Button>
-            <Button shape="circle">circle</Button>
-            <Button shape="square">square</Button>
-        `
+        template: (() => {
+            return [
+                {
+                    shape: 'normal'
+                },
+                {
+                    shape: 'rounded'
+                },
+                {
+                    shape: 'circle'
+                },
+                {
+                    shape: 'square'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Button shape="${param.shape}" v-bind="args">${param.shape}</Button>`
+                )
+                .join('');
+        })()
     })
 };
 
