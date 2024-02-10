@@ -2,7 +2,7 @@
 import { computed, watch } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
-import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
 import { DATE_FORMAT } from '@/assets/ts/const ';
 
 type DateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
@@ -94,7 +94,7 @@ const setDayClass = (date: string) => {
 
 <template>
     <div class="component-datepicker" :class="[variant, size, { 'is-disabled': disabled }]">
-        <InputFrame
+        <FieldFrame
             :label="label"
             :required="isRequired"
             :disabled="disabled"
@@ -119,7 +119,7 @@ const setDayClass = (date: string) => {
                 :day-class="setDayClass"
                 v-bind="$attrs"
             />
-        </InputFrame>
+        </FieldFrame>
     </div>
 </template>
 

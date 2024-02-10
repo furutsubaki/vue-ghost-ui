@@ -167,7 +167,7 @@ defineExpose({ frameRef });
                 transform: translateY(calc(-50% + (var(--height) / 2) - 1px));
                 .label {
                     transition: color 0.2s;
-                    color: var(--color-theme-border);
+                    color: var(--color-theme-text-secondary);
                     height: 1em;
                     line-height: 1em;
                     vertical-align: baseline;
@@ -175,7 +175,7 @@ defineExpose({ frameRef });
 
                 .placeholder {
                     font-size: var(--font-size-small);
-                    color: var(--color-theme-border);
+                    color: var(--color-theme-text-secondary);
                     height: 1em;
                     line-height: 1em;
                     vertical-align: baseline;

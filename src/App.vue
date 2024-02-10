@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Button from '@/components/organisms/common/Button.vue';
-import Input from '@/components/organisms/controls/Input.vue';
+import Field from '@/components/organisms/controls/Field.vue';
 import Textarea from '@/components/organisms/controls/Textarea.vue';
-import Number from '@/components/organisms/controls/Number.vue';
 import Radio from '@/components/organisms/controls/Radio.vue';
 import RadioGroup from '@/components/organisms/controls/RadioGroup.vue';
 import Select from '@/components/organisms/controls/Select.vue';
+import Autocomplete from '@/components/organisms/controls/Autocomplete.vue';
 import useFormData from '@/composables/useFormData';
 import z from 'zod';
 
@@ -71,9 +71,9 @@ const onSubmit = handleSubmit((values) => {
                 position="top"
                 label="らべる"
             />
-            <Input
+            <Field
                 name="input"
-                label="Input"
+                label="Field"
                 placeholder="ぷれーすほるだー"
                 :schema="TEST_SCHEMA.shape.input"
             />
@@ -84,14 +84,13 @@ const onSubmit = handleSubmit((values) => {
                 :minLine="4"
                 :schema="TEST_SCHEMA.shape.textarea"
             />
-            <Number name="number" :schema="TEST_SCHEMA.shape.number" />
         </div>
         <div class="flex">
             <h1>テスト v-model</h1>
             <Radio :value="true" v-model="model.radio">規約に同意</Radio>
             <RadioGroup v-model="model.radioGroup" :items="items" label="らべる" />
             <Select v-model="model.select" :items="items" label="らべる" />
-            <Number v-model="model.number" />
+            <Autocomplete v-model="model.select" :items="items" label="らべる" />
             {{ model }}
         </div>
     </main>

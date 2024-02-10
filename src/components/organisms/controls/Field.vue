@@ -2,7 +2,7 @@
 import { computed, watch, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
-import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
 import DatePicker from '@/components/organisms/controls/DatePicker.vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
 import { XCircle as IconXCircle, CalendarDays as IconCalendarDays } from 'lucide-vue-next';
@@ -22,13 +22,25 @@ const props = withDefaults(
          */
         schema?: ZodString;
         /**
-         * 表示フォーマット
+         * 表示フォーマット(type: dateのみ)
          */
         format?: DateFormat;
         /**
-         * modelフォーマット
+         * modelフォーマット(type: dateのみ)
          */
         dataFormat?: DateFormat;
+        /**
+         * フォーマッター（displayFormatter、displayParserとの併用不可）
+         */
+        formatter?: (v: string) => string;
+        /**
+         * 表示フォーマッター（displayParserとセット運用、formatterとの併用不可）
+         */
+        displayFormatter?: (v: string) => string;
+        /**
+         * 表示パーサー（displayFormatterとセット運用、formatterとの併用不可）
+         */
+        displayParser?: (v: string) => string;
         /**
          * 見出し
          */
@@ -48,7 +60,7 @@ const props = withDefaults(
         /**
          * 種類
          */
-        type?: 'text' | 'email' | 'password' | 'time' | 'date';
+        type?: 'text' | 'email' | 'password' | 'time' | 'date' | 'number' | 'tel';
         /**
          * 表示種類
          */
@@ -68,6 +80,9 @@ const props = withDefaults(
         label: ' ',
         format: DATE_FORMAT.YYYYMMDD_JA,
         dataFormat: DATE_FORMAT.YYYYMMDD,
+        formatter: (v: string) => v,
+        displayFormatter: (v: string) => v,
+        displayParser: (v: string) => v,
         clearable: false,
         placeholder: '',
         disabled: false,
@@ -94,20 +109,35 @@ const max = computed(
         )?.value || null
 );
 
+const formatValue = ref('');
+watch(formatValue, (v) => {
+    // フォーマット処理
+
+    const formatedValue = props.formatter(v);
+    const displayFormatedValue = props.displayFormatter(formatedValue);
+    const nativeParsedValue = props.displayParser(formatedValue);
+
+    formatValue.value = displayFormatedValue;
+    value.value = nativeParsedValue;
+});
 watch(value, (v) => {
     model.value = v;
 });
 
 // NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
 if (value.value == null && model.value != null) {
-    value.value = model.value;
+    value.value = model.value || '';
 }
+formatValue.value = value.value;
 
 const inputRef = ref();
 const isFocus = ref(false);
 const onDelete = () => {
+    formatValue.value = '';
     value.value = '';
 };
+
+// --- ▼ type: Date時の処理 ▼ ---
 const onDateButonClick = () => {
     isFocus.value = true;
 };
@@ -132,11 +162,16 @@ onBeforeUnmount(() => {
         window.removeEventListener('click', onCloseAccordion);
     }
 });
+// --- ▲ type: Date時の処理 ▲ ---
 </script>
 
 <template>
-    <div ref="inputRef" class="component-input" :class="[variant, size, { 'is-focus': isFocus }]">
-        <InputFrame
+    <div
+        ref="inputRef"
+        class="component-input"
+        :class="[variant, size, { 'is-focus': isFocus, 'is-value': value != null && value !== '' }]"
+    >
+        <FieldFrame
             :label="label"
             :placeholder="placeholder"
             :required="isRequired"
@@ -149,18 +184,20 @@ onBeforeUnmount(() => {
             :isErrorMessage="isErrorMessage"
             :errors="errors"
         >
+            <slot name="prefix" />
             <button v-if="type === 'date'" class="input" @click="onDateButonClick">
                 <span>{{ value ? dayjs(value).format(format) : '' }}</span>
                 <IconCalendarDays />
             </button>
             <input
                 v-else
-                v-model.trim="value"
+                v-model.trim="formatValue"
                 class="input"
-                :type="type"
+                :type="type === 'number' ? 'tel' : type"
                 :name="name"
                 :required="isRequired"
                 :disabled="disabled"
+                placeholder=" "
                 @focus="isFocus = true"
                 @blur="isFocus = false"
             />
@@ -169,11 +206,11 @@ onBeforeUnmount(() => {
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
-        </InputFrame>
+        </FieldFrame>
 
-        <OpacityTransition>
+        <OpacityTransition v-if="type === 'date'">
             <DatePicker
-                v-show="type === 'date' && isFocus"
+                v-show="isFocus"
                 v-model="value"
                 class="datepicker"
                 :format="format"
@@ -200,8 +237,15 @@ onBeforeUnmount(() => {
         color: var(--color-theme-text-primary);
         border: 0;
         padding: 0;
-        &.is-date {
-            cursor: pointer;
+    }
+
+    [type='time'] {
+        color: transparent;
+    }
+    &.is-focus,
+    &.is-value {
+        [type='time'] {
+            color: var(--color-theme-text-primary);
         }
     }
     @media (hover: hover) {
@@ -227,6 +271,7 @@ onBeforeUnmount(() => {
             }
         }
     }
+
     .clearable-box {
         width: var(--font-size);
         .lucide {
@@ -234,6 +279,7 @@ onBeforeUnmount(() => {
             transition: opacity 0.2s;
         }
     }
+
     .datepicker {
         position: absolute;
     }

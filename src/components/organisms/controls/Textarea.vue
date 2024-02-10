@@ -2,7 +2,7 @@
 import { computed, watch, ref, onMounted } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
-import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
+import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
 import { XCircle as IconXCircle } from 'lucide-vue-next';
 
@@ -124,7 +124,7 @@ onMounted(() => {
 
 <template>
     <div class="component-textarea" :class="[variant, size, { 'is-focus': isFocus }]">
-        <InputFrame
+        <FieldFrame
             ref="inputFrameRef"
             class="component-input-frame"
             :label="label"
@@ -154,7 +154,7 @@ onMounted(() => {
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
-        </InputFrame>
+        </FieldFrame>
     </div>
 </template>
 
