@@ -282,28 +282,27 @@ onBeforeUnmount(() => {
     }
 }
 
-/* size */
+/* ▼ size ▼ */
 .large {
     --height: 40px;
     --font-size: var(--font-size-large);
 }
-
 .medium {
     --height: 32px;
     --font-size: var(--font-size-common);
 }
-
 .small {
     --height: 24px;
     --font-size: var(--font-size-small);
 }
+/* ▲ size ▲ */
 
-/* position */
-
+/* ▼ position ▼ */
 .bottom {
     top: var(--height);
 }
 .top {
     bottom: var(--height);
 }
+/* ▲ position ▲ */
 </style>

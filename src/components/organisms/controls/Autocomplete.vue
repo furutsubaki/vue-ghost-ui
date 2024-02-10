@@ -78,6 +78,10 @@ const props = withDefaults(
          */
         size?: 'small' | 'medium' | 'large';
         /**
+         * 形状
+         */
+        shape?: 'normal' | 'rounded';
+        /**
          * ポジション
          */
         position?: 'top' | 'bottom';
@@ -99,6 +103,7 @@ const props = withDefaults(
         type: 'text',
         variant: 'secondary',
         size: 'medium',
+        shape: 'normal',
         position: 'bottom',
         isErrorMessage: true
     }
@@ -224,7 +229,12 @@ const onBlur = (event: Event) => {
     <div
         ref="inputRef"
         class="component-input"
-        :class="[variant, size, { 'is-focus': isFocus, 'is-value': value != null && value !== '' }]"
+        :class="[
+            variant,
+            size,
+            shape,
+            { 'is-focus': isFocus, 'is-value': value != null && value !== '' }
+        ]"
     >
         <FieldFrame
             :label="label"
@@ -233,6 +243,7 @@ const onBlur = (event: Event) => {
             :disabled="disabled"
             :variant="variant"
             :size="size"
+            :shape="shape"
             :is-focus="isFocus"
             :maxLength="max"
             :value="value"
@@ -334,18 +345,24 @@ const onBlur = (event: Event) => {
     }
 }
 
+/* ▼ size ▼ */
 .large {
     --height: 40px;
     --font-size: var(--font-size-large);
 }
-
 .medium {
     --height: 32px;
     --font-size: var(--font-size-common);
 }
-
 .small {
     --height: 24px;
     --font-size: var(--font-size-small);
 }
+/* ▲ size ▲ */
+
+/* ▼ shape ▼ */
+.rounded {
+    border-radius: 2em;
+}
+/* ▲ shape ▲ */
 </style>

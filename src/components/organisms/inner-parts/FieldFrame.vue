@@ -28,6 +28,10 @@ withDefaults(
          */
         size?: 'small' | 'medium' | 'large';
         /**
+         * 形状
+         */
+        shape?: 'normal' | 'rounded';
+        /**
          * フォーカス中か
          */
         isFocus?: boolean;
@@ -59,6 +63,7 @@ withDefaults(
         required: false,
         variant: 'secondary',
         size: 'medium',
+        shape: 'normal',
         isFocus: false,
         line: 1,
         maxLength: null,
@@ -84,7 +89,7 @@ defineExpose({ frameRef });
             'is-disabled': disabled
         }"
     >
-        <div ref="frameRef" class="frame-box" :class="[variant, size]">
+        <div ref="frameRef" class="frame-box" :class="[variant, size, shape]">
             <div class="frame-label">
                 <div class="label-box">
                     <span v-if="label" class="label">{{ label }}</span
@@ -118,7 +123,7 @@ defineExpose({ frameRef });
     align-items: center;
     min-height: var(--height);
     font-size: var(--font-size);
-    .frame-box {
+    :where(.frame-box) {
         position: absolute;
         text-align: left;
         display: flex;
@@ -357,23 +362,35 @@ defineExpose({ frameRef });
     }
 }
 
-.large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
-}
-
-.medium {
-    --height: 32px;
-    --font-size: var(--font-size-common);
-}
-
-.small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
-}
-
 .error {
     font-size: var(--font-size-small);
     color: var(--color-status-danger);
 }
+
+/* ▼ size ▼ */
+.large {
+    --height: 40px;
+    --font-size: var(--font-size-large);
+}
+.medium {
+    --height: 32px;
+    --font-size: var(--font-size-common);
+}
+.small {
+    --height: 24px;
+    --font-size: var(--font-size-small);
+}
+/* ▲ size ▲ */
+
+/* ▼ shape ▼ */
+.rounded {
+    --start-end-padding: 32px;
+    &::before {
+        border-radius: var(--start-end-padding) 0 0 var(--start-end-padding);
+    }
+    &::after {
+        border-radius: 0 var(--start-end-padding) var(--start-end-padding) 0;
+    }
+}
+/* ▲ shape ▲ */
 </style>
