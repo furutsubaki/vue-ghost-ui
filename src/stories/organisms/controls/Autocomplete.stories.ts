@@ -44,7 +44,6 @@ export const Default: Story = {
 export const Label: Story = {
     args: {
         ...Default.args,
-        modelValue: '太郎',
         label: 'Autocomplete'
     }
 };
@@ -59,14 +58,15 @@ export const Clearable: Story = {
 export const Placeholder: Story = {
     args: {
         ...Label.args,
-        placeholder: '山田 太郎'
+        placeholder: 'イッヌもネッコもいい',
+        prefix: 'Uo･ｪ･oU'
     }
 };
 
 export const Disabled: Story = {
     args: {
         ...Label.args,
-        placeholder: '山田 太郎',
+        placeholder: 'イッヌもネッコもいい',
         disabled: true
     }
 };

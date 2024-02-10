@@ -330,6 +330,7 @@ onBeforeUnmount(() => {
 
     .prefix-suffix {
         color: transparent;
+        flex-shrink: 0;
     }
     &.is-focus,
     &.is-value {
