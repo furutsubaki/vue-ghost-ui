@@ -133,6 +133,7 @@ defineExpose({ frameRef });
         height: 100%;
         min-height: var(--height);
         line-height: 1.5em;
+        background-color: var(--color-theme-bg-primary);
         transition: height 0.2s;
 
         &::before,

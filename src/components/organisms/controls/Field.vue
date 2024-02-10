@@ -366,6 +366,7 @@ onBeforeUnmount(() => {
 
     .datepicker {
         position: absolute;
+        z-index: 1;
     }
 }
 

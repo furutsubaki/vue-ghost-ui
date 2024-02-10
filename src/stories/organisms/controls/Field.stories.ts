@@ -35,37 +35,192 @@ type Story = StoryObj<typeof Field>;
 
 export const Default: Story = {};
 
-export const Label: Story = {
+export const PropsVariant: Story = {
+    render: (args) => ({
+        components: { Field },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Field variant="${param.variant}" label="${param.variant}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsSize: Story = {
+    render: (args) => ({
+        components: { Field },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ]
+                .map(
+                    (param) => `<Field size="${param.size}" label="${param.size}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsShape: Story = {
+    render: (args) => ({
+        components: { Field },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    shape: 'normal'
+                },
+                {
+                    shape: 'rounded'
+                },
+                {
+                    shape: 'circle'
+                },
+                {
+                    shape: 'square'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Field shape="${param.shape}" label="${param.shape}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsLabel: Story = {
     args: {
         label: 'Field'
     }
 };
 
-export const Clearable: Story = {
+export const PropsPrefixSuffix: Story = {
+    render: (args) => ({
+        components: { Field },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    prefix: 'prefix',
+                    suffix: ''
+                },
+                {
+                    prefix: 'prefix',
+                    suffix: 'suffix'
+                },
+                {
+                    prefix: '',
+                    suffix: 'suffix'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Field prefix="${param.prefix}" suffix="${param.suffix}" label="${[param.prefix, param.suffix].join('')}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
     args: {
-        ...Label.args,
+        ...Default.args
+    }
+};
+
+export const PropsClearable: Story = {
+    args: {
         clearable: true
     }
 };
 
-export const Placeholder: Story = {
+export const PropsPlaceholder: Story = {
     args: {
-        ...Label.args,
         placeholder: '山田 太郎'
     }
 };
 
-export const Disabled: Story = {
+export const PropsDisabled: Story = {
     args: {
-        ...Label.args,
-        placeholder: '山田 太郎',
         disabled: true
     }
+};
+export const PropsType: Story = {
+    render: (args) => ({
+        components: { Field },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    type: 'text'
+                },
+                {
+                    type: 'email'
+                },
+                {
+                    type: 'password'
+                },
+                {
+                    type: 'time'
+                },
+                {
+                    type: 'date'
+                },
+                {
+                    type: 'number'
+                },
+                {
+                    type: 'tel'
+                },
+                {
+                    type: 'search'
+                }
+            ]
+                .map(
+                    (param) => `<Field type="${param.type}" label="${param.type}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
 };
 
 export const DisplayFormatterCurrency: Story = {
     args: {
-        ...Clearable.args,
+        ...PropsClearable.args,
         type: 'number',
         label: '金額',
         placeholder: 'データは数値になります',
@@ -77,7 +232,7 @@ export const DisplayFormatterCurrency: Story = {
 
 export const FormatterTel: Story = {
     args: {
-        ...Clearable.args,
+        ...PropsClearable.args,
         type: 'tel',
         label: '電話番号',
         placeholder: 'ハイフンを入れてください',
@@ -85,44 +240,9 @@ export const FormatterTel: Story = {
     }
 };
 
-export const TypeNumber: Story = {
-    args: {
-        ...Clearable.args,
-        type: 'number'
-    }
-};
-
-export const TypeTime: Story = {
-    args: {
-        ...Clearable.args,
-        type: 'time'
-    }
-};
-
-export const TypeDate: Story = {
-    args: {
-        ...Clearable.args,
-        type: 'date'
-    }
-};
-
-export const TypePassword: Story = {
-    args: {
-        ...Clearable.args,
-        type: 'password'
-    }
-};
-
-export const TypeSearch: Story = {
-    args: {
-        ...Clearable.args,
-        type: 'search'
-    }
-};
-
 export const Schema: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         name: 'test',
         schema: TEST_SCHEMA.shape.test,
         placeholder: '山田 太郎'
