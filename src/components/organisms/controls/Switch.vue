@@ -3,13 +3,13 @@ import { type Ref, computed, watch } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
 
-const model = defineModel<string | number | boolean>();
+const model = defineModel<boolean>();
 const props = withDefaults(
     defineProps<{
         /**
          * 項目値
          */
-        value?: string | number | boolean;
+        value?: boolean;
         /**
          * フィールド名
          */
@@ -17,14 +17,7 @@ const props = withDefaults(
         /**
          * zodスキーマ
          */
-        schema?:
-            | ZodLiteral<string | number | boolean>
-            | ZodBoolean
-            | ZodNullable<ZodBoolean>
-            | ZodString
-            | ZodNullable<ZodString>
-            | ZodNumber
-            | ZodNullable<ZodNumber>;
+        schema?: ZodLiteral<boolean> | ZodBoolean | ZodNullable<ZodBoolean>;
         /**
          * 見出し
          */
@@ -57,35 +50,31 @@ const props = withDefaults(
         isErrorMessage: true
     }
 );
-const unCheckValue = computed(() => (typeof props.value === 'boolean' ? false : ''));
 
 const {
     value: fieldVal,
     checked,
     errors,
     handleChange
-} = useField<string | number | boolean>(props.name, undefined, {
+} = useField<boolean>(props.name, undefined, {
     type: 'checkbox',
     checkedValue: props.value,
-    uncheckedValue: unCheckValue.value
+    uncheckedValue: false
 });
 
-const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
-const isRequired = computed(
-    () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
-);
+const isRequired = computed(() => props.schema?._def.typeName === 'ZodLiteral');
 
 const onChange = (event: Event) => {
-    let val = (event.target as HTMLInputElement).value as string | number | boolean;
+    let val = JSON.parse((event.target as HTMLInputElement).value.toLowerCase());
 
     if (!(event.target as HTMLInputElement).checked) {
-        val = unCheckValue.value;
+        val = false;
     }
     handleChange(val);
 };
 
 watch(checked as Ref<boolean>, (flg) => {
-    model.value = flg ? props.value : unCheckValue.value;
+    model.value = flg ? props.value : false;
 });
 
 if (fieldVal.value == null && model.value != null) {

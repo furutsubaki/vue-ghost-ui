@@ -72,9 +72,12 @@ const {
 });
 
 const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
-const isRequired = computed(
-    () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
-);
+const isRequired = computed(() => {
+    if (props.schema?._def.typeName === 'ZodLiteral') {
+        return true;
+    }
+    return schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false;
+});
 
 const onChange = (event: Event) => {
     let val = (event.target as HTMLInputElement).value as string | number | boolean;
