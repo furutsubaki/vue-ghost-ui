@@ -36,7 +36,7 @@ export const Default: Story = {};
 
 export const Label: Story = {
     args: {
-        label: '名前'
+        label: 'Field'
     }
 };
 
@@ -101,6 +101,13 @@ export const TypeDate: Story = {
     args: {
         ...Clearable.args,
         type: 'date'
+    }
+};
+
+export const TypePassword: Story = {
+    args: {
+        ...Clearable.args,
+        type: 'password'
     }
 };
 

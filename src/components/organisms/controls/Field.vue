@@ -5,11 +5,17 @@ import { ZodString } from 'zod';
 import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
 import DatePicker from '@/components/organisms/controls/DatePicker.vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
-import { XCircle as IconXCircle, CalendarDays as IconCalendarDays } from 'lucide-vue-next';
+import {
+    XCircle as IconXCircle,
+    CalendarDays as IconCalendarDays,
+    Eye as IconEye,
+    EyeOff as IconEyeOff
+} from 'lucide-vue-next';
 import { DATE_FORMAT } from '@/assets/ts/const ';
 import dayjs from 'dayjs';
 
 type DateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
+type FieldType = 'text' | 'email' | 'password' | 'time' | 'date' | 'number' | 'tel';
 const model = defineModel<string>();
 const props = withDefaults(
     defineProps<{
@@ -60,7 +66,7 @@ const props = withDefaults(
         /**
          * 種類
          */
-        type?: 'text' | 'email' | 'password' | 'time' | 'date' | 'number' | 'tel';
+        type?: FieldType;
         /**
          * 表示種類
          */
@@ -93,6 +99,7 @@ const props = withDefaults(
     }
 );
 
+const fieldType = ref(props.type === 'number' ? 'tel' : props.type);
 const { value, errors } = useField<string>(props.name);
 const schemaChunks = computed(() => props.schema?._def.checks || []);
 const isRequired = computed(
@@ -137,6 +144,18 @@ const onDelete = () => {
     value.value = '';
 };
 
+// --- ▼ type: Password時の処理 ▼ ---
+const isShowPassword = ref(false);
+const onShowPassword = () => {
+    isShowPassword.value = true;
+    fieldType.value = 'text';
+};
+const onHidePassword = () => {
+    isShowPassword.value = false;
+    fieldType.value = 'password';
+};
+// --- ▲ type: Password時の処理 ▲ ---
+
 // --- ▼ type: Date時の処理 ▼ ---
 const onDateButonClick = () => {
     isFocus.value = true;
@@ -152,13 +171,13 @@ const onCloseAccordion = (event: Event) => {
 };
 
 onMounted(() => {
-    if (props.type === 'date') {
+    if (fieldType.value === 'date') {
         window.addEventListener('click', onCloseAccordion);
     }
 });
 
 onBeforeUnmount(() => {
-    if (props.type === 'date') {
+    if (fieldType.value === 'date') {
         window.removeEventListener('click', onCloseAccordion);
     }
 });
@@ -185,7 +204,7 @@ onBeforeUnmount(() => {
             :errors="errors"
         >
             <slot name="prefix" />
-            <button v-if="type === 'date'" class="input" @click="onDateButonClick">
+            <button v-if="fieldType === 'date'" class="input" @click="onDateButonClick">
                 <span>{{ value ? dayjs(value).format(format) : '' }}</span>
                 <IconCalendarDays />
             </button>
@@ -193,7 +212,7 @@ onBeforeUnmount(() => {
                 v-else
                 v-model.trim="formatValue"
                 class="input"
-                :type="type === 'number' ? 'tel' : type"
+                :type="fieldType"
                 :name="name"
                 :required="isRequired"
                 :disabled="disabled"
@@ -201,14 +220,22 @@ onBeforeUnmount(() => {
                 @focus="isFocus = true"
                 @blur="isFocus = false"
             />
-            <div class="clearable-box" v-if="clearable">
+            <div class="icon-box" v-if="clearable">
                 <OpacityTransition>
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
+            <div class="icon-box" v-if="type === 'password'">
+                <OpacityTransition>
+                    <div v-show="value != null && value !== ''">
+                        <IconEye v-show="isShowPassword" @click.prevent="onHidePassword" />
+                        <IconEyeOff v-show="!isShowPassword" @click.prevent="onShowPassword" />
+                    </div>
+                </OpacityTransition>
+            </div>
         </FieldFrame>
 
-        <OpacityTransition v-if="type === 'date'">
+        <OpacityTransition v-if="fieldType === 'date'">
             <DatePicker
                 v-show="isFocus"
                 v-model="value"
@@ -252,7 +279,7 @@ onBeforeUnmount(() => {
         /* PC */
         &.is-focus,
         &:hover {
-            .clearable-box {
+            .icon-box {
                 .lucide {
                     opacity: 1;
                 }
@@ -264,7 +291,7 @@ onBeforeUnmount(() => {
         /* mobile */
         &.is-focus,
         &:active {
-            .clearable-box {
+            .icon-box {
                 .lucide {
                     opacity: 1;
                 }
@@ -272,7 +299,7 @@ onBeforeUnmount(() => {
         }
     }
 
-    .clearable-box {
+    .icon-box {
         width: var(--font-size);
         .lucide {
             opacity: 0;

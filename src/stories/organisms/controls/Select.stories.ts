@@ -45,7 +45,7 @@ export const Label: Story = {
     args: {
         ...Default.args,
         modelValue: 'dog',
-        label: '好きな動物'
+        label: 'Select'
     }
 };
 
