@@ -69,7 +69,8 @@ export const DisplayFormatterCurrency: Story = {
         type: 'number',
         label: '金額',
         placeholder: 'データは数値になります',
-        displayFormatter: (v) => formatLocaleString(v, '￥'),
+        prefix: '￥',
+        displayFormatter: (v) => formatLocaleString(v),
         displayParser: (v) => parseLocaleString(v)
     }
 };
