@@ -2,8 +2,8 @@
 import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodString } from 'zod';
-import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
-import InputAccordionList from '@/components/organisms/inner-parts/InputAccordionList.vue';
+import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
+import FieldAccordionList from '@/components/organisms/inner-parts/FieldAccordionList.vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
 import { XCircle as IconXCircle } from 'lucide-vue-next';
 import {
@@ -212,7 +212,7 @@ const onBlur = (event: Event) => {
 
 <template>
     <div ref="inputRef" class="component-input" :class="[variant, size, { 'is-focus': isFocus }]">
-        <InputFrame
+        <FieldFrame
             :label="label"
             :placeholder="placeholder"
             :required="isRequired"
@@ -240,8 +240,8 @@ const onBlur = (event: Event) => {
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
-        </InputFrame>
-        <InputAccordionList
+        </FieldFrame>
+        <FieldAccordionList
             v-model="isFocus"
             :items="matchItems"
             :value="value"

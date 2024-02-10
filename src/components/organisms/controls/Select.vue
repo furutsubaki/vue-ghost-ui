@@ -2,8 +2,8 @@
 import { computed, watch, ref } from 'vue';
 import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
-import InputFrame from '@/components/organisms/inner-parts/InputFrame.vue';
-import InputAccordionList from '@/components/organisms/inner-parts/InputAccordionList.vue';
+import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
+import FieldAccordionList from '@/components/organisms/inner-parts/FieldAccordionList.vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
 import { ChevronDown as IconChevronDown, XCircle as IconXCircle } from 'lucide-vue-next';
 
@@ -107,7 +107,7 @@ const onDelete = () => {
         class="component-select-group"
         :class="[variant, size, position, { 'is-focus': isOpen }]"
     >
-        <InputFrame
+        <FieldFrame
             :label="label"
             :required="isRequired"
             :disabled="disabled"
@@ -133,8 +133,8 @@ const onDelete = () => {
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
-        </InputFrame>
-        <InputAccordionList
+        </FieldFrame>
+        <FieldAccordionList
             v-model="isOpen"
             :items="items"
             :value="value"
