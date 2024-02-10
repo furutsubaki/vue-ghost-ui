@@ -117,7 +117,7 @@ export const PropsDisabled: Story = {
     }
 };
 
-export const Item_Disabled: Story = {
+export const ItemDisabled: Story = {
     args: {
         ...Default.args,
         items: [
@@ -126,6 +126,44 @@ export const Item_Disabled: Story = {
                 label: '烏',
                 value: 'crow',
                 disabled: true
+            }
+        ]
+    }
+};
+
+export const ItemVariant: Story = {
+    args: {
+        ...Default.args,
+        items: [
+            {
+                label: 'primary',
+                value: 'primary',
+                variant: 'primary'
+            },
+            {
+                label: 'secondary',
+                value: 'secondary',
+                variant: 'secondary'
+            },
+            {
+                label: 'info',
+                value: 'info',
+                variant: 'info'
+            },
+            {
+                label: 'success',
+                value: 'success',
+                variant: 'success'
+            },
+            {
+                label: 'warning',
+                value: 'warning',
+                variant: 'warning'
+            },
+            {
+                label: 'danger',
+                value: 'danger',
+                variant: 'danger'
             }
         ]
     }

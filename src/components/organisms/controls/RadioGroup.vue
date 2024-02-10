@@ -8,6 +8,7 @@ interface Item {
     label: string;
     value: string | number | boolean;
     disabled?: boolean;
+    variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
 }
 
 const model = defineModel<string | number | boolean>();
@@ -85,7 +86,7 @@ if (value.value == null && model.value != null) {
                 :value="item.value"
                 :name="name"
                 :disabled="disabled || item.disabled"
-                :variant="variant"
+                :variant="item.variant || variant"
                 :size="size"
                 :isErrorMessage="false"
                 >{{ item.label }}</Radio
