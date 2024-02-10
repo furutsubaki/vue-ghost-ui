@@ -37,7 +37,65 @@ export const Default: Story = {
     }
 };
 
-export const Label: Story = {
+export const PropsVariant: Story = {
+    render: (args) => ({
+        components: { Radio },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Radio variant="${param.variant}" v-bind="args">${param.variant}</Radio>`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsSize: Story = {
+    render: (args) => ({
+        components: { Radio },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ]
+                .map((param) => `<Radio size="${param.size}" v-bind="args">${param.size}</Radio>`)
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsLabel: Story = {
     args: {
         ...Default.args,
         modelValue: true,
@@ -45,16 +103,16 @@ export const Label: Story = {
     }
 };
 
-export const Disabled: Story = {
+export const PropsDisabled: Story = {
     args: {
-        ...Label.args,
+        ...Default.args,
         disabled: true
     }
 };
 
 export const Schema: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         name: 'test',
         schema: TEST_SCHEMA.shape.test
     }
