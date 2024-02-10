@@ -1,4 +1,8 @@
-export const formatLocaleString = (v: string, collection: string) =>
-    `${collection}${(parseInt(v.replace(/[^0-9]/g, ''), 10) || 0).toLocaleString()}`;
-export const parseLocaleString = (v: string) =>
-    (parseInt(v.replace(/[^0-9]/g, ''), 10) || 0).toString();
+export const formatLocaleString = (v: string) => {
+    const int = parseInt(v.replace(/[^0-9]/g, ''), 10);
+    return isNaN(int) ? '' : int.toLocaleString();
+};
+export const parseLocaleString = (v: string) => {
+    const int = parseInt(v.replace(/[^0-9]/g, ''), 10);
+    return isNaN(int) ? '' : int.toString();
+};
