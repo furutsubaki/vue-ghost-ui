@@ -25,7 +25,8 @@ const meta: Meta<typeof Field> = {
     argTypes: {
         // TODO: 現状lintエラーの回避策なし
         // @ts-ignore
-        'onUpdate:modelValue': { action: 'onUpdate:modelValue' }
+        'onUpdate:modelValue': { action: 'onUpdate:modelValue' },
+        onSearch: { action: 'search' }
     }
 };
 
@@ -108,6 +109,13 @@ export const TypePassword: Story = {
     args: {
         ...Clearable.args,
         type: 'password'
+    }
+};
+
+export const TypeSearch: Story = {
+    args: {
+        ...Clearable.args,
+        type: 'search'
     }
 };
 
