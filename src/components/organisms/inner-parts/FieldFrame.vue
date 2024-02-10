@@ -117,10 +117,9 @@ defineExpose({ frameRef });
 
 <style scoped>
 .component-input-frame {
-    --start-end-padding: 8px;
+    --start-end-padding: 16px;
     position: relative;
     display: flex;
-    align-items: center;
     min-height: var(--height);
     font-size: var(--font-size);
     :where(.frame-box) {
@@ -133,13 +132,15 @@ defineExpose({ frameRef });
         height: 100%;
         min-height: var(--height);
         line-height: 1.5em;
+        background-color: var(--color-theme-bg-primary);
         transition: height 0.2s;
 
         &::before,
         &::after {
             content: '';
             width: var(--start-end-padding);
-            border: 1px solid var(--color-theme-border);
+            border: 1px solid;
+            border-color: inherit;
         }
         &::before {
             border-right: 0;
@@ -153,7 +154,8 @@ defineExpose({ frameRef });
         .frame-label,
         .frame-grow,
         .frame-counter {
-            border: 1px solid var(--color-theme-border);
+            border: 1px solid;
+            border-color: inherit;
             border-right: 0;
             border-left: 0;
         }
@@ -204,8 +206,8 @@ defineExpose({ frameRef });
     }
     .frame-body {
         position: relative;
-        padding-left: var(--start-end-padding);
-        padding-right: var(--start-end-padding);
+        padding-left: calc(var(--start-end-padding) / 2);
+        padding-right: calc(var(--start-end-padding) / 2);
         display: flex;
         align-items: center;
         gap: 8px;
@@ -384,12 +386,12 @@ defineExpose({ frameRef });
 
 /* ▼ shape ▼ */
 .rounded {
-    --start-end-padding: 32px;
     &::before {
-        border-radius: var(--start-end-padding) 0 0 var(--start-end-padding);
+        border-radius: calc(var(--start-end-padding) * 4) 0 0 calc(var(--start-end-padding) * 4);
     }
     &::after {
-        border-radius: 0 var(--start-end-padding) var(--start-end-padding) 0;
+        width: var(--start-end-padding);
+        border-radius: 0 calc(var(--start-end-padding) * 4) calc(var(--start-end-padding) * 4) 0;
     }
 }
 /* ▲ shape ▲ */

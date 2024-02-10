@@ -41,7 +41,68 @@ export const Default: Story = {
     }
 };
 
-export const Label: Story = {
+export const PropsVariant: Story = {
+    render: (args) => ({
+        components: { CheckboxGroup },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<CheckboxGroup variant="${param.variant}" label="${param.variant}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsSize: Story = {
+    render: (args) => ({
+        components: { CheckboxGroup },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<CheckboxGroup size="${param.size}" label="${param.size}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsLabel: Story = {
     args: {
         ...Default.args,
         modelValue: ['dog'],
@@ -49,18 +110,18 @@ export const Label: Story = {
     }
 };
 
-export const Disabled: Story = {
+export const PropsDisabled: Story = {
     args: {
-        ...Label.args,
+        ...Default.args,
         disabled: true
     }
 };
 
-export const Item_Disabled: Story = {
+export const ItemDisabled: Story = {
     args: {
-        ...Label.args,
+        ...Default.args,
         items: [
-            ...Label.args!.items!,
+            ...Default.args!.items!,
             {
                 label: '烏',
                 value: 'crow',
@@ -70,13 +131,51 @@ export const Item_Disabled: Story = {
     }
 };
 
+export const ItemVariant: Story = {
+    args: {
+        ...Default.args,
+        items: [
+            {
+                label: 'primary',
+                value: 'primary',
+                variant: 'primary'
+            },
+            {
+                label: 'secondary',
+                value: 'secondary',
+                variant: 'secondary'
+            },
+            {
+                label: 'info',
+                value: 'info',
+                variant: 'info'
+            },
+            {
+                label: 'success',
+                value: 'success',
+                variant: 'success'
+            },
+            {
+                label: 'warning',
+                value: 'warning',
+                variant: 'warning'
+            },
+            {
+                label: 'danger',
+                value: 'danger',
+                variant: 'danger'
+            }
+        ]
+    }
+};
+
 export const Schema: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         name: 'test',
         schema: TEST_SCHEMA.shape.test,
         items: [
-            ...Label.args!.items!,
+            ...PropsLabel.args!.items!,
             {
                 label: '未入力',
                 value: ''

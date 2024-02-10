@@ -276,6 +276,7 @@ onBeforeUnmount(() => {
                 class="datepicker"
                 :format="format"
                 :dataFormat="dataFormat"
+                :variant:="variant"
                 @update:model-value="isFocus = false"
             />
         </OpacityTransition>
@@ -365,6 +366,7 @@ onBeforeUnmount(() => {
 
     .datepicker {
         position: absolute;
+        z-index: 1;
     }
 }
 

@@ -8,6 +8,7 @@ interface Item {
     label: string;
     value: string | number | boolean;
     disabled?: boolean;
+    variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
 }
 
 const model = defineModel<string | number | boolean>();
@@ -85,7 +86,7 @@ if (value.value == null && model.value != null) {
                 :value="item.value"
                 :name="name"
                 :disabled="disabled || item.disabled"
-                :variant="variant"
+                :variant="item.variant || variant"
                 :size="size"
                 :isErrorMessage="false"
                 >{{ item.label }}</Radio
@@ -127,152 +128,6 @@ if (value.value == null && model.value != null) {
 .items {
     display: flex;
     gap: 16px;
-}
-
-.primary {
-    color: var(--color-base-white);
-    background-color: var(--color-theme-active);
-    border-color: var(--color-theme-active);
-
-    &:focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.secondary {
-    color: var(--color-theme-text-primary);
-    background-color: transparent;
-    border-color: var(--color-theme-border);
-
-    &:focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.info {
-    color: var(--color-theme-text-primary);
-    background-color: var(--color-status-info);
-    border-color: var(--color-status-info);
-
-    &:focus {
-        border-color: var(--color-status-info);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-info);
-        }
-    }
-}
-
-.success {
-    color: var(--color-base-white);
-    background-color: var(--color-status-success);
-    border-color: var(--color-status-success);
-
-    &:focus {
-        border-color: var(--color-status-success);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-success);
-        }
-    }
-}
-
-.warning {
-    color: var(--color-base-black);
-    background-color: var(--color-status-warning);
-    border-color: var(--color-status-warning);
-
-    &:focus {
-        border-color: var(--color-status-warning);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-warning);
-        }
-    }
-}
-
-.danger {
-    color: var(--color-base-white);
-    background-color: var(--color-status-danger);
-    border-color: var(--color-status-danger);
-
-    &:focus {
-        border-color: var(--color-status-danger);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-danger);
-        }
-    }
 }
 
 .error {

@@ -52,6 +52,7 @@ defineEmits<{
     padding: 0 8px;
     border: 1px solid;
     border-radius: 4px;
+    word-break: keep-all;
     transition:
         color 0.2s,
         background-color 0.2s,
@@ -215,13 +216,19 @@ defineEmits<{
     border-radius: 2em;
 }
 .circle {
+    display: flex;
+    justify-content: center;
     min-width: auto;
-    border-radius: 50%;
     width: var(--height);
+    word-break: keep-all;
+    border-radius: 50%;
 }
 .square {
+    display: flex;
+    justify-content: center;
     min-width: auto;
     width: var(--height);
+    word-break: keep-all;
 }
 /* ▲ shape ▲ */
 </style>

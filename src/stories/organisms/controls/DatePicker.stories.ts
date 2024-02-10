@@ -33,23 +33,80 @@ type Story = StoryObj<typeof DatePicker>;
 
 export const Default: Story = {};
 
-export const Label: Story = {
+export const PropsVariant: Story = {
+    render: (args) => ({
+        components: { DatePicker },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<DatePicker variant="${param.variant}" label="${param.variant}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsShape: Story = {
+    render: (args) => ({
+        components: { DatePicker },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    shape: 'normal'
+                },
+                {
+                    shape: 'rounded'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<DatePicker shape="${param.shape}" label="${param.shape}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsLabel: Story = {
     args: {
         modelValue: '20240201',
         label: 'DatePicker'
     }
 };
 
-export const Disabled: Story = {
+export const PropsDisabled: Story = {
     args: {
-        ...Label.args,
         disabled: true
     }
 };
 
 export const Schema: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         name: 'test',
         schema: TEST_SCHEMA.shape.test
     }

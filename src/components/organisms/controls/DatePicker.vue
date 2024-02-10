@@ -38,10 +38,6 @@ const props = withDefaults(
          */
         variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
-         * サイズ
-         */
-        size?: 'small' | 'medium' | 'large';
-        /**
          * 形状
          */
         shape?: 'normal' | 'rounded';
@@ -58,7 +54,6 @@ const props = withDefaults(
         label: '',
         disabled: false,
         variant: 'secondary',
-        size: 'medium',
         shape: 'normal',
         isErrorMessage: true
     }
@@ -98,13 +93,12 @@ const setDayClass = (date: string) => {
 </script>
 
 <template>
-    <div class="component-datepicker" :class="[variant, size, shape, { 'is-disabled': disabled }]">
+    <div class="component-datepicker" :class="[variant, shape, { 'is-disabled': disabled }]">
         <FieldFrame
             :label="label"
             :required="isRequired"
             :disabled="disabled"
             :variant="variant"
-            :size="size"
             :shape="shape"
             :is-focus="true"
             :value="value"
@@ -151,29 +145,14 @@ const setDayClass = (date: string) => {
             }
 
             .saturday {
-                color: #0000ff;
+                color: var(--color-base-blue);
             }
             .sunday {
-                color: #ff0000;
+                color: var(--color-base-red);
             }
         }
     }
 }
-
-/* ▼ size ▼ */
-.large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
-}
-.medium {
-    --height: 32px;
-    --font-size: var(--font-size-common);
-}
-.small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
-}
-/* ▲ size ▲ */
 
 /* ▼ shape ▼ */
 .rounded {

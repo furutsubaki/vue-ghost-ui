@@ -95,7 +95,10 @@ if (fieldVal.value == null && model.value != null) {
 </script>
 
 <template>
-    <div class="component-checkbox" :class="[variant, size, { 'is-disabled': disabled }]">
+    <div
+        class="component-checkbox"
+        :class="[variant, size, { 'is-disabled': disabled, 'is-checked': checked }]"
+    >
         <div v-if="label" class="label-placeholder" :class="{ required: isRequired }">
             {{ label }}
         </div>
@@ -112,7 +115,9 @@ if (fieldVal.value == null && model.value != null) {
                 />
                 <IconCheckSquare v-show="checked" />
                 <IconSquare v-show="!checked" />
-                <slot />
+                <div class="text">
+                    <slot />
+                </div>
             </label>
         </div>
         <template v-if="isErrorMessage">
@@ -181,156 +186,127 @@ if (fieldVal.value == null && model.value != null) {
     }
 }
 
-.primary {
-    color: var(--color-base-white);
-    background-color: var(--color-theme-active);
-    border-color: var(--color-theme-active);
-
-    &:focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.secondary {
-    color: var(--color-theme-text-primary);
-    background-color: transparent;
-    border-color: var(--color-theme-border);
-
-    &:focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.info {
-    color: var(--color-theme-text-primary);
-    background-color: var(--color-status-info);
-    border-color: var(--color-status-info);
-
-    &:focus {
-        border-color: var(--color-status-info);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-info);
-        }
-    }
-}
-
-.success {
-    color: var(--color-base-white);
-    background-color: var(--color-status-success);
-    border-color: var(--color-status-success);
-
-    &:focus {
-        border-color: var(--color-status-success);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-success);
-        }
-    }
-}
-
-.warning {
-    color: var(--color-base-black);
-    background-color: var(--color-status-warning);
-    border-color: var(--color-status-warning);
-
-    &:focus {
-        border-color: var(--color-status-warning);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-warning);
-        }
-    }
-}
-
-.danger {
-    color: var(--color-base-white);
-    background-color: var(--color-status-danger);
-    border-color: var(--color-status-danger);
-
-    &:focus {
-        border-color: var(--color-status-danger);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            background-color: transparent;
-            border-color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            background-color: transparent;
-            border-color: var(--color-status-danger);
-        }
-    }
-}
-
 .error {
     font-size: var(--font-size-small);
     color: var(--color-status-danger);
 }
+
+/* ▼ variant ▼ */
+.primary {
+    &.is-checked {
+        .lucide {
+            color: var(--color-theme-active);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-theme-active);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--color-theme-active);
+        }
+    }
+}
+/* .secondary {
+    &.is-checked {
+        .lucide {
+            color: var(--color-theme-active);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-theme-active);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--color-theme-active);
+        }
+    }
+} */
+.info {
+    &.is-checked {
+        .lucide {
+            color: var(--color-status-info);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-status-info);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--color-status-info);
+        }
+    }
+}
+.success {
+    &.is-checked {
+        .lucide {
+            color: var(--color-status-success);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-status-success);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--color-status-success);
+        }
+    }
+}
+.warning {
+    &.is-checked {
+        .lucide {
+            color: var(--color-status-warning);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-status-warning);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--color-status-warning);
+        }
+    }
+}
+.danger {
+    &.is-checked {
+        .lucide {
+            color: var(--color-status-danger);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-status-danger);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--color-status-danger);
+        }
+    }
+}
+/* ▲ variant ▲ */
 
 /* ▼ size ▼ */
 .large {

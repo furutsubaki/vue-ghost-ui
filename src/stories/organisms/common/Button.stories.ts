@@ -25,7 +25,7 @@ const meta: Meta<typeof Button> = {
         shape: {
             options: ['normal', 'rounded', 'circle', 'square']
         },
-        onClick: { action: 'onClick' }
+        onClick: { action: 'click' }
     }
 };
 
@@ -34,26 +34,89 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {};
 
-export const Info: Story = {
-    args: {
-        variant: 'info'
-    }
+export const PropsVariant: Story = {
+    render: () => ({
+        components: { Button },
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Button variant="${param.variant}" v-bind="args">${param.variant}</Button>`
+                )
+                .join('');
+        })()
+    })
 };
 
-export const Success: Story = {
-    args: {
-        variant: 'success'
-    }
+export const PropsSize: Story = {
+    render: () => ({
+        components: { Button },
+        template: (() => {
+            return [
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ]
+                .map((param) => `<Button size="${param.size}" v-bind="args">${param.size}</Button>`)
+                .join('');
+        })()
+    })
 };
 
-export const Warning: Story = {
-    args: {
-        variant: 'warning'
-    }
+export const PropsShape: Story = {
+    render: () => ({
+        components: { Button },
+        template: (() => {
+            return [
+                {
+                    shape: 'normal'
+                },
+                {
+                    shape: 'rounded'
+                },
+                {
+                    shape: 'circle'
+                },
+                {
+                    shape: 'square'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Button shape="${param.shape}" v-bind="args">${param.shape}</Button>`
+                )
+                .join('');
+        })()
+    })
 };
 
-export const Danger: Story = {
+export const LongText: Story = {
     args: {
-        variant: 'danger'
+        default: '長いテキストのケース'
     }
 };

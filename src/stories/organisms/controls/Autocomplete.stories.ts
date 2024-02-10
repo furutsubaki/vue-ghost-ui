@@ -41,39 +41,185 @@ export const Default: Story = {
     }
 };
 
-export const Label: Story = {
+export const PropsVariant: Story = {
+    render: (args) => ({
+        components: { Autocomplete },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Autocomplete variant="${param.variant}" label="${param.variant}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsSize: Story = {
+    render: (args) => ({
+        components: { Autocomplete },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Autocomplete size="${param.size}" label="${param.size}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsShape: Story = {
+    render: (args) => ({
+        components: { Autocomplete },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    shape: 'normal'
+                },
+                {
+                    shape: 'rounded'
+                },
+                {
+                    shape: 'circle'
+                },
+                {
+                    shape: 'square'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Autocomplete shape="${param.shape}" label="${param.shape}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsLabel: Story = {
     args: {
         ...Default.args,
         label: 'Autocomplete'
     }
 };
 
-export const Clearable: Story = {
+export const PropsPrefixSuffix: Story = {
+    render: (args) => ({
+        components: { Autocomplete },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    prefix: 'prefix',
+                    suffix: ''
+                },
+                {
+                    prefix: 'prefix',
+                    suffix: 'suffix'
+                },
+                {
+                    prefix: '',
+                    suffix: 'suffix'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Autocomplete prefix="${param.prefix}" suffix="${param.suffix}" label="${[param.prefix, param.suffix].join('')}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
     args: {
-        ...Label.args,
+        ...Default.args
+    }
+};
+
+export const PropsPosition: Story = {
+    render: (args) => ({
+        components: { Autocomplete },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    position: 'button'
+                },
+                {
+                    position: 'top'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Autocomplete position="${param.position}" label="${param.position}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: {
+        ...Default.args
+    }
+};
+
+export const PropsClearable: Story = {
+    args: {
+        ...PropsLabel.args,
         clearable: true
     }
 };
 
-export const Placeholder: Story = {
+export const PropsPlaceholder: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         placeholder: 'イッヌもネッコもいい',
         prefix: 'Uo･ｪ･oU'
     }
 };
 
-export const Disabled: Story = {
+export const PropsDisabled: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         placeholder: 'イッヌもネッコもいい',
         disabled: true
     }
 };
 
-export const Schema: Story = {
+export const PropsSchema: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         name: 'test',
         schema: TEST_SCHEMA.shape.test,
         placeholder: '山田 太郎'
