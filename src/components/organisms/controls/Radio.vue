@@ -329,23 +329,23 @@ if (fieldVal.value == null && model.value != null) {
     }
 }
 
-.large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
-}
-
-.medium {
-    --height: 32px;
-    --font-size: var(--font-size-common);
-}
-
-.small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
-}
-
 .error {
     font-size: var(--font-size-small);
     color: var(--color-status-danger);
 }
+
+/* ▼ size ▼ */
+.large {
+    --height: 40px;
+    --font-size: var(--font-size-large);
+}
+.medium {
+    --height: 32px;
+    --font-size: var(--font-size-common);
+}
+.small {
+    --height: 24px;
+    --font-size: var(--font-size-small);
+}
+/* ▲ size ▲ */
 </style>

@@ -23,7 +23,7 @@ const meta: Meta<typeof Button> = {
             options: ['small', 'medium', 'large']
         },
         shape: {
-            options: ['normal', 'square']
+            options: ['normal', 'rounded', 'circle', 'square']
         },
         onClick: { action: 'onClick' }
     }

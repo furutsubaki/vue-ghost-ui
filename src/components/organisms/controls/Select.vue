@@ -49,6 +49,10 @@ const props = withDefaults(
          */
         size?: 'small' | 'medium' | 'large';
         /**
+         * 形状
+         */
+        shape?: 'normal' | 'rounded';
+        /**
          * ポジション
          */
         position?: 'top' | 'bottom';
@@ -65,6 +69,7 @@ const props = withDefaults(
         disabled: false,
         variant: 'secondary',
         size: 'medium',
+        shape: 'normal',
         position: 'bottom',
         isErrorMessage: true
     }
@@ -105,7 +110,7 @@ const onDelete = () => {
     <div
         ref="selectRef"
         class="component-select-group"
-        :class="[variant, size, position, { 'is-focus': isOpen }]"
+        :class="[variant, size, shape, position, { 'is-focus': isOpen }]"
     >
         <FieldFrame
             :label="label"
@@ -113,6 +118,7 @@ const onDelete = () => {
             :disabled="disabled"
             :variant="variant"
             :size="size"
+            :shape="shape"
             :is-focus="isOpen"
             :value="value"
             :isErrorMessage="isErrorMessage"
@@ -330,19 +336,24 @@ const onDelete = () => {
     }
 }
 
-/* size */
+/* ▼ size ▼ */
 .large {
     --height: 40px;
     --font-size: var(--font-size-large);
 }
-
 .medium {
     --height: 32px;
     --font-size: var(--font-size-common);
 }
-
 .small {
     --height: 24px;
     --font-size: var(--font-size-small);
 }
+/* ▲ size ▲ */
+
+/* ▼ shape ▼ */
+.rounded {
+    border-radius: 2em;
+}
+/* ▲ shape ▲ */
 </style>

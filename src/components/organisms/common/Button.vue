@@ -12,7 +12,7 @@ withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'square';
+        shape?: 'normal' | 'rounded' | 'circle' | 'square';
     }>(),
     {
         variant: 'secondary',
@@ -41,10 +41,6 @@ defineEmits<{
 
 <style scoped>
 .component-button {
-    --size-large: 40px;
-    --size-medium: 32px;
-    --size-small: 24px;
-
     min-height: var(--height);
     font-size: var(--font-size);
 
@@ -199,31 +195,33 @@ defineEmits<{
     }
 }
 
+/* ▼ size ▼ */
 .large {
-    --height: var(--size-large);
+    --height: 40px;
     --font-size: var(--font-size-large);
 }
-
 .medium {
-    --height: var(--size-medium);
+    --height: 32px;
     --font-size: var(--font-size-common);
 }
-
 .small {
-    --height: var(--size-small);
+    --height: 24px;
     --font-size: var(--font-size-small);
 }
+/* ▲ size ▲ */
 
+/* ▼ shape ▼ */
+.rounded {
+    border-radius: 2em;
+}
+.circle {
+    min-width: auto;
+    border-radius: 50%;
+    width: var(--height);
+}
 .square {
     min-width: auto;
-    &.large {
-        width: var(--size-large);
-    }
-    &.medium {
-        width: var(--size-medium);
-    }
-    &.small {
-        width: var(--size-small);
-    }
+    width: var(--height);
 }
+/* ▲ shape ▲ */
 </style>

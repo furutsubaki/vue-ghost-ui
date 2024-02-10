@@ -85,6 +85,10 @@ const props = withDefaults(
          */
         size?: 'small' | 'medium' | 'large';
         /**
+         * 形状
+         */
+        shape?: 'normal' | 'rounded';
+        /**
          * エラーメッセージを表示するか
          */
         isErrorMessage?: boolean;
@@ -106,6 +110,7 @@ const props = withDefaults(
         type: 'text',
         variant: 'secondary',
         size: 'medium',
+        shape: 'normal',
         isErrorMessage: true
     }
 );
@@ -203,7 +208,12 @@ onBeforeUnmount(() => {
     <div
         ref="inputRef"
         class="component-input"
-        :class="[variant, size, { 'is-focus': isFocus, 'is-value': value != null && value !== '' }]"
+        :class="[
+            variant,
+            size,
+            shape,
+            { 'is-focus': isFocus, 'is-value': value != null && value !== '' }
+        ]"
     >
         <FieldFrame
             :label="label"
@@ -212,6 +222,7 @@ onBeforeUnmount(() => {
             :disabled="disabled"
             :variant="variant"
             :size="size"
+            :shape="shape"
             :is-focus="isFocus"
             :maxLength="max"
             :value="value"
@@ -357,18 +368,24 @@ onBeforeUnmount(() => {
     }
 }
 
+/* ▼ size ▼ */
 .large {
     --height: 40px;
     --font-size: var(--font-size-large);
 }
-
 .medium {
     --height: 32px;
     --font-size: var(--font-size-common);
 }
-
 .small {
     --height: 24px;
     --font-size: var(--font-size-small);
 }
+/* ▲ size ▲ */
+
+/* ▼ shape ▼ */
+.rounded {
+    border-radius: 2em;
+}
+/* ▲ shape ▲ */
 </style>
