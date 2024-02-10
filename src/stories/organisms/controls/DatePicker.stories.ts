@@ -36,7 +36,7 @@ export const Default: Story = {};
 export const Label: Story = {
     args: {
         modelValue: '20240201',
-        label: '日付'
+        label: 'DatePicker'
     }
 };
 

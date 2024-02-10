@@ -45,7 +45,7 @@ export const Label: Story = {
     args: {
         ...Default.args,
         modelValue: '太郎',
-        label: '名前'
+        label: 'Autocomplete'
     }
 };
 

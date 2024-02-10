@@ -41,7 +41,7 @@ export const Label: Story = {
     args: {
         ...Default.args,
         modelValue: true,
-        label: '同意'
+        label: 'Checkbox'
     }
 };
 

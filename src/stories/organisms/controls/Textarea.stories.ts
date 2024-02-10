@@ -35,7 +35,7 @@ export const Default: Story = {};
 export const Label: Story = {
     args: {
         modelValue: '入力',
-        label: '備考'
+        label: 'Textarea'
     }
 };
 
