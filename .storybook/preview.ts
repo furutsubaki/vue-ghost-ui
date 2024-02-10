@@ -36,6 +36,10 @@ init({
 });
 z.setErrorMap(customErrorMap);
 
+setup((app) => {
+    app.component('VueDatePicker', VueDatePicker);
+})
+
 const preview: Preview = {
     parameters: {},
     decorators: [
@@ -50,29 +54,27 @@ const preview: Preview = {
 
             // v-model対応
             // TODO: https://github.com/storybookjs/storybook/issues/14259
-            const [args, updateArgs] = useArgs();
-            if ('modelValue' in args) {
-                const update = args['onUpdate:model-value'] || args['onUpdate:modelValue'];
-                args['onUpdate:model-value'] = undefined;
-                args['onUpdate:modelValue'] = (...vals) => {
-                    update?.(...vals);
-                    /**
-                     * Arg with `undefined` will be deleted by `deleteUndefined()`, then loss of reactive
-                     * @see {@link https://github.com/storybookjs/storybook/blob/next/code/lib/preview-api/src/modules/store/ArgsStore.ts#L63}
-                     */
-                    const modelValue = vals[0] === undefined ? null : vals[0];
-                    updateArgs({ modelValue });
-                };
-            }
-            return story({
-                ...context, updateArgs
-            });
+            // const [args, updateArgs] = useArgs();
+            // if ('modelValue' in args) {
+            //     const update = args['onUpdate:model-value'] || args['onUpdate:modelValue'];
+            //     args['onUpdate:model-value'] = undefined;
+            //     args['onUpdate:modelValue'] = (...vals) => {
+            //         update?.(...vals);
+            //         /**
+            //          * Arg with `undefined` will be deleted by `deleteUndefined()`, then loss of reactive
+            //          * @see {@link https://github.com/storybookjs/storybook/blob/next/code/lib/preview-api/src/modules/store/ArgsStore.ts#L63}
+            //          */
+            //         const modelValue = vals[0] === undefined ? null : vals[0];
+            //         updateArgs({ modelValue });
+            //     };
+            // }
+
+            return {
+                components: { story },
+                template: '<main style="display: flex; gap:16px; flex-wrap: wrap;"><story /></main>',
+            };
         }
     ]
 }
-
-setup((app) => {
-    app.component('VueDatePicker', VueDatePicker);
-})
 
 export default preview
