@@ -9,8 +9,8 @@
 }
 .medium {
     .lucide {
-        width: var(--font-size-common);
-        height: var(--font-size-common);
+        width: var(--font-size-medium);
+        height: var(--font-size-medium);
     }
 }
 .small {

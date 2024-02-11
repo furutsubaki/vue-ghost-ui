@@ -144,7 +144,7 @@ defineEmits<{
 }
 .medium {
     --height: 32px;
-    --font-size: var(--font-size-common);
+    --font-size: var(--font-size-medium);
 }
 .small {
     --height: 24px;
