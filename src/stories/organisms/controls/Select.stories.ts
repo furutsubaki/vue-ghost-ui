@@ -101,6 +101,32 @@ export const PropsSize: Story = {
     args: { ...Default.args }
 };
 
+export const PropsShape: Story = {
+    render: (args) => ({
+        components: { Select },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    shape: 'normal'
+                },
+                {
+                    shape: 'rounded'
+                },
+                {
+                    shape: 'no-radius'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Select shape="${param.shape}" label="${param.shape}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
 export const PropsPosition: Story = {
     render: (args) => ({
         components: { Select },

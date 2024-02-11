@@ -2,7 +2,6 @@ import Textarea from '@/components/organisms/controls/Textarea.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
-import { formatLocaleString, parseLocaleString } from '@/assets/ts/formatter';
 
 const TEST_SCHEMA = object({
     test: string().max(50).min(1)
@@ -109,10 +108,7 @@ export const PropsShape: Story = {
                     shape: 'rounded'
                 },
                 {
-                    shape: 'circle'
-                },
-                {
-                    shape: 'square'
+                    shape: 'no-radius'
                 }
             ]
                 .map(

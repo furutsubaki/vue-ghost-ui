@@ -100,6 +100,9 @@ export const PropsShape: Story = {
                     shape: 'rounded'
                 },
                 {
+                    shape: 'no-radius'
+                },
+                {
                     shape: 'circle'
                 },
                 {

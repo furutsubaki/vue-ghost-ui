@@ -32,6 +32,10 @@ const props = withDefaults(
          */
         size?: 'small' | 'medium' | 'large';
         /**
+         * 形状
+         */
+        shape?: 'normal' | 'no-radius';
+        /**
          * ポジション
          */
         position?: 'top' | 'bottom';
@@ -76,7 +80,7 @@ onBeforeUnmount(() => {
 <template>
     <div
         class="component-input-accordion-list"
-        :class="[variant, size, position, { 'is-open': model && items.length }]"
+        :class="[variant, size, shape, position, { 'is-open': model && items.length }]"
     >
         <div class="list-body">
             <div

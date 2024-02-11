@@ -30,7 +30,7 @@ withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'rounded';
+        shape?: 'normal' | 'rounded' | 'no-radius';
         /**
          * フォーカス中か
          */
@@ -82,14 +82,19 @@ defineExpose({ frameRef });
 <template>
     <div
         class="component-input-frame"
-        :class="{
-            'is-focus': isFocus,
-            'is-required': required,
-            'is-inputed': value != null && value !== '',
-            'is-disabled': disabled
-        }"
+        :class="[
+            variant,
+            size,
+            shape,
+            {
+                'is-focus': isFocus,
+                'is-required': required,
+                'is-inputed': value != null && value !== '',
+                'is-disabled': disabled
+            }
+        ]"
     >
-        <div ref="frameRef" class="frame-box" :class="[variant, size, shape]">
+        <div ref="frameRef" class="frame-box">
             <div class="frame-label">
                 <div class="label-box">
                     <span v-if="label" class="label">{{ label }}</span
@@ -119,8 +124,9 @@ defineExpose({ frameRef });
 .component-input-frame {
     --start-end-padding: 16px;
     position: relative;
-    display: flex;
+    min-width: 100px;
     min-height: var(--height);
+    width: 100%;
     font-size: var(--font-size);
     :where(.frame-box) {
         position: absolute;
@@ -147,6 +153,7 @@ defineExpose({ frameRef });
             border: 1px solid;
             border-color: inherit;
             transition: border-color 0.2s;
+            flex-shrink: 0;
         }
         &::before {
             border-right: 0;
@@ -165,6 +172,7 @@ defineExpose({ frameRef });
             border-right: 0;
             border-left: 0;
             transition: border-color 0.2s;
+            flex-shrink: 0;
         }
 
         .frame-label {
@@ -313,12 +321,24 @@ defineExpose({ frameRef });
 
 /* ▼ shape ▼ */
 .rounded {
-    &::before {
-        border-radius: calc(var(--start-end-padding) * 4) 0 0 calc(var(--start-end-padding) * 4);
+    .frame-box {
+        border-radius: var(--start-end-padding);
+        &::before {
+            border-radius: calc(var(--start-end-padding) * 4) 0 0 calc(var(--start-end-padding) * 4);
+        }
+        &::after {
+            width: var(--start-end-padding);
+            border-radius: 0 calc(var(--start-end-padding) * 4) calc(var(--start-end-padding) * 4) 0;
+        }
     }
-    &::after {
-        width: var(--start-end-padding);
-        border-radius: 0 calc(var(--start-end-padding) * 4) calc(var(--start-end-padding) * 4) 0;
+}
+.no-radius {
+    .frame-box {
+        border-radius: 0;
+        &::before,
+        &::after {
+            border-radius: 0;
+        }
     }
 }
 /* ▲ shape ▲ */
