@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import InputTextCounter from '@/components/organisms/controls/InputTextCounter.vue';
+import InputTextCounter from '@/components/organisms/inner-parts/InputTextCounter.vue';
 withDefaults(
     defineProps<{
         /**

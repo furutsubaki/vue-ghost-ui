@@ -31,6 +31,10 @@ const props = withDefaults(
          */
         label?: string;
         /**
+         * 必須か（schema使用時にはそちらが優先される）
+         */
+        required?: boolean;
+        /**
          * 無効か
          */
         disabled?: boolean;
@@ -51,6 +55,7 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
+        required: false,
         disabled: false,
         variant: 'secondary',
         size: 'medium',
@@ -60,8 +65,10 @@ const props = withDefaults(
 
 const { value, errors } = useField<(string | number | boolean)[]>(props.name);
 
-const isRequired = computed(
-    () => (props.schema as ZodArray<ZodString>)?._def.minLength?.value === 1 || false
+const isRequired = computed(() =>
+    props.schema
+        ? (props.schema as ZodArray<ZodString>)?._def.minLength?.value === 1
+        : props.required
 );
 
 watch(value, (v) => {
