@@ -20,10 +20,28 @@ withDefaults(
         easeFunction: 'ease'
     }
 );
+
+const emit = defineEmits<{
+    /**
+     * トランジション開始
+     */
+    transitionStart: [];
+    /**
+     * トランジション終了
+     */
+    transitionEnd: [];
+}>();
+
+const onTransitionStart = () => {
+    emit('transitionStart');
+};
+const onTransitionEnd = () => {
+    emit('transitionEnd');
+};
 </script>
 
 <template>
-    <Transition>
+    <Transition @before-enter="onTransitionStart" @after-leave="onTransitionEnd">
         <slot></slot>
     </Transition>
 </template>

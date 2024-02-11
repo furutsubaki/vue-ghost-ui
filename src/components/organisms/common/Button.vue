@@ -88,7 +88,7 @@ defineEmits<{
     --hover-background-color: transparent;
     --hover-border-color: var(--color-theme-active);
     --color: var(--color-base-white);
-    --background-color: var(--color-theme-active);
+    --background-color: var(--color-theme-active-alpha);
     --border-color: var(--color-theme-active);
 }
 
@@ -106,7 +106,7 @@ defineEmits<{
     --hover-background-color: transparent;
     --hover-border-color: var(--color-status-info);
     --color: var(--color-theme-text-primary);
-    --background-color: var(--color-status-info);
+    --background-color: var(--color-status-info-alpha);
     --border-color: var(--color-status-info);
 }
 
@@ -115,7 +115,7 @@ defineEmits<{
     --hover-background-color: transparent;
     --hover-border-color: var(--color-status-success);
     --color: var(--color-base-white);
-    --background-color: var(--color-status-success);
+    --background-color: var(--color-status-success-alpha);
     --border-color: var(--color-status-success);
 }
 
@@ -124,7 +124,7 @@ defineEmits<{
     --hover-background-color: transparent;
     --hover-border-color: var(--color-status-warning);
     --color: var(--color-base-black);
-    --background-color: var(--color-status-warning);
+    --background-color: var(--color-status-warning-alpha);
     --border-color: var(--color-status-warning);
 }
 
@@ -133,7 +133,7 @@ defineEmits<{
     --hover-background-color: transparent;
     --hover-border-color: var(--color-status-danger);
     --color: var(--color-base-white);
-    --background-color: var(--color-status-danger);
+    --background-color: var(--color-status-danger-alpha);
     --border-color: var(--color-status-danger);
 }
 
@@ -155,6 +155,9 @@ defineEmits<{
 /* ▼ shape ▼ */
 .rounded {
     border-radius: 2em;
+}
+.no-radius {
+    border-radius: 0;
 }
 .circle {
     display: flex;

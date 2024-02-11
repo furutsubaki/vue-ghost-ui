@@ -228,3 +228,5 @@ export const alphanumericHalf2Full = (str: string) => {
     });
     return str;
 };
+
+export const sleep = (waitTime: number) => new Promise((resolve) => setTimeout(resolve, waitTime));
