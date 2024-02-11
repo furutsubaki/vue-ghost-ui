@@ -174,6 +174,8 @@ const onDelete = () => {
         padding: 0;
         .selected-label {
             flex-grow: 1;
+            height: 2em;
+            line-height: 2em;
         }
         .select-icon {
             color: var(--color-theme-text-secondary);

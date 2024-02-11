@@ -293,6 +293,7 @@ const onBlur = (event: Event) => {
     :where(.input) {
         min-width: 100px;
         width: 100%;
+        height: var(--height);
         line-height: 1.5em;
         background-color: transparent;
         color: var(--color-theme-text-primary);
