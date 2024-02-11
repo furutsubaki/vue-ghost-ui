@@ -67,21 +67,18 @@ export const PropsSize: Story = {
         template: (() => {
             return [
                 {
-                    size: 'large',
-                    variant: 'info'
+                    size: 'large'
                 },
                 {
-                    size: 'medium',
-                    variant: 'info'
+                    size: 'medium'
                 },
                 {
-                    size: 'small',
-                    variant: 'info'
+                    size: 'small'
                 }
             ]
                 .map(
                     (param) =>
-                        `<Alert size="${param.size}" variant="${param.variant}" title="${param.size}" v-bind="args" />`
+                        `<Alert size="${param.size}" variant="info" title="${param.size}" v-bind="args" />`
                 )
                 .join('');
         })()
