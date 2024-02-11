@@ -83,7 +83,7 @@ if (value.value == null && model.value != null) {
 
 <template>
     <div class="component-radio-group">
-        <div class="label-placeholder" :class="{ required: isRequired }">
+        <div v-if="label || isRequired" class="label-placeholder" :class="{ required: isRequired }">
             {{ label }}
         </div>
         <div class="items">

@@ -97,7 +97,7 @@ defineExpose({ frameRef });
         <div ref="frameRef" class="frame-box">
             <div class="frame-label">
                 <div class="label-box">
-                    <span v-if="label" class="label">{{ label }}</span
+                    <span v-if="label || required" class="label">{{ label }}</span
                     ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
                 </div>
             </div>
