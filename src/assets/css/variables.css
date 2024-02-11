@@ -91,6 +91,7 @@
     --color-theme-border: var(--color-base-gray);
     --color-theme-shadow: var(--color-base-black-alpha);
     --color-theme-active: var(--color-base-primary);
+    --color-theme-active-alpha: var(--color-base-primary-alpha);
 }
 
 @media (600px <= width) {
@@ -115,6 +116,7 @@
     --color-theme-border: var(--color-base-gray);
     --color-theme-shadow: var(--color-base-black-alpha);
     --color-theme-active: var(--color-base-primary);
+    --color-theme-active-alpha: var(--color-base-primary-alpha);
 }
 
 :root[data-theme='dark'] {
@@ -133,4 +135,5 @@
     --color-theme-border: var(--color-base-gray-dark);
     --color-theme-shadow: transportant;
     --color-theme-active: var(--color-base-primary);
+    --color-theme-active-alpha: var(--color-base-primary-alpha);
 }

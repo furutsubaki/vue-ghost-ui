@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { type Ref, computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { ZodNumber, ZodString, ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
-import { CheckSquare as IconCheckSquare, Square as IconSquare } from 'lucide-vue-next';
+import { ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
 
-const model = defineModel<string | number | boolean>();
+const model = defineModel<boolean>();
 const props = withDefaults(
     defineProps<{
         /**
          * 項目値
          */
-        value?: string | number | boolean;
+        value?: boolean;
         /**
          * フィールド名
          */
@@ -18,14 +17,7 @@ const props = withDefaults(
         /**
          * zodスキーマ
          */
-        schema?:
-            | ZodLiteral<string | number | boolean>
-            | ZodBoolean
-            | ZodNullable<ZodBoolean>
-            | ZodString
-            | ZodNullable<ZodString>
-            | ZodNumber
-            | ZodNullable<ZodNumber>;
+        schema?: ZodLiteral<boolean> | ZodBoolean | ZodNullable<ZodBoolean>;
         /**
          * 見出し
          */
@@ -58,38 +50,31 @@ const props = withDefaults(
         isErrorMessage: true
     }
 );
-const unCheckValue = computed(() => (typeof props.value === 'boolean' ? false : ''));
 
 const {
     value: fieldVal,
     checked,
     errors,
     handleChange
-} = useField<string | number | boolean>(props.name, undefined, {
+} = useField<boolean>(props.name, undefined, {
     type: 'checkbox',
     checkedValue: props.value,
-    uncheckedValue: unCheckValue.value
+    uncheckedValue: false
 });
 
-const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
-const isRequired = computed(() => {
-    if (props.schema?._def.typeName === 'ZodLiteral') {
-        return true;
-    }
-    return schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false;
-});
+const isRequired = computed(() => props.schema?._def.typeName === 'ZodLiteral');
 
 const onChange = (event: Event) => {
-    let val = (event.target as HTMLInputElement).value as string | number | boolean;
+    let val = JSON.parse((event.target as HTMLInputElement).value.toLowerCase());
 
     if (!(event.target as HTMLInputElement).checked) {
-        val = unCheckValue.value;
+        val = false;
     }
     handleChange(val);
 };
 
 watch(checked as Ref<boolean>, (flg) => {
-    model.value = flg ? props.value : unCheckValue.value;
+    model.value = flg ? props.value : false;
 });
 
 if (fieldVal.value == null && model.value != null) {
@@ -99,7 +84,7 @@ if (fieldVal.value == null && model.value != null) {
 
 <template>
     <div
-        class="component-checkbox"
+        class="component-switch"
         :class="[variant, size, { 'is-disabled': disabled, 'is-checked': checked }]"
     >
         <div v-if="label" class="label-placeholder" :class="{ required: isRequired }">
@@ -116,8 +101,16 @@ if (fieldVal.value == null && model.value != null) {
                     :checked="checked"
                     @change="onChange"
                 />
-                <IconCheckSquare v-show="checked" />
-                <IconSquare v-show="!checked" />
+                <div class="switch">
+                    <div class="switch-icon">
+                        <span v-if="$slots.switchIconTrue && checked" class="switch-icon-true">
+                            <slot name="switchIconTrue" />
+                        </span>
+                        <span v-if="$slots.switchIconFalse && !checked" class="switch-icon-false">
+                            <slot name="switchIconFalse" />
+                        </span>
+                    </div>
+                </div>
                 <div class="text">
                     <slot />
                 </div>
@@ -130,7 +123,7 @@ if (fieldVal.value == null && model.value != null) {
 </template>
 
 <style scoped>
-.component-checkbox {
+.component-switch {
     position: relative;
     text-align: left;
     display: block;
@@ -139,9 +132,62 @@ if (fieldVal.value == null && model.value != null) {
     :where(.checkbox) {
         display: none;
     }
+    :where(.switch) {
+        position: relative;
+        width: calc(var(--font-size) * 2);
+        height: var(--font-size);
+        border-radius: 1em;
+        background-color: var(--color-theme-border);
+        .switch-icon {
+            position: absolute;
+            left: 0;
+            width: var(--font-size);
+            height: var(--font-size);
+            border-radius: 1em;
+            background-color: var(--color-theme-text-secondary);
+            transform: scale(1.5);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .switch-icon-true,
+            .switch-icon-false {
+                transform: scale(0.75);
+                filter: invert(100%) grayscale(100%) contrast(100);
+            }
+            .switch-icon-true {
+                color: var(--switch-icon-true-color);
+            }
+            .switch-icon-false {
+                color: var(--color-theme-text-secondary);
+            }
+        }
+    }
+    &.is-checked {
+        .switch {
+            background-color: var(--switch-background-color);
+            .switch-icon {
+                background-color: var(--switch-icon-background-color);
+                transform: translateX(100%) scale(1.5);
+            }
+        }
+    }
     &.is-disabled {
         pointer-events: none;
         opacity: 0.5;
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--hover-color);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--hover-color);
+        }
     }
 }
 
@@ -196,118 +242,40 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    &.is-checked {
-        .lucide {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-        }
-    }
+    --hover-color: var(--color-theme-active);
+    --switch-icon-true-color: var(--color-theme-active);
+    --switch-background-color: var(--color-theme-active-alpha);
+    --switch-icon-background-color: var(--color-theme-active);
 }
-/* .secondary {
-    &.is-checked {
-        .lucide {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-        }
-    }
-} */
+.secondary {
+    --hover-color: var(--color-theme-text-primary);
+    --switch-icon-true-color: var(--color-theme-text-primary);
+    --switch-background-color: var(--color-theme-border);
+    --switch-icon-background-color: var(--color-theme-text-primary);
+}
 .info {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-info);
-        }
-    }
+    --hover-color: var(--color-status-info);
+    --switch-icon-true-color: var(--color-status-info);
+    --switch-background-color: var(--color-status-info-alpha);
+    --switch-icon-background-color: var(--color-status-info);
 }
 .success {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-success);
-        }
-    }
+    --hover-color: var(--color-status-success);
+    --switch-icon-true-color: var(--color-status-success);
+    --switch-background-color: var(--color-status-success-alpha);
+    --switch-icon-background-color: var(--color-status-success);
 }
 .warning {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-warning);
-        }
-    }
+    --hover-color: var(--color-status-warning);
+    --switch-icon-true-color: var(--color-status-warning);
+    --switch-background-color: var(--color-status-warning-alpha);
+    --switch-icon-background-color: var(--color-status-warning);
 }
 .danger {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-danger);
-        }
-    }
+    --hover-color: var(--color-status-danger);
+    --switch-icon-true-color: var(--color-status-danger);
+    --switch-background-color: var(--color-status-danger-alpha);
+    --switch-icon-background-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
 
