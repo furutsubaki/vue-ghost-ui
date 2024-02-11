@@ -11,7 +11,7 @@ import {
 import { computed } from 'vue';
 import { sleep } from '@/assets/ts';
 
-const model = defineModel<boolean>({ default: true });
+const flg = defineModel<boolean>({ default: true });
 withDefaults(
     defineProps<{
         /**
@@ -60,7 +60,7 @@ const emit = defineEmits<{
 // transition状態
 const transitioning = ref(false);
 const isShowing = computed(() => {
-    if (model.value) {
+    if (flg.value) {
         return true;
     } else {
         return transitioning.value;
@@ -68,7 +68,7 @@ const isShowing = computed(() => {
 });
 
 const onClose = async () => {
-    model.value = false;
+    flg.value = false;
     await onClosed();
 };
 const onClosed = async () => {
@@ -86,7 +86,7 @@ const onClosed = async () => {
         @transition-start="transitioning = true"
         @transition-end="transitioning = false"
     >
-        <div class="component-alert" :class="[variant, size, shape]" v-show="model">
+        <div class="component-alert" :class="[variant, size, shape]" v-show="flg">
             <icon v-if="icon" class="icon" />
             <IconInfo v-else-if="variant === 'info'" class="icon" />
             <IconCheckCircle2 v-else-if="variant === 'success'" class="icon" />
@@ -94,7 +94,7 @@ const onClosed = async () => {
             <IconXOctagon v-else-if="variant === 'danger'" class="icon" />
             <div class="box">
                 <div v-if="title" class="title">{{ title }}</div>
-                <div class="text">{{ text }}</div>
+                <div>{{ text }}</div>
             </div>
             <div class="closeable-box" v-if="closeable">
                 <IconXCircle @click.prevent="onClose" />
@@ -139,9 +139,6 @@ const onClosed = async () => {
         .title {
             font-weight: bold;
             font-size: calc(var(--font-size) * 1.2);
-        }
-
-        .text {
         }
     }
 

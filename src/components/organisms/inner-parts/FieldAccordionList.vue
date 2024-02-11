@@ -7,7 +7,7 @@ interface Item {
     disabled?: boolean;
 }
 
-const model = defineModel<boolean>();
+const flg = defineModel<boolean>();
 
 const props = withDefaults(
     defineProps<{
@@ -56,16 +56,16 @@ const selectedItem = computed(
 );
 const onSelectItem = (item: Item) => {
     emit('change', item.value);
-    model.value = false;
+    flg.value = false;
 };
 
 // Accordion枠外制御
 const onCloseAccordion = (event: Event) => {
-    if (!model.value || props.parentRef.contains(event.target as Node)) {
+    if (!flg.value || props.parentRef.contains(event.target as Node)) {
         return;
     }
 
-    model.value = false;
+    flg.value = false;
 };
 
 onMounted(() => {
@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
 <template>
     <div
         class="component-input-accordion-list"
-        :class="[variant, size, shape, position, { 'is-open': model && items.length }]"
+        :class="[variant, size, shape, position, { 'is-open': flg && items.length }]"
     >
         <div class="list-body">
             <div

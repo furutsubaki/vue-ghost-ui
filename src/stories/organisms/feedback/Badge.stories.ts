@@ -1,34 +1,30 @@
-import Alert from '@/components/organisms/feedback/Alert.vue';
+import Badge from '@/components/organisms/feedback/Badge.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Pen as IconPen } from 'lucide-vue-next';
 
-const meta: Meta<typeof Alert> = {
-    component: Alert,
+const meta: Meta<typeof Badge> = {
+    component: Badge,
     render: (args) => ({
-        components: { Alert },
+        components: { Badge },
         setup() {
             return { args };
         },
-        template: '<Alert v-bind="args" />'
+        template: '<Badge v-bind="args">テキスト</Badge>'
     }),
     tags: ['autodocs'],
     args: {
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    },
-    argTypes: {
-        // TODO: script setupに未対応のため二重定義
-        onClosed: { action: 'closed' }
+        content: '10'
     }
 };
 
 export default meta;
-type Story = StoryObj<typeof Alert>;
+type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
     render: (args) => ({
-        components: { Alert },
+        components: { Badge },
         setup: () => ({ args }),
         template: (() => {
             return [
@@ -53,7 +49,7 @@ export const PropsVariant: Story = {
             ]
                 .map(
                     (param) =>
-                        `<Alert variant="${param.variant}" title="${param.variant}" v-bind="args" />`
+                        `<Badge variant="${param.variant}" v-bind="args">${param.variant}</Badge>`
                 )
                 .join('');
         })()
@@ -62,7 +58,7 @@ export const PropsVariant: Story = {
 
 export const PropsSize: Story = {
     render: (args) => ({
-        components: { Alert },
+        components: { Badge },
         setup: () => ({ args }),
         template: (() => {
             return [
@@ -78,7 +74,7 @@ export const PropsSize: Story = {
             ]
                 .map(
                     (param) =>
-                        `<Alert size="${param.size}" variant="info" title="${param.size}" v-bind="args" />`
+                        `<Badge size="${param.size}" variant="info" v-bind="args">${param.size}</Badge>`
                 )
                 .join('');
         })()
@@ -87,7 +83,7 @@ export const PropsSize: Story = {
 
 export const PropsShape: Story = {
     render: (args) => ({
-        components: { Alert },
+        components: { Badge },
         setup: () => ({ args }),
         template: (() => {
             return [
@@ -95,34 +91,25 @@ export const PropsShape: Story = {
                     shape: 'normal'
                 },
                 {
-                    shape: 'rounded'
-                },
-                {
-                    shape: 'no-radius'
+                    shape: 'dot'
                 }
             ]
                 .map(
-                    (param) =>
-                        `<Alert shape="${param.shape}" title="${param.shape}" v-bind="args" />`
+                    (param) => `<Badge shape="${param.shape}" v-bind="args">${param.shape}</Badge>`
                 )
                 .join('');
         })()
     })
 };
 
-export const PropsIcon: Story = {
+export const PropsInline: Story = {
     args: {
-        icon: IconPen
-    }
-};
-export const PropsTitle: Story = {
-    args: {
-        title: 'Sample Alert'
+        inline: true
     }
 };
 
-export const PropsCloseable: Story = {
+export const ContentOver99: Story = {
     args: {
-        closeable: true
+        content: 1000
     }
 };
