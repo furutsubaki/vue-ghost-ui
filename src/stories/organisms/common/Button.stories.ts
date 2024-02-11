@@ -35,8 +35,9 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: () => ({
+    render: (args) => ({
         components: { Button },
+        setup: () => ({ args }),
         template: (() => {
             return [
                 {
@@ -68,8 +69,9 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: () => ({
+    render: (args) => ({
         components: { Button },
+        setup: () => ({ args }),
         template: (() => {
             return [
                 {
@@ -89,8 +91,9 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: () => ({
+    render: (args) => ({
         components: { Button },
+        setup: () => ({ args }),
         template: (() => {
             return [
                 {
