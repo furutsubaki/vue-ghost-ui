@@ -1,6 +1,5 @@
 import Badge from '@/components/organisms/feedback/Badge.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { Pen as IconPen } from 'lucide-vue-next';
 
 const meta: Meta<typeof Badge> = {
     component: Badge,
