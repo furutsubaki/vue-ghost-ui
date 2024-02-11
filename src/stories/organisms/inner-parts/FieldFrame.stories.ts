@@ -20,51 +20,138 @@ type Story = StoryObj<typeof FieldFrame>;
 
 export const Default: Story = {};
 
-export const Label: Story = {
+export const PropsVariant: Story = {
+    render: (args) => ({
+        components: { FieldFrame },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<FieldFrame variant="${param.variant}" label="${param.variant}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsSize: Story = {
+    render: (args) => ({
+        components: { FieldFrame },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<FieldFrame size="${param.size}" label="${param.size}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsShape: Story = {
+    render: (args) => ({
+        components: { FieldFrame },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    shape: 'normal'
+                },
+                {
+                    shape: 'rounded'
+                },
+                {
+                    shape: 'no-radius'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<FieldFrame shape="${param.shape}" label="${param.shape}" v-bind="args" />`
+                )
+                .join('');
+        })()
+    }),
+    args: { ...Default.args }
+};
+
+export const PropsLabel: Story = {
     args: {
         label: '名前'
     }
 };
 
-export const Placeholder: Story = {
+export const PropsPlaceholder: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         placeholder: '山田 太郎'
+    }
+};
+
+export const PropsRequired: Story = {
+    args: {
+        ...PropsLabel.args,
+        required: true
+    }
+};
+
+export const PropsDisabled: Story = {
+    args: {
+        ...PropsLabel.args,
+        disabled: true
     }
 };
 
 export const TextCounter: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         value: 'test',
         maxLength: 100
     }
 };
 
-export const Required: Story = {
-    args: {
-        ...Label.args,
-        required: true
-    }
-};
-
-export const Disabled: Story = {
-    args: {
-        ...Label.args,
-        disabled: true
-    }
-};
-
 export const FocusAndInputed: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         isFocus: true
     }
 };
 
 export const Erorrs: Story = {
     args: {
-        ...Label.args,
+        ...PropsLabel.args,
         errors: ['エラーテキスト', 'エラーテキスト2']
     }
 };

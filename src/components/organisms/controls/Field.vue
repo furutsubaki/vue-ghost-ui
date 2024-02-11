@@ -87,7 +87,7 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'rounded';
+        shape?: 'normal' | 'rounded' | 'no-radius';
         /**
          * エラーメッセージを表示するか
          */
@@ -277,6 +277,7 @@ onBeforeUnmount(() => {
                 :format="format"
                 :dataFormat="dataFormat"
                 :variant:="variant"
+                :shape="shape"
                 @update:model-value="isFocus = false"
             />
         </OpacityTransition>

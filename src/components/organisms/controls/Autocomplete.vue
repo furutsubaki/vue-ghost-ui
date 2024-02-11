@@ -80,7 +80,7 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'rounded';
+        shape?: 'normal' | 'rounded' | 'no-radius';
         /**
          * ポジション
          */

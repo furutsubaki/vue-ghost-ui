@@ -79,6 +79,9 @@ export const PropsShape: Story = {
                 },
                 {
                     shape: 'rounded'
+                },
+                {
+                    shape: 'no-radius'
                 }
             ]
                 .map(

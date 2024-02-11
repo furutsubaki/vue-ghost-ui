@@ -115,10 +115,7 @@ export const PropsShape: Story = {
                     shape: 'rounded'
                 },
                 {
-                    shape: 'circle'
-                },
-                {
-                    shape: 'square'
+                    shape: 'no-radius'
                 }
             ]
                 .map(
