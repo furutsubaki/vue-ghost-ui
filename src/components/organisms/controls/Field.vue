@@ -69,6 +69,10 @@ const props = withDefaults(
          */
         placeholder?: string;
         /**
+         * 必須か（schema使用時にはそちらが優先される）
+         */
+        required?: boolean;
+        /**
          * 無効か
          */
         disabled?: boolean;
@@ -106,6 +110,7 @@ const props = withDefaults(
         displayParser: (v: string) => v,
         clearable: false,
         placeholder: '',
+        required: false,
         disabled: false,
         type: 'text',
         variant: 'secondary',
@@ -121,14 +126,16 @@ defineEmits<{
 
 const fieldType = ref(props.type === 'number' ? 'tel' : props.type);
 const { value, errors } = useField<string>(props.name);
-const schemaChunks = computed(() => props.schema?._def.checks || []);
+const schemaChunks = computed(() => props.schema?._def.checks);
 const isRequired = computed(
-    () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
+    () =>
+        schemaChunks.value?.some((check) => check.kind === 'min' && check.value === 1) ??
+        props.required
 );
 const max = computed(
     () =>
         (
-            schemaChunks.value.find((check) => check.kind === 'max') as {
+            schemaChunks.value?.find((check) => check.kind === 'max') as {
                 kind: 'max';
                 value: number;
                 message?: string;

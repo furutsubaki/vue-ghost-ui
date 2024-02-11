@@ -1,4 +1,4 @@
-import InputTextCounter from '@/components/organisms/controls/InputTextCounter.vue';
+import InputTextCounter from '@/components/organisms/inner-parts/InputTextCounter.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof InputTextCounter> = {

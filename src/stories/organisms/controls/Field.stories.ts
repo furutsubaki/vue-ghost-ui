@@ -170,10 +170,15 @@ export const PropsPlaceholder: Story = {
     }
 };
 
-export const PropsDisabled: Story = {
+export const PropsRequired: Story = {
     args: {
-        disabled: true
+        ...PropsLabel.args,
+        required: true
     }
+};
+
+export const PropsDisabled: Story = {
+    args: { ...Default.args, disabled: true }
 };
 export const PropsType: Story = {
     render: (args) => ({

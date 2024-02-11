@@ -206,10 +206,16 @@ export const PropsPlaceholder: Story = {
     }
 };
 
-export const PropsDisabled: Story = {
+export const PropsRequired: Story = {
     args: {
         ...PropsLabel.args,
-        placeholder: 'イッヌもネッコもいい',
+        required: true
+    }
+};
+
+export const PropsDisabled: Story = {
+    args: {
+        ...Default.args,
         disabled: true
     }
 };

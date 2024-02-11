@@ -30,6 +30,10 @@ const props = withDefaults(
          */
         label?: string;
         /**
+         * 必須か（schema使用時にはそちらが優先される）
+         */
+        required?: boolean;
+        /**
          * 無効か
          */
         disabled?: boolean;
@@ -52,6 +56,7 @@ const props = withDefaults(
         format: DATE_FORMAT.YYYYMMDD_JA,
         dataFormat: DATE_FORMAT.YYYYMMDD,
         label: '',
+        required: false,
         disabled: false,
         variant: 'secondary',
         shape: 'normal',
@@ -61,9 +66,11 @@ const props = withDefaults(
 
 const { value, errors } = useField<string>(props.name);
 
-const schemaChunks = computed(() => props.schema?._def.checks || []);
+const schemaChunks = computed(() => props.schema?._def.checks);
 const isRequired = computed(
-    () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
+    () =>
+        schemaChunks.value?.some((check) => check.kind === 'min' && check.value === 1) ??
+        props.required
 );
 
 watch(value, (v) => {

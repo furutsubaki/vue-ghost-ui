@@ -139,8 +139,16 @@ export const PropsPlaceholder: Story = {
     }
 };
 
+export const PropsRequired: Story = {
+    args: {
+        ...PropsLabel.args,
+        required: true
+    }
+};
+
 export const PropsDisabled: Story = {
     args: {
+        ...Default.args,
         disabled: true
     }
 };

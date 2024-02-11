@@ -23,6 +23,10 @@ const props = withDefaults(
          */
         label?: string;
         /**
+         * 必須か
+         */
+        required?: boolean;
+        /**
          * 無効か
          */
         disabled?: boolean;
@@ -44,6 +48,7 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: '',
+        required: false,
         disabled: false,
         variant: 'secondary',
         size: 'medium',
@@ -62,7 +67,9 @@ const {
     uncheckedValue: false
 });
 
-const isRequired = computed(() => props.schema?._def.typeName === 'ZodLiteral');
+const isRequired = computed(() =>
+    props.schema ? props.schema?._def.typeName === 'ZodLiteral' : props.required
+);
 
 const onChange = (event: Event) => {
     let val = JSON.parse((event.target as HTMLInputElement).value.toLowerCase());

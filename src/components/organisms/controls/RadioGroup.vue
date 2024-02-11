@@ -31,6 +31,10 @@ const props = withDefaults(
          */
         label?: string;
         /**
+         * 必須か
+         */
+        required?: boolean;
+        /**
          * 無効か
          */
         disabled?: boolean;
@@ -51,6 +55,7 @@ const props = withDefaults(
         name: Math.random().toString(),
         schema: undefined,
         label: ' ',
+        required: false,
         disabled: false,
         variant: 'secondary',
         size: 'medium',
@@ -59,9 +64,11 @@ const props = withDefaults(
 );
 
 const { value, errors } = useField<string | number | boolean>(props.name);
-const schemaChunks = computed(() => (props.schema as ZodString)?._def.checks || []);
+const schemaChunks = computed(() => (props.schema as ZodString | undefined)?._def.checks);
 const isRequired = computed(
-    () => schemaChunks.value.some((check) => check.kind === 'min' && check.value === 1) || false
+    () =>
+        schemaChunks.value?.some((check) => check.kind === 'min' && check.value === 1) ??
+        props.required
 );
 
 watch(value, (v) => {
