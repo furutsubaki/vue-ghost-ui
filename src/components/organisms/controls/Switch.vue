@@ -118,7 +118,7 @@ if (fieldVal.value == null && model.value != null) {
                         </span>
                     </div>
                 </div>
-                <div class="text">
+                <div class="text" :class="{ required: !label && isRequired }">
                     <slot />
                 </div>
             </label>
@@ -185,12 +185,19 @@ if (fieldVal.value == null && model.value != null) {
         opacity: 0.5;
     }
 
+    /* required(not label) */
+    .text.required::after {
+        left: -0.5em;
+        color: var(--color-status-danger);
+        content: '*';
+    }
+
+    /* hover */
     @media (hover: hover) {
         &:hover {
             color: var(--hover-color);
         }
     }
-
     @media (hover: none) {
         &:active {
             color: var(--hover-color);

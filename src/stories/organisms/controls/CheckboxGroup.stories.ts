@@ -117,6 +117,13 @@ export const PropsRequired: Story = {
     }
 };
 
+export const PropsRequiredByNotLabel: Story = {
+    args: {
+        ...Default.args,
+        required: true
+    }
+};
+
 export const PropsDisabled: Story = {
     args: {
         ...Default.args,
