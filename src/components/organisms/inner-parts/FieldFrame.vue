@@ -134,7 +134,11 @@ defineExpose({ frameRef });
         line-height: 1.5em;
         background-color: var(--color-theme-bg-primary);
         border-color: var(--border-color);
-        transition: height 0.2s;
+        border-radius: 4px;
+        outline: 1px solid transparent;
+        transition:
+            height 0.2s,
+            outline 0.2s;
 
         &::before,
         &::after {
@@ -142,6 +146,7 @@ defineExpose({ frameRef });
             width: var(--start-end-padding);
             border: 1px solid;
             border-color: inherit;
+            transition: border-color 0.2s;
         }
         &::before {
             border-right: 0;
@@ -159,13 +164,13 @@ defineExpose({ frameRef });
             border-color: inherit;
             border-right: 0;
             border-left: 0;
+            transition: border-color 0.2s;
         }
 
         .frame-label {
             position: relative;
             display: flex;
             align-items: center;
-            transition: border-top 0.2s;
             .label-box {
                 display: flex;
                 align-items: center;
@@ -232,6 +237,9 @@ defineExpose({ frameRef });
     }
 
     /* focus */
+    &.is-focus > .frame-box {
+        outline-color: var(--border-color);
+    }
     &:is(.is-inputed, .is-focus) > .frame-box > .frame-label {
         border-top: 0;
 
@@ -240,6 +248,23 @@ defineExpose({ frameRef });
             font-size: var(--font-size-small);
             .label {
                 color: var(--color-theme-text-primary);
+            }
+        }
+    }
+
+    /* hover */
+    @media (hover: hover) {
+        &:hover {
+            .frame-box {
+                outline-color: var(--border-color);
+            }
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            .frame-box {
+                border-color: var(--border-color);
             }
         }
     }
