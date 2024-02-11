@@ -143,6 +143,23 @@ if (fieldVal.value == null && model.value != null) {
         pointer-events: none;
         opacity: 0.5;
     }
+    &.is-checked {
+        .lucide {
+            color: var(--is-checked-lucide-color);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--hover-color);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--hover-color);
+        }
+    }
 }
 
 .label-placeholder {
@@ -196,118 +213,28 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    &.is-checked {
-        .lucide {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-        }
-    }
+    --hover-color: var(--color-theme-active);
+    --is-checked-lucide-color: var(--color-theme-active);
 }
 /* .secondary {
-    &.is-checked {
-        .lucide {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-        }
-    }
+    --hover-color: var(--color-theme-active);
+    --is-checked-lucide-color: var(--color-theme-active);
 } */
 .info {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-info);
-        }
-    }
+    --hover-color: var(--color-status-info);
+    --is-checked-lucide-color: var(--color-status-info);
 }
 .success {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-success);
-        }
-    }
+    --hover-color: var(--color-status-success);
+    --is-checked-lucide-color: var(--color-status-success);
 }
 .warning {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-warning);
-        }
-    }
+    --hover-color: var(--color-status-warning);
+    --is-checked-lucide-color: var(--color-status-warning);
 }
 .danger {
-    &.is-checked {
-        .lucide {
-            color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-danger);
-        }
-    }
+    --hover-color: var(--color-status-danger);
+    --is-checked-lucide-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
 
