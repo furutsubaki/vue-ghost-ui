@@ -94,7 +94,7 @@ if (fieldVal.value == null && model.value != null) {
         class="component-switch"
         :class="[variant, size, { 'is-disabled': disabled, 'is-checked': checked }]"
     >
-        <div v-if="label" class="label-placeholder" :class="{ required: isRequired }">
+        <div v-if="label || isRequired" class="label-placeholder" :class="{ required: isRequired }">
             {{ label }}
         </div>
         <div class="item-label">
