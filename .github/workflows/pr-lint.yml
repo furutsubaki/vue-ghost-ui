@@ -1,0 +1,29 @@
+name: Check the source code
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: npm module install
+        run: pnpm i
+
+      - name: Run Build
+        run: pnpm build
+
+      - name: Run linter
+        run: pnpm lint

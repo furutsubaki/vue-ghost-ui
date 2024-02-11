@@ -1,0 +1,43 @@
+import { fileURLToPath, URL } from 'node:url'
+
+import { defineConfig } from 'vite'
+import { resolve } from 'path';
+import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
+import postcssNesting from "postcss-nesting";
+
+export default defineConfig({
+    build: {
+        lib: {
+            entry: resolve(__dirname, './src/index.ts'),
+            name: 'vue-ghost-ui',
+            fileName: 'index',
+            formats: ['es', 'umd']
+        },
+        rollupOptions: {
+            external: ['vue'],
+            output: {
+                globals: {
+                    vue: 'Vue'
+                },
+                exports: 'named'
+            },
+        }
+    },
+    plugins: [
+        vue(),
+        dts({ exclude: ['src/main.ts'] }),
+    ],
+    resolve: {
+        dedupe: ['vue'],
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            vue: resolve(__dirname, './node_modules/vue'),
+        }
+    },
+    css: {
+        postcss: {
+            plugins: [postcssNesting]
+        }
+    }
+})
