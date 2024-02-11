@@ -103,7 +103,7 @@ onBeforeUnmount(() => {
     width: 100%;
     min-width: 100px;
     line-height: 1.5em;
-    border: 1px solid var(--color-theme-border);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     color: var(--color-theme-text-primary);
     display: grid;
@@ -159,128 +159,46 @@ onBeforeUnmount(() => {
             }
         }
     }
+
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--hover-border-color);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            border-color: var(--hover-border-color);
+        }
+    }
 }
 
-/* variant */
+/* ▼ variant ▼ */
 .primary {
-    border-color: var(--color-theme-active);
-
-    &.is-focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-theme-active);
-        }
-    }
+    --hover-border-color: var(--color-theme-active);
+    --border-color: var(--color-theme-active);
 }
-
 .secondary {
-    border-color: var(--color-theme-border);
-
-    &.is-focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-theme-active);
-        }
-    }
+    --hover-border-color: var(--color-theme-border);
+    --border-color: var(--color-theme-border);
 }
-
 .info {
-    border-color: var(--color-status-info);
-
-    &.is-focus {
-        border-color: var(--color-status-info);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-info);
-        }
-    }
+    --hover-border-color: var(--color-status-info);
+    --border-color: var(--color-status-info);
 }
-
 .success {
-    border-color: var(--color-status-success);
-
-    &.is-focus {
-        border-color: var(--color-status-success);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-success);
-        }
-    }
+    --hover-border-color: var(--color-status-success);
+    --border-color: var(--color-status-success);
 }
-
 .warning {
-    border-color: var(--color-status-warning);
-
-    &.is-focus {
-        border-color: var(--color-status-warning);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-warning);
-        }
-    }
+    --hover-border-color: var(--color-status-warning);
+    --border-color: var(--color-status-warning);
 }
-
 .danger {
-    border-color: var(--color-status-danger);
-
-    &.is-focus {
-        border-color: var(--color-status-danger);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-danger);
-        }
-    }
+    --hover-border-color: var(--color-status-danger);
+    --border-color: var(--color-status-danger);
 }
+/* ▲ variant ▲ */
 
 /* ▼ size ▼ */
 .large {

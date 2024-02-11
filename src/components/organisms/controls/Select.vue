@@ -168,6 +168,7 @@ const onDelete = () => {
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
+        height: var(--height);
         color: var(--color-theme-text-primary);
         background-color: transparent;
         border: 0;
@@ -186,6 +187,7 @@ const onDelete = () => {
             transform: rotateZ(180deg);
         }
     }
+
     @media (hover: hover) {
         /* PC */
         &.is-focus,
@@ -214,126 +216,6 @@ const onDelete = () => {
         .lucide {
             opacity: 0;
             transition: opacity 0.2s;
-        }
-    }
-}
-
-.primary {
-    border-color: var(--color-theme-active);
-
-    &.is-focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.secondary {
-    border-color: var(--color-theme-border);
-
-    &.is-focus {
-        border-color: var(--color-theme-active);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-theme-active);
-        }
-    }
-}
-
-.info {
-    border-color: var(--color-status-info);
-
-    &.is-focus {
-        border-color: var(--color-status-info);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-info);
-        }
-    }
-}
-
-.success {
-    border-color: var(--color-status-success);
-
-    &.is-focus {
-        border-color: var(--color-status-success);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-success);
-        }
-    }
-}
-
-.warning {
-    border-color: var(--color-status-warning);
-
-    &.is-focus {
-        border-color: var(--color-status-warning);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-warning);
-        }
-    }
-}
-
-.danger {
-    border-color: var(--color-status-danger);
-
-    &.is-focus {
-        border-color: var(--color-status-danger);
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            border-color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            border-color: var(--color-status-danger);
         }
     }
 }
