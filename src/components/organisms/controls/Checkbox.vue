@@ -119,7 +119,6 @@ if (fieldVal.value == null && model.value != null) {
                     class="checkbox"
                     type="checkbox"
                     :value="value"
-                    :name="name"
                     :disabled="disabled"
                     :checked="checked"
                     @change="onChange"

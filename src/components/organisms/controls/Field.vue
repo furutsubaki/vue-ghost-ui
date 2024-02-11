@@ -247,7 +247,6 @@ onBeforeUnmount(() => {
                 v-model.trim="formatValue"
                 class="input"
                 :type="fieldType"
-                :name="name"
                 :required="isRequired"
                 :disabled="disabled"
                 placeholder=" "

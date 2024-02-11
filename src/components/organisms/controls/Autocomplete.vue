@@ -263,7 +263,6 @@ const onBlur = (event: Event) => {
                 v-model.trim="value"
                 class="input"
                 :type="type"
-                :name="name"
                 :required="isRequired"
                 :disabled="disabled"
                 @focus="onFocus"
