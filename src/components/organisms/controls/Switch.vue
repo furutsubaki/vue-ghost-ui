@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Ref, computed, watch } from 'vue';
 import { useField } from 'vee-validate';
-import { ZodNumber, ZodString, ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
+import { ZodNullable, ZodBoolean, ZodLiteral } from 'zod';
 
 const model = defineModel<boolean>();
 const props = withDefaults(
@@ -101,7 +101,16 @@ if (fieldVal.value == null && model.value != null) {
                     :checked="checked"
                     @change="onChange"
                 />
-                <div class="switch"></div>
+                <div class="switch">
+                    <div class="switch-icon">
+                        <span v-if="$slots.switchIconTrue && checked" class="switch-icon-true">
+                            <slot name="switchIconTrue" />
+                        </span>
+                        <span v-if="$slots.switchIconFalse && !checked" class="switch-icon-false">
+                            <slot name="switchIconFalse" />
+                        </span>
+                    </div>
+                </div>
                 <div class="text">
                     <slot />
                 </div>
@@ -129,21 +138,37 @@ if (fieldVal.value == null && model.value != null) {
         height: var(--font-size);
         border-radius: 1em;
         background-color: var(--color-theme-border);
-        &::after {
+        .switch-icon {
             position: absolute;
             left: 0;
-            content: '';
             width: var(--font-size);
             height: var(--font-size);
             border-radius: 1em;
             background-color: var(--color-theme-text-secondary);
             transform: scale(1.5);
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .switch-icon-true,
+            .switch-icon-false {
+                transform: scale(0.75);
+                filter: invert(100%) grayscale(100%) contrast(100);
+            }
+            .switch-icon-true {
+                color: var(--switch-icon-true-color);
+            }
+            .switch-icon-false {
+                color: var(--color-theme-text-secondary);
+            }
         }
     }
     &.is-checked {
         .switch {
-            &::after {
+            background-color: var(--switch-background-color);
+            .switch-icon {
+                background-color: var(--switch-icon-background-color);
                 transform: translateX(100%) scale(1.5);
             }
         }
@@ -151,6 +176,18 @@ if (fieldVal.value == null && model.value != null) {
     &.is-disabled {
         pointer-events: none;
         opacity: 0.5;
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            color: var(--hover-color);
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            color: var(--hover-color);
+        }
     }
 }
 
@@ -205,137 +242,40 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    &.is-checked {
-        .switch {
-            background-color: var(--color-theme-active-alpha);
-            &::after {
-                background-color: var(--color-theme-active);
-            }
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-        }
-    }
+    --hover-color: var(--color-theme-active);
+    --switch-icon-true-color: var(--color-theme-active);
+    --switch-background-color: var(--color-theme-active-alpha);
+    --switch-icon-background-color: var(--color-theme-active);
 }
-/* .secondary {
-    &.is-checked {
-        .switch{
-            background-color: var(--color-theme-active-alpha);
-            &::after {
-            background-color: var(--color-theme-active);
-            }
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-theme-active);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-theme-active);
-        }
-    }
-} */
+.secondary {
+    --hover-color: var(--color-theme-text-primary);
+    --switch-icon-true-color: var(--color-theme-text-primary);
+    --switch-background-color: var(--color-theme-border);
+    --switch-icon-background-color: var(--color-theme-text-primary);
+}
 .info {
-    &.is-checked {
-        .switch {
-            background-color: var(--color-status-info-alpha);
-            &::after {
-                background-color: var(--color-status-info);
-            }
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-info);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-info);
-        }
-    }
+    --hover-color: var(--color-status-info);
+    --switch-icon-true-color: var(--color-status-info);
+    --switch-background-color: var(--color-status-info-alpha);
+    --switch-icon-background-color: var(--color-status-info);
 }
 .success {
-    &.is-checked {
-        .switch {
-            background-color: var(--color-status-success-alpha);
-            &::after {
-                background-color: var(--color-status-success);
-            }
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-success);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-success);
-        }
-    }
+    --hover-color: var(--color-status-success);
+    --switch-icon-true-color: var(--color-status-success);
+    --switch-background-color: var(--color-status-success-alpha);
+    --switch-icon-background-color: var(--color-status-success);
 }
 .warning {
-    &.is-checked {
-        .switch {
-            background-color: var(--color-status-warning-alpha);
-            &::after {
-                background-color: var(--color-status-warning);
-            }
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-warning);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-warning);
-        }
-    }
+    --hover-color: var(--color-status-warning);
+    --switch-icon-true-color: var(--color-status-warning);
+    --switch-background-color: var(--color-status-warning-alpha);
+    --switch-icon-background-color: var(--color-status-warning);
 }
 .danger {
-    &.is-checked {
-        .switch {
-            background-color: var(--color-status-danger-alpha);
-
-            &::after {
-                background-color: var(--color-status-danger);
-            }
-        }
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            color: var(--color-status-danger);
-        }
-    }
-
-    @media (hover: none) {
-        &:active {
-            color: var(--color-status-danger);
-        }
-    }
+    --hover-color: var(--color-status-danger);
+    --switch-icon-true-color: var(--color-status-danger);
+    --switch-background-color: var(--color-status-danger-alpha);
+    --switch-icon-background-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
 

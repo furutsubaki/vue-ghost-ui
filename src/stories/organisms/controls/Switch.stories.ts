@@ -2,6 +2,7 @@ import Switch from '@/components/organisms/controls/Switch.vue';
 import useFormData from '@/composables/useFormData';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { literal, object } from 'zod';
+import { X as IconX, Check as IconCheck } from 'lucide-vue-next';
 
 const TEST_SCHEMA = object({
     test: literal(true)
@@ -15,11 +16,12 @@ const meta: Meta<typeof Switch> = {
             useFormData(TEST_SCHEMA, { test: false });
             return { args };
         },
-        template: '<Switch v-bind="args">規約に同意</Switch>'
+        template: '<Switch v-bind="args">{{ args.default }}</Switch>'
     }),
     tags: ['autodocs'],
     args: {
-        modelValue: false
+        modelValue: false,
+        default: '規約に同意'
     },
     argTypes: {
         // TODO: 現状lintエラーの回避策なし
@@ -108,6 +110,43 @@ export const PropsDisabled: Story = {
         ...Default.args,
         disabled: true
     }
+};
+
+export const PropsSlot: Story = {
+    args: {
+        ...Default.args
+    },
+    render: (args) => ({
+        components: { Switch, IconX, IconCheck },
+        setup: () => ({ args }),
+        template: (() => {
+            return [
+                {
+                    variant: 'primary'
+                },
+                {
+                    variant: 'secondary'
+                },
+                {
+                    variant: 'info'
+                },
+                {
+                    variant: 'success'
+                },
+                {
+                    variant: 'warning'
+                },
+                {
+                    variant: 'danger'
+                }
+            ]
+                .map(
+                    (param) =>
+                        `<Switch variant="${param.variant}" v-bind="args">${param.variant}<template #switchIconTrue><IconCheck /></template><template #switchIconFalse><IconX /></template></Switch>`
+                )
+                .join('');
+        })()
+    })
 };
 
 export const Schema: Story = {
