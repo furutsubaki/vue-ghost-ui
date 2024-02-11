@@ -134,7 +134,6 @@ const onDelete = () => {
             <div
                 class="select"
                 :class="{ 'is-focus': isOpen }"
-                :name="name"
                 :disabled="disabled"
                 @click="isOpen = !isOpen"
             >

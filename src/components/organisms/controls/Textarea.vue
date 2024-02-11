@@ -156,7 +156,6 @@ onMounted(() => {
                 ref="textareaRef"
                 v-model="value"
                 class="textarea"
-                :name="name"
                 :required="isRequired"
                 :disabled="disabled"
                 @focus="isFocus = true"

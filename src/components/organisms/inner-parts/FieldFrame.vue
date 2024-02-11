@@ -99,28 +99,32 @@ defineExpose({ frameRef });
             }
         ]"
     >
-        <div ref="frameRef" class="frame-box">
-            <div class="frame-start" />
-            <div class="frame-label">
-                <div class="label-box">
-                    <span v-if="label || required" class="label">{{ label }}</span
-                    ><span v-if="placeholder" class="placeholder">（例：{{ placeholder }}）</span>
+        <div class="frame">
+            <div ref="frameRef" class="frame-box">
+                <div class="frame-start" />
+                <div class="frame-label">
+                    <div class="label-box">
+                        <span v-if="label || required" class="label">{{ label }}</span
+                        ><span v-if="placeholder" class="placeholder"
+                            >（例：{{ placeholder }}）</span
+                        >
+                    </div>
                 </div>
+                <div class="frame-grow" />
+                <div class="frame-counter">
+                    <InputTextCounter
+                        v-if="maxLength"
+                        class="counter"
+                        :text="value as string"
+                        :max="maxLength"
+                    />
+                </div>
+                <div class="frame-end" />
             </div>
-            <div class="frame-grow" />
-            <div class="frame-counter">
-                <InputTextCounter
-                    v-if="maxLength"
-                    class="counter"
-                    :text="value as string"
-                    :max="maxLength"
-                />
-            </div>
-            <div class="frame-end" />
+            <component :is="bodyTag" class="frame-body">
+                <slot />
+            </component>
         </div>
-        <component :is="bodyTag" class="frame-body">
-            <slot />
-        </component>
         <template v-if="isErrorMessage">
             <div v-for="error in errors" :key="error" class="error">{{ error }}</div>
         </template>
@@ -283,7 +287,7 @@ defineExpose({ frameRef });
     }
 
     /* required */
-    &.is-required > .frame-box > .frame-label > .label-box > .label {
+    &.is-required > .frame > .frame-box > .frame-label > .label-box > .label {
         &::after {
             left: -0.5em;
             color: var(--color-status-danger);
@@ -311,7 +315,7 @@ defineExpose({ frameRef });
             }
         }
     }
-    &:is(.is-inputed, .is-focus) > .frame-box > .frame-label {
+    &:is(.is-inputed, .is-focus) > .frame > .frame-box > .frame-label {
         border-top-color: transparent;
         &::before {
             border-top-color: transparent;

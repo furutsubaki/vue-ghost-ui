@@ -117,7 +117,6 @@ if (fieldVal.value == null && model.value != null) {
                     class="radio"
                     type="radio"
                     :value="value"
-                    :name="name"
                     :disabled="disabled"
                     :checked="checked"
                     @change="onChange"
