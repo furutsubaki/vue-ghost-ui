@@ -36,6 +36,10 @@ withDefaults(
          */
         isFocus?: boolean;
         /**
+         * 強制入力状態
+         */
+        forceInputed?: boolean;
+        /**
          * 最大文字数
          */
         maxLength?: number | null;
@@ -65,6 +69,7 @@ withDefaults(
         size: 'medium',
         shape: 'normal',
         isFocus: false,
+        forceInputed: false,
         line: 1,
         maxLength: null,
         value: '',
@@ -89,12 +94,13 @@ defineExpose({ frameRef });
             {
                 'is-focus': isFocus,
                 'is-required': required,
-                'is-inputed': value != null && value !== '',
+                'is-inputed': forceInputed || (value != null && value !== ''),
                 'is-disabled': disabled
             }
         ]"
     >
         <div ref="frameRef" class="frame-box">
+            <div class="frame-start" />
             <div class="frame-label">
                 <div class="label-box">
                     <span v-if="label || required" class="label">{{ label }}</span
@@ -110,6 +116,7 @@ defineExpose({ frameRef });
                     :max="maxLength"
                 />
             </div>
+            <div class="frame-end" />
         </div>
         <component :is="bodyTag" class="frame-body">
             <slot />
@@ -123,6 +130,7 @@ defineExpose({ frameRef });
 <style scoped>
 .component-input-frame {
     --start-end-padding: 16px;
+    --border-width: 1px;
     position: relative;
     min-width: 100px;
     min-height: var(--height);
@@ -141,51 +149,93 @@ defineExpose({ frameRef });
         background-color: var(--color-theme-bg-primary);
         border-color: var(--border-color);
         border-radius: 4px;
-        outline: 1px solid transparent;
-        transition:
-            height 0.2s,
-            outline 0.2s;
+        transition: height 0.2s;
 
-        &::before,
-        &::after {
-            content: '';
+        .frame-start,
+        .frame-end {
+            position: relative;
             width: var(--start-end-padding);
-            border: 1px solid;
+            border-style: solid;
             border-color: inherit;
+            border-width: var(--border-width);
             transition: border-color 0.2s;
             flex-shrink: 0;
+            &::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                height: calc(100% + 4px);
+                width: calc(100% + 2px);
+                border: solid 2px transparent;
+                transition: border-color 0.2s;
+            }
         }
-        &::before {
+        .frame-start {
             border-right: 0;
             border-radius: 4px 0 0 4px;
+            &::before {
+                left: -2px;
+                border-radius: 4px 0 0 4px;
+                border-right: 0;
+            }
         }
-        &::after {
+        .frame-end {
             border-left: 0;
             border-radius: 0 4px 4px 0;
+            &::before {
+                right: -2px;
+                border-radius: 0 4px 4px 0;
+                border-left: 0;
+            }
         }
 
         .frame-label,
         .frame-grow,
         .frame-counter {
-            border: 1px solid;
+            position: relative;
+            border-style: solid;
             border-color: inherit;
+            border-width: var(--border-width);
             border-right: 0;
             border-left: 0;
-            transition: border-color 0.2s;
+            transition: border-width 0.2s;
             flex-shrink: 0;
+            &::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: 0;
+                height: calc(100% + 4px);
+                width: 100%;
+                border: solid 2px transparent;
+                border-right: 0;
+                border-left: 0;
+                transition: border-color 0.2s;
+            }
         }
 
         .frame-label {
             position: relative;
             display: flex;
             align-items: center;
+            transition:
+                border-color 0.2s,
+                border-top-color 0.2s;
+            &::before {
+                transition:
+                    border-color 0.2s,
+                    border-top-color 0.2s;
+            }
             .label-box {
                 display: flex;
                 align-items: center;
                 height: 100%;
-                transition: 0.2s;
                 pointer-events: none;
                 transform: translateY(calc(-50% + (var(--height) / 2) - 1px));
+                transition:
+                    transform 0.2s,
+                    font-size 0.2s,
+                    color 0.2s;
                 .label {
                     transition: color 0.2s;
                     color: var(--color-theme-text-secondary);
@@ -209,7 +259,10 @@ defineExpose({ frameRef });
         }
 
         .frame-counter {
-            border-top: 0;
+            border-top-color: transparent !important;
+            &::before {
+                border-top-color: transparent !important;
+            }
             .counter {
                 pointer-events: none;
                 transform: translateY(-50%);
@@ -245,11 +298,24 @@ defineExpose({ frameRef });
     }
 
     /* focus */
-    &.is-focus > .frame-box {
-        outline-color: var(--border-color);
+    &.is-focus {
+        .frame-box {
+            .frame-start,
+            .frame-end,
+            .frame-label,
+            .frame-grow,
+            .frame-counter {
+                &::before {
+                    border-color: var(--border-color);
+                }
+            }
+        }
     }
     &:is(.is-inputed, .is-focus) > .frame-box > .frame-label {
-        border-top: 0;
+        border-top-color: transparent;
+        &::before {
+            border-top-color: transparent;
+        }
 
         > .label-box {
             transform: translateY(-50%);
@@ -264,15 +330,46 @@ defineExpose({ frameRef });
     @media (hover: hover) {
         &:hover {
             .frame-box {
-                outline-color: var(--border-color);
+                .frame-start,
+                .frame-end,
+                .frame-label,
+                .frame-grow,
+                .frame-counter {
+                    &::before {
+                        border-color: var(--border-color);
+                    }
+                }
+            }
+            &:is(.is-inputed, .is-focus) {
+                .frame-box {
+                    .frame-label {
+                        &::before {
+                            border-top-color: transparent;
+                        }
+                    }
+                }
             }
         }
     }
-
     @media (hover: none) {
         &:active {
             .frame-box {
-                border-color: var(--border-color);
+                .frame-start,
+                .frame-end,
+                .frame-label,
+                .frame-grow,
+                .frame-counter {
+                    --border-width: 2px;
+                }
+            }
+            &:is(.is-inputed, .is-focus) {
+                .frame-box {
+                    .frame-label {
+                        &::before {
+                            border-top-color: transparent;
+                        }
+                    }
+                }
             }
         }
     }

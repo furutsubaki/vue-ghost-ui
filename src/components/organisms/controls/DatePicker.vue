@@ -107,7 +107,7 @@ const setDayClass = (date: string) => {
             :disabled="disabled"
             :variant="variant"
             :shape="shape"
-            :is-focus="true"
+            :force-inputed="true"
             :value="value"
             :isErrorMessage="isErrorMessage"
             :errors="errors"
