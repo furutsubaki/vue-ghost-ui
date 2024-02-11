@@ -1,6 +1,6 @@
 import '@acab/reset.css';
-import '@/assets/css/style.css';
 import '@/assets/css/variables.css';
+import '@/assets/css/override.css';
 
 import type { Component, App } from 'vue';
 import useFormData from '@/composables/useFormData';

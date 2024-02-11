@@ -30,7 +30,6 @@ pnpm i -D vue-ghost-ui zod
 
 ```ts
 import VueGhostUi, { useFormData } from 'vue-ghost-ui';
-import 'vue-ghost-ui/dist/style.css';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(VueGhostUi);

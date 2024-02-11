@@ -1,8 +1,8 @@
 import { Preview, setup } from '@storybook/vue3'
 import { useArgs } from '@storybook/preview-api'
 import '@acab/reset.css'
-import '../src/assets/css/style.css'
 import '../src/assets/css/variables.css'
+import '../src/assets/css/override.css'
 
 import { defineRule } from 'vee-validate';
 import * as AllRules from '@vee-validate/rules'
