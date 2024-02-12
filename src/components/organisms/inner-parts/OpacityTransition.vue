@@ -17,7 +17,7 @@ withDefaults(
     {
         duration: '0.2s',
         delay: '0s',
-        easeFunction: 'ease'
+        easeFunction: 'ease-in-out'
     }
 );
 
@@ -50,7 +50,7 @@ const onTransitionEnd = () => {
 .v-enter-active,
 .v-leave-active {
     /* 親側のopacityと競合する場合があるため、こちらを優先とする */
-    transition: opacity v-bind(duration) v-bind(delay) v-bind(easeFunction) !important;
+    transition: opacity v-bind(duration) v-bind(easeFunction) v-bind(delay) !important;
 }
 .v-enter-from,
 .v-leave-to {
