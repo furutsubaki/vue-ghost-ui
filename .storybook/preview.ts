@@ -55,9 +55,31 @@ const preview: Preview = {
 
             return {
                 components: { story },
-                template: '<main style="display: flex; gap:16px; flex-wrap: wrap;"><story /></main>',
+                template: '<main style="display: flex; align-items: flex-start; gap:16px; flex-wrap: wrap; width: 100%;"><story /></main>',
             };
-        }
+        },
+        (story, context) => {
+            // v-model調整
+
+            const [args, updateArgs] = useArgs();
+            if ('modelValue' in args) {
+                const update = args['onUpdate:model-value'] || args['onUpdate:modelValue'];
+                args['onUpdate:model-value'] = undefined;
+                args['onUpdate:modelValue'] = (...vals) => {
+                    update?.(...vals);
+                    /**
+                     * Arg with `undefined` will be deleted by `deleteUndefined()`, then loss of reactive
+                     * @see {@link https://github.com/storybookjs/storybook/blob/next/code/lib/preview-api/src/modules/store/ArgsStore.ts#L63}
+                     */
+                    const modelValue = vals[0] === undefined ? null : vals[0];
+                    updateArgs({ modelValue });
+                };
+            }
+
+            return {
+                ...story({ ...context, updateArgs })
+            };
+        },
     ]
 }
 
