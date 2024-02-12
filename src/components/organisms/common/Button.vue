@@ -1,5 +1,5 @@
 <script setup lang="ts">
-withDefaults(
+const props = withDefaults(
     defineProps<{
         /**
          * 表示色
@@ -12,28 +12,46 @@ withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'rounded' | 'circle' | 'square';
+        shape?: 'normal' | 'rounded' | 'circle' | 'square' | 'skeleton' | 'link';
+        /**
+         * 読み取り専用
+         */
+        readonly?: boolean;
+        /**
+         * 無効か
+         */
+        disabled?: boolean;
     }>(),
     {
         variant: 'secondary',
         size: 'medium',
-        shape: 'normal'
+        shape: 'normal',
+        readonly: false,
+        disabled: false
     }
 );
-defineEmits<{
+const emit = defineEmits<{
     /**
      * test
      */
     click: [];
 }>();
+
+const onClick = () => {
+    if (props.readonly) {
+        return false;
+    }
+    emit('click');
+};
 </script>
 
 <template>
     <button
         type="button"
         class="component-button"
-        :class="[variant, size, shape]"
-        @click="$emit('click')"
+        :disabled="disabled"
+        :class="[variant, size, shape, { 'is-readonly': readonly }]"
+        @click="onClick"
     >
         <slot></slot>
     </button>
@@ -61,11 +79,15 @@ defineEmits<{
         background-color 0.2s,
         border-color 0.2s,
         opacity 0.2s;
+    &.is-readonly {
+        pointer-events: none;
+    }
     &:disabled {
         pointer-events: none;
         opacity: 0.5;
     }
 
+    /* hover */
     @media (hover: hover) {
         &:hover {
             color: var(--hover-color);
@@ -73,7 +95,6 @@ defineEmits<{
             border-color: var(--hover-border-color);
         }
     }
-
     @media (hover: none) {
         &:active {
             color: var(--hover-color);
@@ -173,6 +194,51 @@ defineEmits<{
     min-width: auto;
     width: var(--height);
     word-break: keep-all;
+}
+.skeleton {
+    border: 0;
+    min-width: initial;
+    @media (hover: hover) {
+        &:hover {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+}
+.link {
+    display: inline-block;
+    border: 0;
+    min-width: initial;
+    min-height: initial;
+    padding: 0;
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-theme-link);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            color: var(--color-theme-link);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
 }
 /* ▲ shape ▲ */
 </style>
