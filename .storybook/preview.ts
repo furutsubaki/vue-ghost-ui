@@ -55,7 +55,7 @@ const preview: Preview = {
 
             return {
                 components: { story },
-                template: '<main style="display: flex; gap:16px; flex-wrap: wrap;"><story /></main>',
+                template: '<main style="display: flex; align-items: flex-start; gap:16px; flex-wrap: wrap; width: 100%;"><story /></main>',
             };
         },
         (story, context) => {
