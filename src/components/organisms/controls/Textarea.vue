@@ -173,8 +173,8 @@ onMounted(() => {
 <style scoped>
 .component-textarea {
     width: 100%;
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-textarea-height);
+    font-size: var(--c-textarea-font-size);
 
     :deep(.component-input-frame) {
         .frame-box {
@@ -225,7 +225,7 @@ onMounted(() => {
         }
     }
     .clearable-box {
-        width: var(--font-size);
+        width: var(--c-textarea-font-size);
         margin-bottom: auto;
         padding-top: 8px;
         .lucide {
@@ -237,16 +237,16 @@ onMounted(() => {
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-textarea-height: 40px;
+    --c-textarea-font-size: var(--font-size-large);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-medium);
+    --c-textarea-height: 32px;
+    --c-textarea-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-textarea-height: 24px;
+    --c-textarea-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 

@@ -21,11 +21,11 @@ const props = withDefaults(
          */
         shape?: 'normal' | 'rounded' | 'no-radius';
         /**
-         * 形状
+         * 位置
          */
         position?: 'center' | 'top' | 'right' | 'bottom' | 'left';
         /**
-         * 形状
+         * 表示元
          */
         transitionFrom?: 'opacity' | 'top' | 'right' | 'bottom' | 'left';
         /**
@@ -154,7 +154,7 @@ const hasSlot = (name: string) => {
 }
 
 .dialog {
-    min-height: var(--height);
+    min-height: var(--c-dialog-height);
 
     pointer-events: initial;
     position: fixed;
@@ -162,20 +162,20 @@ const hasSlot = (name: string) => {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: var(--width);
+    width: var(--c-dialog-width);
     max-width: 80vw;
     max-height: 80vh;
     padding: 8px;
     border: 1px solid;
-    border-radius: var(--border-radius);
-    border-color: var(--border-color);
+    border-radius: var(--c-dialog-border-radius);
+    border-color: var(--c-dialog-border-color);
     transition:
         border-color 0.2s,
         opacity 0.2s;
 
     .title {
         font-weight: bold;
-        font-size: calc(var(--font-size) * 1.2);
+        font-size: calc(var(--font-size-medium) * 1.2);
     }
 
     .box {
@@ -203,34 +203,28 @@ const hasSlot = (name: string) => {
 
 /* ▼ variant ▼ */
 .primary {
-    --color: var(--color-base-white);
-    --background-color: var(--color-theme-active-alpha);
-    --border-color: var(--color-theme-active);
+    --c-dialog-background-color: var(--color-theme-active-alpha);
+    --c-dialog-border-color: var(--color-theme-active);
 }
 .secondary {
-    --color: var(--color-theme-text-primary);
-    --background-color: transparent;
-    --border-color: var(--color-theme-border);
+    --c-dialog-background-color: transparent;
+    --c-dialog-border-color: var(--color-theme-border);
 }
 .info {
-    --color: var(--color-theme-text-primary);
-    --background-color: var(--color-status-info-alpha);
-    --border-color: var(--color-status-info);
+    --c-dialog-background-color: var(--color-status-info-alpha);
+    --c-dialog-border-color: var(--color-status-info);
 }
 .success {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-success-alpha);
-    --border-color: var(--color-status-success);
+    --c-dialog-background-color: var(--color-status-success-alpha);
+    --c-dialog-border-color: var(--color-status-success);
 }
 .warning {
-    --color: var(--color-base-black);
-    --background-color: var(--color-status-warning-alpha);
-    --border-color: var(--color-status-warning);
+    --c-dialog-background-color: var(--color-status-warning-alpha);
+    --c-dialog-border-color: var(--color-status-warning);
 }
 .danger {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-danger-alpha);
-    --border-color: var(--color-status-danger);
+    --c-dialog-background-color: var(--color-status-danger-alpha);
+    --c-dialog-border-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
 
@@ -238,58 +232,63 @@ const hasSlot = (name: string) => {
 .full {
     max-width: initial;
     max-height: initial;
-    --width: 100vw;
-    --height: 100vh;
+    --c-dialog-width: 100vw;
+    --c-dialog-height: 100vh;
 }
 .large {
-    --width: 1024px;
-    --height: 40px;
+    --c-dialog-width: 1024px;
+    --c-dialog-height: 40px;
 }
 .medium {
-    --width: 720px;
-    --height: 32px;
+    --c-dialog-width: 720px;
+    --c-dialog-height: 32px;
 }
 .small {
-    --width: 320px;
-    --height: 24px;
+    --c-dialog-width: 320px;
+    --c-dialog-height: 24px;
 }
 /* ▲ size ▲ */
 
 /* ▼ shape ▼ */
 .normal {
-    --border-radius: 4px;
+    --c-dialog-border-radius: 4px;
 }
 .rounded {
-    --border-radius: 2em;
+    --c-dialog-border-radius: 2em;
 }
 .no-radius {
-    --border-radius: 0;
+    --c-dialog-border-radius: 0;
 }
 /* ▲ shape ▲ */
 
 /* ▼ position ▼ */
 .center {
     inset: 0;
+    margin: auto;
 }
 .top {
-    top: 0;
+    inset: 0;
+    bottom: auto;
     border-top: 0;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-radius: 0 0 var(--c-dialog-border-radius) var(--c-dialog-border-radius);
 }
 .right {
-    right: 0;
+    inset: 0;
+    left: auto;
     border-right: 0;
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    border-radius: var(--c-dialog-border-radius) 0 0 var(--c-dialog-border-radius);
 }
 .bottom {
-    bottom: 0;
+    inset: 0;
+    top: auto;
     border-bottom: 0;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-radius: var(--c-dialog-border-radius) var(--c-dialog-border-radius) 0 0;
 }
 .left {
-    left: 0;
+    inset: 0;
+    right: auto;
     border-left: 0;
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    border-radius: 0 var(--c-dialog-border-radius) var(--c-dialog-border-radius) 0;
 }
 /* ▲ position ▲ */
 </style>

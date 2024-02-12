@@ -84,85 +84,81 @@ const strokeDashoffset = computed(
             />
         </svg>
         <slot v-if="hasSlot('default')" />
-        <div class="ratio" v-else-if="!noText">{{ progressFullRatio }}%</div>
+        <div class="ratio" v-else-if="!noText && shape !== 'slim-line'">
+            {{ progressFullRatio }}%
+        </div>
     </div>
 </template>
 
 <style scoped>
 .component-progress {
-    font-size: var(--font-size);
+    font-size: var(--c-progress-font-size);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: var(--font-size);
+    height: var(--c-progress-font-size);
     word-break: keep-all;
     pointer-events: none;
 }
 
 .primary {
-    --color: var(--color-base-white);
-    --background-color: var(--color-theme-active);
+    --c-progress-background-color: var(--color-theme-active);
 }
 
 .secondary {
-    --color: var(--color-theme-text-primary);
-    --background-color: var(--color-theme-text-secondary);
+    --c-progress-background-color: var(--color-theme-text-secondary);
 }
 
 .info {
-    --color: var(--color-theme-text-primary);
-    --background-color: var(--color-status-info);
+    --c-progress-background-color: var(--color-status-info);
 }
 
 .success {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-success);
+    --c-progress-background-color: var(--color-status-success);
 }
 
 .warning {
-    --color: var(--color-base-black);
-    --background-color: var(--color-status-warning);
+    --c-progress-background-color: var(--color-status-warning);
 }
 
 .danger {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-danger);
+    --c-progress-background-color: var(--color-status-danger);
 }
 
 /* ▼ size ▼ */
 .large {
-    --circle-size: 160px;
-    --font-size: var(--font-size-large);
-    --border-width: calc(var(--font-size) / 3);
+    --c-progress-circle-size: 160px;
+    --c-progress-font-size: var(--font-size-large);
+    --c-progress-border-width: calc(var(--c-progress-font-size) / 3);
     .progress-circle {
         .circle-underlay,
         .circle-overlay {
-            stroke-width: calc(var(--border-width) / 3);
+            stroke-width: calc(var(--c-progress-border-width) / 3);
         }
     }
 }
 
 .medium {
-    --circle-size: 80px;
-    --font-size: var(--font-size-medium);
-    --border-width: calc(var(--font-size) / 3);
+    --c-progress-circle-size: 80px;
+    --c-progress-font-size: var(--font-size-medium);
+    --c-progress-border-width: calc(var(--c-progress-font-size) / 3);
     .progress-circle {
         .circle-underlay,
         .circle-overlay {
-            stroke-width: calc(var(--border-width) / 2);
+            stroke-width: calc(var(--c-progress-border-width) / 2);
         }
     }
 }
 
 .small {
-    --circle-size: 40px;
-    --font-size: var(--font-size-small);
-    --border-width: calc(var(--font-size) / 3);
+    --c-progress-circle-size: 40px;
+    --c-progress-font-size: var(--font-size-small);
+    --c-progress-border-width: calc(var(--c-progress-font-size) / 3);
     .progress-circle {
         .circle-underlay,
         .circle-overlay {
-            stroke-width: calc(var(--border-width) / 1);
+            stroke-width: calc(var(--c-progress-border-width) / 1);
         }
     }
 }
@@ -177,11 +173,11 @@ const strokeDashoffset = computed(
         width: 100%;
         position: relative;
         background-color: var(--color-theme-border);
-        height: var(--border-width);
+        height: var(--c-progress-border-width);
         border-radius: 1em;
         &::before {
             content: '';
-            background-color: var(--background-color);
+            background-color: var(--c-progress-background-color);
             width: v-bind(progressFullRatio + '%');
             height: 100%;
             border-radius: 1em;
@@ -200,8 +196,8 @@ const strokeDashoffset = computed(
 }
 .circle {
     min-width: 50px;
-    width: var(--circle-size);
-    height: var(--circle-size);
+    width: var(--c-progress-circle-size);
+    height: var(--c-progress-circle-size);
     .ratio {
         position: absolute;
         margin: auto;
@@ -213,7 +209,7 @@ const strokeDashoffset = computed(
             color: var(--color-theme-border);
         }
         .circle-overlay {
-            color: var(--background-color);
+            color: var(--c-progress-background-color);
             transition: stroke-dashoffset 0.2s;
         }
     }

@@ -1,21 +1,7 @@
 @charset "utf-8";
 
 /* lucideのオーバーライド */
-.large {
-    .lucide {
-        width: var(--font-size-large);
-        height: var(--font-size-large);
-    }
-}
-.medium {
-    .lucide {
-        width: var(--font-size-medium);
-        height: var(--font-size-medium);
-    }
-}
-.small {
-    .lucide {
-        width: var(--font-size-small);
-        height: var(--font-size-small);
-    }
+.lucide {
+    width: var(--font-size-medium);
+    height: var(--font-size-medium);
 }

@@ -105,8 +105,8 @@ const onClosed = async () => {
 
 <style scoped>
 .component-alert {
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-alert-height);
+    font-size: var(--c-alert-font-size);
 
     display: flex;
     gap: 8px;
@@ -114,11 +114,11 @@ const onClosed = async () => {
     min-width: 100px;
     width: 100%;
     padding: 8px;
-    color: var(--color);
-    background-color: var(--background-color);
+    color: var(--c-alert-color);
+    background-color: var(--c-alert-background-color);
     border: 1px solid;
     border-radius: 4px;
-    border-color: var(--border-color);
+    border-color: var(--c-alert-border-color);
     word-break: keep-all;
     transition:
         color 0.2s,
@@ -128,8 +128,8 @@ const onClosed = async () => {
 
     .icon {
         flex-shrink: 0;
-        width: calc(var(--font-size) * 1.8);
-        height: calc(var(--font-size) * 1.8);
+        width: calc(var(--c-alert-font-size) * 1.8);
+        height: calc(var(--c-alert-font-size) * 1.8);
     }
 
     .box {
@@ -139,66 +139,66 @@ const onClosed = async () => {
         gap: 8px;
         .title {
             font-weight: bold;
-            font-size: calc(var(--font-size) * 1.2);
+            font-size: calc(var(--c-alert-font-size) * 1.2);
         }
     }
 
     .closeable-box {
-        width: var(--font-size);
+        width: var(--c-alert-font-size);
         flex-shrink: 0;
     }
 }
 
 .primary {
-    --color: var(--color-base-white);
-    --background-color: var(--color-theme-active-alpha);
-    --border-color: var(--color-theme-active);
+    --c-alert-color: var(--color-base-white);
+    --c-alert-background-color: var(--color-theme-active-alpha);
+    --c-alert-border-color: var(--color-theme-active);
 }
 
 .secondary {
-    --color: var(--color-theme-text-primary);
-    --background-color: transparent;
-    --border-color: var(--color-theme-border);
+    --c-alert-color: var(--color-theme-text-primary);
+    --c-alert-background-color: transparent;
+    --c-alert-border-color: var(--color-theme-border);
 }
 
 .info {
-    --color: var(--color-theme-text-primary);
-    --background-color: var(--color-status-info-alpha);
-    --border-color: var(--color-status-info);
+    --c-alert-color: var(--color-theme-text-primary);
+    --c-alert-background-color: var(--color-status-info-alpha);
+    --c-alert-border-color: var(--color-status-info);
 }
 
 .success {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-success-alpha);
-    --border-color: var(--color-status-success);
+    --c-alert-color: var(--color-base-white);
+    --c-alert-background-color: var(--color-status-success-alpha);
+    --c-alert-border-color: var(--color-status-success);
 }
 
 .warning {
-    --color: var(--color-base-black);
-    --background-color: var(--color-status-warning-alpha);
-    --border-color: var(--color-status-warning);
+    --c-alert-color: var(--color-base-black);
+    --c-alert-background-color: var(--color-status-warning-alpha);
+    --c-alert-border-color: var(--color-status-warning);
 }
 
 .danger {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-danger-alpha);
-    --border-color: var(--color-status-danger);
+    --c-alert-color: var(--color-base-white);
+    --c-alert-background-color: var(--color-status-danger-alpha);
+    --c-alert-border-color: var(--color-status-danger);
 }
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-alert-height: 40px;
+    --c-alert-font-size: var(--font-size-large);
 }
 
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-medium);
+    --c-alert-height: 32px;
+    --c-alert-font-size: var(--font-size-medium);
 }
 
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-alert-height: 24px;
+    --c-alert-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 

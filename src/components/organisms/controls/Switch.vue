@@ -133,22 +133,22 @@ if (fieldVal.value == null && model.value != null) {
     position: relative;
     text-align: left;
     display: block;
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-switch-height);
+    font-size: var(--c-switch-font-size);
     :where(.checkbox) {
         display: none;
     }
     :where(.switch) {
         position: relative;
-        width: calc(var(--font-size) * 2);
-        height: var(--font-size);
+        width: calc(var(--c-switch-font-size) * 2);
+        height: var(--c-switch-font-size);
         border-radius: 1em;
         background-color: var(--color-theme-border);
         .switch-icon {
             position: absolute;
             left: 0;
-            width: var(--font-size);
-            height: var(--font-size);
+            width: var(--c-switch-font-size);
+            height: var(--c-switch-font-size);
             border-radius: 1em;
             background-color: var(--color-theme-text-secondary);
             transform: scale(1.5);
@@ -163,7 +163,7 @@ if (fieldVal.value == null && model.value != null) {
                 filter: invert(100%) grayscale(100%) contrast(100);
             }
             .switch-icon-true {
-                color: var(--switch-icon-true-color);
+                color: var(--c-switch-switch-icon-true-color);
             }
             .switch-icon-false {
                 color: var(--color-theme-text-secondary);
@@ -172,9 +172,9 @@ if (fieldVal.value == null && model.value != null) {
     }
     &.is-checked {
         .switch {
-            background-color: var(--switch-background-color);
+            background-color: var(--c-switch-switch-background-color);
             .switch-icon {
-                background-color: var(--switch-icon-background-color);
+                background-color: var(--c-switch-switch-icon-background-color);
                 transform: translateX(100%) scale(1.5);
             }
         }
@@ -194,12 +194,12 @@ if (fieldVal.value == null && model.value != null) {
     /* hover */
     @media (hover: hover) {
         &:hover {
-            color: var(--hover-color);
+            color: var(--c-switch-hover-color);
         }
     }
     @media (hover: none) {
         &:active {
-            color: var(--hover-color);
+            color: var(--c-switch-hover-color);
         }
     }
 }
@@ -239,7 +239,7 @@ if (fieldVal.value == null && model.value != null) {
         align-items: center;
         justify-content: flex-start;
         line-height: 1.5em;
-        min-height: var(--height);
+        min-height: var(--c-switch-height);
         transition:
             color 0.2s,
             background-color 0.2s,
@@ -255,55 +255,55 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    --hover-color: var(--color-theme-active);
-    --switch-icon-true-color: var(--color-theme-active);
-    --switch-background-color: var(--color-theme-active-alpha);
-    --switch-icon-background-color: var(--color-theme-active);
+    --c-switch-hover-color: var(--color-theme-active);
+    --c-switch-switch-icon-true-color: var(--color-theme-active);
+    --c-switch-switch-background-color: var(--color-theme-active-alpha);
+    --c-switch-switch-icon-background-color: var(--color-theme-active);
 }
 .secondary {
-    --hover-color: var(--color-theme-text-primary);
-    --switch-icon-true-color: var(--color-theme-text-primary);
-    --switch-background-color: var(--color-theme-border);
-    --switch-icon-background-color: var(--color-theme-text-primary);
+    --c-switch-hover-color: var(--color-theme-text-primary);
+    --c-switch-switch-icon-true-color: var(--color-theme-text-primary);
+    --c-switch-switch-background-color: var(--color-theme-border);
+    --c-switch-switch-icon-background-color: var(--color-theme-text-primary);
 }
 .info {
-    --hover-color: var(--color-status-info);
-    --switch-icon-true-color: var(--color-status-info);
-    --switch-background-color: var(--color-status-info-alpha);
-    --switch-icon-background-color: var(--color-status-info);
+    --c-switch-hover-color: var(--color-status-info);
+    --c-switch-switch-icon-true-color: var(--color-status-info);
+    --c-switch-switch-background-color: var(--color-status-info-alpha);
+    --c-switch-switch-icon-background-color: var(--color-status-info);
 }
 .success {
-    --hover-color: var(--color-status-success);
-    --switch-icon-true-color: var(--color-status-success);
-    --switch-background-color: var(--color-status-success-alpha);
-    --switch-icon-background-color: var(--color-status-success);
+    --c-switch-hover-color: var(--color-status-success);
+    --c-switch-switch-icon-true-color: var(--color-status-success);
+    --c-switch-switch-background-color: var(--color-status-success-alpha);
+    --c-switch-switch-icon-background-color: var(--color-status-success);
 }
 .warning {
-    --hover-color: var(--color-status-warning);
-    --switch-icon-true-color: var(--color-status-warning);
-    --switch-background-color: var(--color-status-warning-alpha);
-    --switch-icon-background-color: var(--color-status-warning);
+    --c-switch-hover-color: var(--color-status-warning);
+    --c-switch-switch-icon-true-color: var(--color-status-warning);
+    --c-switch-switch-background-color: var(--color-status-warning-alpha);
+    --c-switch-switch-icon-background-color: var(--color-status-warning);
 }
 .danger {
-    --hover-color: var(--color-status-danger);
-    --switch-icon-true-color: var(--color-status-danger);
-    --switch-background-color: var(--color-status-danger-alpha);
-    --switch-icon-background-color: var(--color-status-danger);
+    --c-switch-hover-color: var(--color-status-danger);
+    --c-switch-switch-icon-true-color: var(--color-status-danger);
+    --c-switch-switch-background-color: var(--color-status-danger-alpha);
+    --c-switch-switch-icon-background-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-switch-height: 40px;
+    --c-switch-font-size: var(--font-size-large);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-medium);
+    --c-switch-height: 32px;
+    --c-switch-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-switch-height: 24px;
+    --c-switch-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 </style>

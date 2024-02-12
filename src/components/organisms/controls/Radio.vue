@@ -139,8 +139,8 @@ if (fieldVal.value == null && model.value != null) {
     position: relative;
     text-align: left;
     display: block;
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-radio-height);
+    font-size: var(--c-radio-font-size);
     :where(.radio) {
         display: none;
     }
@@ -150,7 +150,7 @@ if (fieldVal.value == null && model.value != null) {
     }
     &.is-checked {
         .lucide {
-            color: var(--is-checked-lucide-color);
+            color: var(--c-radio-is-checked-lucide-color);
         }
     }
 
@@ -164,12 +164,12 @@ if (fieldVal.value == null && model.value != null) {
     /* hover */
     @media (hover: hover) {
         &:hover {
-            color: var(--hover-color);
+            color: var(--c-radio-hover-color);
         }
     }
     @media (hover: none) {
         &:active {
-            color: var(--hover-color);
+            color: var(--c-radio-hover-color);
         }
     }
 }
@@ -209,7 +209,7 @@ if (fieldVal.value == null && model.value != null) {
         align-items: center;
         justify-content: flex-start;
         line-height: 1.5em;
-        min-height: var(--height);
+        min-height: var(--c-radio-height);
         transition:
             color 0.2s,
             background-color 0.2s,
@@ -225,43 +225,43 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    --hover-color: var(--color-theme-active);
-    --is-checked-lucide-color: var(--color-theme-active);
+    --c-radio-hover-color: var(--color-theme-active);
+    --c-radio-is-checked-lucide-color: var(--color-theme-active);
 }
 /* .secondary {
-    --hover-color: var(--color-theme-active);
-    --is-checked-lucide-color: var(--color-theme-active);
+    --c-radio-hover-color: var(--color-theme-active);
+    --c-radio-is-checked-lucide-color: var(--color-theme-active);
 } */
 .info {
-    --hover-color: var(--color-status-info);
-    --is-checked-lucide-color: var(--color-status-info);
+    --c-radio-hover-color: var(--color-status-info);
+    --c-radio-is-checked-lucide-color: var(--color-status-info);
 }
 .success {
-    --hover-color: var(--color-status-success);
-    --is-checked-lucide-color: var(--color-status-success);
+    --c-radio-hover-color: var(--color-status-success);
+    --c-radio-is-checked-lucide-color: var(--color-status-success);
 }
 .warning {
-    --hover-color: var(--color-status-warning);
-    --is-checked-lucide-color: var(--color-status-warning);
+    --c-radio-hover-color: var(--color-status-warning);
+    --c-radio-is-checked-lucide-color: var(--color-status-warning);
 }
 .danger {
-    --hover-color: var(--color-status-danger);
-    --is-checked-lucide-color: var(--color-status-danger);
+    --c-radio-hover-color: var(--color-status-danger);
+    --c-radio-is-checked-lucide-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-radio-height: 40px;
+    --c-radio-font-size: var(--font-size-large);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-medium);
+    --c-radio-height: 32px;
+    --c-radio-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-radio-height: 24px;
+    --c-radio-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 </style>
