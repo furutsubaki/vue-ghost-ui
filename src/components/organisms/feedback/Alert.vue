@@ -199,7 +199,6 @@ const onClosed = async () => {
     --height: 24px;
     --font-size: var(--font-size-small);
 }
-
 /* ▲ size ▲ */
 
 /* ▼ shape ▼ */

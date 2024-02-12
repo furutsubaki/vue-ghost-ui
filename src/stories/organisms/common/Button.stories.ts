@@ -23,7 +23,7 @@ const meta: Meta<typeof Button> = {
             options: ['small', 'medium', 'large']
         },
         shape: {
-            options: ['normal', 'rounded', 'circle', 'square']
+            options: ['normal', 'rounded', 'circle', 'square', 'skeleton']
         },
         onClick: { action: 'click' }
     }
@@ -110,6 +110,12 @@ export const PropsShape: Story = {
                 },
                 {
                     shape: 'square'
+                },
+                {
+                    shape: 'skeleton'
+                },
+                {
+                    shape: 'link'
                 }
             ]
                 .map(
@@ -119,6 +125,17 @@ export const PropsShape: Story = {
                 .join('');
         })()
     })
+};
+
+export const PropsReadonly: Story = {
+    args: {
+        readonly: true
+    }
+};
+export const PropsDisabled: Story = {
+    args: {
+        disabled: true
+    }
 };
 
 export const LongText: Story = {
