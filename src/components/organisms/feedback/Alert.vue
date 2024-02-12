@@ -29,13 +29,13 @@ withDefaults(
         /**
          * アイコン（コンポーネント）
          */
-        icon: Component;
+        icon?: Component;
         /**
-         * 閉じるボタン
+         * タイトル
          */
         title?: string;
         /**
-         * 閉じるボタン
+         * 内容
          */
         text: string;
         /**
@@ -98,8 +98,9 @@ const onClosed = async () => {
             </div>
             <div class="closeable-box" v-if="closeable">
                 <IconXCircle @click.prevent="onClose" />
-            </div></div
-    ></OpacityTransition>
+            </div>
+        </div>
+    </OpacityTransition>
 </template>
 
 <style scoped>
