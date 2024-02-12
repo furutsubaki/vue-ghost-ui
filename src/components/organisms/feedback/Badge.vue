@@ -44,14 +44,10 @@ const formatedContent = computed(() => {
 </script>
 
 <template>
-    <div class="component-badge-wrap">
+    <div class="component-badge-wrap" :class="[variant, size, shape, { inline: inline }]">
         <slot />
         <OpacityTransition>
-            <span
-                class="component-badge"
-                :class="[variant, size, shape, { inline: inline }]"
-                v-show="flg"
-            >
+            <span class="component-badge" v-show="flg">
                 <template v-if="shape !== 'dot'">
                     {{ formatedContent }}
                 </template>
@@ -65,79 +61,85 @@ const formatedContent = computed(() => {
     position: relative;
     display: flex;
     align-items: center;
+    font-size: var(--c-badge-font-size);
 }
 .component-badge {
-    font-size: var(--font-size);
+    font-size: var(--c-badge-badge-font-size);
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: var(--height);
-    height: var(--height);
-    color: var(--color);
+    min-width: var(--c-badge-height);
+    height: var(--c-badge-height);
+    color: var(--c-badge-color);
     padding: 4px;
-    background-color: var(--background-color);
+    background-color: var(--c-badge-background-color);
     border-radius: 2em;
     word-break: keep-all;
     pointer-events: none;
 
     &:not(.inline) {
         position: absolute;
-        top: calc(var(--height) * -0.5);
+        top: calc(var(--c-badge-height) * -0.5);
         right: 0;
         transform: translateX(50%);
     }
 }
 
 .primary {
-    --color: var(--color-base-white);
-    --background-color: var(--color-theme-active);
+    --c-badge-color: var(--color-base-white);
+    --c-badge-background-color: var(--color-theme-active);
 }
 
 .secondary {
-    --color: var(--color-theme-text-primary);
-    --background-color: var(--color-theme-border);
+    --c-badge-color: var(--color-theme-text-primary);
+    --c-badge-background-color: var(--color-theme-border);
 }
 
 .info {
-    --color: var(--color-theme-text-primary);
-    --background-color: var(--color-status-info);
+    --c-badge-color: var(--color-theme-text-primary);
+    --c-badge-background-color: var(--color-status-info);
 }
 
 .success {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-success);
+    --c-badge-color: var(--color-base-white);
+    --c-badge-background-color: var(--color-status-success);
 }
 
 .warning {
-    --color: var(--color-base-black);
-    --background-color: var(--color-status-warning);
+    --c-badge-color: var(--color-base-black);
+    --c-badge-background-color: var(--color-status-warning);
 }
 
 .danger {
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-danger);
+    --c-badge-color: var(--color-base-white);
+    --c-badge-background-color: var(--color-status-danger);
 }
 
 /* ▼ size ▼ */
 .large {
-    --height: 28px;
-    --font-size: 1.2rem;
+    --c-badge-font-size: var(--font-size-large);
+    --c-badge-height: 28px;
+    --c-badge-badge-font-size: 1.2rem;
 }
 
 .medium {
-    --height: 20px;
-    --font-size: 1rem;
+    --c-badge-font-size: var(--font-size-medium);
+    --c-badge-height: 20px;
+    --c-badge-badge-font-size: 1rem;
 }
 
 .small {
-    --height: 12px;
-    --font-size: 0.8rem;
+    --c-badge-font-size: var(--font-size-small);
+    --c-badge-height: 12px;
+    --c-badge-badge-font-size: 0.8rem;
 }
 /* ▲ size ▲ */
 
 /* ▼ shape ▼ */
 .dot {
-    transform: scale(0.5);
+    .component-badge {
+        transform: translateX(50%) scale(0.5);
+    }
 }
 /* ▲ shape ▲ */
 </style>

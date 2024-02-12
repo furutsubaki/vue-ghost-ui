@@ -162,8 +162,8 @@ const onDelete = () => {
 <style scoped>
 .component-select-group {
     width: 100%;
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-select-height);
+    font-size: var(--c-select-font-size);
     position: relative;
     :where(.select) {
         cursor: pointer;
@@ -174,7 +174,7 @@ const onDelete = () => {
         min-width: 100px;
         width: 100%;
         line-height: 1.5em;
-        height: var(--height);
+        height: var(--c-select-height);
         color: var(--color-theme-text-primary);
         background-color: transparent;
         border: 0;
@@ -218,7 +218,7 @@ const onDelete = () => {
         }
     }
     .clearable-box {
-        width: var(--font-size);
+        width: var(--c-select-font-size);
         .lucide {
             opacity: 0;
             transition: opacity 0.2s;
@@ -228,16 +228,16 @@ const onDelete = () => {
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-select-height: 40px;
+    --c-select-font-size: var(--font-size-large);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-medium);
+    --c-select-height: 32px;
+    --c-select-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-select-height: 24px;
+    --c-select-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 

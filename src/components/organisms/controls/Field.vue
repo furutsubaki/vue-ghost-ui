@@ -293,15 +293,15 @@ onBeforeUnmount(() => {
 <style scoped>
 .component-input {
     width: 100%;
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-field-height);
+    font-size: var(--c-field-font-size);
     :where(.input) {
         display: flex;
         justify-content: space-between;
         align-items: center;
         min-width: 100px;
         width: 100%;
-        height: var(--height);
+        height: var(--c-field-height);
         line-height: 1.5em;
         background-color: transparent;
         color: var(--color-theme-text-primary);
@@ -360,7 +360,7 @@ onBeforeUnmount(() => {
     }
 
     .icon-box {
-        width: var(--font-size);
+        width: var(--c-field-font-size);
         &.always-visible {
             .lucide {
                 opacity: 1;
@@ -380,16 +380,16 @@ onBeforeUnmount(() => {
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-field-height: 40px;
+    --c-field-font-size: var(--font-size-large);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-medium);
+    --c-field-height: 32px;
+    --c-field-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-field-height: 24px;
+    --c-field-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 

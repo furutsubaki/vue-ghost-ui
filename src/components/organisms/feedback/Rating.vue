@@ -111,14 +111,14 @@ watch(model, (v) => {
 
 <style scoped>
 .component-rating {
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-rating-height);
+    font-size: var(--c-rating-font-size);
 
     display: flex;
     gap: 8px;
     justify-content: center;
     min-width: 100px;
-    color: var(--color);
+    color: var(--c-rating-color);
     transition:
         color 0.2s,
         background-color 0.2s;
@@ -127,10 +127,10 @@ watch(model, (v) => {
         display: flex;
         .button {
             .icon {
-                color: var(--color);
+                color: var(--c-rating-color);
                 fill: transparent;
-                width: var(--height);
-                height: var(--height);
+                width: var(--c-rating-height);
+                height: var(--c-rating-height);
                 transition:
                     color 0.2s,
                     fill 0.2s;
@@ -138,14 +138,14 @@ watch(model, (v) => {
             &.is-over {
                 background-color: var(--color-theme-bg-primary);
                 .icon {
-                    fill: var(--background-color);
+                    fill: var(--c-rating-background-color);
                 }
             }
             &.half {
                 position: absolute;
                 left: 0;
-                width: calc(var(--height) / 2);
-                height: var(--height);
+                width: calc(var(--c-rating-height) / 2);
+                height: var(--c-rating-height);
                 overflow: hidden;
                 .icon {
                     position: absolute;
@@ -160,32 +160,32 @@ watch(model, (v) => {
 
 .dynamic {
     :deep(.icon) {
-        --color: var(--color-base-orange) !important;
-        --background-color: var(--color-base-orange) !important;
+        --c-rating-color: var(--color-base-orange) !important;
+        --c-rating-background-color: var(--color-base-orange) !important;
     }
 }
 
 .flat {
     :deep(.icon) {
-        --color: var(--color-base-orange) !important;
-        --background-color: var(--color-base-orange) !important;
+        --c-rating-color: var(--color-base-orange) !important;
+        --c-rating-background-color: var(--color-base-orange) !important;
     }
 }
 
 /* ▼ size ▼ */
 .large {
-    --height: 32px;
-    --font-size: var(--font-size-large);
+    --c-rating-height: 32px;
+    --c-rating-font-size: var(--font-size-large);
 }
 
 .medium {
-    --height: 24px;
-    --font-size: var(--font-size-medium);
+    --c-rating-height: 24px;
+    --c-rating-font-size: var(--font-size-medium);
 }
 
 .small {
-    --height: 16px;
-    --font-size: var(--font-size-small);
+    --c-rating-height: 16px;
+    --c-rating-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 </style>
