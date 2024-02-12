@@ -31,11 +31,11 @@ withDefaults(
          */
         icon?: Component;
         /**
-         * 閉じるボタン
+         * タイトル
          */
         title?: string;
         /**
-         * 閉じるボタン
+         * 内容
          */
         text: string;
         /**
