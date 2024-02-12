@@ -15,7 +15,7 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?: 'line' | 'circle';
+        shape?: 'line' | 'slim-line' | 'circle';
         /**
          * 最大値
          */
@@ -53,7 +53,7 @@ const strokeDashoffset = computed(
 
 <template>
     <div class="component-progress" :class="[variant, size, shape]">
-        <div class="progress-bar" v-if="shape === 'line'" />
+        <div class="progress-bar" v-if="['line', 'slim-line'].includes(shape)" />
         <svg
             v-if="shape === 'circle'"
             ref="circleRef"
@@ -169,7 +169,8 @@ const strokeDashoffset = computed(
 /* ▲ size ▲ */
 
 /* ▼ shape ▼ */
-.line {
+.line,
+.slim-line {
     min-width: 100px;
     .progress-bar {
         display: flex;
@@ -193,6 +194,9 @@ const strokeDashoffset = computed(
         width: 3em;
         text-align: right;
     }
+}
+.slim-line {
+    height: auto;
 }
 .circle {
     min-width: 50px;
