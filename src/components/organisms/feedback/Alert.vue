@@ -98,8 +98,9 @@ const onClosed = async () => {
             </div>
             <div class="closeable-box" v-if="closeable">
                 <IconXCircle @click.prevent="onClose" />
-            </div></div
-    ></OpacityTransition>
+            </div>
+        </div>
+    </OpacityTransition>
 </template>
 
 <style scoped>
