@@ -133,7 +133,6 @@ const formatedContent = computed(() => {
     --height: 12px;
     --font-size: 0.8rem;
 }
-
 /* ▲ size ▲ */
 
 /* ▼ shape ▼ */
