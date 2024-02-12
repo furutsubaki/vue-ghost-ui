@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, useSlots } from 'vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
+import TranslateTransition from '@/components/organisms/inner-parts/TranslateTransition.vue';
 import { computed } from 'vue';
 import { sleep } from '@/assets/ts';
 
@@ -23,6 +24,10 @@ const props = withDefaults(
          * 形状
          */
         position?: 'center' | 'top' | 'right' | 'bottom' | 'left';
+        /**
+         * 形状
+         */
+        transitionFrom?: 'opacity' | 'top' | 'right' | 'bottom' | 'left';
         /**
          * タイトル
          */
@@ -49,6 +54,7 @@ const props = withDefaults(
         size: 'medium',
         shape: 'normal',
         position: 'center',
+        transitionFrom: 'opacity',
         title: '',
         scroll: false,
         center: false,
@@ -64,6 +70,8 @@ const emit = defineEmits<{
 }>();
 
 // transition状態
+const TransitionComponent =
+    props.transitionFrom === 'opacity' ? OpacityTransition : TranslateTransition;
 const transitioning = ref(false);
 const isShowing = computed(() => {
     if (flg.value) {
@@ -102,19 +110,27 @@ const hasSlot = (name: string) => {
         @transition-end="transitioning = false"
     >
         <div v-show="flg" class="component-dialog" :class="{ 'is-seamless': seamless }">
-            <dialog
-                class="dialog"
-                :class="[variant, size, shape, position, { 'is-center': center }]"
-                v-click-outside="onOutside"
+            <component
+                :is="TransitionComponent"
+                :from="transitionFrom"
+                @transition-start="transitioning = true"
+                @transition-end="transitioning = false"
             >
-                <div v-if="title" class="title">{{ title }}</div>
-                <div class="box" :class="{ 'is-scroll': scroll }">
-                    <slot />
-                </div>
-                <div v-if="hasSlot('footer')" class="footer">
-                    <slot name="footer" />
-                </div>
-            </dialog>
+                <dialog
+                    v-show="flg"
+                    class="dialog"
+                    :class="[variant, size, shape, position, { 'is-center': center }]"
+                    v-click-outside="onOutside"
+                >
+                    <div v-if="title" class="title">{{ title }}</div>
+                    <div class="box" :class="{ 'is-scroll': scroll }">
+                        <slot />
+                    </div>
+                    <div v-if="hasSlot('footer')" class="footer">
+                        <slot name="footer" />
+                    </div>
+                </dialog>
+            </component>
         </div>
     </OpacityTransition>
 </template>

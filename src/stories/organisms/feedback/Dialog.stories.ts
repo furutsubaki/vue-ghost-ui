@@ -192,6 +192,47 @@ export const PropsPosition: Story = {
     })
 };
 
+export const PropsTransitionFrom: Story = {
+    render: (args) => ({
+        components: { Dialog, Button },
+        setup: () => ({
+            args,
+            params: ref([
+                {
+                    transitionFrom: 'opacity',
+                    modelValue: false
+                },
+                {
+                    transitionFrom: 'top',
+                    modelValue: false
+                },
+                {
+                    transitionFrom: 'right',
+                    modelValue: false
+                },
+                {
+                    transitionFrom: 'bottom',
+                    modelValue: false
+                },
+                {
+                    transitionFrom: 'left',
+                    modelValue: false
+                }
+            ])
+        }),
+        template: `
+<div v-for="param in params" :key="param.position">
+    <Button @click="param.modelValue = true">Open Dialog({{param.transitionFrom}})</Button>
+    <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <template #footer>
+            <Button @click="param.modelValue = false">Cancel</Button>
+        </template>
+    </Dialog>
+</div>`
+    })
+};
+
 export const PropsTitle: Story = {
     args: {
         title: 'Sample Dialog'
@@ -240,6 +281,7 @@ export const StoryPlayer: Story = {
     args: {
         size: 'small',
         position: 'top',
-        seamless: true
+        seamless: true,
+        transitionFrom: 'top'
     }
 };
