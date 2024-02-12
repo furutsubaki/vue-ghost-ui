@@ -12,11 +12,14 @@ const meta: Meta<typeof Dialog> = {
         setup() {
             return { args };
         },
-        template: `<Button @click="args.modelValue = true">Open Dialog</Button>
-        <Dialog v-bind="args">
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            <template #footer><Button @click="args.modelValue = false">Cancel</Button></template>
-        </Dialog>`
+        template: `
+<Button @click="args.modelValue = true">Open Dialog</Button>
+<Dialog v-bind="args">
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    <template #footer>
+        <Button @click="args.modelValue = false">Cancel</Button>
+    </template>
+</Dialog>`
     }),
     tags: ['autodocs'],
     args: {
@@ -66,13 +69,15 @@ export const PropsVariant: Story = {
             ])
         }),
         template: `
-        <div v-for="param in params" :key="param.variant">
-            <Button :variant="param.variant" @click="param.modelValue = true">Open Dialog({{param.variant}})</Button>
-            <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            <template #footer><Button @click="param.modelValue = false">Cancel</Button></template>
-            </Dialog>
-        </div>`
+<div v-for="param in params" :key="param.variant">
+    <Button :variant="param.variant" @click="param.modelValue = true">Open Dialog({{param.variant}})</Button>
+    <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <template #footer>
+            <Button @click="param.modelValue = false">Cancel</Button>
+        </template>
+    </Dialog>
+</div>`
     })
 };
 
@@ -101,13 +106,15 @@ export const PropsSize: Story = {
             ])
         }),
         template: `
-        <div v-for="param in params" :key="param.size">
-            <Button @click="param.modelValue = true">Open Dialog({{param.size}})</Button>
-            <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            <template #footer><Button @click="param.modelValue = false">Cancel</Button></template>
-            </Dialog>
-        </div>`
+<div v-for="param in params" :key="param.size">
+    <Button @click="param.modelValue = true">Open Dialog({{param.size}})</Button>
+    <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <template #footer>
+            <Button @click="param.modelValue = false">Cancel</Button>
+        </template>
+    </Dialog>
+</div>`
     })
 };
 
@@ -132,13 +139,15 @@ export const PropsShape: Story = {
             ])
         }),
         template: `
-        <div v-for="param in params" :key="param.shape">
-            <Button @click="param.modelValue = true">Open Dialog({{param.shape}})</Button>
-            <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            <template #footer><Button @click="param.modelValue = false">Cancel</Button></template>
-            </Dialog>
-        </div>`
+<div v-for="param in params" :key="param.shape">
+    <Button @click="param.modelValue = true">Open Dialog({{param.shape}})</Button>
+    <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <template #footer>
+            <Button @click="param.modelValue = false">Cancel</Button>
+        </template>
+    </Dialog>
+</div>`
     })
 };
 
@@ -171,13 +180,15 @@ export const PropsPosition: Story = {
             ])
         }),
         template: `
-        <div v-for="param in params" :key="param.position">
-            <Button @click="param.modelValue = true">Open Dialog({{param.position}})</Button>
-            <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            <template #footer><Button @click="param.modelValue = false">Cancel</Button></template>
-            </Dialog>
-        </div>`
+<div v-for="param in params" :key="param.position">
+    <Button @click="param.modelValue = true">Open Dialog({{param.position}})</Button>
+    <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <template #footer>
+            <Button @click="param.modelValue = false">Cancel</Button>
+        </template>
+    </Dialog>
+</div>`
     })
 };
 
@@ -210,18 +221,21 @@ export const StoryPlayer: Story = {
     render: (args) => ({
         components: { Dialog, Button, Progress, IconPlay, IconPause, IconX },
         setup: () => ({ args, progressModel: 75 }),
-        template: `<Button @click="args.modelValue = true">Open Player</Button>
-        <Dialog v-bind="args">
-        <Progress v-model="progressModel" variant="primary" shape="slim-line" no-text style="width: calc(100% + 18px);margin: 0 -9px;position: absolute; top:-8px;" />
-        <div style="display: flex;gap: 8px;">
+        template: `
+<Button @click="args.modelValue = true">Open Player</Button>
+<Dialog v-bind="args">
+    <Progress v-model="progressModel" variant="primary" shape="slim-line" no-text style="width: calc(100% + 18px);margin: 0 -9px;position: absolute; top:-8px;" />
+    <div style="display: flex;gap: 8px;">
         <div>
             <div>Title</div><div>sample artist</div>
         </div>
-        <div style="display: flex; align-items: center;justify-content: space-around;flex-grow: 1;">
-        <IconPlay style="width: 24px; height:24px;" /><IconPause style="width: 24px; height:24px;" /><IconX style="width: 24px; height:24px;" @click="args.modelValue = false" />
+        <div style="display: flex; align-items: center;justify-content: space-evenly;flex-grow: 1;">
+            <Button shape="skeleton"><IconPlay style="width: 24px; height:24px;" /></Button>
+            <Button shape="skeleton"><IconPause style="width: 24px; height:24px;" /></Button>
+            <Button shape="skeleton" @click="args.modelValue = false"><IconX style="width: 24px; height:24px;" /></Button>
         </div>
     </div>
-        </Dialog>`
+</Dialog>`
     }),
     args: {
         size: 'small',
