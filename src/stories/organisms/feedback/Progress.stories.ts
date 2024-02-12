@@ -73,6 +73,18 @@ export const PropsSizeAndShape: Story = {
                 },
                 {
                     size: 'large',
+                    shape: 'slim-line'
+                },
+                {
+                    size: 'medium',
+                    shape: 'slim-line'
+                },
+                {
+                    size: 'small',
+                    shape: 'slim-line'
+                },
+                {
+                    size: 'large',
                     shape: 'circle'
                 },
                 {
