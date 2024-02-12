@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^7.6.13
     version: 7.6.13(react-dom@18.2.0)(react@18.2.0)
   '@storybook/addon-measure':
-    specifier: ^7.6.13
-    version: 7.6.13
+    specifier: ^7.6.14
+    version: 7.6.14
   '@storybook/addon-outline':
     specifier: ^7.6.13
     version: 7.6.13
@@ -2890,8 +2890,8 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/addon-measure@7.6.13:
-    resolution: {integrity: sha512-WdxEicIy3x79kgP93HMf9hgbbW3h7xo3eNzrTaMsTeoXaolXWN9qdpusm8Cc8vDIP5JMd+gkwi2u563KjggXVQ==}
+  /@storybook/addon-measure@7.6.14:
+    resolution: {integrity: sha512-bRy3SEv4uf1csDe5H8Lg3wUDg1uMZo6/j2FwNjvUmW+vcasj3VsqPKQjT6KO+LjCXsQ1pIAHu1HcUh2v/Qoitw==}
     dependencies:
       '@storybook/global': 5.0.0
       tiny-invariant: 1.3.1
