@@ -29,7 +29,7 @@ withDefaults(
         /**
          * アイコン（コンポーネント）
          */
-        icon: Component;
+        icon?: Component;
         /**
          * 閉じるボタン
          */
