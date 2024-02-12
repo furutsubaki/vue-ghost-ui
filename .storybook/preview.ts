@@ -13,6 +13,7 @@ import { zodI18nMap } from 'zod-i18n-map';
 import translation from 'zod-i18n-map/locales/ja/zod.json';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import vClickOutside from "click-outside-vue3"
 
 const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
     switch (issue.code) {
@@ -38,6 +39,7 @@ init({
 z.setErrorMap(customErrorMap);
 
 setup((app) => {
+    app.use(vClickOutside);
     app.component('VueDatePicker', VueDatePicker);
 })
 
