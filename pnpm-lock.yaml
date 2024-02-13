@@ -77,8 +77,8 @@ devDependencies:
     specifier: ^7.6.14
     version: 7.6.14
   '@storybook/vue3':
-    specifier: ^7.6.13
-    version: 7.6.13(vue@3.4.18)
+    specifier: ^7.6.14
+    version: 7.6.14(vue@3.4.18)
   '@storybook/vue3-vite':
     specifier: ^7.6.13
     version: 7.6.13(typescript@5.3.3)(vite@5.0.12)(vue@3.4.18)
@@ -3170,6 +3170,13 @@ packages:
       '@storybook/preview-api': 7.6.13
     dev: true
 
+  /@storybook/core-client@7.6.14:
+    resolution: {integrity: sha512-2q+R6olHLS5GJBTZNdKscTKJ8YwKOatKx6QjktFTfxfLRfBfOGSepignYy8JnEGuU4iTOwBekmUDm5dWAUjnQg==}
+    dependencies:
+      '@storybook/client-logger': 7.6.14
+      '@storybook/preview-api': 7.6.14
+    dev: true
+
   /@storybook/core-common@7.6.13:
     resolution: {integrity: sha512-kCCVDga/66wIWFSluT3acD3/JT3vwV7A9rxG8FZF5K38quU/b37sRXvCw8Yk5HJ4rQhrB76cxVhIOy/ZucaZVw==}
     dependencies:
@@ -3412,6 +3419,21 @@ packages:
       - supports-color
     dev: true
 
+  /@storybook/docs-tools@7.6.14:
+    resolution: {integrity: sha512-8FCuVnty2d74cgF+qjhI/LTbGlf3mvu1OkKpLMp9xqouPy3X+yo9N8mpe2tIhgpRMTDzDScIeIBUpLrIpjHaXA==}
+    dependencies:
+      '@storybook/core-common': 7.6.14
+      '@storybook/preview-api': 7.6.14
+      '@storybook/types': 7.6.14
+      '@types/doctrine': 0.0.3
+      assert: 2.1.0
+      doctrine: 3.0.0
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: true
+
   /@storybook/global@5.0.0:
     resolution: {integrity: sha512-FcOqPAXACP0I3oJ/ws6/rrPT9WGhu915Cg8D02a9YxLo0DE9zI+a9A5gRGvmQ09fiWPukqI8ZAEoQEdWUKMQdQ==}
     dev: true
@@ -3621,7 +3643,29 @@ packages:
       '@storybook/global': 5.0.0
       '@storybook/preview-api': 7.6.13
       '@storybook/types': 7.6.13
-      '@vue/compiler-core': 3.4.15
+      '@vue/compiler-core': 3.4.18
+      lodash: 4.17.21
+      ts-dedent: 2.2.0
+      type-fest: 2.19.0
+      vue: 3.4.18(typescript@5.3.3)
+      vue-component-type-helpers: 1.8.27
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: true
+
+  /@storybook/vue3@7.6.14(vue@3.4.18):
+    resolution: {integrity: sha512-0uwUnUymL/I+oxe942TuaMqHp2aUgohzrePYr5WaKcetL9iun/qS74HLyXb4vLO80usJr6p5Kdaw0PPnoxpUmw==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@storybook/core-client': 7.6.14
+      '@storybook/docs-tools': 7.6.14
+      '@storybook/global': 5.0.0
+      '@storybook/preview-api': 7.6.14
+      '@storybook/types': 7.6.14
+      '@vue/compiler-core': 3.4.18
       lodash: 4.17.21
       ts-dedent: 2.2.0
       type-fest: 2.19.0
@@ -4063,16 +4107,6 @@ packages:
       path-browserify: 1.0.1
     dev: true
 
-  /@vue/compiler-core@3.4.15:
-    resolution: {integrity: sha512-XcJQVOaxTKCnth1vCxEChteGuwG6wqnUHxAm1DO3gCz0+uXKaJNx8/digSz4dLALCy8n2lKq24jSUs8segoqIw==}
-    dependencies:
-      '@babel/parser': 7.23.9
-      '@vue/shared': 3.4.15
-      entities: 4.5.0
-      estree-walker: 2.0.2
-      source-map-js: 1.0.2
-    dev: true
-
   /@vue/compiler-core@3.4.16:
     resolution: {integrity: sha512-HXgyy7gen4FNJS8Hz2q/NNBEdzD3QInhDTWaP2/mS0TlmV9CnjmXip7TZ0ROYiQM4FgXZCCJvh74yDikFkPpkQ==}
     dependencies:
@@ -4195,7 +4229,7 @@ packages:
       '@volar/language-core': 1.11.1
       '@volar/source-map': 1.11.1
       '@vue/compiler-dom': 3.4.16
-      '@vue/shared': 3.4.16
+      '@vue/shared': 3.4.18
       computeds: 0.0.1
       minimatch: 9.0.3
       muggle-string: 0.3.1
@@ -4230,10 +4264,6 @@ packages:
       '@vue/compiler-ssr': 3.4.18
       '@vue/shared': 3.4.18
       vue: 3.4.18(typescript@5.3.3)
-
-  /@vue/shared@3.4.15:
-    resolution: {integrity: sha512-KzfPTxVaWfB+eGcGdbSf4CWdaXcGDqckoeXUh7SB3fZdEtzPCK2Vq9B/lRRL3yutax/LWITz+SwvgyOxz5V75g==}
-    dev: true
 
   /@vue/shared@3.4.16:
     resolution: {integrity: sha512-HKCjeaxR+R95dCw1BDaytcHdlzZj9lxj7RlFnxWtcKq670t8oSeMsbPlkzkNc2V6IUzHaMtUxdBcdREAhb+7NA==}
