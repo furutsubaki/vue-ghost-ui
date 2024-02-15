@@ -77,8 +77,8 @@ devDependencies:
     specifier: ^7.6.16
     version: 7.6.16
   '@storybook/vue3':
-    specifier: ^7.6.15
-    version: 7.6.15(vue@3.4.19)
+    specifier: ^7.6.16
+    version: 7.6.16(vue@3.4.19)
   '@storybook/vue3-vite':
     specifier: ^7.6.15
     version: 7.6.15(typescript@5.3.3)(vite@5.0.12)(vue@3.4.19)
@@ -3207,6 +3207,13 @@ packages:
       '@storybook/preview-api': 7.6.15
     dev: true
 
+  /@storybook/core-client@7.6.16:
+    resolution: {integrity: sha512-ogVwvjpNPrcv8Lk9oSa38b7X4NNgYIgVnCjvvr9FCmhh4xAuA4XNUyB+vyAdK4JOT0/CoMKRpTp+VL5e2+BZbg==}
+    dependencies:
+      '@storybook/client-logger': 7.6.16
+      '@storybook/preview-api': 7.6.16
+    dev: true
+
   /@storybook/core-common@7.6.15:
     resolution: {integrity: sha512-VGmcLJ5U1r1s8/YnLbKcyB4GnNL+/sZIPqwlcSKzDXO76HoVFv1kywf7PbASote7P3gdhLSxBdg95LH2bdIbmw==}
     dependencies:
@@ -3630,6 +3637,28 @@ packages:
       '@storybook/global': 5.0.0
       '@storybook/preview-api': 7.6.15
       '@storybook/types': 7.6.15
+      '@vue/compiler-core': 3.4.19
+      lodash: 4.17.21
+      ts-dedent: 2.2.0
+      type-fest: 2.19.0
+      vue: 3.4.19(typescript@5.3.3)
+      vue-component-type-helpers: 1.8.27
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: true
+
+  /@storybook/vue3@7.6.16(vue@3.4.19):
+    resolution: {integrity: sha512-5OTAsBdFkGldFK8G0ddlxh/UA021giDuIDxotrcepYn9YlHG1ItWoDVJ/9+IW+h8lV0Yyr9GSlQSTT2MhTdRzw==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@storybook/core-client': 7.6.16
+      '@storybook/docs-tools': 7.6.16
+      '@storybook/global': 5.0.0
+      '@storybook/preview-api': 7.6.16
+      '@storybook/types': 7.6.16
       '@vue/compiler-core': 3.4.19
       lodash: 4.17.21
       ts-dedent: 2.2.0
