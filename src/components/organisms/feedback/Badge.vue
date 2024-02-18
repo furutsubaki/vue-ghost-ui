@@ -24,7 +24,7 @@ const props = withDefaults(
         /**
          * フローティングさせないか
          */
-        inline: boolean;
+        inline?: boolean;
     }>(),
     {
         variant: 'secondary',
