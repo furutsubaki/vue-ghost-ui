@@ -59,6 +59,15 @@ const ratings = computed(() =>
         return button;
     })
 );
+const dynamicColors = computed(() => {
+    const ratingLength = ratings.value.length;
+    const MAX = 100;
+    const MIN = 50;
+    return [...Array(ratings.value.length).keys()].map((i) => {
+        const step = (MAX - MIN) / ratingLength;
+        return step * (i + 1) + MIN + '%';
+    });
+});
 const hoverValue = ref(model.value);
 const onHover = (value: number) => {
     hoverValue.value = value;
@@ -97,6 +106,7 @@ watch(model, (v) => {
                 :size="size"
                 shape="link"
                 :readonly="readonly"
+                :style="`opacity: ${variant === 'dynamic' ? dynamicColors[i] : '100%'}`"
                 @mouseover="onHover(r.value)"
                 @mouseleave="onLeave"
                 @click="onClick(r.value)"
@@ -136,7 +146,7 @@ watch(model, (v) => {
                     fill 0.2s;
             }
             &.is-over {
-                background-color: var(--color-theme-bg-primary);
+                background-color: transparent;
                 .icon {
                     fill: var(--c-rating-background-color);
                 }
