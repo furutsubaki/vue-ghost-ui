@@ -126,9 +126,9 @@ export const PropsLabel: Story = {
 export const PropsPrefixSuffix: Story = {
     render: (args) => ({
         components: { Autocomplete },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     prefix: 'prefix',
                     suffix: ''
@@ -142,12 +142,8 @@ export const PropsPrefixSuffix: Story = {
                     suffix: 'suffix'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Autocomplete prefix="${param.prefix}" suffix="${param.suffix}" label="${[param.prefix, param.suffix].join('')}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Autocomplete v-for="param in params" :key="param.prefix + '-' + param.suffix" v-bind="{...args, ...param}" :label="[param.prefix, param.suffix].join('')" />`
     }),
     args: {
         ...Default.args
@@ -157,9 +153,9 @@ export const PropsPrefixSuffix: Story = {
 export const PropsPosition: Story = {
     render: (args) => ({
         components: { Autocomplete },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     position: 'button'
                 },
@@ -167,12 +163,8 @@ export const PropsPosition: Story = {
                     position: 'top'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Autocomplete position="${param.position}" label="${param.position}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Autocomplete v-for="param in params" :key="param.position" v-bind="{...args, ...param}" :label="param.position" />`
     }),
     args: {
         ...Default.args
