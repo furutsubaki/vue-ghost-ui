@@ -10,7 +10,8 @@ import {
     CalendarDays as IconCalendarDays,
     Eye as IconEye,
     EyeOff as IconEyeOff,
-    Search as IconSearch
+    Search as IconSearch,
+    Clock as IconClock
 } from 'lucide-vue-next';
 import { DATE_FORMAT } from '@/assets/ts/const ';
 import dayjs from 'dayjs';
@@ -240,7 +241,6 @@ onBeforeUnmount(() => {
             <div v-if="prefix" class="prefix-suffix">{{ prefix }}</div>
             <button v-if="type === 'date'" class="input" @click="onDateButonClick">
                 <span>{{ value ? dayjs(value).format(format) : '' }}</span>
-                <IconCalendarDays />
             </button>
             <input
                 v-else
@@ -260,7 +260,13 @@ onBeforeUnmount(() => {
                     <IconXCircle v-show="value != null && value !== ''" @click.prevent="onDelete" />
                 </OpacityTransition>
             </div>
-            <div class="icon-box" v-if="type === 'password'">
+            <div class="icon-box always-visible" v-if="type === 'time'">
+                <IconClock />
+            </div>
+            <div class="icon-box always-visible" v-else-if="type === 'date'">
+                <IconCalendarDays />
+            </div>
+            <div class="icon-box" v-else-if="type === 'password'">
                 <OpacityTransition>
                     <div v-show="value != null && value !== ''">
                         <IconEye v-show="isShowPassword" @click.prevent="onHidePassword" />
@@ -268,7 +274,7 @@ onBeforeUnmount(() => {
                     </div>
                 </OpacityTransition>
             </div>
-            <div class="icon-box always-visible" v-if="type === 'search'">
+            <div class="icon-box always-visible" v-else-if="type === 'search'">
                 <OpacityTransition>
                     <IconSearch @click.prevent="$emit('search', value)" />
                 </OpacityTransition>
@@ -311,6 +317,9 @@ onBeforeUnmount(() => {
 
     [type='time'] {
         color: transparent;
+        &::-webkit-calendar-picker-indicator {
+            display: none;
+        }
     }
     &.is-focus,
     &.is-value {
