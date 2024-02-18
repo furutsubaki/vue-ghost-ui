@@ -40,9 +40,9 @@ export const Default: Story = {
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Radio },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -62,12 +62,8 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Radio variant="${param.variant}" v-bind="args">${param.variant}</Radio>`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Radio v-for="param in params" :key="param.variant" v-bind="{...args, ...param}">{{param.variant}}</Radio>`
     }),
     args: { ...Default.args }
 };
@@ -75,9 +71,9 @@ export const PropsVariant: Story = {
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Radio },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -88,9 +84,8 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map((param) => `<Radio size="${param.size}" v-bind="args">${param.size}</Radio>`)
-                .join('');
-        })()
+        }),
+        template: `<Radio v-for="param in params" :key="param.size" v-bind="{...args, ...param}">{{param.size}}</Radio>`
     }),
     args: { ...Default.args }
 };

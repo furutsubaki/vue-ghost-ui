@@ -24,9 +24,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Badge },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -46,21 +46,17 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Badge variant="${param.variant}" v-bind="args">${param.variant}</Badge>`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Badge v-for="param in params" :key="param.variant" v-bind="{...args, ...param}">{{param.variant}}</Badge>`
     })
 };
 
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Badge },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -71,21 +67,17 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Badge size="${param.size}" variant="info" v-bind="args">${param.size}</Badge>`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Badge v-for="param in params" :key="param.size" v-bind="{...args, ...param}" variant="info">{{param.size}}</Badge>`
     })
 };
 
 export const PropsShape: Story = {
     render: (args) => ({
         components: { Badge },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     shape: 'normal'
                 },
@@ -93,11 +85,8 @@ export const PropsShape: Story = {
                     shape: 'dot'
                 }
             ]
-                .map(
-                    (param) => `<Badge shape="${param.shape}" v-bind="args">${param.shape}</Badge>`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Badge v-for="param in params" :key="param.shape" v-bind="{...args, ...param}">{{param.shape}}</Badge>`
     })
 };
 

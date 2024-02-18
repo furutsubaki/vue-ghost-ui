@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import FieldFrame from '@/components/organisms/inner-parts/FieldFrame.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -23,9 +24,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { FieldFrame },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: ref([
                 {
                     variant: 'primary'
                 },
@@ -44,13 +45,9 @@ export const PropsVariant: Story = {
                 {
                     variant: 'danger'
                 }
-            ]
-                .map(
-                    (param) =>
-                        `<FieldFrame variant="${param.variant}" label="${param.variant}" v-bind="args" />`
-                )
-                .join('');
-        })()
+            ])
+        }),
+        template: `<FieldFrame v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" :label="param.variant" />`
     }),
     args: { ...Default.args }
 };
@@ -58,9 +55,9 @@ export const PropsVariant: Story = {
 export const PropsSize: Story = {
     render: (args) => ({
         components: { FieldFrame },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: ref([
                 {
                     size: 'large'
                 },
@@ -70,13 +67,9 @@ export const PropsSize: Story = {
                 {
                     size: 'small'
                 }
-            ]
-                .map(
-                    (param) =>
-                        `<FieldFrame size="${param.size}" label="${param.size}" v-bind="args" />`
-                )
-                .join('');
-        })()
+            ])
+        }),
+        template: `<FieldFrame v-for="param in params" :key="param.size" v-bind="{...args, ...param}" :label="param.size" />`
     }),
     args: { ...Default.args }
 };
@@ -84,9 +77,9 @@ export const PropsSize: Story = {
 export const PropsShape: Story = {
     render: (args) => ({
         components: { FieldFrame },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: ref([
                 {
                     shape: 'normal'
                 },
@@ -96,13 +89,9 @@ export const PropsShape: Story = {
                 {
                     shape: 'no-radius'
                 }
-            ]
-                .map(
-                    (param) =>
-                        `<FieldFrame shape="${param.shape}" label="${param.shape}" v-bind="args" />`
-                )
-                .join('');
-        })()
+            ])
+        }),
+        template: `<FieldFrame v-for="param in params" :key="param.shape" v-bind="{...args, ...param}" :label="param.shape" />`
     }),
     args: { ...Default.args }
 };

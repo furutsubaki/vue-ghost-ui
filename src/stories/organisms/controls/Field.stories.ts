@@ -38,9 +38,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Field },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -60,12 +60,8 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Field variant="${param.variant}" label="${param.variant}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Field v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" :label="param.variant" />`
     }),
     args: { ...Default.args }
 };
@@ -73,9 +69,9 @@ export const PropsVariant: Story = {
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Field },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -86,11 +82,8 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map(
-                    (param) => `<Field size="${param.size}" label="${param.size}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Field v-for="param in params" :key="param.size" v-bind="{...args, ...param}" :label="param.size" />`
     }),
     args: { ...Default.args }
 };
@@ -98,9 +91,9 @@ export const PropsSize: Story = {
 export const PropsShape: Story = {
     render: (args) => ({
         components: { Field },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     shape: 'normal'
                 },
@@ -111,12 +104,8 @@ export const PropsShape: Story = {
                     shape: 'no-radius'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Field shape="${param.shape}" label="${param.shape}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Field v-for="param in params" :key="param.shape" v-bind="{...args, ...param}" :label="param.shape" />`
     }),
     args: { ...Default.args }
 };
@@ -130,9 +119,9 @@ export const PropsLabel: Story = {
 export const PropsPrefixSuffix: Story = {
     render: (args) => ({
         components: { Field },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     prefix: 'prefix',
                     suffix: ''
@@ -146,12 +135,8 @@ export const PropsPrefixSuffix: Story = {
                     suffix: 'suffix'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Field prefix="${param.prefix}" suffix="${param.suffix}" label="${[param.prefix, param.suffix].join('')}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Field v-for="param in params" :key="param.prefix + '-' + param.suffix" :label="[param.prefix, param.suffix].join('')" />`
     }),
     args: {
         ...Default.args
@@ -183,9 +168,9 @@ export const PropsDisabled: Story = {
 export const PropsType: Story = {
     render: (args) => ({
         components: { Field },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     type: 'text'
                 },
@@ -211,11 +196,8 @@ export const PropsType: Story = {
                     type: 'search'
                 }
             ]
-                .map(
-                    (param) => `<Field type="${param.type}" label="${param.type}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Field v-for="param in params" :key="param.type" v-bind="{...args, ...param}" :label="param.type" />`
     }),
     args: { ...Default.args }
 };

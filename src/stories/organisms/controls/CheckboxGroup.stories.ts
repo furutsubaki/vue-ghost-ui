@@ -44,9 +44,9 @@ export const Default: Story = {
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { CheckboxGroup },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -66,12 +66,8 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<CheckboxGroup variant="${param.variant}" label="${param.variant}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<CheckboxGroup v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" :label="param.variant" />`
     }),
     args: { ...Default.args }
 };
@@ -79,9 +75,9 @@ export const PropsVariant: Story = {
 export const PropsSize: Story = {
     render: (args) => ({
         components: { CheckboxGroup },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -92,12 +88,8 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<CheckboxGroup size="${param.size}" label="${param.size}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<CheckboxGroup v-for="param in params" :key="param.size" v-bind="{...args, ...param}" :label="param.size" />`
     }),
     args: { ...Default.args }
 };

@@ -29,9 +29,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Rating },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'dynamic'
                 },
@@ -39,18 +39,17 @@ export const PropsVariant: Story = {
                     variant: 'flat'
                 }
             ]
-                .map((param) => `<Rating variant="${param.variant}" v-bind="args" />`)
-                .join('');
-        })()
+        }),
+        template: `<Rating v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" />`
     })
 };
 
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Rating },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -61,9 +60,8 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map((param) => `<Rating size="${param.size}" v-bind="args" />`)
-                .join('');
-        })()
+        }),
+        template: `<Rating v-for="param in params" :key="param.size" v-bind="{...args, ...param}" />`
     })
 };
 

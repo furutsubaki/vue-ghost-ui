@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, useSlots } from 'vue';
 import InputTextCounter from '@/components/organisms/inner-parts/InputTextCounter.vue';
 withDefaults(
     defineProps<{
@@ -79,6 +79,11 @@ withDefaults(
     }
 );
 
+const slots = useSlots();
+const hasSlot = (name: string) => {
+    return slots[name] ? !!(slots[name] as () => [])()?.length : false;
+};
+
 const frameRef = ref();
 
 defineExpose({ frameRef });
@@ -122,7 +127,12 @@ defineExpose({ frameRef });
                 <div class="frame-end" />
             </div>
             <component :is="bodyTag" class="frame-body">
-                <slot />
+                <template v-if="hasSlot('default')">
+                    <slot />
+                </template>
+                <template v-else>
+                    <div class="dummy-slot" />
+                </template>
             </component>
         </div>
         <template v-if="isErrorMessage">
@@ -140,6 +150,9 @@ defineExpose({ frameRef });
     min-height: var(--c-field-frame-height);
     width: 100%;
     font-size: var(--c-field-frame-font-size);
+    .frame {
+        position: relative;
+    }
     :where(.frame-box) {
         position: absolute;
         text-align: left;
@@ -377,6 +390,10 @@ defineExpose({ frameRef });
             }
         }
     }
+}
+
+.dummy-slot {
+    height: 1em;
 }
 
 .error {

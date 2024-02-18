@@ -69,15 +69,15 @@ export const PropsVariant: Story = {
             ])
         }),
         template: `
-<div v-for="param in params" :key="param.variant">
-    <Button :variant="param.variant" @click="param.modelValue = true">Open Dialog({{param.variant}})</Button>
+<template v-for="param in params">
+    <Button :variant="param.variant" :key="param.variant" @click="param.modelValue = true">Open Dialog({{param.variant}})</Button>
     <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <template #footer>
             <Button @click="param.modelValue = false">Cancel</Button>
         </template>
     </Dialog>
-</div>`
+</template>`
     })
 };
 
@@ -106,15 +106,15 @@ export const PropsSize: Story = {
             ])
         }),
         template: `
-<div v-for="param in params" :key="param.size">
-    <Button @click="param.modelValue = true">Open Dialog({{param.size}})</Button>
+<template v-for="param in params">
+    <Button :key="param.size" @click="param.modelValue = true">Open Dialog({{param.size}})</Button>
     <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <template #footer>
             <Button @click="param.modelValue = false">Cancel</Button>
         </template>
     </Dialog>
-</div>`
+</template>`
     })
 };
 
@@ -139,15 +139,15 @@ export const PropsShape: Story = {
             ])
         }),
         template: `
-<div v-for="param in params" :key="param.shape">
-    <Button @click="param.modelValue = true">Open Dialog({{param.shape}})</Button>
+<template v-for="param in params">
+    <Button :key="param.shape" @click="param.modelValue = true">Open Dialog({{param.shape}})</Button>
     <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <template #footer>
             <Button @click="param.modelValue = false">Cancel</Button>
         </template>
     </Dialog>
-</div>`
+</template>`
     })
 };
 
@@ -180,15 +180,15 @@ export const PropsPosition: Story = {
             ])
         }),
         template: `
-<div v-for="param in params" :key="param.position">
-    <Button @click="param.modelValue = true">Open Dialog({{param.position}})</Button>
+<template v-for="param in params">
+    <Button :key="param.position" @click="param.modelValue = true">Open Dialog({{param.position}})</Button>
     <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <template #footer>
             <Button @click="param.modelValue = false">Cancel</Button>
         </template>
     </Dialog>
-</div>`
+</template>`
     })
 };
 
@@ -221,15 +221,15 @@ export const PropsTransitionFrom: Story = {
             ])
         }),
         template: `
-<div v-for="param in params" :key="param.position">
-    <Button @click="param.modelValue = true">Open Dialog({{param.transitionFrom}})</Button>
+<template v-for="param in params">
+    <Button :key="param.position" @click="param.modelValue = true">Open Dialog({{param.transitionFrom}})</Button>
     <Dialog v-bind="{...args, ...param}" v-model="param.modelValue">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <template #footer>
             <Button @click="param.modelValue = false">Cancel</Button>
         </template>
     </Dialog>
-</div>`
+</template>`
     })
 };
 
