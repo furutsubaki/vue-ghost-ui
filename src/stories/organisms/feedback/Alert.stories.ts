@@ -29,9 +29,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Alert },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -51,21 +51,17 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Alert variant="${param.variant}" title="${param.variant}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Alert v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" :title="param.variant" />`
     })
 };
 
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Alert },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -76,21 +72,17 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Alert size="${param.size}" variant="info" title="${param.size}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Alert v-for="param in params" :key="param.size" v-bind="{...args, ...param}" variant="info" :title="param.size" />`
     })
 };
 
 export const PropsShape: Story = {
     render: (args) => ({
         components: { Alert },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     shape: 'normal'
                 },
@@ -101,12 +93,8 @@ export const PropsShape: Story = {
                     shape: 'no-radius'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Alert shape="${param.shape}" title="${param.shape}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Alert v-for="param in params" :key="param.shape" v-bind="{...args, ...param}" :title="param.shape" />`
     })
 };
 

@@ -25,9 +25,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Progress },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -47,18 +47,17 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map((param) => `<Progress variant="${param.variant}" v-bind="args" />`)
-                .join('');
-        })()
+        }),
+        template: `<Progress v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" />`
     })
 };
 
 export const PropsSizeAndShape: Story = {
     render: (args) => ({
         components: { Progress },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large',
                     shape: 'line'
@@ -96,12 +95,8 @@ export const PropsSizeAndShape: Story = {
                     shape: 'circle'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Progress size="${param.size}" shape="${param.shape}" variant="info" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Progress v-for="param in params" :key="param.size + '-' + params.shape" v-bind="{...args, ...param}" variant="info" />`
     })
 };
 

@@ -36,9 +36,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { DatePicker },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -58,12 +58,8 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<DatePicker variant="${param.variant}" label="${param.variant}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<DatePicker v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" :label="param.variant" />`
     }),
     args: { ...Default.args }
 };
@@ -71,9 +67,9 @@ export const PropsVariant: Story = {
 export const PropsShape: Story = {
     render: (args) => ({
         components: { DatePicker },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     shape: 'normal'
                 },
@@ -84,12 +80,8 @@ export const PropsShape: Story = {
                     shape: 'no-radius'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<DatePicker shape="${param.shape}" label="${param.shape}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<DatePicker v-for="param in params" :key="param.shape" v-bind="{...args, ...param}" :label="param.shape" />`
     }),
     args: { ...Default.args }
 };
