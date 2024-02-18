@@ -12,7 +12,14 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'rounded' | 'circle' | 'square' | 'skeleton' | 'link';
+        shape?:
+            | 'normal'
+            | 'rounded'
+            | 'circle'
+            | 'square'
+            | 'skeleton'
+            | 'skeleton-square'
+            | 'link';
         /**
          * 読み取り専用
          */
@@ -184,6 +191,10 @@ const onClick = () => {
     width: var(--c-button-height);
     word-break: keep-all;
     border-radius: 50%;
+    > :deep(.lucide) {
+        width: 100%;
+        height: 100%;
+    }
 }
 .square {
     display: flex;
@@ -191,10 +202,43 @@ const onClick = () => {
     min-width: auto;
     width: var(--c-button-height);
     word-break: keep-all;
+    > :deep(.lucide) {
+        width: 100%;
+        height: 100%;
+    }
 }
 .skeleton {
     border: 0;
     min-width: initial;
+    @media (hover: hover) {
+        &:hover {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--c-button-color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--c-button-color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+}
+.skeleton-square {
+    border: 0;
+    min-width: initial;
+    width: var(--c-button-height);
+    > :deep(.lucide) {
+        width: 100%;
+        height: 100%;
+    }
     @media (hover: hover) {
         &:hover {
             &.secondary {
