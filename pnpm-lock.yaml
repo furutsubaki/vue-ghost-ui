@@ -68,8 +68,8 @@ devDependencies:
     specifier: ^7.6.16
     version: 7.6.16
   '@storybook/addon-outline':
-    specifier: ^7.6.16
-    version: 7.6.16
+    specifier: ^7.6.17
+    version: 7.6.17
   '@storybook/addon-viewport':
     specifier: ^7.6.16
     version: 7.6.16
@@ -2897,8 +2897,8 @@ packages:
       tiny-invariant: 1.3.1
     dev: true
 
-  /@storybook/addon-outline@7.6.16:
-    resolution: {integrity: sha512-bG9KN10ANLUDIsm4e6RXRsCZ++b8pyfYTyu0MlSNXf6KdYcuDvdTY59gj6RIeVGKqWeX5yYCYUm2oPLtkms1NQ==}
+  /@storybook/addon-outline@7.6.17:
+    resolution: {integrity: sha512-9o9JXDsYjNaDgz/cY5+jv694+aik/1aiRGGvsCv68e1p/ob0glkGKav4lnJe2VJqD+gCmaARoD8GOJlhoQl8JQ==}
     dependencies:
       '@storybook/global': 5.0.0
       ts-dedent: 2.2.0
