@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^7.6.17
     version: 7.6.17
   '@storybook/addon-viewport':
-    specifier: ^7.6.16
-    version: 7.6.16
+    specifier: ^7.6.17
+    version: 7.6.17
   '@storybook/preview-api':
     specifier: ^7.6.17
     version: 7.6.17
@@ -2904,8 +2904,8 @@ packages:
       ts-dedent: 2.2.0
     dev: true
 
-  /@storybook/addon-viewport@7.6.16:
-    resolution: {integrity: sha512-WkvixYHncLXpAeEnktjfYIffJ3b6poymB+wDbHKK/tg7m3N8llLlys64nvyeb7DbZ/+1yJls3K1DVbk1AIEHrQ==}
+  /@storybook/addon-viewport@7.6.17:
+    resolution: {integrity: sha512-sA0QCcf4QAMixWvn8uvRYPfkKCSl6JajJaAspoPqXSxHEpK7uwOlpg3kqFU5XJJPXD0X957M+ONgNvBzYqSpEw==}
     dependencies:
       memoizerific: 1.11.3
     dev: true
