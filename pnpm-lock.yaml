@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^7.6.16
     version: 7.6.16
   '@storybook/preview-api':
-    specifier: ^7.6.16
-    version: 7.6.16
+    specifier: ^7.6.17
+    version: 7.6.17
   '@storybook/vue3':
     specifier: ^7.6.17
     version: 7.6.17(vue@3.4.19)
