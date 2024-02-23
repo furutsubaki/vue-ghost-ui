@@ -117,7 +117,7 @@ devDependencies:
     version: 6.1.2
   postcss-nesting:
     specifier: ^12.0.3
-    version: 12.0.3(postcss@8.4.33)
+    version: 12.0.3(postcss@8.4.35)
   prettier:
     specifier: ^3.2.2
     version: 3.2.5
@@ -7268,14 +7268,14 @@ packages:
       '@babel/runtime': 7.23.8
     dev: true
 
-  /postcss-nesting@12.0.3(postcss@8.4.33):
+  /postcss-nesting@12.0.3(postcss@8.4.35):
     resolution: {integrity: sha512-yrtMRPFNkfZMv9ikBvZ/Eh3RxhpMBKQ3KzD7LCY8+jYVlgju/Mdcxi4JY8bW2Y7ISXw8GTLuF/o+kFtp+yaVfQ==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
     dependencies:
       '@csstools/selector-specificity': 3.0.2(postcss-selector-parser@6.0.15)
-      postcss: 8.4.33
+      postcss: 8.4.35
       postcss-selector-parser: 6.0.15
     dev: true
 
