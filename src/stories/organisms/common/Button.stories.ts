@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import Button from '@/components/organisms/common/Button.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -23,7 +24,7 @@ const meta: Meta<typeof Button> = {
             options: ['small', 'medium', 'large']
         },
         shape: {
-            options: ['normal', 'rounded', 'circle', 'square']
+            options: ['normal', 'rounded', 'circle', 'square', 'skeleton']
         },
         onClick: { action: 'click' }
     }
@@ -35,10 +36,11 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: () => ({
+    render: (args) => ({
         components: { Button },
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: ref([
                 {
                     variant: 'primary'
                 },
@@ -57,21 +59,18 @@ export const PropsVariant: Story = {
                 {
                     variant: 'danger'
                 }
-            ]
-                .map(
-                    (param) =>
-                        `<Button variant="${param.variant}" v-bind="args">${param.variant}</Button>`
-                )
-                .join('');
-        })()
+            ])
+        }),
+        template: `<Button v-for="param in params" :key="param.shape" v-bind="{...args, ...param}">{{param.variant}}</Button>`
     })
 };
 
 export const PropsSize: Story = {
-    render: () => ({
+    render: (args) => ({
         components: { Button },
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: ref([
                 {
                     size: 'large'
                 },
@@ -81,18 +80,18 @@ export const PropsSize: Story = {
                 {
                     size: 'small'
                 }
-            ]
-                .map((param) => `<Button size="${param.size}" v-bind="args">${param.size}</Button>`)
-                .join('');
-        })()
+            ])
+        }),
+        template: `<Button v-for="param in params" :key="param.shape" v-bind="{...args, ...param}">{{param.size}}</Button>`
     })
 };
 
 export const PropsShape: Story = {
-    render: () => ({
+    render: (args) => ({
         components: { Button },
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: ref([
                 {
                     shape: 'normal'
                 },
@@ -107,15 +106,28 @@ export const PropsShape: Story = {
                 },
                 {
                     shape: 'square'
+                },
+                {
+                    shape: 'skeleton'
+                },
+                {
+                    shape: 'link'
                 }
-            ]
-                .map(
-                    (param) =>
-                        `<Button shape="${param.shape}" v-bind="args">${param.shape}</Button>`
-                )
-                .join('');
-        })()
+            ])
+        }),
+        template: `<Button v-for="param in params" :key="param.shape" v-bind="{...args, ...param}">{{param.shape}}</Button>`
     })
+};
+
+export const PropsReadonly: Story = {
+    args: {
+        readonly: true
+    }
+};
+export const PropsDisabled: Story = {
+    args: {
+        disabled: true
+    }
 };
 
 export const LongText: Story = {

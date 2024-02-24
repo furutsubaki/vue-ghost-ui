@@ -292,14 +292,14 @@ const onBlur = (event: Event) => {
 <style scoped>
 .component-input {
     width: 100%;
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-autocomplete-height);
+    font-size: var(--c-autocomplete-font-size);
     position: relative;
 
     :where(.input) {
         min-width: 100px;
         width: 100%;
-        height: var(--height);
+        height: var(--c-autocomplete-height);
         line-height: 1.5em;
         background-color: transparent;
         color: var(--color-theme-text-primary);
@@ -343,7 +343,7 @@ const onBlur = (event: Event) => {
     }
 
     .clearable-box {
-        width: var(--font-size);
+        width: var(--c-autocomplete-font-size);
 
         .lucide {
             opacity: 0;
@@ -354,16 +354,16 @@ const onBlur = (event: Event) => {
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-autocomplete-height: 40px;
+    --c-autocomplete-font-size: var(--font-size-medium);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-common);
+    --c-autocomplete-height: 32px;
+    --c-autocomplete-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-autocomplete-height: 24px;
+    --c-autocomplete-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 

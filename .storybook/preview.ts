@@ -1,8 +1,9 @@
 import { Preview, setup } from '@storybook/vue3'
 import { useArgs } from '@storybook/preview-api'
 import '@acab/reset.css'
-import '../src/assets/css/style.css'
 import '../src/assets/css/variables.css'
+import '../src/assets/css/style.css'
+import '../src/assets/css/override.css'
 
 import { defineRule } from 'vee-validate';
 import * as AllRules from '@vee-validate/rules'
@@ -12,6 +13,7 @@ import { zodI18nMap } from 'zod-i18n-map';
 import translation from 'zod-i18n-map/locales/ja/zod.json';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import vClickOutside from "click-outside-vue3"
 
 const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
     switch (issue.code) {
@@ -37,6 +39,7 @@ init({
 z.setErrorMap(customErrorMap);
 
 setup((app) => {
+    app.use(vClickOutside);
     app.component('VueDatePicker', VueDatePicker);
 })
 
@@ -54,9 +57,31 @@ const preview: Preview = {
 
             return {
                 components: { story },
-                template: '<main style="display: flex; gap:16px; flex-wrap: wrap;"><story /></main>',
+                template: '<main style="display: flex; align-items: flex-start; gap:16px; flex-wrap: wrap; width: 100%;"><story /></main>',
             };
-        }
+        },
+        (story, context) => {
+            // v-model調整
+
+            const [args, updateArgs] = useArgs();
+            if ('modelValue' in args) {
+                const update = args['onUpdate:model-value'] || args['onUpdate:modelValue'];
+                args['onUpdate:model-value'] = undefined;
+                args['onUpdate:modelValue'] = (...vals) => {
+                    update?.(...vals);
+                    /**
+                     * Arg with `undefined` will be deleted by `deleteUndefined()`, then loss of reactive
+                     * @see {@link https://github.com/storybookjs/storybook/blob/next/code/lib/preview-api/src/modules/store/ArgsStore.ts#L63}
+                     */
+                    const modelValue = vals[0] === undefined ? null : vals[0];
+                    updateArgs({ modelValue });
+                };
+            }
+
+            return {
+                ...story({ ...context, updateArgs })
+            };
+        },
     ]
 }
 

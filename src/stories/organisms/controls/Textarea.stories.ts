@@ -37,9 +37,9 @@ export const Default: Story = {};
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Textarea },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -59,12 +59,8 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Textarea variant="${param.variant}" label="${param.variant}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Textarea v-for="param in params" :key="param.variant" v-bind="{...args, ...param}" :label="param.variant" />`
     }),
     args: { ...Default.args }
 };
@@ -72,9 +68,9 @@ export const PropsVariant: Story = {
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Textarea },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -85,12 +81,8 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Textarea size="${param.size}" label="${param.size}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Textarea v-for="param in params" :key="param.size" v-bind="{...args, ...param}" :label="param.size" />`
     }),
     args: { ...Default.args }
 };
@@ -98,9 +90,9 @@ export const PropsSize: Story = {
 export const PropsShape: Story = {
     render: (args) => ({
         components: { Textarea },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     shape: 'normal'
                 },
@@ -111,12 +103,8 @@ export const PropsShape: Story = {
                     shape: 'no-radius'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Textarea shape="${param.shape}" label="${param.shape}" v-bind="args" />`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Textarea v-for="param in params" :key="param.shape" v-bind="{...args, ...param}" :label="param.shape" />`
     }),
     args: { ...Default.args }
 };

@@ -9,11 +9,6 @@
 
 :root {
     /* グローバル変数 */
-    --main-width: 1200px;
-    --sidebar-width: 300px;
-    --header-height: 65px;
-    --bottom-nav-height: 4em;
-    --content-max-width: 1280px;
     --height-vh: calc(var(--vh, 1vh) * 100); /* 要js */
     --font-sans: 'Roboto', 'Noto Sans JP', '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック体',
         'YuGothic', '游ゴシック', 'Yu Gothic', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro',
@@ -22,7 +17,7 @@
         'Hiragino Mincho Pro', 'ヒラギノ明朝 Pro', serif;
     --font-accent: 'Kosugi', sans-serif;
     --font-size-large: 2rem;
-    --font-size-common: 1.4rem;
+    --font-size-medium: 1.4rem;
     --font-size-small: 1.2rem;
     --scroll-bar-width: calc(100vw - 100%);
     --omit-scroll-vw: calc(100vw - var(--scroll-bar-width));
@@ -96,7 +91,7 @@
 
 @media (600px <= width) {
     :root {
-        --font-size-common: 1.6rem;
+        --font-size-medium: 1.6rem;
     }
 }
 

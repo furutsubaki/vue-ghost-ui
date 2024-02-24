@@ -42,9 +42,9 @@ export const Default: Story = {
 export const PropsVariant: Story = {
     render: (args) => ({
         components: { Switch },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -64,12 +64,8 @@ export const PropsVariant: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Switch variant="${param.variant}" v-bind="args">${param.variant}</Switch>`
-                )
-                .join('');
-        })()
+        }),
+        template: `<Switch v-for="param in params" :key="param.variant" v-bind="{...args, ...param}">{{param.variant}}</Switch>`
     }),
     args: { ...Default.args }
 };
@@ -77,9 +73,9 @@ export const PropsVariant: Story = {
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Switch },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     size: 'large'
                 },
@@ -90,9 +86,8 @@ export const PropsSize: Story = {
                     size: 'small'
                 }
             ]
-                .map((param) => `<Switch size="${param.size}" v-bind="args">${param.size}</Switch>`)
-                .join('');
-        })()
+        }),
+        template: `<Switch v-for="param in params" :key="param.size" v-bind="{...args, ...param}">{{param.size}}</Switch>`
     }),
     args: { ...Default.args }
 };
@@ -131,9 +126,9 @@ export const PropsSlot: Story = {
     },
     render: (args) => ({
         components: { Switch, IconX, IconCheck },
-        setup: () => ({ args }),
-        template: (() => {
-            return [
+        setup: () => ({
+            args,
+            params: [
                 {
                     variant: 'primary'
                 },
@@ -153,12 +148,17 @@ export const PropsSlot: Story = {
                     variant: 'danger'
                 }
             ]
-                .map(
-                    (param) =>
-                        `<Switch variant="${param.variant}" v-bind="args">${param.variant}<template #switchIconTrue><IconCheck /></template><template #switchIconFalse><IconX /></template></Switch>`
-                )
-                .join('');
-        })()
+        }),
+        template: `
+<Switch v-for="param in params" :key="param.variant" v-bind="{...args, ...param}">
+    {{param.variant}}
+    <template #switchIconTrue>
+        <IconCheck />
+    </template>
+    <template #switchIconFalse>
+        <IconX />
+    </template>
+</Switch>`
     })
 };
 

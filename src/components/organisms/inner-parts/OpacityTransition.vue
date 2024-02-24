@@ -17,13 +17,31 @@ withDefaults(
     {
         duration: '0.2s',
         delay: '0s',
-        easeFunction: 'ease'
+        easeFunction: 'ease-in-out'
     }
 );
+
+const emit = defineEmits<{
+    /**
+     * トランジション開始
+     */
+    transitionStart: [];
+    /**
+     * トランジション終了
+     */
+    transitionEnd: [];
+}>();
+
+const onTransitionStart = () => {
+    emit('transitionStart');
+};
+const onTransitionEnd = () => {
+    emit('transitionEnd');
+};
 </script>
 
 <template>
-    <Transition>
+    <Transition @before-enter="onTransitionStart" @after-leave="onTransitionEnd">
         <slot></slot>
     </Transition>
 </template>
@@ -32,7 +50,7 @@ withDefaults(
 .v-enter-active,
 .v-leave-active {
     /* 親側のopacityと競合する場合があるため、こちらを優先とする */
-    transition: opacity v-bind(duration) v-bind(delay) v-bind(easeFunction) !important;
+    transition: opacity v-bind(duration) v-bind(easeFunction) v-bind(delay) !important;
 }
 .v-enter-from,
 .v-leave-to {

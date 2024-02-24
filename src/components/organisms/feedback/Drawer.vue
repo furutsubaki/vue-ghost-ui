@@ -1,0 +1,278 @@
+<script setup lang="ts">
+import { ref, useSlots } from 'vue';
+import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
+import TranslateTransition from '@/components/organisms/inner-parts/TranslateTransition.vue';
+import Button from '@/components/organisms/common/Button.vue';
+import { computed } from 'vue';
+import { sleep } from '@/assets/ts';
+import { X as IconX } from 'lucide-vue-next';
+
+const flg = defineModel<boolean>({ default: true });
+const props = withDefaults(
+    defineProps<{
+        /**
+         * サイズ
+         */
+        size?: 'small' | 'medium' | 'large';
+        /**
+         * 位置
+         */
+        position: 'top' | 'right' | 'bottom' | 'left';
+        /**
+         * slotをスクロールさせるか
+         */
+        scroll?: boolean;
+        /**
+         * センタリング
+         */
+        center?: boolean;
+        /**
+         * 閉じるボタン
+         */
+        closeable?: boolean;
+        /**
+         * 暗黙Cancel禁止
+         */
+        persistent?: boolean;
+        /**
+         * シームレス
+         */
+        seamless?: boolean;
+    }>(),
+    {
+        size: 'medium',
+        shape: 'no-radius',
+        scroll: true,
+        center: false,
+        closeable: false,
+        persistent: false,
+        seamless: false
+    }
+);
+const emit = defineEmits<{
+    /**
+     * 閉じた
+     */
+    closed: [];
+}>();
+
+// transition状態
+const transitioning = ref(false);
+const isShowing = computed(() => {
+    if (flg.value) {
+        return true;
+    } else {
+        return transitioning.value;
+    }
+});
+
+const onClose = async () => {
+    flg.value = false;
+    await onClosed();
+};
+const onClosed = async () => {
+    if (isShowing.value) {
+        await sleep(100);
+        onClosed();
+    } else {
+        emit('closed');
+    }
+};
+const onOutside = computed(() => ({
+    handler: onClose,
+    isActive: flg.value && !props.persistent && !props.seamless
+}));
+
+const slots = useSlots();
+const hasSlot = (name: string) => {
+    return slots[name] ? !!(slots[name] as () => [])()?.length : false;
+};
+</script>
+
+<template>
+    <OpacityTransition
+        @transition-start="transitioning = true"
+        @transition-end="transitioning = false"
+    >
+        <div v-show="flg" class="component-drawer" :class="{ 'is-seamless': seamless }">
+            <TranslateTransition
+                :from="position"
+                @transition-start="transitioning = true"
+                @transition-end="transitioning = false"
+            >
+                <div
+                    v-show="flg"
+                    class="drawer"
+                    :class="[size, position, { 'is-center': center }]"
+                    v-click-outside="onOutside"
+                >
+                    <Button
+                        v-if="closeable"
+                        size="large"
+                        shape="skeleton-square"
+                        class="closeable-box"
+                        @click="onClose"
+                    >
+                        <IconX />
+                    </Button>
+                    <div
+                        v-if="hasSlot('header')"
+                        class="header"
+                        :class="{ 'is-closeable': closeable }"
+                    >
+                        <slot name="header" />
+                    </div>
+                    <div class="box" :class="{ 'is-scroll': scroll }">
+                        <slot />
+                    </div>
+                    <div v-if="hasSlot('footer')" class="footer">
+                        <slot name="footer" />
+                    </div>
+                </div>
+            </TranslateTransition>
+        </div>
+    </OpacityTransition>
+</template>
+
+<style scoped>
+.component-drawer {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    &:not(.is-seamless) {
+        &::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-color: var(--color-theme-shadow);
+            z-index: -1;
+            pointer-events: initial;
+        }
+    }
+}
+
+.drawer {
+    pointer-events: initial;
+    position: fixed;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: var(--c-drawer-width);
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 0;
+    border-color: var(--color-theme-border);
+    background-color: var(--color-theme-bg-primary);
+    transition:
+        border-color 0.2s,
+        opacity 0.2s;
+
+    .closeable-box {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        z-index: 1;
+    }
+
+    .header {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        &.is-closeable {
+            margin-right: 32px;
+        }
+    }
+
+    .box {
+        position: relative;
+        flex-grow: 1;
+        &.is-scroll {
+            overflow-y: auto;
+        }
+    }
+
+    .footer {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+    }
+
+    &.is-center {
+        .header,
+        .footer {
+            justify-content: center;
+            text-align: center;
+        }
+    }
+}
+
+/* ▼ size ▼ */
+.large {
+    --c-drawer-min-width: 320px;
+    --c-drawer-min-height: 320px;
+    --c-drawer-width: 40vw;
+    --c-drawer-height: 40vh;
+}
+.medium {
+    --c-drawer-min-width: 240px;
+    --c-drawer-min-height: 240px;
+    --c-drawer-width: 32vw;
+    --c-drawer-height: 32vh;
+}
+.small {
+    --c-drawer-min-width: 200px;
+    --c-drawer-min-height: 200px;
+    --c-drawer-width: 24vw;
+    --c-drawer-height: 24vh;
+}
+/* ▲ size ▲ */
+
+/* ▼ position ▼ */
+.top {
+    inset: 0;
+    bottom: auto;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    width: 100vw;
+    min-height: min(var(--c-drawer-min-height), 80vh);
+    height: var(--c-drawer-height);
+    max-height: 80vh;
+}
+.right {
+    inset: 0;
+    left: auto;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    min-width: min(var(--c-drawer-min-width), 80vw);
+    width: var(--c-drawer-width);
+    max-width: 80vw;
+    height: 100vh;
+}
+.bottom {
+    inset: 0;
+    top: auto;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    width: 100vw;
+    min-height: min(var(--c-drawer-min-height), 80vh);
+    height: var(--c-drawer-height);
+    max-height: 80vh;
+}
+.left {
+    inset: 0;
+    right: auto;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    min-width: min(var(--c-drawer-min-width), 80vw);
+    width: var(--c-drawer-width);
+    max-width: 80vw;
+    height: 100vh;
+}
+/* ▲ position ▲ */
+</style>

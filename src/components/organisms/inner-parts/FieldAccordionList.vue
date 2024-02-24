@@ -7,7 +7,7 @@ interface Item {
     disabled?: boolean;
 }
 
-const model = defineModel<boolean>();
+const flg = defineModel<boolean>();
 
 const props = withDefaults(
     defineProps<{
@@ -56,16 +56,16 @@ const selectedItem = computed(
 );
 const onSelectItem = (item: Item) => {
     emit('change', item.value);
-    model.value = false;
+    flg.value = false;
 };
 
 // Accordion枠外制御
 const onCloseAccordion = (event: Event) => {
-    if (!model.value || props.parentRef.contains(event.target as Node)) {
+    if (!flg.value || props.parentRef.contains(event.target as Node)) {
         return;
     }
 
-    model.value = false;
+    flg.value = false;
 };
 
 onMounted(() => {
@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
 <template>
     <div
         class="component-input-accordion-list"
-        :class="[variant, size, shape, position, { 'is-open': model && items.length }]"
+        :class="[variant, size, shape, position, { 'is-open': flg && items.length }]"
     >
         <div class="list-body">
             <div
@@ -107,7 +107,7 @@ onBeforeUnmount(() => {
     width: 100%;
     min-width: 100px;
     line-height: 1.5em;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--c-field-accordion-border-color);
     border-radius: 4px;
     color: var(--color-theme-text-primary);
     display: grid;
@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
     background-color: var(--color-theme-bg-primary);
     z-index: 1;
     opacity: 0;
-    font-size: var(--font-size);
+    font-size: var(--c-field-accordion-font-size);
     &.is-open {
         grid-template-rows: 1fr;
         opacity: 1;
@@ -141,7 +141,7 @@ onBeforeUnmount(() => {
             display: flex;
             align-items: center;
             padding: 0 8px;
-            min-height: var(--height);
+            min-height: var(--c-field-accordion-height);
             transition: background-color 0.2s;
             @media (hover: hover) {
                 &:hover {
@@ -166,65 +166,65 @@ onBeforeUnmount(() => {
 
     @media (hover: hover) {
         &:hover {
-            border-color: var(--hover-border-color);
+            border-color: var(--c-field-accordion-hover-border-color);
         }
     }
 
     @media (hover: none) {
         &:active {
-            border-color: var(--hover-border-color);
+            border-color: var(--c-field-accordion-hover-border-color);
         }
     }
 }
 
 /* ▼ variant ▼ */
 .primary {
-    --hover-border-color: var(--color-theme-active);
-    --border-color: var(--color-theme-active);
+    --c-field-accordion-hover-border-color: var(--color-theme-active);
+    --c-field-accordion-border-color: var(--color-theme-active);
 }
 .secondary {
-    --hover-border-color: var(--color-theme-border);
-    --border-color: var(--color-theme-border);
+    --c-field-accordion-hover-border-color: var(--color-theme-border);
+    --c-field-accordion-border-color: var(--color-theme-border);
 }
 .info {
-    --hover-border-color: var(--color-status-info);
-    --border-color: var(--color-status-info);
+    --c-field-accordion-hover-border-color: var(--color-status-info);
+    --c-field-accordion-border-color: var(--color-status-info);
 }
 .success {
-    --hover-border-color: var(--color-status-success);
-    --border-color: var(--color-status-success);
+    --c-field-accordion-hover-border-color: var(--color-status-success);
+    --c-field-accordion-border-color: var(--color-status-success);
 }
 .warning {
-    --hover-border-color: var(--color-status-warning);
-    --border-color: var(--color-status-warning);
+    --c-field-accordion-hover-border-color: var(--color-status-warning);
+    --c-field-accordion-border-color: var(--color-status-warning);
 }
 .danger {
-    --hover-border-color: var(--color-status-danger);
-    --border-color: var(--color-status-danger);
+    --c-field-accordion-hover-border-color: var(--color-status-danger);
+    --c-field-accordion-border-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-field-accordion-height: 40px;
+    --c-field-accordion-font-size: var(--font-size-medium);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-common);
+    --c-field-accordion-height: 32px;
+    --c-field-accordion-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-field-accordion-height: 24px;
+    --c-field-accordion-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 
 /* ▼ position ▼ */
 .bottom {
-    top: var(--height);
+    top: var(--c-field-accordion-height);
 }
 .top {
-    bottom: var(--height);
+    bottom: var(--c-field-accordion-height);
 }
 /* ▲ position ▲ */
 </style>

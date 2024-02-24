@@ -1,5 +1,5 @@
 <script setup lang="ts">
-withDefaults(
+const props = withDefaults(
     defineProps<{
         /**
          * 表示色
@@ -12,28 +12,53 @@ withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'rounded' | 'circle' | 'square';
+        shape?:
+            | 'normal'
+            | 'rounded'
+            | 'circle'
+            | 'square'
+            | 'skeleton'
+            | 'skeleton-square'
+            | 'link';
+        /**
+         * 読み取り専用
+         */
+        readonly?: boolean;
+        /**
+         * 無効か
+         */
+        disabled?: boolean;
     }>(),
     {
         variant: 'secondary',
         size: 'medium',
-        shape: 'normal'
+        shape: 'normal',
+        readonly: false,
+        disabled: false
     }
 );
-defineEmits<{
+const emit = defineEmits<{
     /**
      * test
      */
     click: [];
 }>();
+
+const onClick = () => {
+    if (props.readonly) {
+        return false;
+    }
+    emit('click');
+};
 </script>
 
 <template>
     <button
         type="button"
         class="component-button"
-        :class="[variant, size, shape]"
-        @click="$emit('click')"
+        :disabled="disabled"
+        :class="[variant, size, shape, { 'is-readonly': readonly }]"
+        @click="onClick"
     >
         <slot></slot>
     </button>
@@ -41,8 +66,8 @@ defineEmits<{
 
 <style scoped>
 .component-button {
-    min-height: var(--height);
-    font-size: var(--font-size);
+    min-height: var(--c-button-height);
+    font-size: var(--c-button-font-size);
 
     display: flex;
     gap: 16px;
@@ -50,105 +75,105 @@ defineEmits<{
     justify-content: center;
     min-width: 100px;
     padding: 0 8px;
-    color: var(--color);
-    background-color: var(--background-color);
+    color: var(--c-button-color);
+    background-color: var(--c-button-background-color);
     border: 1px solid;
     border-radius: 4px;
-    border-color: var(--border-color);
+    border-color: var(--c-button-border-color);
     word-break: keep-all;
     transition:
         color 0.2s,
         background-color 0.2s,
         border-color 0.2s,
         opacity 0.2s;
+    &.is-readonly {
+        pointer-events: none;
+    }
     &:disabled {
         pointer-events: none;
         opacity: 0.5;
     }
 
+    /* hover */
     @media (hover: hover) {
         &:hover {
-            color: var(--hover-color);
-            background-color: var(--hover-background-color);
-            border-color: var(--hover-border-color);
+            color: var(--c-button-hover-color);
+            background-color: var(--c-button-hover-background-color);
+            border-color: var(--c-button-hover-border-color);
         }
     }
-
     @media (hover: none) {
         &:active {
-            color: var(--hover-color);
-            background-color: var(--hover-background-color);
-            border-color: var(--hover-border-color);
+            color: var(--c-button-hover-color);
+            background-color: var(--c-button-hover-background-color);
+            border-color: var(--c-button-hover-border-color);
         }
     }
 }
 
+/* ▼ variable ▼ */
 .primary {
-    --hover-color: var(--color-theme-active);
-    --hover-background-color: transparent;
-    --hover-border-color: var(--color-theme-active);
-    --color: var(--color-base-white);
-    --background-color: var(--color-theme-active);
-    --border-color: var(--color-theme-active);
+    --c-button-hover-color: var(--color-theme-active);
+    --c-button-hover-background-color: transparent;
+    --c-button-hover-border-color: var(--color-theme-active);
+    --c-button-color: var(--color-base-white);
+    --c-button-background-color: var(--color-theme-active-alpha);
+    --c-button-border-color: var(--color-theme-active);
 }
-
 .secondary {
-    --hover-color: var(--color-base-white);
-    --hover-background-color: var(--color-theme-active);
-    --hover-border-color: var(--color-theme-active);
-    --color: var(--color-theme-text-primary);
-    --background-color: transparent;
-    --border-color: var(--color-theme-border);
+    --c-button-hover-color: var(--color-base-white);
+    --c-button-hover-background-color: var(--color-theme-active);
+    --c-button-hover-border-color: var(--color-theme-active);
+    --c-button-color: var(--color-theme-text-primary);
+    --c-button-background-color: transparent;
+    --c-button-border-color: var(--color-theme-border);
 }
-
 .info {
-    --hover-color: var(--color-status-info);
-    --hover-background-color: transparent;
-    --hover-border-color: var(--color-status-info);
-    --color: var(--color-theme-text-primary);
-    --background-color: var(--color-status-info);
-    --border-color: var(--color-status-info);
+    --c-button-hover-color: var(--color-status-info);
+    --c-button-hover-background-color: transparent;
+    --c-button-hover-border-color: var(--color-status-info);
+    --c-button-color: var(--color-theme-text-primary);
+    --c-button-background-color: var(--color-status-info-alpha);
+    --c-button-border-color: var(--color-status-info);
 }
-
 .success {
-    --hover-color: var(--color-status-success);
-    --hover-background-color: transparent;
-    --hover-border-color: var(--color-status-success);
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-success);
-    --border-color: var(--color-status-success);
+    --c-button-hover-color: var(--color-status-success);
+    --c-button-hover-background-color: transparent;
+    --c-button-hover-border-color: var(--color-status-success);
+    --c-button-color: var(--color-base-white);
+    --c-button-background-color: var(--color-status-success-alpha);
+    --c-button-border-color: var(--color-status-success);
 }
-
 .warning {
-    --hover-color: var(--color-status-warning);
-    --hover-background-color: transparent;
-    --hover-border-color: var(--color-status-warning);
-    --color: var(--color-base-black);
-    --background-color: var(--color-status-warning);
-    --border-color: var(--color-status-warning);
+    --c-button-hover-color: var(--color-status-warning);
+    --c-button-hover-background-color: transparent;
+    --c-button-hover-border-color: var(--color-status-warning);
+    --c-button-color: var(--color-base-black);
+    --c-button-background-color: var(--color-status-warning-alpha);
+    --c-button-border-color: var(--color-status-warning);
 }
-
 .danger {
-    --hover-color: var(--color-status-danger);
-    --hover-background-color: transparent;
-    --hover-border-color: var(--color-status-danger);
-    --color: var(--color-base-white);
-    --background-color: var(--color-status-danger);
-    --border-color: var(--color-status-danger);
+    --c-button-hover-color: var(--color-status-danger);
+    --c-button-hover-background-color: transparent;
+    --c-button-hover-border-color: var(--color-status-danger);
+    --c-button-color: var(--color-base-white);
+    --c-button-background-color: var(--color-status-danger-alpha);
+    --c-button-border-color: var(--color-status-danger);
 }
+/* ▲ variable ▲ */
 
 /* ▼ size ▼ */
 .large {
-    --height: 40px;
-    --font-size: var(--font-size-large);
+    --c-button-height: 40px;
+    --c-button-font-size: var(--font-size-medium);
 }
 .medium {
-    --height: 32px;
-    --font-size: var(--font-size-common);
+    --c-button-height: 32px;
+    --c-button-font-size: var(--font-size-medium);
 }
 .small {
-    --height: 24px;
-    --font-size: var(--font-size-small);
+    --c-button-height: 24px;
+    --c-button-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 
@@ -156,20 +181,105 @@ defineEmits<{
 .rounded {
     border-radius: 2em;
 }
+.no-radius {
+    border-radius: 0;
+}
 .circle {
     display: flex;
     justify-content: center;
     min-width: auto;
-    width: var(--height);
+    width: var(--c-button-height);
     word-break: keep-all;
     border-radius: 50%;
+    > :deep(.lucide) {
+        width: 100%;
+        height: 100%;
+    }
 }
 .square {
     display: flex;
     justify-content: center;
     min-width: auto;
-    width: var(--height);
+    width: var(--c-button-height);
     word-break: keep-all;
+    > :deep(.lucide) {
+        width: 100%;
+        height: 100%;
+    }
+}
+.skeleton {
+    border: 0;
+    min-width: initial;
+    @media (hover: hover) {
+        &:hover {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--c-button-color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--c-button-color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+}
+.skeleton-square {
+    border: 0;
+    min-width: initial;
+    width: var(--c-button-height);
+    > :deep(.lucide) {
+        width: 100%;
+        height: 100%;
+    }
+    @media (hover: hover) {
+        &:hover {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--c-button-color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            &.secondary {
+                color: var(--color-theme-link);
+            }
+            color: var(--c-button-color);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+}
+.link {
+    display: inline-block;
+    border: 0;
+    min-width: initial;
+    min-height: initial;
+    padding: 0;
+    @media (hover: hover) {
+        &:hover {
+            color: var(--color-theme-link);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            color: var(--color-theme-link);
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
 }
 /* ▲ shape ▲ */
 </style>
