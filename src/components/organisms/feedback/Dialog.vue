@@ -194,8 +194,8 @@ const hasSlot = (name: string) => {
     }
     .icon {
         flex-shrink: 0;
-        width: calc(var(--c-dialog-font-size) * 1.8);
-        height: calc(var(--c-dialog-font-size) * 1.8);
+        width: calc(var(--font-size-medium) * 1.8);
+        height: calc(var(--font-size-medium) * 1.8);
         fill: var(--c-dialog-icon-color);
         color: var(--color-theme-bg-primary);
     }
