@@ -58,7 +58,8 @@ const onSearch = (v: string) =>
     console.log(v);
 const onSetNotification = (position: 'top-right' | 'bottom-right' | 'bottom-left' | 'top-left') => {
     addNotification({
-        title: 'テスト通知',
+        title: '通知',
+        message: 'テスト通知',
         position
     });
 };
