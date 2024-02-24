@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, type Component } from 'vue';
 import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransition.vue';
+import Button from '@/components/organisms/common/Button.vue';
 import {
-    XCircle as IconXCircle,
+    X as IconX,
     Info as IconInfo,
     CheckCircle2 as IconCheckCircle2,
     AlertTriangle as IconAlertTriangle,
@@ -96,9 +97,9 @@ const onClosed = async () => {
                 <div v-if="title" class="title">{{ title }}</div>
                 <div>{{ text }}</div>
             </div>
-            <div class="closeable-box" v-if="closeable">
-                <IconXCircle @click.prevent="onClose" />
-            </div>
+            <Button v-if="closeable" shape="skeleton-square" class="closeable-box" @click="onClose">
+                <IconX />
+            </Button>
         </div>
     </OpacityTransition>
 </template>
@@ -110,6 +111,7 @@ const onClosed = async () => {
 
     display: flex;
     gap: 8px;
+    align-items: flex-start;
     justify-content: center;
     min-width: 100px;
     width: 100%;
@@ -130,6 +132,7 @@ const onClosed = async () => {
         flex-shrink: 0;
         width: calc(var(--c-alert-font-size) * 1.8);
         height: calc(var(--c-alert-font-size) * 1.8);
+        color: var(--c-alert-color);
     }
 
     .box {
@@ -144,14 +147,13 @@ const onClosed = async () => {
     }
 
     .closeable-box {
-        width: var(--c-alert-font-size);
         flex-shrink: 0;
     }
 }
 
 .primary {
     --c-alert-color: var(--color-base-white);
-    --c-alert-background-color: var(--color-theme-active-alpha);
+    --c-alert-background-color: var(--color-theme-active);
     --c-alert-border-color: var(--color-theme-active);
 }
 
@@ -163,25 +165,25 @@ const onClosed = async () => {
 
 .info {
     --c-alert-color: var(--color-theme-text-primary);
-    --c-alert-background-color: var(--color-status-info-alpha);
+    --c-alert-background-color: var(--color-status-info);
     --c-alert-border-color: var(--color-status-info);
 }
 
 .success {
     --c-alert-color: var(--color-base-white);
-    --c-alert-background-color: var(--color-status-success-alpha);
+    --c-alert-background-color: var(--color-status-success);
     --c-alert-border-color: var(--color-status-success);
 }
 
 .warning {
     --c-alert-color: var(--color-base-black);
-    --c-alert-background-color: var(--color-status-warning-alpha);
+    --c-alert-background-color: var(--color-status-warning);
     --c-alert-border-color: var(--color-status-warning);
 }
 
 .danger {
     --c-alert-color: var(--color-base-white);
-    --c-alert-background-color: var(--color-status-danger-alpha);
+    --c-alert-background-color: var(--color-status-danger);
     --c-alert-border-color: var(--color-status-danger);
 }
 
