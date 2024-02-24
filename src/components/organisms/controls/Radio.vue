@@ -253,7 +253,7 @@ if (fieldVal.value == null && model.value != null) {
 /* ▼ size ▼ */
 .large {
     --c-radio-height: 40px;
-    --c-radio-font-size: var(--font-size-large);
+    --c-radio-font-size: var(--font-size-medium);
 }
 .medium {
     --c-radio-height: 32px;

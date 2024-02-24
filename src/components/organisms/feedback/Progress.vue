@@ -129,12 +129,12 @@ const strokeDashoffset = computed(
 /* ▼ size ▼ */
 .large {
     --c-progress-circle-size: 160px;
-    --c-progress-font-size: var(--font-size-large);
-    --c-progress-border-width: calc(var(--c-progress-font-size) / 3);
+    --c-progress-font-size: var(--font-size-medium);
+    --c-progress-border-stroke-width: calc(var(--font-size-large) / 3);
     .progress-circle {
         .circle-underlay,
         .circle-overlay {
-            stroke-width: calc(var(--c-progress-border-width) / 3);
+            stroke-width: calc(var(--c-progress-border-stroke-width) / 3);
         }
     }
 }
@@ -142,11 +142,11 @@ const strokeDashoffset = computed(
 .medium {
     --c-progress-circle-size: 80px;
     --c-progress-font-size: var(--font-size-medium);
-    --c-progress-border-width: calc(var(--c-progress-font-size) / 3);
+    --c-progress-border-stroke-width: calc(var(--font-size-medium) / 3);
     .progress-circle {
         .circle-underlay,
         .circle-overlay {
-            stroke-width: calc(var(--c-progress-border-width) / 2);
+            stroke-width: calc(var(--c-progress-border-stroke-width) / 2);
         }
     }
 }
@@ -154,11 +154,11 @@ const strokeDashoffset = computed(
 .small {
     --c-progress-circle-size: 40px;
     --c-progress-font-size: var(--font-size-small);
-    --c-progress-border-width: calc(var(--c-progress-font-size) / 3);
+    --c-progress-border-stroke-width: calc(var(--font-size-small) / 3);
     .progress-circle {
         .circle-underlay,
         .circle-overlay {
-            stroke-width: calc(var(--c-progress-border-width) / 1);
+            stroke-width: calc(var(--c-progress-border-stroke-width) / 1);
         }
     }
 }
@@ -173,7 +173,7 @@ const strokeDashoffset = computed(
         width: 100%;
         position: relative;
         background-color: var(--color-theme-border);
-        height: var(--c-progress-border-width);
+        height: var(--c-progress-border-stroke-width);
         border-radius: 1em;
         &::before {
             content: '';

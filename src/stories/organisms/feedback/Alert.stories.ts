@@ -56,27 +56,6 @@ export const PropsVariant: Story = {
     })
 };
 
-export const PropsSize: Story = {
-    render: (args) => ({
-        components: { Alert },
-        setup: () => ({
-            args,
-            params: [
-                {
-                    size: 'large'
-                },
-                {
-                    size: 'medium'
-                },
-                {
-                    size: 'small'
-                }
-            ]
-        }),
-        template: `<Alert v-for="param in params" :key="param.size" v-bind="{...args, ...param}" variant="info" :title="param.size" />`
-    })
-};
-
 export const PropsShape: Story = {
     render: (args) => ({
         components: { Alert },

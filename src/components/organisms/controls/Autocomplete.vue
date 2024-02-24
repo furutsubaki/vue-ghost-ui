@@ -355,7 +355,7 @@ const onBlur = (event: Event) => {
 /* ▼ size ▼ */
 .large {
     --c-autocomplete-height: 40px;
-    --c-autocomplete-font-size: var(--font-size-large);
+    --c-autocomplete-font-size: var(--font-size-medium);
 }
 .medium {
     --c-autocomplete-height: 32px;

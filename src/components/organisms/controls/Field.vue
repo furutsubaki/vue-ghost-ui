@@ -390,7 +390,7 @@ onBeforeUnmount(() => {
 /* ▼ size ▼ */
 .large {
     --c-field-height: 40px;
-    --c-field-font-size: var(--font-size-large);
+    --c-field-font-size: var(--font-size-medium);
 }
 .medium {
     --c-field-height: 32px;

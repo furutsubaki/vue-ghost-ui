@@ -238,7 +238,7 @@ onMounted(() => {
 /* ▼ size ▼ */
 .large {
     --c-textarea-height: 40px;
-    --c-textarea-font-size: var(--font-size-large);
+    --c-textarea-font-size: var(--font-size-medium);
 }
 .medium {
     --c-textarea-height: 32px;

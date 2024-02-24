@@ -207,7 +207,7 @@ onBeforeUnmount(() => {
 /* ▼ size ▼ */
 .large {
     --c-field-accordion-height: 40px;
-    --c-field-accordion-font-size: var(--font-size-large);
+    --c-field-accordion-font-size: var(--font-size-medium);
 }
 .medium {
     --c-field-accordion-height: 32px;

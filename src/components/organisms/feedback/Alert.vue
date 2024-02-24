@@ -20,10 +20,6 @@ withDefaults(
          */
         variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
         /**
-         * サイズ
-         */
-        size?: 'small' | 'medium' | 'large';
-        /**
          * 形状
          */
         shape?: 'normal' | 'rounded' | 'no-radius';
@@ -46,7 +42,6 @@ withDefaults(
     }>(),
     {
         variant: 'secondary',
-        size: 'medium',
         shape: 'normal',
         closeable: false
     }
@@ -87,7 +82,7 @@ const onClosed = async () => {
         @transition-start="transitioning = true"
         @transition-end="transitioning = false"
     >
-        <div class="component-alert" :class="[variant, size, shape]" v-show="flg">
+        <div class="component-alert" :class="[variant, shape]" v-show="flg">
             <icon v-if="icon" class="icon" />
             <IconInfo v-else-if="variant === 'info'" class="icon" />
             <IconCheckCircle2 v-else-if="variant === 'success'" class="icon" />
@@ -106,14 +101,12 @@ const onClosed = async () => {
 
 <style scoped>
 .component-alert {
-    min-height: var(--c-alert-height);
-    font-size: var(--c-alert-font-size);
-
     display: flex;
     gap: 8px;
     align-items: flex-start;
     justify-content: center;
     min-width: 100px;
+    min-height: 32px;
     width: 100%;
     padding: 8px;
     color: var(--c-alert-color);
@@ -130,9 +123,10 @@ const onClosed = async () => {
 
     .icon {
         flex-shrink: 0;
-        width: calc(var(--c-alert-font-size) * 1.8);
-        height: calc(var(--c-alert-font-size) * 1.8);
+        width: calc(var(--font-size-medium) * 1.8);
+        height: calc(var(--font-size-medium) * 1.8);
         color: var(--c-alert-color);
+        padding: 2px;
     }
 
     .box {
@@ -142,7 +136,7 @@ const onClosed = async () => {
         gap: 8px;
         .title {
             font-weight: bold;
-            font-size: calc(var(--c-alert-font-size) * 1.2);
+            font-size: calc(var(--font-size-medium) * 1.2);
         }
     }
 
@@ -186,23 +180,6 @@ const onClosed = async () => {
     --c-alert-background-color: var(--color-status-danger);
     --c-alert-border-color: var(--color-status-danger);
 }
-
-/* ▼ size ▼ */
-.large {
-    --c-alert-height: 40px;
-    --c-alert-font-size: var(--font-size-large);
-}
-
-.medium {
-    --c-alert-height: 32px;
-    --c-alert-font-size: var(--font-size-medium);
-}
-
-.small {
-    --c-alert-height: 24px;
-    --c-alert-font-size: var(--font-size-small);
-}
-/* ▲ size ▲ */
 
 /* ▼ shape ▼ */
 .rounded {

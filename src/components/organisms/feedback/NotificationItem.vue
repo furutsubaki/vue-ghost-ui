@@ -170,8 +170,8 @@ onMounted(async () => {
 
     .icon {
         flex-shrink: 0;
-        width: calc(var(--c-notification-item-font-size) * 1.8);
-        height: calc(var(--c-notification-item-font-size) * 1.8);
+        width: calc(var(--font-size-medium) * 1.8);
+        height: calc(var(--font-size-medium) * 1.8);
         fill: var(--c-notification-item-icon-color);
         color: var(--color-theme-bg-primary);
     }
@@ -184,11 +184,11 @@ onMounted(async () => {
         gap: 8px;
         .title {
             font-weight: bold;
-            font-size: calc(var(--c-notification-item-font-size) * 1.2);
+            font-size: calc(var(--font-size-medium) * 1.2);
         }
         .message {
             white-space: pre-wrap;
-            font-size: var(--c-notification-item-font-size);
+            font-size: var(--font-size-medium);
         }
     }
 
@@ -230,21 +230,18 @@ onMounted(async () => {
     --c-notification-item-min-height: 320px;
     --c-notification-item-width: 40vw;
     --c-notification-item-height: 40vh;
-    --c-notification-item-font-size: var(--font-size-large);
 }
 .medium {
     --c-notification-item-min-width: 240px;
     --c-notification-item-min-height: 240px;
     --c-notification-item-width: 32vw;
     --c-notification-item-height: 32vh;
-    --c-notification-item-font-size: var(--font-size-medium);
 }
 .small {
     --c-notification-item-min-width: 200px;
     --c-notification-item-min-height: 200px;
     --c-notification-item-width: 24vw;
     --c-notification-item-height: 24vh;
-    --c-notification-item-font-size: var(--font-size-small);
 }
 /* ▲ size ▲ */
 
