@@ -32,48 +32,6 @@ type Story = StoryObj<typeof Drawer>;
 
 export const Default: Story = {};
 
-export const PropsVariant: Story = {
-    render: (args) => ({
-        components: { Drawer, Button },
-        setup: () => ({
-            args,
-            params: ref([
-                {
-                    variant: 'primary',
-                    modelValue: false
-                },
-                {
-                    variant: 'secondary',
-                    modelValue: false
-                },
-                {
-                    variant: 'info',
-                    modelValue: false
-                },
-                {
-                    variant: 'success',
-                    modelValue: false
-                },
-                {
-                    variant: 'warning',
-                    modelValue: false
-                },
-                {
-                    variant: 'danger',
-                    modelValue: false
-                }
-            ])
-        }),
-        template: `
-<div v-for="param in params" :key="param.variant">
-    <Button :variant="param.variant" @click="param.modelValue = true">Open Drawer({{param.variant}})</Button>
-    <Drawer v-bind="{...args, ...param}" v-model="param.modelValue">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </Drawer>
-</div>`
-    })
-};
-
 export const PropsSize: Story = {
     render: (args) => ({
         components: { Drawer, Button },
@@ -97,36 +55,6 @@ export const PropsSize: Story = {
         template: `
 <div v-for="param in params" :key="param.size">
     <Button @click="param.modelValue = true">Open Drawer({{param.size}})</Button>
-    <Drawer v-bind="{...args, ...param}" v-model="param.modelValue">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </Drawer>
-</div>`
-    })
-};
-
-export const PropsShape: Story = {
-    render: (args) => ({
-        components: { Drawer, Button },
-        setup: () => ({
-            args,
-            params: ref([
-                {
-                    shape: 'normal',
-                    modelValue: false
-                },
-                {
-                    shape: 'rounded',
-                    modelValue: false
-                },
-                {
-                    shape: 'no-radius',
-                    modelValue: false
-                }
-            ])
-        }),
-        template: `
-<div v-for="param in params" :key="param.shape">
-    <Button @click="param.modelValue = true">Open Drawer({{param.shape}})</Button>
     <Drawer v-bind="{...args, ...param}" v-model="param.modelValue">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </Drawer>

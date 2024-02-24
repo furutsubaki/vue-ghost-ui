@@ -5,23 +5,15 @@ import TranslateTransition from '@/components/organisms/inner-parts/TranslateTra
 import Button from '@/components/organisms/common/Button.vue';
 import { computed } from 'vue';
 import { sleep } from '@/assets/ts';
-import { XCircle as IconXCircle } from 'lucide-vue-next';
+import { X as IconX } from 'lucide-vue-next';
 
 const flg = defineModel<boolean>({ default: true });
 const props = withDefaults(
     defineProps<{
         /**
-         * 表示色
-         */
-        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
-        /**
          * サイズ
          */
         size?: 'small' | 'medium' | 'large';
-        /**
-         * 形状
-         */
-        shape?: 'normal' | 'rounded' | 'no-radius';
         /**
          * 位置
          */
@@ -48,7 +40,6 @@ const props = withDefaults(
         seamless?: boolean;
     }>(),
     {
-        variant: 'secondary',
         size: 'medium',
         shape: 'no-radius',
         scroll: true,
@@ -112,7 +103,7 @@ const hasSlot = (name: string) => {
                 <div
                     v-show="flg"
                     class="drawer"
-                    :class="[variant, size, shape, position, { 'is-center': center }]"
+                    :class="[size, position, { 'is-center': center }]"
                     v-click-outside="onOutside"
                 >
                     <Button
@@ -122,7 +113,7 @@ const hasSlot = (name: string) => {
                         class="closeable-box"
                         @click="onClose"
                     >
-                        <IconXCircle />
+                        <IconX />
                     </Button>
                     <div
                         v-if="hasSlot('header')"
@@ -171,9 +162,9 @@ const hasSlot = (name: string) => {
     width: var(--c-drawer-width);
     padding: 8px;
     border: 1px solid;
-    border-radius: var(--c-drawer-border-radius);
-    border-color: var(--c-drawer-border-color);
-    background-color: var(--color-theme-bg-secondary);
+    border-radius: 0;
+    border-color: var(--color-theme-border);
+    background-color: var(--color-theme-bg-primary);
     transition:
         border-color 0.2s,
         opacity 0.2s;
@@ -217,27 +208,6 @@ const hasSlot = (name: string) => {
     }
 }
 
-/* ▼ variant ▼ */
-.primary {
-    --c-drawer-border-color: var(--color-theme-active);
-}
-.secondary {
-    --c-drawer-border-color: var(--color-theme-border);
-}
-.info {
-    --c-drawer-border-color: var(--color-status-info);
-}
-.success {
-    --c-drawer-border-color: var(--color-status-success);
-}
-.warning {
-    --c-drawer-border-color: var(--color-status-warning);
-}
-.danger {
-    --c-drawer-border-color: var(--color-status-danger);
-}
-/* ▲ variant ▲ */
-
 /* ▼ size ▼ */
 .large {
     --c-drawer-min-width: 320px;
@@ -259,18 +229,6 @@ const hasSlot = (name: string) => {
 }
 /* ▲ size ▲ */
 
-/* ▼ shape ▼ */
-.normal {
-    --c-drawer-border-radius: 4px;
-}
-.rounded {
-    --c-drawer-border-radius: 2em;
-}
-.no-radius {
-    --c-drawer-border-radius: 0;
-}
-/* ▲ shape ▲ */
-
 /* ▼ position ▼ */
 .top {
     inset: 0;
@@ -278,7 +236,6 @@ const hasSlot = (name: string) => {
     border-top: 0;
     border-right: 0;
     border-left: 0;
-    border-radius: 0 0 var(--c-drawer-border-radius) var(--c-drawer-border-radius);
     width: 100vw;
     min-height: min(var(--c-drawer-min-height), 80vh);
     height: var(--c-drawer-height);
@@ -290,7 +247,6 @@ const hasSlot = (name: string) => {
     border-top: 0;
     border-right: 0;
     border-bottom: 0;
-    border-radius: var(--c-drawer-border-radius) 0 0 var(--c-drawer-border-radius);
     min-width: min(var(--c-drawer-min-width), 80vw);
     width: var(--c-drawer-width);
     max-width: 80vw;
@@ -302,7 +258,6 @@ const hasSlot = (name: string) => {
     border-right: 0;
     border-bottom: 0;
     border-left: 0;
-    border-radius: var(--c-drawer-border-radius) var(--c-drawer-border-radius) 0 0;
     width: 100vw;
     min-height: min(var(--c-drawer-min-height), 80vh);
     height: var(--c-drawer-height);
@@ -314,7 +269,6 @@ const hasSlot = (name: string) => {
     border-top: 0;
     border-bottom: 0;
     border-left: 0;
-    border-radius: 0 var(--c-drawer-border-radius) var(--c-drawer-border-radius) 0;
     min-width: min(var(--c-drawer-min-width), 80vw);
     width: var(--c-drawer-width);
     max-width: 80vw;
