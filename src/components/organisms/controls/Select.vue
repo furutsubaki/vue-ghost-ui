@@ -229,7 +229,7 @@ const onDelete = () => {
 /* ▼ size ▼ */
 .large {
     --c-select-height: 40px;
-    --c-select-font-size: var(--font-size-large);
+    --c-select-font-size: var(--font-size-medium);
 }
 .medium {
     --c-select-height: 32px;

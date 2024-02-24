@@ -51,27 +51,6 @@ export const PropsVariant: Story = {
     })
 };
 
-export const PropsSize: Story = {
-    render: (args) => ({
-        components: { Badge },
-        setup: () => ({
-            args,
-            params: [
-                {
-                    size: 'large'
-                },
-                {
-                    size: 'medium'
-                },
-                {
-                    size: 'small'
-                }
-            ]
-        }),
-        template: `<Badge v-for="param in params" :key="param.size" v-bind="{...args, ...param}" variant="info">{{param.size}}</Badge>`
-    })
-};
-
 export const PropsShape: Story = {
     render: (args) => ({
         components: { Badge },

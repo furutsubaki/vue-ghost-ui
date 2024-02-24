@@ -255,7 +255,7 @@ if (fieldVal.value == null && model.value != null) {
 /* ▼ size ▼ */
 .large {
     --c-checkbox-height: 40px;
-    --c-checkbox-font-size: var(--font-size-large);
+    --c-checkbox-font-size: var(--font-size-medium);
 }
 .medium {
     --c-checkbox-height: 32px;

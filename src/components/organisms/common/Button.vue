@@ -165,7 +165,7 @@ const onClick = () => {
 /* ▼ size ▼ */
 .large {
     --c-button-height: 40px;
-    --c-button-font-size: var(--font-size-large);
+    --c-button-font-size: var(--font-size-medium);
 }
 .medium {
     --c-button-height: 32px;

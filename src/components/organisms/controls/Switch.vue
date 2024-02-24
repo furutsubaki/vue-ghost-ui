@@ -295,7 +295,7 @@ if (fieldVal.value == null && model.value != null) {
 /* ▼ size ▼ */
 .large {
     --c-switch-height: 40px;
-    --c-switch-font-size: var(--font-size-large);
+    --c-switch-font-size: var(--font-size-medium);
 }
 .medium {
     --c-switch-height: 32px;

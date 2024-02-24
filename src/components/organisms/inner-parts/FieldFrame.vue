@@ -425,7 +425,7 @@ defineExpose({ frameRef });
 /* ▼ size ▼ */
 .large {
     --c-field-frame-height: 40px;
-    --c-field-frame-font-size: var(--font-size-large);
+    --c-field-frame-font-size: var(--font-size-medium);
 }
 .medium {
     --c-field-frame-height: 32px;
