@@ -7,7 +7,9 @@ import Radio from '@/components/organisms/controls/Radio.vue';
 import RadioGroup from '@/components/organisms/controls/RadioGroup.vue';
 import Select from '@/components/organisms/controls/Select.vue';
 import Autocomplete from '@/components/organisms/controls/Autocomplete.vue';
+import Notifications from '@/components/organisms/feedback/Notifications.vue';
 import useFormData from '@/composables/useFormData';
+import useNotification from '@/composables/useNotification';
 import z from 'zod';
 
 const initData = {
@@ -44,6 +46,7 @@ const items = [
 ];
 
 const { canSubmit, resetForm, handleSubmit } = useFormData(TEST_SCHEMA, initData);
+const { addNotification } = useNotification();
 
 const onSubmit = handleSubmit((values) => {
     // eslint-disable-next-line no-console
@@ -53,6 +56,12 @@ const onSubmit = handleSubmit((values) => {
 const onSearch = (v: string) =>
     // eslint-disable-next-line no-console
     console.log(v);
+const onSetNotification = (position: 'top-right' | 'bottom-right' | 'bottom-left' | 'top-left') => {
+    addNotification({
+        title: 'テスト通知',
+        position
+    });
+};
 </script>
 
 <template>
@@ -97,8 +106,17 @@ const onSearch = (v: string) =>
             <Autocomplete v-model="model.select" :items="items" label="らべる" />
             <Field label="Search" type="search" v-model="model.input" @search="onSearch" />
             {{ model }}
+            <div style="display: flex">
+                <Button @click="onSetNotification('top-left')">通知↖</Button>
+                <Button @click="onSetNotification('top-right')">通知↗</Button>
+            </div>
+            <div style="display: flex">
+                <Button @click="onSetNotification('bottom-left')">通知↙</Button>
+                <Button @click="onSetNotification('bottom-right')">通知↘</Button>
+            </div>
         </div>
     </main>
+    <Notifications />
 </template>
 
 <style scoped>
