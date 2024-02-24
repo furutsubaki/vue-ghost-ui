@@ -4,6 +4,12 @@ import OpacityTransition from '@/components/organisms/inner-parts/OpacityTransit
 import TranslateTransition from '@/components/organisms/inner-parts/TranslateTransition.vue';
 import { computed } from 'vue';
 import { sleep } from '@/assets/ts';
+import {
+    Info as IconInfo,
+    CheckCircle2 as IconCheckCircle2,
+    AlertTriangle as IconAlertTriangle,
+    XOctagon as IconXOctagon
+} from 'lucide-vue-next';
 
 const flg = defineModel<boolean>({ default: true });
 const props = withDefaults(
@@ -32,10 +38,6 @@ const props = withDefaults(
          * タイトル
          */
         title?: string;
-        /**
-         * slotをスクロールさせるか
-         */
-        scroll?: boolean;
         /**
          * センタリング
          */
@@ -122,9 +124,17 @@ const hasSlot = (name: string) => {
                     :class="[variant, size, shape, position, { 'is-center': center }]"
                     v-click-outside="onOutside"
                 >
-                    <div v-if="title" class="title">{{ title }}</div>
-                    <div class="box" :class="{ 'is-scroll': scroll }">
-                        <slot />
+                    <div class="inner">
+                        <IconInfo v-if="variant === 'info'" class="icon" />
+                        <IconCheckCircle2 v-else-if="variant === 'success'" class="icon" />
+                        <IconAlertTriangle v-else-if="variant === 'warning'" class="icon" />
+                        <IconXOctagon v-else-if="variant === 'danger'" class="icon" />
+                        <div class="box">
+                            <div v-if="title" class="title">{{ title }}</div>
+                            <div class="slot">
+                                <slot />
+                            </div>
+                        </div>
                     </div>
                     <div v-if="hasSlot('footer')" class="footer">
                         <slot name="footer" />
@@ -165,24 +175,44 @@ const hasSlot = (name: string) => {
     width: var(--c-dialog-width);
     max-width: 80vw;
     max-height: 80vh;
+    height: 100%;
     padding: 8px;
     border: 1px solid;
     border-radius: var(--c-dialog-border-radius);
     border-color: var(--c-dialog-border-color);
+    background-color: var(--color-theme-bg-primary);
     transition:
         border-color 0.2s,
         opacity 0.2s;
 
-    .title {
-        font-weight: bold;
-        font-size: calc(var(--font-size-medium) * 1.2);
+    .inner {
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        overflow: hidden;
+    }
+    .icon {
+        flex-shrink: 0;
+        width: calc(var(--c-dialog-font-size) * 1.8);
+        height: calc(var(--c-dialog-font-size) * 1.8);
+        fill: var(--c-dialog-icon-color);
+        color: var(--color-theme-bg-primary);
     }
 
     .box {
-        position: relative;
-        flex-grow: 1;
-        &.is-scroll {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        height: 100%;
+        .title {
+            font-weight: bold;
+            font-size: calc(var(--font-size-medium) * 1.2);
+        }
+        .slot {
             overflow-y: auto;
+            flex-grow: 1;
+            height: 100%;
         }
     }
 
@@ -203,27 +233,27 @@ const hasSlot = (name: string) => {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-dialog-background-color: var(--color-theme-active-alpha);
+    --c-dialog-icon-color: var(--color-theme-active);
     --c-dialog-border-color: var(--color-theme-active);
 }
 .secondary {
-    --c-dialog-background-color: transparent;
+    --c-dialog-icon-color: transparent;
     --c-dialog-border-color: var(--color-theme-border);
 }
 .info {
-    --c-dialog-background-color: var(--color-status-info-alpha);
+    --c-dialog-icon-color: var(--color-status-info);
     --c-dialog-border-color: var(--color-status-info);
 }
 .success {
-    --c-dialog-background-color: var(--color-status-success-alpha);
+    --c-dialog-icon-color: var(--color-status-success);
     --c-dialog-border-color: var(--color-status-success);
 }
 .warning {
-    --c-dialog-background-color: var(--color-status-warning-alpha);
+    --c-dialog-icon-color: var(--color-status-warning);
     --c-dialog-border-color: var(--color-status-warning);
 }
 .danger {
-    --c-dialog-background-color: var(--color-status-danger-alpha);
+    --c-dialog-icon-color: var(--color-status-danger);
     --c-dialog-border-color: var(--color-status-danger);
 }
 /* ▲ variant ▲ */
@@ -232,6 +262,8 @@ const hasSlot = (name: string) => {
 .full {
     max-width: initial;
     max-height: initial;
+    border-radius: 0;
+    border: 0;
     --c-dialog-width: 100vw;
     --c-dialog-height: 100vh;
 }
