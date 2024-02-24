@@ -89,18 +89,22 @@ export const PropsSize: Story = {
             params: ref([
                 {
                     size: 'full',
+                    variant: 'info',
                     modelValue: false
                 },
                 {
                     size: 'large',
+                    variant: 'info',
                     modelValue: false
                 },
                 {
                     size: 'medium',
+                    variant: 'info',
                     modelValue: false
                 },
                 {
                     size: 'small',
+                    variant: 'info',
                     modelValue: false
                 }
             ])
