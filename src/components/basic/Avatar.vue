@@ -63,6 +63,7 @@ const hasSlot = (name: string) => {
     border: 1px solid transparent;
     word-break: keep-all;
     overflow: hidden;
+    object-fit: cover;
 }
 
 /* ▼ size ▼ */
