@@ -7,7 +7,7 @@ const props = withDefaults(
         /**
          * 表示色
          */
-        color?: string;
+        color?: string | 'transparent';
         /**
          * アイコンコンポーネント
          */
@@ -47,7 +47,7 @@ const hasSlot = (name: string) => {
     <div v-else class="component-avatar" :class="[size, shape]">
         <component v-if="icon" :is="icon" class="icon" />
         <slot v-else-if="hasSlot('default')" />
-        <IconUser v-else />
+        <IconUser v-else class="icon" />
     </div>
 </template>
 
