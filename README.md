@@ -1,6 +1,6 @@
 # minazuki-ui
 
-vue/nuxt用のGHOST UIコンポーネントライブラリ
+vue/nuxt用のUIコンポーネントライブラリ
 
 ※nuxt ^3
 
