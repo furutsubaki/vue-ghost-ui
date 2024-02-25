@@ -1,4 +1,4 @@
-# vue-ghost-ui
+# minazuki-ui
 
 vue/nuxt用のGHOST UIコンポーネントライブラリ
 
@@ -10,7 +10,7 @@ reset cssとして[@acab/reset.css](https://github.com/mayank99/reset.css)を導
 そのため、本ライブラリ読み込みにおいて、上記のreset cssが読み込まれます。
 
 また、各種色やサイズはCSS変数にて管理されています。
-詳細は[こちら](https://github.com/furutsubaki/vue-ghost-ui/blob/develop/src/assets/css/variables.css)を参照してください。
+詳細は[こちら](https://github.com/furutsubaki/minazuki-ui/blob/develop/src/assets/css/variables.css)を参照してください。
 
 バリデーションに関しては[zod](https://zod.dev/)のスキーマを用いて[vee-validate(v4)](https://vee-validate.logaretm.com/v4/)にて行っています。
 
@@ -21,16 +21,16 @@ reset cssとして[@acab/reset.css](https://github.com/mayank99/reset.css)を導
 ## use
 
 ```shell
-pnpm i -D vue-ghost-ui zod
+pnpm i -D minazuki-ui zod
 ```
 
 ### Nuxt
 
-`plugins/vue-ghost-ui.ts`
+`plugins/minazuki-ui.ts`
 
 ```ts
-import VueGhostUi, { useFormData } from 'vue-ghost-ui';
-import 'vue-ghost-ui/dist/style.css';
+import VueGhostUi, { useFormData } from 'minazuki-ui';
+import 'minazuki-ui/dist/style.css';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(VueGhostUi);
@@ -54,7 +54,7 @@ zod schemaによる細かいバリデーション制御を行わず、親コン�
 const model = ref<string>('初期値');
 
 // template
-<VguInput v-model="model" />
+<MiField v-model="model" />
 ```
 
 ### useFormを使用
@@ -73,7 +73,7 @@ const TEST_SCHEMA = object({
 const { canSubmit, resetForm } = useFormData(TEST_SCHEMA, { test: '初期値' });
 
 // template
-<VguInput name="test" :schema="TEST_SCHEMA.shape.test" />
+<MiField name="test" :schema="TEST_SCHEMA.shape.test" />
 ```
 
 ## バリデーションの日本語化
