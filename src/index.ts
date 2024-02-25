@@ -5,6 +5,7 @@ import '@/assets/css/override.css';
 
 import type { Component, App } from 'vue';
 import useFormData from '@/composables/useFormData';
+import useNotification from '@/composables/useNotification';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import vClickOutside from 'click-outside-vue3';
@@ -16,7 +17,7 @@ for (const key in files) {
     Components[key.replace(/.*\/(.*)\..*/, '$1')] = files[key].default;
 }
 
-export { useFormData };
+export { useFormData, useNotification };
 
 export default {
     install(app: App) {
@@ -26,6 +27,8 @@ export default {
 
         app.config.globalProperties.$useFormData = useFormData;
         app.provide('useFormData', useFormData);
+        app.config.globalProperties.$useNotification = useNotification;
+        app.provide('useNotification', useNotification);
         app.use(vClickOutside);
         app.component('VueDatePicker', VueDatePicker);
     }

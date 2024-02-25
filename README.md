@@ -1,6 +1,6 @@
 # minazuki-ui
 
-vue/nuxt用のGHOST UIコンポーネントライブラリ
+vue/nuxt用のUIコンポーネントライブラリ
 
 ※nuxt ^3
 
@@ -16,7 +16,7 @@ reset cssとして[@acab/reset.css](https://github.com/mayank99/reset.css)を導
 
 ## スタイルの基本方針
 
-幅や余白はレスポンシブに準じつつ、8倍ルールを用いています。
+幅や余白はレスポンシブに準じつつ、8pxの倍数ルールを用いています。
 
 ## use
 
@@ -29,14 +29,15 @@ pnpm i -D minazuki-ui zod
 `plugins/minazuki-ui.ts`
 
 ```ts
-import VueGhostUi, { useFormData } from 'minazuki-ui';
+import MinazukiUi, { useFormData, useNotification } from 'minazuki-ui';
 import 'minazuki-ui/dist/style.css';
 
 export default defineNuxtPlugin((nuxtApp) => {
-    nuxtApp.vueApp.use(VueGhostUi);
+    nuxtApp.vueApp.use(MinazukiUi);
     return {
         provide: {
-            useFormData
+            useFormData,
+            useNotification
         }
     };
 });
