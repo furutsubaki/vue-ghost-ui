@@ -255,10 +255,10 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-switch-hover-color: var(--color-theme-active);
-    --c-switch-switch-icon-true-color: var(--color-theme-active);
-    --c-switch-switch-background-color: var(--color-theme-active-alpha);
-    --c-switch-switch-icon-background-color: var(--color-theme-active);
+    --c-switch-hover-color: var(--color-status-brand);
+    --c-switch-switch-icon-true-color: var(--color-status-brand);
+    --c-switch-switch-background-color: var(--color-status-brand-alpha);
+    --c-switch-switch-icon-background-color: var(--color-status-brand);
 }
 .secondary {
     --c-switch-hover-color: var(--color-theme-text-primary);

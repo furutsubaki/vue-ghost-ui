@@ -84,7 +84,7 @@ const formatedContent = computed(() => {
 /* ▼ variant ▼ */
 .primary {
     --c-badge-color: var(--color-base-white);
-    --c-badge-background-color: var(--color-theme-active);
+    --c-badge-background-color: var(--color-status-brand);
 }
 
 .secondary {

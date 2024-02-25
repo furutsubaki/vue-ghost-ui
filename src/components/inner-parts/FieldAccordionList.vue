@@ -179,8 +179,8 @@ onBeforeUnmount(() => {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-field-accordion-hover-border-color: var(--color-theme-active);
-    --c-field-accordion-border-color: var(--color-theme-active);
+    --c-field-accordion-hover-border-color: var(--color-status-brand);
+    --c-field-accordion-border-color: var(--color-status-brand);
 }
 .secondary {
     --c-field-accordion-hover-border-color: var(--color-theme-border);
