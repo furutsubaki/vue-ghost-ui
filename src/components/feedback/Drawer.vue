@@ -109,11 +109,11 @@ const hasSlot = (name: string) => {
                     <Button
                         v-if="closeable"
                         size="large"
-                        shape="skeleton-square"
+                        shape="skeleton"
                         class="closeable-box"
                         @click="onClose"
                     >
-                        <IconX />
+                        <IconX class="closeable-icon" />
                     </Button>
                     <div
                         v-if="hasSlot('header')"
@@ -174,6 +174,11 @@ const hasSlot = (name: string) => {
         top: 0px;
         right: 0px;
         z-index: 1;
+        padding: 8px;
+        .closeable-icon {
+            width: var(--font-size-large);
+            height: var(--font-size-large);
+        }
     }
 
     .header {

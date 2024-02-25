@@ -92,7 +92,7 @@ const onClosed = async () => {
                 <div v-if="title" class="title">{{ title }}</div>
                 <div>{{ text }}</div>
             </div>
-            <Button v-if="closeable" shape="skeleton-square" class="closeable-box" @click="onClose">
+            <Button v-if="closeable" shape="skeleton" class="closeable-box" @click="onClose">
                 <IconX />
             </Button>
         </div>

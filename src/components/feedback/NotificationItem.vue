@@ -135,7 +135,7 @@ onMounted(async () => {
                     </div>
                     <Button
                         v-if="notification.closeable"
-                        shape="skeleton-square"
+                        shape="skeleton"
                         class="closeable-box"
                         @click="onClose"
                     >
@@ -184,7 +184,7 @@ onMounted(async () => {
         gap: 8px;
         .title {
             font-weight: bold;
-            font-size: calc(var(--font-size-medium) * 1.2);
+            font-size: var(--font-size-large);
         }
         .message {
             white-space: pre-wrap;
