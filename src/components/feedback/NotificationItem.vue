@@ -199,8 +199,8 @@ onMounted(async () => {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-notification-item-border-color: var(--color-theme-active);
-    --c-notification-item-icon-color: var(--color-theme-active);
+    --c-notification-item-border-color: var(--color-status-brand);
+    --c-notification-item-icon-color: var(--color-status-brand);
 }
 .secondary {
     --c-notification-item-border-color: var(--color-theme-border);

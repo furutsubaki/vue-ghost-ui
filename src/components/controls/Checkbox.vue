@@ -227,12 +227,12 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-checkbox-hover-color: var(--color-theme-active);
-    --c-checkbox-is-checked-lucide-color: var(--color-theme-active);
+    --c-checkbox-hover-color: var(--color-status-brand);
+    --c-checkbox-is-checked-lucide-color: var(--color-status-brand);
 }
 /* .secondary {
-    --c-checkbox-hover-color: var(--color-theme-active);
-    --c-checkbox-is-checked-lucide-color: var(--color-theme-active);
+    --c-checkbox-hover-color: var(--color-status-brand);
+    --c-checkbox-is-checked-lucide-color: var(--color-status-brand);
 } */
 .info {
     --c-checkbox-hover-color: var(--color-status-info);

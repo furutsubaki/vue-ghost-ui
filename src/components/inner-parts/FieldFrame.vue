@@ -403,7 +403,7 @@ defineExpose({ frameRef });
 
 /* ▼ variant ▼ */
 .primary {
-    --c-field-frame-border-color: var(--color-theme-active);
+    --c-field-frame-border-color: var(--color-status-brand);
 }
 .secondary {
     --c-field-frame-border-color: var(--color-theme-border);

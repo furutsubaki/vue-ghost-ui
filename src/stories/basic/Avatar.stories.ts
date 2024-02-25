@@ -70,7 +70,7 @@ export const PropsShape: Story = {
 
 export const PropsColor: Story = {
     args: {
-        color: 'var(--color-theme-active)'
+        color: 'var(--color-status-brand)'
     }
 };
 export const PropsIcon: Story = {

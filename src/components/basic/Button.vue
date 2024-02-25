@@ -106,17 +106,17 @@ const onClick = () => {
 
 /* ▼ variable ▼ */
 .primary {
-    --c-button-hover-color: var(--color-theme-active);
+    --c-button-hover-color: var(--color-status-brand);
     --c-button-hover-background-color: transparent;
-    --c-button-hover-border-color: var(--color-theme-active);
+    --c-button-hover-border-color: var(--color-status-brand);
     --c-button-color: var(--color-base-white);
-    --c-button-background-color: var(--color-theme-active-alpha);
-    --c-button-border-color: var(--color-theme-active);
+    --c-button-background-color: var(--color-status-brand-alpha);
+    --c-button-border-color: var(--color-status-brand);
 }
 .secondary {
     --c-button-hover-color: var(--color-base-white);
-    --c-button-hover-background-color: var(--color-theme-active);
-    --c-button-hover-border-color: var(--color-theme-active);
+    --c-button-hover-background-color: var(--color-status-brand);
+    --c-button-hover-border-color: var(--color-status-brand);
     --c-button-color: var(--color-theme-text-primary);
     --c-button-background-color: transparent;
     --c-button-border-color: var(--color-theme-border);

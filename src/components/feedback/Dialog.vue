@@ -233,8 +233,8 @@ const hasSlot = (name: string) => {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-dialog-icon-color: var(--color-theme-active);
-    --c-dialog-border-color: var(--color-theme-active);
+    --c-dialog-icon-color: var(--color-status-brand);
+    --c-dialog-border-color: var(--color-status-brand);
 }
 .secondary {
     --c-dialog-icon-color: transparent;

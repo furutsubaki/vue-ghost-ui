@@ -61,8 +61,8 @@
     --color-base-pink-alpha: #ffa9e7cc;
 
     /* status */
-    --color-base-primary: var(--color-base-orange);
-    --color-base-primary-alpha: var(--color-base-orange-alpha);
+    --color-status-brand: #2e7e16;
+    --color-status-brand-alpha: #2e7e16cc;
     --color-status-info: var(--color-base-lime);
     --color-status-info-alpha: var(--color-base-lime-alpha);
     --color-status-success: var(--color-base-blue);

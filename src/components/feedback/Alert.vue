@@ -147,8 +147,8 @@ const onClosed = async () => {
 
 .primary {
     --c-alert-color: var(--color-base-white);
-    --c-alert-background-color: var(--color-theme-active);
-    --c-alert-border-color: var(--color-theme-active);
+    --c-alert-background-color: var(--color-status-brand);
+    --c-alert-border-color: var(--color-status-brand);
 }
 
 .secondary {

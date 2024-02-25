@@ -225,12 +225,12 @@ if (fieldVal.value == null && model.value != null) {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-radio-hover-color: var(--color-theme-active);
-    --c-radio-is-checked-lucide-color: var(--color-theme-active);
+    --c-radio-hover-color: var(--color-status-brand);
+    --c-radio-is-checked-lucide-color: var(--color-status-brand);
 }
 /* .secondary {
-    --c-radio-hover-color: var(--color-theme-active);
-    --c-radio-is-checked-lucide-color: var(--color-theme-active);
+    --c-radio-hover-color: var(--color-status-brand);
+    --c-radio-is-checked-lucide-color: var(--color-status-brand);
 } */
 .info {
     --c-radio-hover-color: var(--color-status-info);
