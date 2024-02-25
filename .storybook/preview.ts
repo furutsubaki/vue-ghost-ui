@@ -47,22 +47,7 @@ const preview: Preview = {
     parameters: {},
     decorators: [
         (story, context) => {
-            // 背景色をcss変数と同期させる
-            const currentBackground = context.globals.backgrounds?.value
-            const backgrounds = context.parameters.backgrounds.values
-            const currentBackgroundData = backgrounds.find(
-                (background) => background.value === currentBackground
-            )
-            document.documentElement.dataset.theme = currentBackgroundData?.name || 'light'
-
-            return {
-                components: { story },
-                template: '<main style="display: flex; align-items: flex-start; gap:16px; flex-wrap: wrap; width: 100%;"><story /></main>',
-            };
-        },
-        (story, context) => {
             // v-model調整
-
             const [args, updateArgs] = useArgs();
             if ('modelValue' in args) {
                 const update = args['onUpdate:model-value'] || args['onUpdate:modelValue'];
@@ -78,8 +63,17 @@ const preview: Preview = {
                 };
             }
 
+            // 背景色をcss変数と同期させる
+            const currentBackground = context.globals.backgrounds?.value
+            const backgrounds = context.parameters.backgrounds.values
+            const currentBackgroundData = backgrounds.find(
+                (background) => background.value === currentBackground
+            )
+            document.documentElement.dataset.theme = currentBackgroundData?.name || 'light'
+
             return {
-                ...story({ ...context, updateArgs })
+                components: { story: story({ ...context, updateArgs }) },
+                template: '<main style="display: flex; align-items: flex-start; gap:16px; flex-wrap: wrap; width: 100%;"><story /></main>',
             };
         },
     ]

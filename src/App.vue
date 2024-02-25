@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Button from '@/components/organisms/common/Button.vue';
-import Field from '@/components/organisms/controls/Field.vue';
-import Textarea from '@/components/organisms/controls/Textarea.vue';
-import Radio from '@/components/organisms/controls/Radio.vue';
-import RadioGroup from '@/components/organisms/controls/RadioGroup.vue';
-import Select from '@/components/organisms/controls/Select.vue';
-import Autocomplete from '@/components/organisms/controls/Autocomplete.vue';
-import Notifications from '@/components/organisms/feedback/Notifications.vue';
+import Button from '@/components/common/Button.vue';
+import Field from '@/components/controls/Field.vue';
+import Textarea from '@/components/controls/Textarea.vue';
+import Radio from '@/components/controls/Radio.vue';
+import RadioGroup from '@/components/controls/RadioGroup.vue';
+import Select from '@/components/controls/Select.vue';
+import Autocomplete from '@/components/controls/Autocomplete.vue';
+import Notifications from '@/components/feedback/Notifications.vue';
 import useFormData from '@/composables/useFormData';
 import useNotification from '@/composables/useNotification';
 import z from 'zod';

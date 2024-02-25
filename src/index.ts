@@ -21,7 +21,7 @@ export { useFormData };
 export default {
     install(app: App) {
         Object.keys(Components).forEach((component) => {
-            app.component(`Vgu${component}`, Components[component]);
+            app.component(`Mi${component}`, Components[component]);
         });
 
         app.config.globalProperties.$useFormData = useFormData;
