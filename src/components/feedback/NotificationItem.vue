@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import OpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
 import TranslateTransition from '@/components/inner-parts/TranslateTransition.vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import { computed } from 'vue';
 import { sleep } from '@/assets/ts';
 import {

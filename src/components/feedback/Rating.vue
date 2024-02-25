@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import { Star as IconStar } from 'lucide-vue-next';
 
 const model = defineModel<number>({ default: 0 });

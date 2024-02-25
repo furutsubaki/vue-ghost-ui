@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, type Component } from 'vue';
 import OpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import {
     X as IconX,
     Info as IconInfo,
