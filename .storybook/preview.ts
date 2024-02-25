@@ -70,6 +70,7 @@ const preview: Preview = {
                 (background) => background.value === currentBackground
             )
             document.documentElement.dataset.theme = currentBackgroundData?.name || 'light'
+            document.body.style.cssText = 'background-color: var(--color-theme-bg-primary) !important;';
 
             return {
                 components: { story: story({ ...context, updateArgs }) },
