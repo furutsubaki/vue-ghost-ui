@@ -1,0 +1,93 @@
+import { ref } from 'vue';
+import Avatar from '@/components/basic/Avatar.vue';
+import type { Meta, StoryObj } from '@storybook/vue3';
+import { Smile as IconSmile } from 'lucide-vue-next';
+import imgPath from '@/assets/logo.png';
+
+const meta: Meta<typeof Avatar> = {
+    component: Avatar,
+    render: (args) => ({
+        components: { Avatar },
+        setup() {
+            return { args };
+        },
+        template: '<Avatar v-bind="args" />'
+    }),
+    tags: ['autodocs'],
+    args: {},
+    argTypes: {}
+};
+
+export default meta;
+type Story = StoryObj<typeof Avatar>;
+
+export const Default: Story = {};
+
+export const PropsSize: Story = {
+    render: (args) => ({
+        components: { Avatar },
+        setup: () => ({
+            args,
+            params: ref([
+                {
+                    size: 'large'
+                },
+                {
+                    size: 'medium'
+                },
+                {
+                    size: 'small'
+                }
+            ])
+        }),
+        template: `<Avatar v-for="param in params" :key="param.shape" v-bind="{...args, ...param}">{{param.size}}</Avatar>`
+    })
+};
+
+export const PropsShape: Story = {
+    render: (args) => ({
+        components: { Avatar },
+        setup: () => ({
+            args,
+            params: ref([
+                {
+                    shape: 'circle'
+                },
+                {
+                    shape: 'square'
+                },
+                {
+                    shape: 'skeleton'
+                }
+            ])
+        }),
+        template: `<Avatar v-for="param in params" :key="param.shape" v-bind="{...args, ...param}">{{param.shape}}</Avatar>`
+    })
+};
+
+export const PropsColor: Story = {
+    args: {
+        color: 'var(--color-theme-active)'
+    }
+};
+export const PropsIcon: Story = {
+    args: {
+        icon: IconSmile
+    }
+};
+
+export const PropsImage: Story = {
+    args: {
+        image: imgPath
+    }
+};
+
+export const Slots: Story = {
+    render: (args) => ({
+        components: { Avatar },
+        setup() {
+            return { args };
+        },
+        template: '<Avatar v-bind="args">Slots</Avatar>'
+    }),
+};
