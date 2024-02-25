@@ -45,7 +45,7 @@ const hasSlot = (name: string) => {
 <template>
     <img v-if="image" :src="image" class="component-avatar" :class="[size, shape]" />
     <div v-else class="component-avatar" :class="[size, shape]">
-        <component v-if="icon" :is="icon" />
+        <component v-if="icon" :is="icon" class="icon" />
         <slot v-else-if="hasSlot('default')" />
         <IconUser v-else />
     </div>
@@ -83,14 +83,16 @@ const hasSlot = (name: string) => {
 /* ▼ shape ▼ */
 .circle {
     border-radius: 50%;
-    > :deep(.lucide) {
+    > .icon {
+        margin: 8px;
         width: 100%;
         height: 100%;
     }
 }
 .square {
     border-radius: 4px;
-    > :deep(.lucide) {
+    > .icon {
+        margin: 8px;
         width: 100%;
         height: 100%;
     }
