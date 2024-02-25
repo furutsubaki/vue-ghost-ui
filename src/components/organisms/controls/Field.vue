@@ -17,7 +17,7 @@ import { DATE_FORMAT } from '@/assets/ts/const ';
 import dayjs from 'dayjs';
 
 type DateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
-type FieldType = 'text' | 'email' | 'password' | 'time' | 'date' | 'number' | 'tel' | 'search';
+type FieldType = 'text' | 'email' | 'password' | 'time' | 'date' | 'number' | 'tel' | 'search' | 'url';
 const model = defineModel<string>();
 const props = withDefaults(
     defineProps<{
