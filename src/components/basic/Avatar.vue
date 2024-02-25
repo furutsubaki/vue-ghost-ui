@@ -23,7 +23,7 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?: 'circle' | 'square' | 'skeleton';
+        shape?: 'circle' | 'square' | 'no-radius' | 'skeleton';
     }>(),
     {
         color: 'var(--color-theme-bg-secondary)',
@@ -34,7 +34,7 @@ const props = withDefaults(
     }
 );
 
-const color =  computed(() => props.color)
+const color = computed(() => props.color);
 
 const slots = useSlots();
 const hasSlot = (name: string) => {
@@ -64,6 +64,12 @@ const hasSlot = (name: string) => {
     word-break: keep-all;
     overflow: hidden;
     object-fit: cover;
+
+    > .icon {
+        margin: 8px;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* ▼ size ▼ */
@@ -84,19 +90,12 @@ const hasSlot = (name: string) => {
 /* ▼ shape ▼ */
 .circle {
     border-radius: 50%;
-    > .icon {
-        margin: 8px;
-        width: 100%;
-        height: 100%;
-    }
 }
 .square {
     border-radius: 4px;
-    > .icon {
-        margin: 8px;
-        width: 100%;
-        height: 100%;
-    }
+}
+.no-radius {
+    border-radius: 0;
 }
 .skeleton {
     background-color: transparent;

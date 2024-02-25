@@ -57,6 +57,9 @@ export const PropsShape: Story = {
                     shape: 'square'
                 },
                 {
+                    shape: 'no-radius'
+                },
+                {
                     shape: 'skeleton'
                 }
             ])
@@ -89,5 +92,5 @@ export const Slots: Story = {
             return { args };
         },
         template: '<Avatar v-bind="args">Slots</Avatar>'
-    }),
+    })
 };
