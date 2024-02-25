@@ -12,14 +12,7 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?:
-            | 'normal'
-            | 'rounded'
-            | 'circle'
-            | 'square'
-            | 'skeleton'
-            | 'skeleton-square'
-            | 'link';
+        shape?: 'normal' | 'rounded' | 'circle' | 'square' | 'skeleton' | 'link';
         /**
          * 読み取り専用
          */
@@ -60,7 +53,7 @@ const onClick = () => {
         :class="[variant, size, shape, { 'is-readonly': readonly }]"
         @click="onClick"
     >
-        <slot></slot>
+        <slot />
     </button>
 </template>
 
@@ -210,35 +203,8 @@ const onClick = () => {
 .skeleton {
     border: 0;
     min-width: initial;
-    @media (hover: hover) {
-        &:hover {
-            &.secondary {
-                color: var(--color-theme-link);
-            }
-            color: var(--c-button-color);
-            background-color: transparent;
-            border-color: transparent;
-        }
-    }
-    @media (hover: none) {
-        &:active {
-            &.secondary {
-                color: var(--color-theme-link);
-            }
-            color: var(--c-button-color);
-            background-color: transparent;
-            border-color: transparent;
-        }
-    }
-}
-.skeleton-square {
-    border: 0;
-    min-width: initial;
-    width: var(--c-button-height);
-    > :deep(.lucide) {
-        width: 100%;
-        height: 100%;
-    }
+    min-height: initial;
+    padding: 0;
     @media (hover: hover) {
         &:hover {
             &.secondary {
