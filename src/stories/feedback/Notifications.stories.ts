@@ -1,5 +1,5 @@
 import Notifications from '@/components/feedback/Notifications.vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import useNotification, { type NotificationOption } from '@/composables/useNotification';
 
