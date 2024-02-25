@@ -16,7 +16,7 @@ reset cssとして[@acab/reset.css](https://github.com/mayank99/reset.css)を導
 
 ## スタイルの基本方針
 
-幅や余白はレスポンシブに準じつつ、8倍ルールを用いています。
+幅や余白はレスポンシブに準じつつ、8pxの倍数ルールを用いています。
 
 ## use
 
