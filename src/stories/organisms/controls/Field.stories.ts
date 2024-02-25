@@ -194,6 +194,9 @@ export const PropsType: Story = {
                 },
                 {
                     type: 'search'
+                },
+                {
+                    type: 'url'
                 }
             ]
         }),
