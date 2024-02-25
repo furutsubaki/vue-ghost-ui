@@ -1,6 +1,6 @@
 # minazuki-ui
 
-vue/nuxt用のGHOST UIコンポーネントライブラリ
+vue/nuxt用のUIコンポーネントライブラリ
 
 ※nuxt ^3
 
@@ -29,14 +29,15 @@ pnpm i -D minazuki-ui zod
 `plugins/minazuki-ui.ts`
 
 ```ts
-import VueGhostUi, { useFormData } from 'minazuki-ui';
+import MinazukiUi, { useFormData, useNotification } from 'minazuki-ui';
 import 'minazuki-ui/dist/style.css';
 
 export default defineNuxtPlugin((nuxtApp) => {
-    nuxtApp.vueApp.use(VueGhostUi);
+    nuxtApp.vueApp.use(MinazukiUi);
     return {
         provide: {
-            useFormData
+            useFormData,
+            useNotification
         }
     };
 });
