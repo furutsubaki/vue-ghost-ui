@@ -60,7 +60,7 @@ const hasSlot = (name: string) => {
     height: var(--c-avatar-size);
     font-size: var(--c-avatar-font-size);
     background-color: v-bind(color);
-    border: 1px solid transparent;
+    outline: 2px solid transparent;
     word-break: keep-all;
     overflow: hidden;
     object-fit: cover;

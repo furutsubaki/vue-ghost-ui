@@ -94,3 +94,18 @@ export const Slots: Story = {
         template: '<Avatar v-bind="args">Slots</Avatar>'
     })
 };
+
+export const Overlapping: Story = {
+    render: (args) => ({
+        components: { Avatar },
+        setup() {
+            return { args };
+        },
+        template: `<div style="display: flex;">
+    <Avatar v-bind="args" v-for="i in [...Array(5).keys()]" :style="\`position: absolute; left: \${i * 24}px; outline-color: var(--color-theme-bg-primary)\`">Slots</Avatar>
+</div>`
+    }),
+    args: {
+        icon: IconSmile
+    }
+};
