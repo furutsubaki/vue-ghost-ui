@@ -77,14 +77,14 @@
     --color-theme-text-primary: var(--color-base-black);
     --color-theme-text-secondary: var(--color-base-gray-dark);
     --color-theme-placeholder: var(--color-base-gray-dark);
-    --color-theme-link: var(--color-base-red-alpha);
-    --color-theme-link-hover: var(--color-base-red);
+    --color-theme-link: var(--color-base-orange-alpha);
+    --color-theme-link-hover: var(--color-base-orange);
     --color-theme-bg-primary: var(--color-base-white);
     --color-theme-bg-secondary: var(--color-base-gray-light);
     --color-theme-bg-alpha: var(--color-base-white-alpha);
     --color-theme-bg-select: #49f9aa;
     --color-theme-border: var(--color-base-gray);
-    --color-theme-shadow: var(--color-base-black-alpha);
+    --color-theme-shadow: var(--color-base-gray-alpha);
 }
 
 @media (600px <= width) {
