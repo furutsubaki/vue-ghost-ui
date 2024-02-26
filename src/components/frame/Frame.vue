@@ -33,7 +33,6 @@ withDefaults(
     display: flex;
     flex-direction: column;
     padding: 0;
-    border-radius: 1em;
     &::before,
     &::after {
         position: absolute;
