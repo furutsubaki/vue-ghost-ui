@@ -1,7 +1,13 @@
 <script setup lang="ts">
 withDefaults(
     defineProps<{
+        /**
+         * タグ
+         */
         tag?: string;
+        /**
+         * 枠の配置
+         */
         layout?:
             | 'pf-default'
             | 'pf-width'
@@ -10,18 +16,30 @@ withDefaults(
             | 'pf-right'
             | 'pf-bottom'
             | 'pf-left';
+        /**
+         * パディング
+         */
         isPading?: boolean;
+        /**
+         * 影なしか
+         */
+        noShadow?: boolean;
     }>(),
     {
         tag: 'section',
         layout: 'pf-default',
-        isPading: false
+        isPading: false,
+        noShadow: false
     }
 );
 </script>
 
 <template>
-    <component :is="tag" class="frame" :class="[layout, { 'is-pading': isPading }]">
+    <component
+        :is="tag"
+        class="frame"
+        :class="[layout, { 'is-pading': isPading, 'no-shadow': noShadow }]"
+    >
         <slot />
     </component>
 </template>
@@ -56,6 +74,11 @@ withDefaults(
 
     &.is-pading {
         padding: calc(var(--c-frame-padding) * 2);
+    }
+    &.no-shadow {
+        &::before {
+            display: none;
+        }
     }
 }
 
