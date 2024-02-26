@@ -68,3 +68,9 @@ export const PropsIsPading: Story = {
         isPading: true
     }
 };
+
+export const PropsNoShadow: Story = {
+    args: {
+        noShadow: true
+    }
+};

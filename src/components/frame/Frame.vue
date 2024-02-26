@@ -11,17 +11,23 @@ withDefaults(
             | 'pf-bottom'
             | 'pf-left';
         isPading?: boolean;
+        noShadow?: boolean;
     }>(),
     {
         tag: 'section',
         layout: 'pf-default',
-        isPading: false
+        isPading: false,
+        noShadow: false
     }
 );
 </script>
 
 <template>
-    <component :is="tag" class="frame" :class="[layout, { 'is-pading': isPading }]">
+    <component
+        :is="tag"
+        class="frame"
+        :class="[layout, { 'is-pading': isPading, 'no-shadow': noShadow }]"
+    >
         <slot />
     </component>
 </template>
@@ -56,6 +62,11 @@ withDefaults(
 
     &.is-pading {
         padding: calc(var(--c-frame-padding) * 2);
+    }
+    &.no-shadow {
+        &::before {
+            display: none;
+        }
     }
 }
 
