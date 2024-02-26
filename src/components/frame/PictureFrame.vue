@@ -1,7 +1,13 @@
 <script setup lang="ts">
 withDefaults(
     defineProps<{
+        /**
+         * タグ
+         */
         tag?: string;
+        /**
+         * 枠の配置
+         */
         layout?:
             | 'pf-default'
             | 'pf-width'
@@ -10,6 +16,9 @@ withDefaults(
             | 'pf-right'
             | 'pf-bottom'
             | 'pf-left';
+        /**
+         * パディング
+         */
         isPading?: boolean;
     }>(),
     {
