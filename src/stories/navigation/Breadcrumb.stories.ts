@@ -58,7 +58,7 @@ export const PropsSize: Story = {
                 }
             ])
         }),
-        template: `<Breadcrumb v-for="param in params" :key="param.shape" v-bind="{...args, ...param}">{{param.size}}</Breadcrumb>`
+        template: `<Breadcrumb v-for="param in params" :key="param.size" v-bind="{...args, ...param}">{{param.size}}</Breadcrumb>`
     })
 };
 
