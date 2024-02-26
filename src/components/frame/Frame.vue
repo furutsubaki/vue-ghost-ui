@@ -33,6 +33,7 @@ withDefaults(
     display: flex;
     flex-direction: column;
     padding: 0;
+    border-radius: 1em;
     &::before,
     &::after {
         position: absolute;
@@ -61,7 +62,6 @@ withDefaults(
 
 /* ▼ layout ▼ */
 .pf-width {
-    padding: 0 var(--c-frame-padding);
     overflow-y: clip;
     &::after {
         border-top-width: 0;
@@ -69,7 +69,6 @@ withDefaults(
     }
 }
 .pf-height {
-    padding: var(--c-frame-padding) 0;
     overflow-x: clip;
     &::after {
         border-right-width: 0;
@@ -77,7 +76,6 @@ withDefaults(
     }
 }
 .pf-top {
-    padding: var(--c-frame-padding) 0 0 0;
     overflow-x: clip;
     &::after {
         border-right-width: 0;
@@ -86,7 +84,6 @@ withDefaults(
     }
 }
 .pf-right {
-    padding: 0 var(--c-frame-padding) 0 0;
     overflow-y: clip;
     &::after {
         border-top-width: 0;
@@ -95,7 +92,6 @@ withDefaults(
     }
 }
 .pf-bottom {
-    padding: 0 0 var(--c-frame-padding) 0;
     overflow-x: clip;
     &::after {
         border-top-width: 0;
@@ -104,7 +100,6 @@ withDefaults(
     }
 }
 .pf-left {
-    padding: 0 0 0 var(--c-frame-padding);
     overflow-y: clip;
     &::after {
         border-top-width: 0;
