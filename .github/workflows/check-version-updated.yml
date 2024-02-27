@@ -1,0 +1,18 @@
+name: Check Version Updated
+
+on:
+  push:
+    branches: [*]
+    # branches: [develop]
+
+jobs:
+  CheckVersionUpdated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
+        with:
+          COMMIT_DISABLED: 1
