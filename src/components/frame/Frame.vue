@@ -17,6 +17,10 @@ withDefaults(
             | 'pf-bottom'
             | 'pf-left';
         /**
+         * 形状
+         */
+        shape?: 'default' | 'circle';
+        /**
          * パディング
          */
         isPading?: boolean;
@@ -26,8 +30,9 @@ withDefaults(
         noShadow?: boolean;
     }>(),
     {
-        tag: 'section',
+        tag: 'div',
         layout: 'pf-default',
+        shape: 'default',
         isPading: false,
         noShadow: false
     }
@@ -35,22 +40,17 @@ withDefaults(
 </script>
 
 <template>
-    <component
-        :is="tag"
-        class="frame"
-        :class="[layout, { 'is-pading': isPading, 'no-shadow': noShadow }]"
-    >
-        <slot />
-    </component>
+    <div class="frame" :class="[layout, shape, { 'is-pading': isPading, 'no-shadow': noShadow }]">
+        <component :is="tag" class="frame-inner">
+            <slot />
+        </component>
+    </div>
 </template>
 
 <style scoped>
 .frame {
     --c-frame-padding: 8px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
     &::before,
     &::after {
         position: absolute;
@@ -71,15 +71,25 @@ withDefaults(
         border-width: 1px;
         border: solid var(--color-theme-border);
     }
-
     &.is-pading {
-        padding: calc(var(--c-frame-padding) * 2);
+        .frame-inner {
+            padding: calc(var(--c-frame-padding) * 2);
+        }
     }
     &.no-shadow {
         &::before {
             display: none;
         }
     }
+}
+.frame-inner {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /* ▼ layout ▼ */
@@ -130,4 +140,15 @@ withDefaults(
     }
 }
 /* ▲ layout ▲ */
+
+/* ▼ shape ▼ */
+.circle {
+    border-radius: 50%;
+    &::before,
+    &::after,
+    .frame-inner {
+        border-radius: 50%;
+    }
+}
+/* ▲ shape ▲ */
 </style>
