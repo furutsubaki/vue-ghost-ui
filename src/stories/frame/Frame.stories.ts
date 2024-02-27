@@ -57,9 +57,29 @@ export const PropsLayout: Story = {
     args: { ...Default.args }
 };
 
+export const PropsShape: Story = {
+    render: (args) => ({
+        components: { Frame },
+        setup: () => ({
+            args,
+            params: ref([
+                {
+                    shape: 'default'
+                },
+                {
+                    shape: 'circle'
+                }
+            ])
+        }),
+        template:
+            '<Frame v-for="param in params" :key="param.shape" v-bind="{...args, ...param}" style="width:250px; height: 250px;"><div style="width:100%; height: 100%;background-color: var(--color-theme-bg-secondary); display: flex;align-items: center; justify-content: center;">{{param.shape}}</div></Frame>'
+    }),
+    args: { ...Default.args }
+};
+
 export const PropsTag: Story = {
     args: {
-        tag: 'div'
+        tag: 'section'
     }
 };
 
