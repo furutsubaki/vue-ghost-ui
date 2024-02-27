@@ -1,8 +1,8 @@
 name: Check Version Updated
 
 on:
-  push:
-    branches: [*]
+  push
+  # push:
     # branches: [develop]
 
 jobs:
