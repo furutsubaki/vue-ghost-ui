@@ -12,6 +12,7 @@ jobs:
       chagned: ${{ steps.get_diff.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
+      - name: diff
         run: git fetch origin ${{ github.base_ref }} --depth=1
         id: get_diff
         run: echo "changed=$(git diff origin/${{ github.base_ref }} HEAD --relative "./package.json" | grep "^+.\+version" | wc -l)" >> $GITHUB_OUTPUT
