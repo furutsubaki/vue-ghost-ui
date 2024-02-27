@@ -1,7 +1,7 @@
 import Notifications from '@/components/feedback/Notifications.vue';
 import Button from '@/components/basic/Button.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import useNotification, { type NotificationOption } from '@/composables/useNotification';
+import useNotification, { type MiNotificationOption } from '@/composables/useNotification';
 
 const meta: Meta<typeof Notifications> = {
     component: Notifications,
@@ -39,7 +39,7 @@ export const ParamsVariant: Story = {
             const { addNotification } = useNotification();
             return {
                 args,
-                onSetNotification: (param: NotificationOption) => {
+                onSetNotification: (param: MiNotificationOption) => {
                     addNotification({
                         ...param,
                         title: '通知',
@@ -83,7 +83,7 @@ export const ParamsSize: Story = {
             const { addNotification } = useNotification();
             return {
                 args,
-                onSetNotification: (param: NotificationOption) => {
+                onSetNotification: (param: MiNotificationOption) => {
                     addNotification({
                         ...param,
                         title: '通知',
@@ -118,7 +118,7 @@ export const ParamsShape: Story = {
             const { addNotification } = useNotification();
             return {
                 args,
-                onSetNotification: (param: NotificationOption) => {
+                onSetNotification: (param: MiNotificationOption) => {
                     addNotification({
                         ...param,
                         title: '通知',
@@ -153,7 +153,7 @@ export const ParamsPosition: Story = {
             const { addNotification } = useNotification();
             return {
                 args,
-                onSetNotification: (param: NotificationOption) => {
+                onSetNotification: (param: MiNotificationOption) => {
                     addNotification({
                         ...param,
                         title: '通知',
