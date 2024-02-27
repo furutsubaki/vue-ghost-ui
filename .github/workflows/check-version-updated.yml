@@ -1,6 +1,7 @@
 name: Check Version Updated
 on:
-  pull_request
+  pull_request:
+    branches: [main]
 jobs:
   version_diff:
     runs-on: ubuntu-latest
