@@ -16,8 +16,8 @@ import {
 import { DATE_FORMAT } from '@/assets/ts/const ';
 import dayjs from 'dayjs';
 
-export type MiDateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
-export type MiFieldType =
+type DateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
+type FieldType =
     | 'text'
     | 'email'
     | 'password'
@@ -41,11 +41,11 @@ const props = withDefaults(
         /**
          * 表示フォーマット(type: dateのみ)
          */
-        format?: MiDateFormat;
+        format?: DateFormat;
         /**
          * modelフォーマット(type: dateのみ)
          */
-        dataFormat?: MiDateFormat;
+        dataFormat?: DateFormat;
         /**
          * フォーマッター（displayFormatter、displayParserとの併用不可）
          */
@@ -89,7 +89,7 @@ const props = withDefaults(
         /**
          * 種類
          */
-        type?: MiFieldType;
+        type?: FieldType;
         /**
          * 表示種類
          */

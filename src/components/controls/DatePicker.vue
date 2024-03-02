@@ -5,7 +5,7 @@ import { ZodString } from 'zod';
 import FieldFrame from '@/components/inner-parts/FieldFrame.vue';
 import { DATE_FORMAT } from '@/assets/ts/const ';
 
-export type MiDateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
+type DateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
 const model = defineModel<string>();
 const props = withDefaults(
     defineProps<{
@@ -20,11 +20,11 @@ const props = withDefaults(
         /**
          * 表示フォーマット
          */
-        format?: MiDateFormat;
+        format?: DateFormat;
         /**
          * modelフォーマット
          */
-        dataFormat?: MiDateFormat;
+        dataFormat?: DateFormat;
         /**
          * 見出し
          */
@@ -81,7 +81,7 @@ if (value.value == null && model.value != null) {
     value.value = model.value;
 }
 
-const convertVueDatepickerFormat = (format: MiDateFormat) => {
+const convertVueDatepickerFormat = (format: DateFormat) => {
     return format.replace(/(Y)/g, 'y').replace(/(D)/g, 'd');
 };
 
