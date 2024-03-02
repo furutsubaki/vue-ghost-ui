@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onBeforeUnmount } from 'vue';
 
-interface Item {
+export interface MiFieldAccordionListItem {
     label: string;
     value: string | number | boolean;
     disabled?: boolean;
@@ -14,7 +14,7 @@ const props = withDefaults(
         /**
          * 項目
          */
-        items: Item[];
+        items: MiFieldAccordionListItem[];
         /**
          * 項目値
          */
@@ -54,7 +54,7 @@ const emit = defineEmits<{
 const selectedItem = computed(
     () => props.items.find((item) => item.value === props.value) ?? { label: '', value: null }
 );
-const onSelectItem = (item: Item) => {
+const onSelectItem = (item: MiFieldAccordionListItem) => {
     emit('change', item.value);
     flg.value = false;
 };

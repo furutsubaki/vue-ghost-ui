@@ -4,7 +4,7 @@ import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodBoolean } from 'zod';
 import Radio from '@/components/controls/Radio.vue';
 
-interface Item {
+export interface MiRadioGroupItem {
     label: string;
     value: string | number | boolean;
     disabled?: boolean;
@@ -17,7 +17,7 @@ const props = withDefaults(
         /**
          * 項目
          */
-        items: Item[];
+        items: MiRadioGroupItem[];
         /**
          * フィールド名
          */

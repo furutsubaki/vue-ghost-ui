@@ -15,7 +15,7 @@ import {
     alphanumericHalf2Full
 } from '@/assets/ts';
 
-interface Item {
+export interface MiAutocompleteItem {
     label: string;
     value: string;
     ruby?: string;
@@ -28,11 +28,11 @@ const props = withDefaults(
         /**
          * 項目
          */
-        items: Item[];
+        items: MiAutocompleteItem[];
         /**
          * match用関数
          */
-        match?: (item: Item, value: string) => boolean;
+        match?: (item: MiAutocompleteItem, value: string) => boolean;
         /**
          * フィールド名
          */
