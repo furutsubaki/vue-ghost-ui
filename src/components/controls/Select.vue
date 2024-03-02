@@ -7,7 +7,7 @@ import FieldAccordionList from '@/components/inner-parts/FieldAccordionList.vue'
 import OpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
 import { ChevronDown as IconChevronDown, XCircle as IconXCircle } from 'lucide-vue-next';
 
-export interface MiSelectItem {
+interface Item {
     label: string;
     value: string | number | boolean;
     disabled?: boolean;
@@ -19,7 +19,7 @@ const props = withDefaults(
         /**
          * 項目
          */
-        items: MiSelectItem[];
+        items: Item[];
         /**
          * フィールド名
          */
