@@ -14,7 +14,6 @@ filePaths.forEach((path) => {
 // ファイル一覧からexportの文を作る
 function makeIndexContent(path, content) {
     const name = path.match(/([^/]*)\./)[1];
-    // content += `export { default as Mi${name} } from './${path}'\n`;
-    content += `export * as Mi${name} from './${path}'\n`;
+    content += `export * as Mi${name} from '@/components/${path}'\n`;
     return content;
 }

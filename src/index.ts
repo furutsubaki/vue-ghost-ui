@@ -3,26 +3,21 @@ import '@/assets/css/variables.css';
 import '@/assets/css/style.css';
 import '@/assets/css/override.css';
 
-import type { Component, App } from 'vue';
+import type { App } from 'vue';
 import useFormData from '@/composables/useFormData';
 import useNotification from '@/composables/useNotification';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import vClickOutside from 'click-outside-vue3';
-const files: Record<string, { default: Component }> = import.meta.glob('./components/**/*.vue', {
-    eager: true
-});
-const Components: { [key: string]: Component } = {};
-for (const key in files) {
-    Components[key.replace(/.*\/(.*)\..*/, '$1')] = files[key].default;
-}
+import * as components from '@/components';
 
+export * as components from '@/components';
 export { useFormData, useNotification };
 
 export default {
     install(app: App) {
-        Object.keys(Components).forEach((component) => {
-            app.component(`Mi${component}`, Components[component]);
+        Object.values(components).forEach((component) => {
+            app.component(`Mi${component.default.__name!}`, component.default);
         });
 
         app.config.globalProperties.$useFormData = useFormData;

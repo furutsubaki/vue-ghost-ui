@@ -26,7 +26,9 @@ export default defineConfig({
     },
     plugins: [
         vue(),
-        dts({ exclude: ['src/main.ts'] }),
+        dts({
+            tsconfigPath: 'tsconfig.build.json',
+        }),
     ],
     resolve: {
         dedupe: ['vue'],
