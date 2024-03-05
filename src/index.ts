@@ -10,8 +10,8 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import vClickOutside from 'click-outside-vue3';
 import * as components from '@/components';
+export * from '@/components';
 
-export * as components from '@/components';
 export { useFormData, useNotification };
 
 export default {
