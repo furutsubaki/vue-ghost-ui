@@ -24,8 +24,7 @@ const meta: Meta<typeof Textarea> = {
     argTypes: {
         // TODO: 現状lintエラーの回避策なし
         // @ts-ignore
-        'onUpdate:modelValue': { action: 'onUpdate:modelValue' },
-        onSearch: { action: 'search' }
+        'onUpdate:modelValue': { action: 'onUpdate:modelValue' }
     }
 };
 
