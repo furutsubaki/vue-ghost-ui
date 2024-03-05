@@ -33,7 +33,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "create-component-d": "node ./src/generate-component-index.js",
+    "create-component-d": "node ./src/generate-component-index.js && prettier --write ./src/components/index.ts",
     "eslint": "eslint . --ext .vue,.js,.cjs,.mjs,.ts,.cts,.mts --ignore-path .gitignore",
     "eslint:fix": "pnpm eslint --fix",
     "format": "prettier --write src/",

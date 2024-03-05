@@ -34,7 +34,6 @@ export default defineConfig({
         dedupe: ['vue'],
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
-            vue: resolve(__dirname, './node_modules/vue'),
         }
     },
     css: {
