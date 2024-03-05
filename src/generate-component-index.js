@@ -3,8 +3,7 @@ import fs from 'fs';
 // ファイルパスからimport文を生成
 const makeImportContent = (path, importContent) => {
     const name = path.match(/([^/]*)\./)[1];
-    importContent += `import Mi${name} from '@/components/${path}'\n`;
-    // import += `Mi${name}: typeof import('@/components/${path}');\n`;
+    importContent += `import Mi${name} from '@/components/${path}';\n`;
     return importContent;
 };
 
@@ -12,7 +11,6 @@ const makeImportContent = (path, importContent) => {
 const makeExportContent = (path, exportContent) => {
     const name = path.match(/([^/]*)\./)[1];
     exportContent += `    Mi${name},\n`;
-    // exportContent += `Mi${name}: typeof import('@/components/${path}');\n`;
     return exportContent;
 };
 
