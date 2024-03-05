@@ -4,7 +4,7 @@ import { useField } from 'vee-validate';
 import { ZodNumber, ZodString, ZodArray, ZodBoolean } from 'zod';
 import Checkbox from '@/components/controls/Checkbox.vue';
 
-interface Item {
+export interface MiCheckboxItem {
     label: string;
     value: string | number | boolean;
     disabled?: boolean;
@@ -17,7 +17,7 @@ const props = withDefaults(
         /**
          * 項目
          */
-        items: Item[];
+        items: MiCheckboxItem[];
         /**
          * フィールド名
          */

@@ -12,10 +12,10 @@ import {
     AlertTriangle as IconAlertTriangle,
     XOctagon as IconXOctagon
 } from 'lucide-vue-next';
-import useNotification, { type RequiredNotification } from '@/composables/useNotification';
+import useNotification, { type MiRequiredNotification } from '@/composables/useNotification';
 
 const props = defineProps<{
-    notification: RequiredNotification;
+    notification: MiRequiredNotification;
 }>();
 const emit = defineEmits<{
     /**
