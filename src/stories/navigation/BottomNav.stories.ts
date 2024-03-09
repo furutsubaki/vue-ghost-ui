@@ -84,13 +84,13 @@ export const PropsShape: Story = {
     })
 };
 
-export const PropssNoShadow: Story = {
+export const PropsNoShadow: Story = {
     args: {
         noShadow: true
     }
 };
 
-export const PropssCenter: Story = {
+export const PropsCenter: Story = {
     args: {
         center: true
     }
