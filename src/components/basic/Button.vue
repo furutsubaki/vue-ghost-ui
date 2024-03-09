@@ -63,7 +63,7 @@ const onClick = () => {
     font-size: var(--c-button-font-size);
 
     display: flex;
-    gap: 16px;
+    gap: 8px;
     align-items: center;
     justify-content: center;
     min-width: 100px;
