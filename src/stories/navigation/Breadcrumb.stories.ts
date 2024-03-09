@@ -62,13 +62,13 @@ export const PropsSize: Story = {
     })
 };
 
-export const PropssSparator: Story = {
+export const PropsSparator: Story = {
     args: {
         separator: IconChevronRight
     }
 };
 
-export const PropssTitle: Story = {
+export const PropsTitle: Story = {
     args: {
         title: 'Dashboard'
     }
