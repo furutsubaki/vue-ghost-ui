@@ -28,7 +28,15 @@ const flg = ref(false);
 const { notifications, removeNotification } = useNotification();
 
 // 表示位置調整
-const transitionFrom = props.notification.position.split('-')[1] as 'right' | 'left';
+const transitionFrom = computed(() => {
+    if (props.notification.position.split('-')[1] === 'right') {
+        return 'right-rebound';
+    } else if (props.notification.position.split('-')[1] === 'left') {
+        return 'left-rebound';
+    } else {
+        return undefined;
+    }
+});
 const positionY = props.notification.position.split('-')[0] as 'top' | 'bottom';
 const positionX = props.notification.position.split('-')[1] as 'right' | 'left';
 const POSITION_GAP = 16;

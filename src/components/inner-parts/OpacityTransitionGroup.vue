@@ -41,9 +41,9 @@ const onTransitionEnd = () => {
 </script>
 
 <template>
-    <Transition mode="out-in" @before-enter="onTransitionStart" @after-leave="onTransitionEnd">
+    <TransitionGroup @before-enter="onTransitionStart" @after-leave="onTransitionEnd">
         <slot />
-    </Transition>
+    </TransitionGroup>
 </template>
 
 <style scoped>
