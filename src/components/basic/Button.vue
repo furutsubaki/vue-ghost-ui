@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 const props = withDefaults(
     defineProps<{
         /**
@@ -43,10 +45,14 @@ const onClick = () => {
     }
     emit('click');
 };
+
+const buttonRef = ref();
+defineExpose({ buttonRef });
 </script>
 
 <template>
     <button
+        ref="buttonRef"
         type="button"
         class="component-button"
         :disabled="disabled"
