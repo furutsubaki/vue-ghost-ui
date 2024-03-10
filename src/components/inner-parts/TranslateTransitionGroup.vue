@@ -4,7 +4,15 @@ withDefaults(
         /**
          * 所要時間
          */
-        from?: 'top' | 'right' | 'bottom' | 'left';
+        from?:
+            | 'top'
+            | 'right'
+            | 'bottom'
+            | 'left'
+            | 'top-rebound'
+            | 'right-rebound'
+            | 'bottom-rebound'
+            | 'left-rebound';
         /**
          * 所要時間
          */
@@ -46,13 +54,25 @@ const onTransitionEnd = () => {
 </script>
 
 <template>
-    <TransitionGroup @before-enter="onTransitionStart" @after-leave="onTransitionEnd" :name="from">
+    <TransitionGroup
+        @before-enter="onTransitionStart"
+        @after-leave="onTransitionEnd"
+        :name="from"
+    >
         <slot />
     </TransitionGroup>
 </template>
 
 <style scoped>
 /* 共通 */
+.top-rebound-enter-active,
+.top-rebound-leave-active,
+.right-rebound-enter-active,
+.right-rebound-leave-active,
+.bottom-rebound-enter-active,
+.bottom-rebound-leave-active,
+.left-rebound-enter-active,
+.left-rebound-leave-active,
 .top-enter-active,
 .top-leave-active,
 .right-enter-active,
@@ -68,35 +88,87 @@ const onTransitionEnd = () => {
         opacity v-bind(duration) v-bind(easeFunction) v-bind(delay) !important;
 }
 
+/* from top-rebound */
+.top-rebound-enter-from,
+.top-rebound-leave-to {
+    /* 親側のopacityと競合する場合があるため、こちらを優先とする */
+    transform: translateY(-100%);
+    opacity: 0 !important;
+}
+
+/* from right-rebound */
+.right-rebound-enter-from,
+.right-rebound-leave-to {
+    /* 親側のopacityと競合する場合があるため、こちらを優先とする */
+    transform: translateX(100%);
+    opacity: 0 !important;
+}
+
+/* from bottom-rebound */
+.bottom-rebound-enter-from,
+.bottom-rebound-leave-to {
+    /* 親側のopacityと競合する場合があるため、こちらを優先とする */
+    transform: translateY(100%);
+    opacity: 0 !important;
+}
+
+/* from left-rebound */
+.left-rebound-enter-from,
+.left-rebound-leave-to {
+    /* 親側のopacityと競合する場合があるため、こちらを優先とする */
+    transform: translateX(-100vw);
+    opacity: 0 !important;
+}
+
 /* from top */
 .top-enter-from,
 .top-leave-to {
     /* 親側のopacityと競合する場合があるため、こちらを優先とする */
-    transform: translateY(-100%);
     opacity: 0 !important;
+}
+.top-enter-from {
+    transform: translateY(-100%);
+}
+.top-leave-to {
+    transform: translateY(100%);
 }
 
 /* from right */
 .right-enter-from,
 .right-leave-to {
     /* 親側のopacityと競合する場合があるため、こちらを優先とする */
-    transform: translateX(100%);
     opacity: 0 !important;
+}
+.right-enter-from {
+    transform: translateX(100%);
+}
+.right-leave-to {
+    transform: translateX(-100%);
 }
 
 /* from bottom */
 .bottom-enter-from,
 .bottom-leave-to {
     /* 親側のopacityと競合する場合があるため、こちらを優先とする */
-    transform: translateY(100%);
     opacity: 0 !important;
+}
+.bottom-enter-from {
+    transform: translateY(100%);
+}
+.bottom-leave-to {
+    transform: translateY(-100%);
 }
 
 /* from left */
 .left-enter-from,
 .left-leave-to {
     /* 親側のopacityと競合する場合があるため、こちらを優先とする */
-    transform: translateX(-100vw);
     opacity: 0 !important;
+}
+.left-enter-from {
+    transform: translateX(-100vw);
+}
+.left-leave-to {
+    transform: translateX(100vw);
 }
 </style>
