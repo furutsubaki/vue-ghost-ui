@@ -18,7 +18,6 @@ const meta: Meta<typeof Field> = {
         },
         template: '<Field v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: ''
     },

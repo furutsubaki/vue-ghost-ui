@@ -61,8 +61,8 @@
     --color-base-pink-alpha: #ffa9e7cc;
 
     /* status */
-    --color-base-primary: var(--color-base-orange);
-    --color-base-primary-alpha: var(--color-base-orange-alpha);
+    --color-status-brand: #2e7e16;
+    --color-status-brand-alpha: #2e7e16cc;
     --color-status-info: var(--color-base-lime);
     --color-status-info-alpha: var(--color-base-lime-alpha);
     --color-status-success: var(--color-base-blue);
@@ -77,16 +77,14 @@
     --color-theme-text-primary: var(--color-base-black);
     --color-theme-text-secondary: var(--color-base-gray-dark);
     --color-theme-placeholder: var(--color-base-gray-dark);
-    --color-theme-link: var(--color-base-red-alpha);
-    --color-theme-link-hover: var(--color-base-red);
+    --color-theme-link: var(--color-base-orange-alpha);
+    --color-theme-link-hover: var(--color-base-orange);
     --color-theme-bg-primary: var(--color-base-white);
     --color-theme-bg-secondary: var(--color-base-gray-light);
     --color-theme-bg-alpha: var(--color-base-white-alpha);
     --color-theme-bg-select: #49f9aa;
     --color-theme-border: var(--color-base-gray);
-    --color-theme-shadow: var(--color-base-black-alpha);
-    --color-theme-active: var(--color-base-primary);
-    --color-theme-active-alpha: var(--color-base-primary-alpha);
+    --color-theme-shadow: var(--color-base-gray-alpha);
 }
 
 @media (600px <= width) {
@@ -110,8 +108,6 @@
     --color-theme-bg-select: #49f9aa;
     --color-theme-border: var(--color-base-gray);
     --color-theme-shadow: var(--color-base-gray-alpha);
-    --color-theme-active: var(--color-base-primary);
-    --color-theme-active-alpha: var(--color-base-primary-alpha);
 }
 
 :root[data-theme='dark'] {
@@ -129,6 +125,4 @@
     --color-theme-bg-select: #49f9aa;
     --color-theme-border: var(--color-base-gray-dark);
     --color-theme-shadow: var(--color-base-black-light);
-    --color-theme-active: var(--color-base-primary);
-    --color-theme-active-alpha: var(--color-base-primary-alpha);
 }

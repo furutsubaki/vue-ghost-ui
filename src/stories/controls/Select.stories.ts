@@ -17,7 +17,6 @@ const meta: Meta<typeof Select> = {
         },
         template: '<Select v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: ''
     },

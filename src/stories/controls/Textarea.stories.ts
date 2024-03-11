@@ -17,15 +17,13 @@ const meta: Meta<typeof Textarea> = {
         },
         template: '<Textarea v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: ''
     },
     argTypes: {
         // TODO: 現状lintエラーの回避策なし
         // @ts-ignore
-        'onUpdate:modelValue': { action: 'onUpdate:modelValue' },
-        onSearch: { action: 'search' }
+        'onUpdate:modelValue': { action: 'onUpdate:modelValue' }
     }
 };
 

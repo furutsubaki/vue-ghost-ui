@@ -10,7 +10,6 @@ const meta: Meta<typeof Badge> = {
         },
         template: '<Badge v-bind="args">テキスト</Badge>'
     }),
-    tags: ['autodocs'],
     args: {
         content: '10'
     }

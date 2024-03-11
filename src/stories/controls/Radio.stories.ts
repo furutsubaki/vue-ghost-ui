@@ -17,7 +17,6 @@ const meta: Meta<typeof Radio> = {
         },
         template: '<Radio v-bind="args">規約に同意</Radio>'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: false
     },

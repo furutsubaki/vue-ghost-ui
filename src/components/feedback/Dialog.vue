@@ -82,6 +82,19 @@ const isShowing = computed(() => {
         return transitioning.value;
     }
 });
+const transitionFrom = computed(() => {
+    if (props.transitionFrom === 'top') {
+        return 'top-rebound';
+    } else if (props.transitionFrom === 'right') {
+        return 'right-rebound';
+    } else if (props.transitionFrom === 'bottom') {
+        return 'bottom-rebound';
+    } else if (props.transitionFrom === 'left') {
+        return 'left-rebound';
+    } else {
+        return undefined;
+    }
+});
 
 const onClose = async () => {
     flg.value = false;
@@ -233,8 +246,8 @@ const hasSlot = (name: string) => {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-dialog-icon-color: var(--color-theme-active);
-    --c-dialog-border-color: var(--color-theme-active);
+    --c-dialog-icon-color: var(--color-status-brand);
+    --c-dialog-border-color: var(--color-status-brand);
 }
 .secondary {
     --c-dialog-icon-color: transparent;

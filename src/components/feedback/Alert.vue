@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, type Component } from 'vue';
 import OpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import {
     X as IconX,
     Info as IconInfo,
@@ -92,7 +92,7 @@ const onClosed = async () => {
                 <div v-if="title" class="title">{{ title }}</div>
                 <div>{{ text }}</div>
             </div>
-            <Button v-if="closeable" shape="skeleton-square" class="closeable-box" @click="onClose">
+            <Button v-if="closeable" shape="skeleton" class="closeable-box" @click="onClose">
                 <IconX />
             </Button>
         </div>
@@ -147,8 +147,8 @@ const onClosed = async () => {
 
 .primary {
     --c-alert-color: var(--color-base-white);
-    --c-alert-background-color: var(--color-theme-active);
-    --c-alert-border-color: var(--color-theme-active);
+    --c-alert-background-color: var(--color-status-brand);
+    --c-alert-border-color: var(--color-status-brand);
 }
 
 .secondary {

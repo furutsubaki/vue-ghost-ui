@@ -103,7 +103,7 @@ const strokeDashoffset = computed(
 }
 
 .primary {
-    --c-progress-background-color: var(--color-theme-active);
+    --c-progress-background-color: var(--color-status-brand);
 }
 
 .secondary {

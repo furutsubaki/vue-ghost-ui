@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import Field from '@/components/controls/Field.vue';
 import Textarea from '@/components/controls/Textarea.vue';
 import Radio from '@/components/controls/Radio.vue';

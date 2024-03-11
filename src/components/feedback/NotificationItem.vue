@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import OpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
 import TranslateTransition from '@/components/inner-parts/TranslateTransition.vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import { computed } from 'vue';
 import { sleep } from '@/assets/ts';
 import {
@@ -12,10 +12,10 @@ import {
     AlertTriangle as IconAlertTriangle,
     XOctagon as IconXOctagon
 } from 'lucide-vue-next';
-import useNotification, { type RequiredNotification } from '@/composables/useNotification';
+import useNotification, { type MiRequiredNotification } from '@/composables/useNotification';
 
 const props = defineProps<{
-    notification: RequiredNotification;
+    notification: MiRequiredNotification;
 }>();
 const emit = defineEmits<{
     /**
@@ -28,7 +28,15 @@ const flg = ref(false);
 const { notifications, removeNotification } = useNotification();
 
 // 表示位置調整
-const transitionFrom = props.notification.position.split('-')[1] as 'right' | 'left';
+const transitionFrom = computed(() => {
+    if (props.notification.position.split('-')[1] === 'right') {
+        return 'right-rebound';
+    } else if (props.notification.position.split('-')[1] === 'left') {
+        return 'left-rebound';
+    } else {
+        return undefined;
+    }
+});
 const positionY = props.notification.position.split('-')[0] as 'top' | 'bottom';
 const positionX = props.notification.position.split('-')[1] as 'right' | 'left';
 const POSITION_GAP = 16;
@@ -135,7 +143,7 @@ onMounted(async () => {
                     </div>
                     <Button
                         v-if="notification.closeable"
-                        shape="skeleton-square"
+                        shape="skeleton"
                         class="closeable-box"
                         @click="onClose"
                     >
@@ -184,7 +192,7 @@ onMounted(async () => {
         gap: 8px;
         .title {
             font-weight: bold;
-            font-size: calc(var(--font-size-medium) * 1.2);
+            font-size: var(--font-size-large);
         }
         .message {
             white-space: pre-wrap;
@@ -199,8 +207,8 @@ onMounted(async () => {
 
 /* ▼ variant ▼ */
 .primary {
-    --c-notification-item-border-color: var(--color-theme-active);
-    --c-notification-item-icon-color: var(--color-theme-active);
+    --c-notification-item-border-color: var(--color-status-brand);
+    --c-notification-item-icon-color: var(--color-status-brand);
 }
 .secondary {
     --c-notification-item-border-color: var(--color-theme-border);

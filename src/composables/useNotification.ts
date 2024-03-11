@@ -7,7 +7,7 @@
 
 import { ref } from 'vue';
 
-export interface NotificationOption {
+export interface MiNotificationOption {
     /**
      * 表示色
      */
@@ -42,15 +42,15 @@ export interface NotificationOption {
     autoRemove?: boolean;
 }
 
-export interface RequiredNotification extends Required<NotificationOption> {
+export interface MiRequiredNotification extends Required<MiNotificationOption> {
     key: string;
 }
 
 // global state
-const notifications = ref<RequiredNotification[]>([]);
+const notifications = ref<MiRequiredNotification[]>([]);
 
 export default function () {
-    const defaultOption: RequiredNotification = {
+    const defaultOption: MiRequiredNotification = {
         key: '',
         variant: 'secondary',
         size: 'medium',
@@ -62,7 +62,7 @@ export default function () {
         autoRemove: true
     };
 
-    const addNotification = (option: NotificationOption) => {
+    const addNotification = (option: MiNotificationOption) => {
         const newNotification = {
             ...defaultOption,
             key: Math.random().toString(),

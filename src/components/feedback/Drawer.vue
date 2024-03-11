@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref, useSlots } from 'vue';
+import { ref, computed, useSlots } from 'vue';
 import OpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
 import TranslateTransition from '@/components/inner-parts/TranslateTransition.vue';
-import Button from '@/components/common/Button.vue';
-import { computed } from 'vue';
+import Button from '@/components/basic/Button.vue';
 import { sleep } from '@/assets/ts';
 import { X as IconX } from 'lucide-vue-next';
 
@@ -65,6 +64,19 @@ const isShowing = computed(() => {
         return transitioning.value;
     }
 });
+const transitionFrom = computed(() => {
+    if (props.position === 'top') {
+        return 'top-rebound';
+    } else if (props.position === 'right') {
+        return 'right-rebound';
+    } else if (props.position === 'bottom') {
+        return 'bottom-rebound';
+    } else if (props.position === 'left') {
+        return 'left-rebound';
+    } else {
+        return undefined;
+    }
+});
 
 const onClose = async () => {
     flg.value = false;
@@ -96,7 +108,7 @@ const hasSlot = (name: string) => {
     >
         <div v-show="flg" class="component-drawer" :class="{ 'is-seamless': seamless }">
             <TranslateTransition
-                :from="position"
+                :from="transitionFrom"
                 @transition-start="transitioning = true"
                 @transition-end="transitioning = false"
             >
@@ -109,11 +121,11 @@ const hasSlot = (name: string) => {
                     <Button
                         v-if="closeable"
                         size="large"
-                        shape="skeleton-square"
+                        shape="skeleton"
                         class="closeable-box"
                         @click="onClose"
                     >
-                        <IconX />
+                        <IconX class="closeable-icon" />
                     </Button>
                     <div
                         v-if="hasSlot('header')"
@@ -174,6 +186,11 @@ const hasSlot = (name: string) => {
         top: 0px;
         right: 0px;
         z-index: 1;
+        padding: 8px;
+        .closeable-icon {
+            width: var(--font-size-large);
+            height: var(--font-size-large);
+        }
     }
 
     .header {

@@ -1,7 +1,13 @@
 <script setup lang="ts">
 withDefaults(
     defineProps<{
+        /**
+         * タグ
+         */
         tag?: string;
+        /**
+         * 枠の配置
+         */
         layout?:
             | 'pf-default'
             | 'pf-width'
@@ -10,28 +16,36 @@ withDefaults(
             | 'pf-right'
             | 'pf-bottom'
             | 'pf-left';
+        /**
+         * 形状
+         */
+        shape?: 'default' | 'circle';
+        /**
+         * パディング
+         */
         isPading?: boolean;
     }>(),
     {
-        tag: 'section',
+        tag: 'div',
         layout: 'pf-default',
+        shape: 'default',
         isPading: false
     }
 );
 </script>
 
 <template>
-    <component :is="tag" class="picture-frame" :class="[layout, { 'is-pading': isPading }]">
-        <slot />
-    </component>
+    <div class="picture-frame" :class="[layout, shape, { 'is-pading': isPading }]">
+        <component :is="tag" class="picture-frame-inner">
+            <slot />
+        </component>
+    </div>
 </template>
 
 <style scoped>
 .picture-frame {
     --c-picture-frame-padding: 8px;
     position: relative;
-    display: flex;
-    flex-direction: column;
     padding: var(--c-picture-frame-padding);
     &::before {
         position: absolute;
@@ -61,8 +75,19 @@ withDefaults(
     }
 
     &.is-pading {
-        padding: calc(var(--c-picture-frame-padding) * 3);
+        .picture-frame-inner {
+            padding: calc(var(--c-picture-frame-padding) * 2);
+        }
     }
+}
+.picture-frame-inner {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /* ▼ layout ▼ */
@@ -135,4 +160,15 @@ withDefaults(
     }
 }
 /* ▲ layout ▲ */
+
+/* ▼ shape ▼ */
+.circle {
+    border-radius: 50%;
+    &::before,
+    &::after,
+    .picture-frame-inner {
+        border-radius: 50%;
+    }
+}
+/* ▲ shape ▲ */
 </style>

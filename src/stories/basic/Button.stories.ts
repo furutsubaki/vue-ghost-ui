@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof Button> = {
@@ -11,7 +11,6 @@ const meta: Meta<typeof Button> = {
         },
         template: '<Button v-bind="args">{{args.default}}</Button>'
     }),
-    tags: ['autodocs'],
     args: {
         default: 'ボタン'
     },

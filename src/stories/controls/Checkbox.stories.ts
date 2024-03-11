@@ -17,7 +17,6 @@ const meta: Meta<typeof Checkbox> = {
         },
         template: '<Checkbox v-bind="args">規約に同意</Checkbox>'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: false
     },

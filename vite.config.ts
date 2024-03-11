@@ -26,13 +26,14 @@ export default defineConfig({
     },
     plugins: [
         vue(),
-        dts({ exclude: ['src/main.ts'] }),
+        dts({
+            tsconfigPath: 'tsconfig.build.json',
+        }),
     ],
     resolve: {
         dedupe: ['vue'],
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
-            vue: resolve(__dirname, './node_modules/vue'),
         }
     },
     css: {

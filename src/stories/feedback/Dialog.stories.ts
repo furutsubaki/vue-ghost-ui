@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import Dialog from '@/components/feedback/Dialog.vue';
-import Button from '@/components/common/Button.vue';
+import Button from '@/components/basic/Button.vue';
 import Progress from '@/components/feedback/Progress.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Play as IconPlay, Pause as IconPause, X as IconX } from 'lucide-vue-next';
@@ -21,7 +21,6 @@ const meta: Meta<typeof Dialog> = {
     </template>
 </Dialog>`
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: false
     },

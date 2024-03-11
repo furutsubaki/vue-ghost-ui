@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 const props = withDefaults(
     defineProps<{
         /**
@@ -12,14 +14,7 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?:
-            | 'normal'
-            | 'rounded'
-            | 'circle'
-            | 'square'
-            | 'skeleton'
-            | 'skeleton-square'
-            | 'link';
+        shape?: 'normal' | 'rounded' | 'circle' | 'square' | 'skeleton' | 'link';
         /**
          * 読み取り専用
          */
@@ -50,17 +45,21 @@ const onClick = () => {
     }
     emit('click');
 };
+
+const buttonRef = ref();
+defineExpose({ buttonRef });
 </script>
 
 <template>
     <button
+        ref="buttonRef"
         type="button"
         class="component-button"
         :disabled="disabled"
         :class="[variant, size, shape, { 'is-readonly': readonly }]"
         @click="onClick"
     >
-        <slot></slot>
+        <slot />
     </button>
 </template>
 
@@ -70,7 +69,7 @@ const onClick = () => {
     font-size: var(--c-button-font-size);
 
     display: flex;
-    gap: 16px;
+    gap: 8px;
     align-items: center;
     justify-content: center;
     min-width: 100px;
@@ -85,13 +84,15 @@ const onClick = () => {
         color 0.2s,
         background-color 0.2s,
         border-color 0.2s,
-        opacity 0.2s;
+        opacity 0.2s,
+        filter 0.2s;
     &.is-readonly {
         pointer-events: none;
     }
     &:disabled {
         pointer-events: none;
         opacity: 0.5;
+        filter: grayscale(1);
     }
 
     /* hover */
@@ -113,17 +114,17 @@ const onClick = () => {
 
 /* ▼ variable ▼ */
 .primary {
-    --c-button-hover-color: var(--color-theme-active);
+    --c-button-hover-color: var(--color-status-brand);
     --c-button-hover-background-color: transparent;
-    --c-button-hover-border-color: var(--color-theme-active);
+    --c-button-hover-border-color: var(--color-status-brand);
     --c-button-color: var(--color-base-white);
-    --c-button-background-color: var(--color-theme-active-alpha);
-    --c-button-border-color: var(--color-theme-active);
+    --c-button-background-color: var(--color-status-brand-alpha);
+    --c-button-border-color: var(--color-status-brand);
 }
 .secondary {
     --c-button-hover-color: var(--color-base-white);
-    --c-button-hover-background-color: var(--color-theme-active);
-    --c-button-hover-border-color: var(--color-theme-active);
+    --c-button-hover-background-color: var(--color-status-brand-alpha);
+    --c-button-hover-border-color: var(--color-status-brand);
     --c-button-color: var(--color-theme-text-primary);
     --c-button-background-color: transparent;
     --c-button-border-color: var(--color-theme-border);
@@ -210,35 +211,8 @@ const onClick = () => {
 .skeleton {
     border: 0;
     min-width: initial;
-    @media (hover: hover) {
-        &:hover {
-            &.secondary {
-                color: var(--color-theme-link);
-            }
-            color: var(--c-button-color);
-            background-color: transparent;
-            border-color: transparent;
-        }
-    }
-    @media (hover: none) {
-        &:active {
-            &.secondary {
-                color: var(--color-theme-link);
-            }
-            color: var(--c-button-color);
-            background-color: transparent;
-            border-color: transparent;
-        }
-    }
-}
-.skeleton-square {
-    border: 0;
-    min-width: initial;
-    width: var(--c-button-height);
-    > :deep(.lucide) {
-        width: 100%;
-        height: 100%;
-    }
+    min-height: initial;
+    padding: 0;
     @media (hover: hover) {
         &:hover {
             &.secondary {
