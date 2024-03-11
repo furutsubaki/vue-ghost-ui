@@ -54,11 +54,7 @@ const onTransitionEnd = () => {
 </script>
 
 <template>
-    <TransitionGroup
-        @before-enter="onTransitionStart"
-        @after-leave="onTransitionEnd"
-        :name="from"
-    >
+    <TransitionGroup @before-enter="onTransitionStart" @after-leave="onTransitionEnd" :name="from">
         <slot />
     </TransitionGroup>
 </template>
