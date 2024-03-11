@@ -17,7 +17,7 @@ export { useFormData, useNotification };
 export default {
     install(app: App) {
         Object.values(components).forEach((component) => {
-            app.component(`Mi${component.default.__name!}`, component.default);
+            app.component(`Mi${component.__name!}`, component);
         });
 
         app.config.globalProperties.$useFormData = useFormData;
