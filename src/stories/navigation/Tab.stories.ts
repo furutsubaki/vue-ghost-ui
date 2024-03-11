@@ -23,7 +23,6 @@ const meta: Meta<typeof Tab> = {
     </template>
 </Tab>`
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: 'tab1',
         tabs: [

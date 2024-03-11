@@ -17,7 +17,6 @@ const meta: Meta<typeof Autocomplete> = {
         },
         template: '<Autocomplete v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: ''
     },

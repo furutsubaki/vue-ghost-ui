@@ -16,7 +16,6 @@ const meta: Meta<typeof Breadcrumb> = {
         },
         template: '<Breadcrumb v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         items: [
             {

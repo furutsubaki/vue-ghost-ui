@@ -23,7 +23,6 @@ const meta: Meta<typeof Step> = {
     </template>
 </Step>`
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: 'step1',
         steps: [

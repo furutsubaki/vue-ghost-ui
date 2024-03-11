@@ -16,7 +16,6 @@ const meta: Meta<typeof BottomNav> = {
         },
         template: '<BottomNav v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         items: [
             {

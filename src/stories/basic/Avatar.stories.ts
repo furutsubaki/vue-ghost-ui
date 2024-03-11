@@ -13,7 +13,6 @@ const meta: Meta<typeof Avatar> = {
         },
         template: '<Avatar v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {},
     argTypes: {}
 };

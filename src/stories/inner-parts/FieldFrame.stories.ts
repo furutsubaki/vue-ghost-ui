@@ -11,7 +11,6 @@ const meta: Meta<typeof FieldFrame> = {
         },
         template: '<FieldFrame v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {},
     argTypes: {}
 };

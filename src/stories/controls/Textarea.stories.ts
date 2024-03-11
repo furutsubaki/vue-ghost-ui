@@ -17,7 +17,6 @@ const meta: Meta<typeof Textarea> = {
         },
         template: '<Textarea v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: ''
     },

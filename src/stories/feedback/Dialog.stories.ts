@@ -21,7 +21,6 @@ const meta: Meta<typeof Dialog> = {
     </template>
 </Dialog>`
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: false
     },

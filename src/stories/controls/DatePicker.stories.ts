@@ -17,7 +17,6 @@ const meta: Meta<typeof DatePicker> = {
         },
         template: '<DatePicker v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: ''
     },
