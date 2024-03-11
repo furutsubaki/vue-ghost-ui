@@ -10,7 +10,6 @@ const meta: Meta<typeof Rating> = {
         },
         template: '<Rating v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: 3
     }

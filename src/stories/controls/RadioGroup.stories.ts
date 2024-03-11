@@ -17,7 +17,6 @@ const meta: Meta<typeof RadioGroup> = {
         },
         template: '<RadioGroup v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: ''
     },

@@ -11,7 +11,6 @@ const meta: Meta<typeof Progress> = {
         },
         template: '<Progress v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: 10
     }

@@ -11,7 +11,6 @@ const meta: Meta<typeof Pagination> = {
         },
         template: '<Pagination v-bind="args" />'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: 1,
         total: 5

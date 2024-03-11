@@ -11,7 +11,6 @@ const meta: Meta<typeof Button> = {
         },
         template: '<Button v-bind="args">{{args.default}}</Button>'
     }),
-    tags: ['autodocs'],
     args: {
         default: 'ボタン'
     },

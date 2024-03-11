@@ -12,7 +12,6 @@ const meta: Meta<typeof PictureFrame> = {
         template:
             '<PictureFrame v-bind="args" style="width:250px; height: 250px;"><div style="width:100%; height: 100%;background-color: var(--color-theme-bg-secondary); display: flex;align-items: center; justify-content: center;">Contents</div></PictureFrame>'
     }),
-    tags: ['autodocs'],
     args: {},
     argTypes: {}
 };

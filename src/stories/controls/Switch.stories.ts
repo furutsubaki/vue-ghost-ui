@@ -18,7 +18,6 @@ const meta: Meta<typeof Switch> = {
         },
         template: '<Switch v-bind="args">{{ args.default }}</Switch>'
     }),
-    tags: ['autodocs'],
     args: {
         modelValue: false,
         default: '規約に同意'
