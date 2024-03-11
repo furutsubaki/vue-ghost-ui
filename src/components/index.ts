@@ -24,10 +24,14 @@ import MiFieldAccordionList from '@/components/inner-parts/FieldAccordionList.vu
 import MiFieldFrame from '@/components/inner-parts/FieldFrame.vue';
 import MiInputTextCounter from '@/components/inner-parts/InputTextCounter.vue';
 import MiOpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
+import MiOpacityTransitionGroup from '@/components/inner-parts/OpacityTransitionGroup.vue';
 import MiTranslateTransition from '@/components/inner-parts/TranslateTransition.vue';
+import MiTranslateTransitionGroup from '@/components/inner-parts/TranslateTransitionGroup.vue';
 import MiBottomNav from '@/components/navigation/BottomNav.vue';
 import MiBreadcrumb from '@/components/navigation/Breadcrumb.vue';
 import MiPagination from '@/components/navigation/Pagination.vue';
+import MiStep from '@/components/navigation/Step.vue';
+import MiTab from '@/components/navigation/Tab.vue';
 
 export {
     MiAvatar,
@@ -56,10 +60,14 @@ export {
     MiFieldFrame,
     MiInputTextCounter,
     MiOpacityTransition,
+    MiOpacityTransitionGroup,
     MiTranslateTransition,
+    MiTranslateTransitionGroup,
     MiBottomNav,
     MiBreadcrumb,
-    MiPagination
+    MiPagination,
+    MiStep,
+    MiTab
 };
 
 declare module 'vue' {
@@ -90,9 +98,13 @@ declare module 'vue' {
         MiFieldFrame: typeof MiFieldFrame;
         MiInputTextCounter: typeof MiInputTextCounter;
         MiOpacityTransition: typeof MiOpacityTransition;
+        MiOpacityTransitionGroup: typeof MiOpacityTransitionGroup;
         MiTranslateTransition: typeof MiTranslateTransition;
+        MiTranslateTransitionGroup: typeof MiTranslateTransitionGroup;
         MiBottomNav: typeof MiBottomNav;
         MiBreadcrumb: typeof MiBreadcrumb;
         MiPagination: typeof MiPagination;
+        MiStep: typeof MiStep;
+        MiTab: typeof MiTab;
     }
 }
