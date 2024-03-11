@@ -84,13 +84,15 @@ defineExpose({ buttonRef });
         color 0.2s,
         background-color 0.2s,
         border-color 0.2s,
-        opacity 0.2s;
+        opacity 0.2s,
+        filter 0.2s;
     &.is-readonly {
         pointer-events: none;
     }
     &:disabled {
         pointer-events: none;
         opacity: 0.5;
+        filter: grayscale(1);
     }
 
     /* hover */
@@ -121,7 +123,7 @@ defineExpose({ buttonRef });
 }
 .secondary {
     --c-button-hover-color: var(--color-base-white);
-    --c-button-hover-background-color: var(--color-status-brand);
+    --c-button-hover-background-color: var(--color-status-brand-alpha);
     --c-button-hover-border-color: var(--color-status-brand);
     --c-button-color: var(--color-theme-text-primary);
     --c-button-background-color: transparent;
