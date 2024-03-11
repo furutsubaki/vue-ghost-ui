@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Component, ref, computed, useSlots } from 'vue';
+import { type Component, ref, computed } from 'vue';
 import OpacityTransition from '@/components/inner-parts/OpacityTransition.vue';
 import TranslateTransition from '@/components/inner-parts/TranslateTransition.vue';
 import Button from '@/components/basic/Button.vue';
