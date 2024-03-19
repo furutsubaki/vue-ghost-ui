@@ -79,7 +79,7 @@
     "@storybook/addon-measure": "^8.0.0",
     "@storybook/addon-outline": "^8.0.0",
     "@storybook/addon-viewport": "^8.0.0",
-    "@storybook/preview-api": "^8.0.0",
+    "@storybook/preview-api": "^8.0.2",
     "@storybook/vue3": "^8.0.0",
     "@storybook/vue3-vite": "^8.0.0",
     "@tsconfig/node18": "^18.2.2",
