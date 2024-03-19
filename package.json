@@ -74,7 +74,7 @@
     "@rushstack/eslint-patch": "^1.7.2",
     "@storybook/addon-actions": "^8.0.0",
     "@storybook/addon-backgrounds": "^8.0.0",
-    "@storybook/addon-controls": "^8.0.0",
+    "@storybook/addon-controls": "^8.0.2",
     "@storybook/addon-docs": "^8.0.0",
     "@storybook/addon-measure": "^8.0.0",
     "@storybook/addon-outline": "^8.0.0",
