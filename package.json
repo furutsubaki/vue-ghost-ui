@@ -81,7 +81,7 @@
     "@storybook/addon-viewport": "^8.0.2",
     "@storybook/preview-api": "^8.0.2",
     "@storybook/vue3": "^8.0.2",
-    "@storybook/vue3-vite": "^8.0.0",
+    "@storybook/vue3-vite": "^8.0.2",
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.11.30",
     "@vitejs/plugin-vue": "^5.0.4",
