@@ -130,10 +130,10 @@ export const ParamsShape: Story = {
                         shape: 'normal'
                     },
                     {
-                        shape: 'rounded'
+                        shape: 'no-radius'
                     },
                     {
-                        shape: 'no-radius'
+                        shape: 'picture-frame'
                     }
                 ]
             };
@@ -238,7 +238,7 @@ export const TitleOnly: Story = {
                 onSetNotification: () => {
                     addNotification({
                         variant: 'success',
-                        title: '通知',
+                        title: '通知'
                     });
                 }
             };
@@ -259,7 +259,7 @@ export const MessageOnly: Story = {
                 onSetNotification: () => {
                     addNotification({
                         variant: 'success',
-                        message: 'メッセージ',
+                        message: 'メッセージ'
                     });
                 }
             };
