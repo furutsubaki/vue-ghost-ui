@@ -139,7 +139,9 @@ onMounted(async () => {
                     <IconXOctagon v-else-if="notification.variant === 'danger'" class="icon" />
                     <div class="box">
                         <div v-if="notification.title" class="title">{{ notification.title }}</div>
-                        <div class="message">{{ notification.message }}</div>
+                        <div v-if="notification.message" class="message">
+                            {{ notification.message }}
+                        </div>
                     </div>
                     <Button
                         v-if="notification.closeable"
@@ -190,6 +192,11 @@ onMounted(async () => {
         display: flex;
         flex-direction: column;
         gap: 8px;
+        > div:first-child {
+            display: flex;
+            align-items: center;
+            height: calc(var(--font-size-medium) * 1.8);
+        }
         .title {
             font-weight: bold;
             font-size: var(--font-size-large);

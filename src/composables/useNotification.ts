@@ -27,11 +27,11 @@ export interface MiNotificationOption {
     /**
      * タイトル
      */
-    title: string;
+    title?: string;
     /**
      * メッセージ
      */
-    message: string;
+    message?: string;
     /**
      * 閉じるボタン（NOTE: 本項目とautoRemoveを両方ともfalseにすると通知を消せなくなります）
      */

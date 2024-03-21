@@ -227,3 +227,45 @@ export const ParamsAutoRemove: Story = {
 <Notifications />`
     })
 };
+
+export const TitleOnly: Story = {
+    render: (args) => ({
+        components: { Notifications, Button },
+        setup: () => {
+            const { addNotification } = useNotification();
+            return {
+                args,
+                onSetNotification: () => {
+                    addNotification({
+                        variant: 'success',
+                        title: '通知',
+                    });
+                }
+            };
+        },
+        template: `
+<Button @click="onSetNotification">Open Notifications</Button>
+<Notifications />`
+    })
+};
+
+export const MessageOnly: Story = {
+    render: (args) => ({
+        components: { Notifications, Button },
+        setup: () => {
+            const { addNotification } = useNotification();
+            return {
+                args,
+                onSetNotification: () => {
+                    addNotification({
+                        variant: 'success',
+                        message: 'メッセージ',
+                    });
+                }
+            };
+        },
+        template: `
+<Button @click="onSetNotification">Open Notifications</Button>
+<Notifications />`
+    })
+};
