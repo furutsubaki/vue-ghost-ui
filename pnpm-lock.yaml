@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^1.7.2
     version: 1.7.2
   '@storybook/addon-actions':
-    specifier: ^8.0.2
-    version: 8.0.2
+    specifier: ^8.0.4
+    version: 8.0.4
   '@storybook/addon-backgrounds':
     specifier: ^8.0.0
     version: 8.0.0
@@ -2050,10 +2050,10 @@ packages:
       string-argv: 0.3.2
     dev: true
 
-  /@storybook/addon-actions@8.0.2:
-    resolution: {integrity: sha512-yW4crc+EWvu/9XQmfYQAsLrMyZp8hLohjZMgXHKJL3ohWShWEGcw5PXL3aYn0UcJFHoFtCtAwLbXbrP8bNLNXA==}
+  /@storybook/addon-actions@8.0.4:
+    resolution: {integrity: sha512-EyCWo+8T11/TJGYNL/AXtW4yaB+q1v2E9mixbumryCLxpTl2NtaeGZ4e0dlwfIMuw/7RWgHk2uIypcIPR/UANQ==}
     dependencies:
-      '@storybook/core-events': 8.0.2
+      '@storybook/core-events': 8.0.4
       '@storybook/global': 5.0.0
       '@types/uuid': 9.0.7
       dequal: 2.0.3
