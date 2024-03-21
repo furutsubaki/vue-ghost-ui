@@ -136,6 +136,7 @@ onMounted(async () => {
                     class="notification"
                     :class="[notification.variant, notification.size]"
                     :style="positionStyle"
+                    :noShadow="notification.noShadow"
                     :shape="notification.shape as FrameShape"
                 >
                     <div class="notification-inner">
