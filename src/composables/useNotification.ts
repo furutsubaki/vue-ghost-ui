@@ -19,7 +19,7 @@ export interface MiNotificationOption {
     /**
      * 形状
      */
-    shape?: 'normal' | 'rounded' | 'no-radius';
+    shape?: 'normal' | 'no-radius' | 'picture-frame';
     /**
      * 位置
      */
