@@ -25,6 +25,10 @@ export interface MiNotificationOption {
      */
     position?: 'top-right' | 'bottom-right' | 'bottom-left' | 'top-left';
     /**
+     * 影なしか
+     */
+    noShadow?: boolean;
+    /**
      * タイトル
      */
     title?: string;
@@ -56,6 +60,7 @@ export default function () {
         size: 'medium',
         shape: 'normal',
         position: 'top-right',
+        noShadow: false,
         title: '',
         message: '',
         closeable: false,

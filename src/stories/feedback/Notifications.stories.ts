@@ -184,6 +184,28 @@ export const ParamsPosition: Story = {
     })
 };
 
+export const ParamsNoShadow: Story = {
+    render: (args) => ({
+        components: { Notifications, Button },
+        setup: () => {
+            const { addNotification } = useNotification();
+            return {
+                args,
+                onSetNotification: () => {
+                    addNotification({
+                        title: '通知',
+                        message: 'テスト通知',
+                        noShadow: true
+                    });
+                }
+            };
+        },
+        template: `
+<Button @click="onSetNotification">Open Notifications</Button>
+<Notifications />`
+    })
+};
+
 export const ParamsCloseable: Story = {
     render: (args) => ({
         components: { Notifications, Button },
