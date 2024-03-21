@@ -9,7 +9,7 @@ withDefaults(
          * 枠の配置
          */
         layout?:
-            | 'pf-default'
+            | 'pf-normal'
             | 'pf-width'
             | 'pf-height'
             | 'pf-top'
@@ -19,7 +19,7 @@ withDefaults(
         /**
          * 形状
          */
-        shape?: 'default' | 'circle';
+        shape?: 'normal' | 'no-radius' | 'circle';
         /**
          * パディング
          */
@@ -31,8 +31,8 @@ withDefaults(
     }>(),
     {
         tag: 'div',
-        layout: 'pf-default',
-        shape: 'default',
+        layout: 'pf-normal',
+        shape: 'normal',
         isPading: false,
         noShadow: false
     }
