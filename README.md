@@ -37,7 +37,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     return {
         provide: {
             useFormData,
-            useNotification
+            useNotification,
+            useTheme
         }
     };
 });
