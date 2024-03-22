@@ -212,7 +212,7 @@ const onCloseDatePicker = () => {
 };
 const onOutside = computed(() => ({
     handler: onCloseDatePicker,
-    isActive: props.type === 'date'
+    isActive: isFocus.value && props.type === 'date'
 }));
 onMounted(() => {
     const intersect = (entries: IntersectionObserverEntry[]) => {

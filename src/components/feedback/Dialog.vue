@@ -11,7 +11,7 @@ import {
     XOctagon as IconXOctagon
 } from 'lucide-vue-next';
 
-const flg = defineModel<boolean>({ default: true });
+const flg = defineModel<boolean>({ default: false });
 const props = withDefaults(
     defineProps<{
         /**
