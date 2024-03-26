@@ -21,7 +21,7 @@ app.component('VueDatePicker', VueDatePicker);
 
 useValidate();
 
-const {currentTheme, setTheme} = useTheme();
+const { currentTheme, setTheme } = useTheme();
 // 初期style設定
 setTheme(currentTheme.value);
 

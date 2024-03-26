@@ -368,7 +368,6 @@ onBeforeUnmount(() => {
         height: var(--c-field-height);
         line-height: 1.5em;
         background-color: transparent;
-        color: var(--color-theme-text-primary);
         border: 0;
         padding: 0;
     }

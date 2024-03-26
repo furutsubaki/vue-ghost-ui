@@ -73,7 +73,9 @@ export interface MiTheme
 createHead();
 
 // global state
-const currentTheme = ref<themeId>(typeof localStorage !== 'undefined' ? localStorage.themeId ?? 'light' : 'light');
+const currentTheme = ref<themeId>(
+    typeof localStorage !== 'undefined' ? localStorage.themeId ?? 'light' : 'light'
+);
 const baseTheme: MiTheme = {
     base: {
         whiteTrue: '#fff',
@@ -175,7 +177,7 @@ const createThemeCss = (themeId: string) => {
 const setTheme = (themeId: string) => {
     useHead({
         bodyAttrs: {
-            'data-theme': themeId,
+            'data-theme': themeId
         },
         style: [
             {
@@ -185,7 +187,7 @@ const setTheme = (themeId: string) => {
         ]
     });
     if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('themeId', themeId)
+        localStorage.setItem('themeId', themeId);
     }
 };
 
@@ -193,8 +195,8 @@ const setTheme = (themeId: string) => {
 watch(currentTheme, setTheme);
 
 const overrideTheme = (overrideThemes: { [key: string]: RecursivePartial<MiTheme> }) => {
-    themes.value = merge(themes.value, overrideThemes)
-}
+    themes.value = merge(themes.value, overrideThemes);
+};
 
 export default function () {
     return { currentTheme, baseTheme, themes, overrideTheme, setTheme };

@@ -102,13 +102,10 @@ const onOutside = computed(() => ({
     line-height: 1.5em;
     border: 1px solid var(--c-field-accordion-border-color);
     border-radius: 4px;
-    color: var(--color-theme-text-primary);
     display: grid;
     grid-template-rows: 0fr;
     transition:
-        color 0.2s,
         background-color 0.2s,
-        border-color 0.2s,
         opacity 0.2s,
         grid-template-rows 0.2s ease,
         opacity 0s 0.2s;
@@ -123,7 +120,6 @@ const onOutside = computed(() => ({
         transition:
             color 0.2s,
             background-color 0.2s,
-            border-color 0.2s,
             opacity 0.2s,
             grid-template-rows 0.2s ease;
     }

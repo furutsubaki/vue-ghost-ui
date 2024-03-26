@@ -38,9 +38,9 @@ export default {
         app.component('VueDatePicker', VueDatePicker);
 
         // themeのoverride
-        const {currentTheme, overrideTheme, setTheme} = useTheme();
-        if(options?.themes) {
-            overrideTheme(options.themes)
+        const { currentTheme, overrideTheme, setTheme } = useTheme();
+        if (options?.themes) {
+            overrideTheme(options.themes);
         }
         // 初期style設定
         setTheme(currentTheme.value);
