@@ -8,15 +8,16 @@
 import { ref, watch } from 'vue';
 import { createHead, useHead } from 'unhead';
 import { toKebabCase } from '@/assets/ts/formatter';
+import merge from 'lodash.merge';
 
-export interface MiThemeOption {
-    /**
-     * 適用中のテーマ
-     */
-    currentTheme: 'light' | 'dark';
-}
+type RecursiveRequired<T> = {
+    [P in keyof T]-?: RecursiveRequired<T[P]>;
+};
+type RecursivePartial<T> = {
+    [P in keyof T]?: RecursivePartial<T[P]>;
+};
 
-export type themeId = 'light' | 'dark';
+export type themeId = 'light' | 'dark' | string;
 
 export interface MiThemeOptionBase extends Record<string, string> {
     whiteTrue: string;
@@ -58,20 +59,21 @@ export interface MiThemeOptionTheme extends Record<string, string> {
     border: string;
     shadow: string;
 }
-
 export interface MiTheme
     extends Record<
         string,
-        string | undefined | MiThemeOptionBase | MiThemeOptionStatus | MiThemeOptionTheme
+        undefined | MiThemeOptionBase | MiThemeOptionStatus | MiThemeOptionTheme
     > {
     base?: MiThemeOptionBase;
     status?: MiThemeOptionStatus;
     theme?: MiThemeOptionTheme;
 }
 
-// global state
-const currentTheme = ref<themeId>('light');
+// 初期化
+createHead();
 
+// global state
+const currentTheme = ref<themeId>(typeof localStorage !== 'undefined' ? localStorage.themeId ?? 'light' : 'light');
 const baseTheme: MiTheme = {
     base: {
         whiteTrue: '#fff',
@@ -102,8 +104,7 @@ const baseTheme: MiTheme = {
         danger: '--color-base-red'
     }
 } as const;
-// TODO: themeのoverride
-const themes = ref<{ [key: string]: MiTheme }>({
+const themes = ref<{ [key: string]: RecursivePartial<MiTheme> }>({
     light: {
         theme: {
             textPrimary: '--color-base-black',
@@ -134,14 +135,11 @@ const themes = ref<{ [key: string]: MiTheme }>({
     }
 });
 
-// 初期化
-createHead();
-
 // style生成
 const createThemeCss = (themeId: string) => {
+    const targetTheme = themes.value[themeId];
     const defaultTheme = themes.value.light;
-    const targetTheme = themes.value[themeId] ?? defaultTheme;
-    const joinTheme = { ...baseTheme, ...targetTheme };
+    const joinTheme = merge(baseTheme, defaultTheme, targetTheme) as RecursiveRequired<MiTheme>;
 
     let style = '';
     const optionKeys = ['base', 'status', 'theme'];
@@ -176,6 +174,9 @@ const createThemeCss = (themeId: string) => {
 };
 const setTheme = (themeId: string) => {
     useHead({
+        bodyAttrs: {
+            'data-theme': themeId,
+        },
         style: [
             {
                 hid: 'theme',
@@ -183,14 +184,18 @@ const setTheme = (themeId: string) => {
             }
         ]
     });
+    if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('themeId', themeId)
+    }
 };
-
-// 初期style設定
-setTheme(currentTheme.value);
 
 // theme変更検知
 watch(currentTheme, setTheme);
 
+const overrideTheme = (overrideThemes: { [key: string]: RecursivePartial<MiTheme> }) => {
+    themes.value = merge(themes.value, overrideThemes)
+}
+
 export default function () {
-    return { currentTheme };
+    return { currentTheme, baseTheme, themes, overrideTheme, setTheme };
 }
