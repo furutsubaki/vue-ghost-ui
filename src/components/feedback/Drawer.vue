@@ -5,6 +5,7 @@ import TranslateTransition from '@/components/inner-parts/TranslateTransition.vu
 import Button from '@/components/basic/Button.vue';
 import { sleep } from '@/assets/ts';
 import { X as IconX } from 'lucide-vue-next';
+import useOutsideClick from '@/directives/useOutsideClick';
 
 const flg = defineModel<boolean>({ default: false });
 const props = withDefaults(
@@ -37,6 +38,10 @@ const props = withDefaults(
          * シームレス
          */
         seamless?: boolean;
+        /**
+         * 枠外クリック除外要素
+         */
+        outsideClickIgnore?: (Element | string)[];
     }>(),
     {
         size: 'medium',
@@ -45,7 +50,8 @@ const props = withDefaults(
         center: false,
         closeable: false,
         persistent: false,
-        seamless: false
+        seamless: false,
+        outsideClickIgnore: () => ['button']
     }
 );
 const emit = defineEmits<{
@@ -78,6 +84,7 @@ const transitionFrom = computed(() => {
     }
 });
 
+// Accordion枠外制御
 const onClose = async () => {
     flg.value = false;
     await onClosed();
@@ -90,9 +97,11 @@ const onClosed = async () => {
         emit('closed');
     }
 };
-const onOutside = computed(() => ({
+const { vOutsideClick } = useOutsideClick();
+const onOutsideClick = computed(() => ({
     handler: onClose,
-    isActive: flg.value && !props.persistent && !props.seamless
+    isActive: flg.value && !props.persistent && !props.seamless,
+    ignore: props.outsideClickIgnore
 }));
 
 const slots = useSlots();
@@ -116,7 +125,7 @@ const hasSlot = (name: string) => {
                     v-show="flg"
                     class="drawer"
                     :class="[size, position, { 'is-center': center }]"
-                    v-click-outside="onOutside"
+                    v-outside-click="onOutsideClick"
                 >
                     <Button
                         v-if="closeable"

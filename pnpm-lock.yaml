@@ -17,9 +17,6 @@ dependencies:
   '@vuepic/vue-datepicker':
     specifier: ^8.3.1
     version: 8.3.1(vue@3.4.21)
-  click-outside-vue3:
-    specifier: ^4.0.1
-    version: 4.0.1
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
@@ -3701,11 +3698,6 @@ packages:
       slice-ansi: 5.0.0
       string-width: 7.0.0
     dev: true
-
-  /click-outside-vue3@4.0.1:
-    resolution: {integrity: sha512-sbplNecrup5oGqA3o4bo8XmvHRT6q9fvw21Z67aDbTqB9M6LF7CuYLTlLvNtOgKU6W3zst5H5zJuEh4auqA34g==}
-    engines: {node: '>=6'}
-    dev: false
 
   /clone-deep@4.0.1:
     resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}

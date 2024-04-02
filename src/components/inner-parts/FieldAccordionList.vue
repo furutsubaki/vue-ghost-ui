@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import useOutsideClick from '@/directives/useOutsideClick';
 
 export interface MiFieldAccordionListItem {
     label: string;
@@ -20,10 +21,6 @@ const props = withDefaults(
          */
         value: string | number | boolean | undefined;
         /**
-         * 親Node
-         */
-        parentRef: Element;
-        /**
          * 表示種類
          */
         variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
@@ -39,11 +36,16 @@ const props = withDefaults(
          * ポジション
          */
         position?: 'top' | 'bottom';
+        /**
+         * 枠外クリック除外要素
+         */
+        outsideClickIgnore?: (Element | string)[];
     }>(),
     {
         variant: 'secondary',
         size: 'medium',
-        position: 'bottom'
+        position: 'bottom',
+        outsideClickIgnore: () => []
     }
 );
 
@@ -60,12 +62,14 @@ const onSelectItem = (item: MiFieldAccordionListItem) => {
 };
 
 // Accordion枠外制御
+const { vOutsideClick } = useOutsideClick();
 const onClose = () => {
     flg.value = false;
 };
-const onOutside = computed(() => ({
+const onOutsideClick = computed(() => ({
     handler: onClose,
-    isActive: flg.value
+    isActive: flg.value,
+    ignore: props.outsideClickIgnore
 }));
 </script>
 
@@ -73,7 +77,7 @@ const onOutside = computed(() => ({
     <div
         class="component-input-accordion-list"
         :class="[variant, size, shape, position, { 'is-open': flg && items.length }]"
-        v-click-outside="onOutside"
+        v-outside-click="onOutsideClick"
     >
         <div class="list-body">
             <div
@@ -114,6 +118,7 @@ const onOutside = computed(() => ({
     z-index: 1;
     opacity: 0;
     font-size: var(--c-field-accordion-font-size);
+
     &.is-open {
         grid-template-rows: 1fr;
         opacity: 1;
@@ -123,15 +128,18 @@ const onOutside = computed(() => ({
             opacity 0.2s,
             grid-template-rows 0.2s ease;
     }
+
     .list-body {
         overflow-x: hidden;
         overflow-y: auto;
+
         .list-item {
             display: flex;
             align-items: center;
             padding: 0 8px;
             min-height: var(--c-field-accordion-height);
             transition: background-color 0.2s;
+
             @media (hover: hover) {
                 &:hover {
                     background-color: var(--color-theme-bg-secondary);
@@ -143,9 +151,11 @@ const onOutside = computed(() => ({
                     background-color: var(--color-theme-bg-secondary);
                 }
             }
+
             &.is-selected {
                 background-color: var(--color-theme-bg-secondary);
             }
+
             &.is-disabled {
                 pointer-events: none;
                 opacity: 0.5;
@@ -171,26 +181,32 @@ const onOutside = computed(() => ({
     --c-field-accordion-hover-border-color: var(--color-status-brand);
     --c-field-accordion-border-color: var(--color-status-brand);
 }
+
 .secondary {
     --c-field-accordion-hover-border-color: var(--color-theme-border);
     --c-field-accordion-border-color: var(--color-theme-border);
 }
+
 .info {
     --c-field-accordion-hover-border-color: var(--color-status-info);
     --c-field-accordion-border-color: var(--color-status-info);
 }
+
 .success {
     --c-field-accordion-hover-border-color: var(--color-status-success);
     --c-field-accordion-border-color: var(--color-status-success);
 }
+
 .warning {
     --c-field-accordion-hover-border-color: var(--color-status-warning);
     --c-field-accordion-border-color: var(--color-status-warning);
 }
+
 .danger {
     --c-field-accordion-hover-border-color: var(--color-status-danger);
     --c-field-accordion-border-color: var(--color-status-danger);
 }
+
 /* ▲ variant ▲ */
 
 /* ▼ size ▼ */
@@ -198,22 +214,27 @@ const onOutside = computed(() => ({
     --c-field-accordion-height: 40px;
     --c-field-accordion-font-size: var(--font-size-medium);
 }
+
 .medium {
     --c-field-accordion-height: 32px;
     --c-field-accordion-font-size: var(--font-size-medium);
 }
+
 .small {
     --c-field-accordion-height: 24px;
     --c-field-accordion-font-size: var(--font-size-small);
 }
+
 /* ▲ size ▲ */
 
 /* ▼ position ▼ */
 .bottom {
     top: var(--c-field-accordion-height);
 }
+
 .top {
     bottom: var(--c-field-accordion-height);
 }
+
 /* ▲ position ▲ */
 </style>

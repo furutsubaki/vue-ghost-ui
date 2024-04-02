@@ -280,10 +280,10 @@ const onBlur = (event: Event) => {
             v-model="isFocus"
             :items="matchItems"
             :value="value"
-            :parentRef="inputRef"
             :variant="variant"
             :size="size"
             :position="position"
+            :outsideClickIgnore="[inputRef]"
             @change="onChange"
         />
     </div>
