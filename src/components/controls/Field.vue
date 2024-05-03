@@ -15,6 +15,7 @@ import {
 } from 'lucide-vue-next';
 import { DATE_FORMAT } from '@/assets/ts/const ';
 import dayjs from 'dayjs';
+import useOutsideClick from '@/directives/useOutsideClick';
 
 export type MiDateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
 export type MiFieldType =
@@ -205,15 +206,13 @@ const onDateButonClick = () => {
 const datepickerRef = ref<InstanceType<typeof DatePicker> | null>(null);
 const datePickerScrollObserver = ref<IntersectionObserver>();
 const onCloseDatePicker = () => {
+    if (!isFocus.value || props.type !== 'date') return;
+
     isFocus.value = false;
     if (datePickerScrollObserver.value) {
         datePickerScrollObserver.value.disconnect();
     }
 };
-const onOutside = computed(() => ({
-    handler: onCloseDatePicker,
-    isActive: isFocus.value && props.type === 'date'
-}));
 onMounted(() => {
     const intersect = (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
@@ -260,6 +259,14 @@ onBeforeUnmount(() => {
     }
 });
 // --- ▲ type: Date時の処理 ▲ ---
+
+// Accordion枠外制御
+const { vOutsideClick } = useOutsideClick();
+const onOutsideClick = computed(() => ({
+    handler: onCloseDatePicker,
+    isActive: isFocus.value && props.type === 'date',
+    ignore: [inputRef.value]
+}));
 </script>
 
 <template>
@@ -289,12 +296,7 @@ onBeforeUnmount(() => {
         >
             <slot name="prefix" />
             <div v-if="prefix" class="prefix-suffix">{{ prefix }}</div>
-            <button
-                v-if="type === 'date'"
-                class="input"
-                @click="onDateButonClick"
-                v-click-outside="onOutside"
-            >
+            <button v-if="type === 'date'" class="input" @click="onDateButonClick">
                 <span>{{ value ? dayjs(value).format(format) : '' }}</span>
             </button>
             <input
@@ -347,6 +349,7 @@ onBeforeUnmount(() => {
                 :variant:="variant"
                 :shape="shape"
                 @update:model-value="onCloseDatePicker"
+                v-outside-click="onOutsideClick"
             />
         </OpacityTransition>
     </div>

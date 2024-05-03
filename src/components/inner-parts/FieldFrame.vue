@@ -215,8 +215,7 @@ defineExpose({ frameRef });
             border-width: var(--c-field-frame-border-width);
             border-right: 0;
             border-left: 0;
-            transition:
-                border-width 0.2s;
+            transition: border-width 0.2s;
             flex-shrink: 0;
             &::before {
                 content: '';

@@ -150,10 +150,10 @@ const onDelete = () => {
             v-model="isOpen"
             :items="items"
             :value="value"
-            :parentRef="selectRef"
             :variant="variant"
             :size="size"
             :position="position"
+            :outsideClickIgnore="[selectRef]"
             @change="onChange"
         />
     </div>
