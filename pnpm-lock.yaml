@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^8.0.10
     version: 8.0.10
   '@storybook/addon-measure':
-    specifier: ^8.0.4
-    version: 8.0.4
+    specifier: ^8.0.10
+    version: 8.0.10
   '@storybook/addon-outline':
     specifier: ^8.0.4
     version: 8.0.4
@@ -2117,8 +2117,8 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/addon-measure@8.0.4:
-    resolution: {integrity: sha512-GZYKo2ss5Br+dfHinoK3bgTaS90z3oKKDkhv6lrFfjjU1mDYzzMJpxajQhd3apCYxHLr3MbUqMQibWu2T/q2DQ==}
+  /@storybook/addon-measure@8.0.10:
+    resolution: {integrity: sha512-quXQwmZJUhOxDIlbXTH6aKYQkwkDpL0UQRkUZn1xuZ2sVKJeaee73QSWqw8HDD4Rz9huS+OrAdVoq/Cz5FoC6A==}
     dependencies:
       '@storybook/global': 5.0.0
       tiny-invariant: 1.3.3
