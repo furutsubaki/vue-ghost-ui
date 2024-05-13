@@ -12,8 +12,8 @@ dependencies:
     specifier: ^4.12.6
     version: 4.12.6(vue@3.4.21)
   '@vee-validate/zod':
-    specifier: ^4.12.6
-    version: 4.12.6(vue@3.4.21)
+    specifier: ^4.12.8
+    version: 4.12.8(vue@3.4.21)
   '@vuepic/vue-datepicker':
     specifier: ^8.5.1
     version: 8.5.1(vue@3.4.21)
@@ -3250,11 +3250,11 @@ packages:
       - vue
     dev: false
 
-  /@vee-validate/zod@4.12.6(vue@3.4.21):
-    resolution: {integrity: sha512-LCP/hBWRyOgciwxVYvh4UrowVOJT/v5rJvUKCqEn+4ccx3bNtjVlOI4OvA6T1esg7LvmgseQiNQRxUvE2Pn9ng==}
+  /@vee-validate/zod@4.12.8(vue@3.4.21):
+    resolution: {integrity: sha512-P+G8grCc5iN7FMfvLzVWoGKxamBd0EYgN/hXBmzgbJV7B7FGnQADlUIsqt4jM+oGacbFW12B56zSORaVy3Owqg==}
     dependencies:
       type-fest: 4.9.0
-      vee-validate: 4.12.6(vue@3.4.21)
+      vee-validate: 4.12.8(vue@3.4.21)
       zod: 3.23.8
     transitivePeerDependencies:
       - vue
@@ -3345,6 +3345,10 @@ packages:
 
   /@vue/devtools-api@6.5.1:
     resolution: {integrity: sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==}
+    dev: false
+
+  /@vue/devtools-api@6.6.1:
+    resolution: {integrity: sha512-LgPscpE3Vs0x96PzSSB4IGVSZXZBZHpfxs+ZA1d+VEPwHdOXowy/Y2CsvCAIFrf+ssVU1pD1jidj505EpUnfbA==}
     dev: false
 
   /@vue/eslint-config-prettier@9.0.0(eslint@8.57.0)(prettier@3.2.5):
@@ -7437,6 +7441,16 @@ packages:
       vue: ^3.3.11
     dependencies:
       '@vue/devtools-api': 6.5.1
+      type-fest: 4.9.0
+      vue: 3.4.21(typescript@5.4.5)
+    dev: false
+
+  /vee-validate@4.12.8(vue@3.4.21):
+    resolution: {integrity: sha512-A07rm3+y7SRk0CMD/O4nBT0nxtwjyfzGZwjEUDk18SxK0ZMzd4AFCzzdHlIiCE1QgHetxd0I3kVkZdN0GG0Oww==}
+    peerDependencies:
+      vue: ^3.4.26
+    dependencies:
+      '@vue/devtools-api': 6.6.1
       type-fest: 4.9.0
       vue: 3.4.21(typescript@5.4.5)
     dev: false
