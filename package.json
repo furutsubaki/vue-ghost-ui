@@ -76,7 +76,7 @@
     "@storybook/addon-backgrounds": "^8.0.9",
     "@storybook/addon-controls": "^8.0.10",
     "@storybook/addon-docs": "^8.0.10",
-    "@storybook/addon-measure": "^8.0.4",
+    "@storybook/addon-measure": "^8.1.2",
     "@storybook/addon-outline": "^8.0.10",
     "@storybook/addon-viewport": "^8.0.9",
     "@storybook/preview-api": "^8.0.10",
