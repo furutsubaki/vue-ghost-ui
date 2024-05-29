@@ -89,3 +89,12 @@ form li {
     outline: none;
     box-shadow: none;
 }
+
+button,
+::file-selector-button {
+    touch-action: manipulation;
+    /* &:focus-visible {
+      outline: 2px solid magenta;
+      outline-offset: 2px;
+    } */
+}
