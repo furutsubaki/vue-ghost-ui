@@ -240,6 +240,7 @@ defineExpose({ buttonRef });
     min-width: initial;
     min-height: initial;
     padding: 0;
+    user-select: none;
     @media (hover: hover) {
         &:hover {
             color: var(--color-theme-link);
