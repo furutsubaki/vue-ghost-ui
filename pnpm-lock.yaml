@@ -24,8 +24,8 @@ dependencies:
     specifier: ^23.10.1
     version: 23.10.1
   lucide-vue-next:
-    specifier: ^0.356.0
-    version: 0.356.0(vue@3.4.27)
+    specifier: ^0.381.0
+    version: 0.381.0(vue@3.4.27)
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.4.5)(vue@3.4.27)
@@ -123,7 +123,7 @@ devDependencies:
     version: 6.2.0
   postcss-nesting:
     specifier: ^12.1.2
-    version: 12.1.2(postcss@8.4.35)
+    version: 12.1.2(postcss@8.4.38)
   prettier:
     specifier: ^3.2.2
     version: 3.2.5
@@ -5660,8 +5660,8 @@ packages:
     engines: {node: '>=16.14'}
     dev: true
 
-  /lucide-vue-next@0.356.0(vue@3.4.27):
-    resolution: {integrity: sha512-giWqqnnqAVCfgGXFzsrKaHC4cwxnX8ySB/5UMy0t2ZUBmOXYRo+0JI+bYHWTdqOEW5nfgjcSUUObt/M8s9HodQ==}
+  /lucide-vue-next@0.381.0(vue@3.4.27):
+    resolution: {integrity: sha512-ktBHW2CwvEj4TPiri51oUGHoVo4naY65nHYOGnaP7G+BQh63Z3i7SBsXZuNMYERnmoBi2UJhX8aoMoaXQ2fOeA==}
     peerDependencies:
       vue: '>=3.0.1'
     dependencies:
@@ -6275,7 +6275,7 @@ packages:
       '@babel/runtime': 7.23.8
     dev: true
 
-  /postcss-nesting@12.1.2(postcss@8.4.35):
+  /postcss-nesting@12.1.2(postcss@8.4.38):
     resolution: {integrity: sha512-FUmTHGDNundodutB4PUBxt/EPuhgtpk8FJGRsBhOuy+6FnkR2A8RZWIsyyy6XmhvX2DZQQWIkvu+HB4IbJm+Ew==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
@@ -6283,7 +6283,7 @@ packages:
     dependencies:
       '@csstools/selector-resolve-nested': 1.1.0(postcss-selector-parser@6.0.15)
       '@csstools/selector-specificity': 3.0.3(postcss-selector-parser@6.0.15)
-      postcss: 8.4.35
+      postcss: 8.4.38
       postcss-selector-parser: 6.0.15
     dev: true
 
