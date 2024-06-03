@@ -70,8 +70,8 @@ withDefaults(
     }
     &::after {
         padding: 0px;
-        border-width: 1px;
         border: solid var(--color-theme-border);
+        border-width: 1px;
     }
     &.is-pading {
         .frame-inner {

@@ -142,6 +142,7 @@ const hasSlot = (name: string) => {
             >
                 <dialog
                     v-show="flg"
+                    :open="flg"
                     class="dialog"
                     :class="[variant, size, shape, position, { 'is-center': center }]"
                     v-outside-click="onOutsideClick"

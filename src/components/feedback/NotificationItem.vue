@@ -174,6 +174,9 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.component-notification {
+    z-index: 10000;
+}
 .notification {
     pointer-events: initial;
     position: fixed;
