@@ -44,7 +44,7 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "@acab/reset.css": "^0.8",
+    "@acab/reset.css": "^0.10",
     "@vee-validate/rules": "^4",
     "@vee-validate/zod": "^4",
     "i18next": "^23",
@@ -55,7 +55,7 @@
     "zod-i18n-map": "^2"
   },
   "dependencies": {
-    "@acab/reset.css": "^0.8.0",
+    "@acab/reset.css": "^0.10.0",
     "@vee-validate/rules": "^4.12.8",
     "@vee-validate/zod": "^4.12.8",
     "@vuepic/vue-datepicker": "^8.5.1",
