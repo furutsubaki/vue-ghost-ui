@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.11.11
     version: 1.11.11
   i18next:
-    specifier: ^23.10.1
-    version: 23.10.1
+    specifier: ^23.11.5
+    version: 23.11.5
   lucide-vue-next:
     specifier: ^0.356.0
     version: 0.356.0(vue@3.4.27)
@@ -46,7 +46,7 @@ dependencies:
     version: 3.23.8
   zod-i18n-map:
     specifier: ^2.27.0
-    version: 2.27.0(i18next@23.10.1)(zod@3.23.8)
+    version: 2.27.0(i18next@23.11.5)(zod@3.23.8)
 
 devDependencies:
   '@rushstack/eslint-patch':
@@ -5380,8 +5380,8 @@ packages:
     hasBin: true
     dev: true
 
-  /i18next@23.10.1:
-    resolution: {integrity: sha512-NDiIzFbcs3O9PXpfhkjyf7WdqFn5Vq6mhzhtkXzj51aOcNuPNcTwuYNuXCpHsanZGHlHKL35G7huoFeVic1hng==}
+  /i18next@23.11.5:
+    resolution: {integrity: sha512-41pvpVbW9rhZPk5xjCX2TPJi2861LEig/YRhUkY+1FQ2IQPS0bKUDYnEqY8XPPbB48h1uIwLnP9iiEfuSl20CA==}
     dependencies:
       '@babel/runtime': 7.23.8
     dev: false
@@ -8123,13 +8123,13 @@ packages:
     resolution: {integrity: sha512-8F0OI5dpWIA5IGG5NHUg9staDwz/ZPxZtvGVf01j7vHqSyZ0raHY+78atOVxRqb73AotX22uV1pXt3gYSstGag==}
     dev: false
 
-  /zod-i18n-map@2.27.0(i18next@23.10.1)(zod@3.23.8):
+  /zod-i18n-map@2.27.0(i18next@23.11.5)(zod@3.23.8):
     resolution: {integrity: sha512-ORu9XpiVh3WDiEUs5Cr9siGgnpeODoBsTIgSD8sQCH9B//f9KowlzqHUEdPYb3vFonaSH8yPvPCOFM4niwp3Sg==}
     peerDependencies:
       i18next: '>=21.3.0'
       zod: '>=3.17.0'
     dependencies:
-      i18next: 23.10.1
+      i18next: 23.11.5
       zod: 3.23.8
     dev: false
 
