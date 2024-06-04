@@ -24,8 +24,8 @@ dependencies:
     specifier: ^23.11.5
     version: 23.11.5
   lucide-vue-next:
-    specifier: ^0.356.0
-    version: 0.356.0(vue@3.4.27)
+    specifier: ^0.383.0
+    version: 0.383.0(vue@3.4.27)
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.4.5)(vue@3.4.27)
@@ -5932,8 +5932,8 @@ packages:
     engines: {node: '>=16.14'}
     dev: true
 
-  /lucide-vue-next@0.356.0(vue@3.4.27):
-    resolution: {integrity: sha512-giWqqnnqAVCfgGXFzsrKaHC4cwxnX8ySB/5UMy0t2ZUBmOXYRo+0JI+bYHWTdqOEW5nfgjcSUUObt/M8s9HodQ==}
+  /lucide-vue-next@0.383.0(vue@3.4.27):
+    resolution: {integrity: sha512-paQmd2cHAye7Zl/lA0avZN2efZxFkMehfoori1BiHKX//KQG4DVuy00yl4YHVQ6h1B4EsR+QDRCpVUtwvKUBRw==}
     peerDependencies:
       vue: '>=3.0.1'
     dependencies:
