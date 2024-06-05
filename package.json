@@ -57,7 +57,7 @@
   "dependencies": {
     "@acab/reset.css": "^0.10.0",
     "@vee-validate/rules": "^4.12.8",
-    "@vee-validate/zod": "^4.12.8",
+    "@vee-validate/zod": "^4.13.0",
     "@vuepic/vue-datepicker": "^8.5.1",
     "dayjs": "^1.11.11",
     "i18next": "^23.11.5",
