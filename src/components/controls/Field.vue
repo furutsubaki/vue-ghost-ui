@@ -15,6 +15,7 @@ import {
 } from 'lucide-vue-next';
 import { DATE_FORMAT } from '@/assets/ts/const ';
 import dayjs from 'dayjs';
+import useOutsideClick from '@/directives/useOutsideClick';
 
 export type MiDateFormat = (typeof DATE_FORMAT)[keyof typeof DATE_FORMAT];
 export type MiFieldType =
@@ -195,30 +196,77 @@ const onHidePassword = () => {
 
 // --- ▼ type: Date時の処理 ▼ ---
 const onDateButonClick = () => {
+    if (datePickerScrollObserver.value) {
+        datePickerScrollObserver.value!.observe(datepickerRef.value!.elementRef!);
+    }
     isFocus.value = true;
 };
 
-// DatePicker枠外制御
-const onCloseAccordion = (event: Event) => {
-    if (!isFocus.value || inputRef.value.contains(event.target as Node)) {
-        return;
-    }
+// DatePicker枠外制御/表示位置制御
+const datepickerRef = ref<InstanceType<typeof DatePicker> | null>(null);
+const datePickerScrollObserver = ref<IntersectionObserver>();
+const onCloseDatePicker = () => {
+    if (!isFocus.value || props.type !== 'date') return;
 
     isFocus.value = false;
+    if (datePickerScrollObserver.value) {
+        datePickerScrollObserver.value.disconnect();
+    }
 };
-
 onMounted(() => {
+    const intersect = (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                const elementCenterY =
+                    (entry.boundingClientRect.top + entry.boundingClientRect.bottom) / 2;
+                const elementCenterX =
+                    (entry.boundingClientRect.left + entry.boundingClientRect.right) / 2;
+                const isTop = window.innerHeight / 2 > elementCenterY;
+                const isBottom = window.innerHeight / 2 < elementCenterY;
+                const isLeft = window.innerWidth / 2 > elementCenterX;
+                const isRight = window.innerWidth / 2 < elementCenterX;
+                if (isLeft) {
+                    datepickerRef.value!.elementRef!.style.left = '0px';
+                    datepickerRef.value!.elementRef!.style.right = '';
+                } else if (isRight) {
+                    datepickerRef.value!.elementRef!.style.left = '';
+                    datepickerRef.value!.elementRef!.style.right = '0px';
+                }
+                if (isTop) {
+                    datepickerRef.value!.elementRef!.style.top = '100%';
+                    datepickerRef.value!.elementRef!.style.bottom = '';
+                } else if (isBottom) {
+                    datepickerRef.value!.elementRef!.style.top = '';
+                    datepickerRef.value!.elementRef!.style.bottom = '100%';
+                }
+            }
+        });
+    };
     if (props.type === 'date') {
-        window.addEventListener('click', onCloseAccordion);
+        const options = {
+            root: null,
+            rootMargin: '0%',
+            threshold: 1
+        };
+        datePickerScrollObserver.value = new IntersectionObserver(intersect, options);
     }
 });
-
 onBeforeUnmount(() => {
     if (props.type === 'date') {
-        window.removeEventListener('click', onCloseAccordion);
+        if (datePickerScrollObserver.value) {
+            datePickerScrollObserver.value.unobserve(datepickerRef.value!.elementRef!);
+        }
     }
 });
 // --- ▲ type: Date時の処理 ▲ ---
+
+// Accordion枠外制御
+const { vOutsideClick } = useOutsideClick();
+const onOutsideClick = computed(() => ({
+    handler: onCloseDatePicker,
+    isActive: isFocus.value && props.type === 'date',
+    ignore: [inputRef.value]
+}));
 </script>
 
 <template>
@@ -292,6 +340,7 @@ onBeforeUnmount(() => {
 
         <OpacityTransition v-if="type === 'date'">
             <DatePicker
+                ref="datepickerRef"
                 v-show="isFocus"
                 v-model="value"
                 class="datepicker"
@@ -299,7 +348,8 @@ onBeforeUnmount(() => {
                 :dataFormat="dataFormat"
                 :variant:="variant"
                 :shape="shape"
-                @update:model-value="isFocus = false"
+                @update:model-value="onCloseDatePicker"
+                v-outside-click="onOutsideClick"
             />
         </OpacityTransition>
     </div>
@@ -307,9 +357,11 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .component-input {
+    position: relative;
     width: 100%;
     min-height: var(--c-field-height);
     font-size: var(--c-field-font-size);
+
     :where(.input) {
         display: flex;
         justify-content: space-between;
@@ -319,17 +371,18 @@ onBeforeUnmount(() => {
         height: var(--c-field-height);
         line-height: 1.5em;
         background-color: transparent;
-        color: var(--color-theme-text-primary);
         border: 0;
         padding: 0;
     }
 
     [type='time'] {
         color: transparent;
+
         &::-webkit-calendar-picker-indicator {
             display: none;
         }
     }
+
     &.is-focus,
     &.is-value {
         [type='time'] {
@@ -342,6 +395,7 @@ onBeforeUnmount(() => {
             -webkit-appearance: none;
         }
     }
+
     @media (hover: hover) {
         /* PC */
         &.is-focus,
@@ -370,6 +424,7 @@ onBeforeUnmount(() => {
         color: transparent;
         flex-shrink: 0;
     }
+
     &.is-focus,
     &.is-value {
         .prefix-suffix {
@@ -379,11 +434,13 @@ onBeforeUnmount(() => {
 
     .icon-box {
         width: var(--c-field-font-size);
+
         &.always-visible {
             .lucide {
                 opacity: 1;
             }
         }
+
         .lucide {
             opacity: 0;
             transition: opacity 0.2s;
@@ -401,19 +458,23 @@ onBeforeUnmount(() => {
     --c-field-height: 40px;
     --c-field-font-size: var(--font-size-medium);
 }
+
 .medium {
     --c-field-height: 32px;
     --c-field-font-size: var(--font-size-medium);
 }
+
 .small {
     --c-field-height: 24px;
     --c-field-font-size: var(--font-size-small);
 }
+
 /* ▲ size ▲ */
 
 /* ▼ shape ▼ */
 .rounded {
     border-radius: 2em;
 }
+
 /* ▲ shape ▲ */
 </style>

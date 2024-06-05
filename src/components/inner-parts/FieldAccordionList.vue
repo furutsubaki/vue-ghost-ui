@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, onBeforeUnmount } from 'vue';
+import { computed } from 'vue';
+import useOutsideClick from '@/directives/useOutsideClick';
 
 export interface MiFieldAccordionListItem {
     label: string;
@@ -7,7 +8,7 @@ export interface MiFieldAccordionListItem {
     disabled?: boolean;
 }
 
-const flg = defineModel<boolean>();
+const flg = defineModel<boolean>({ default: false });
 
 const props = withDefaults(
     defineProps<{
@@ -19,10 +20,6 @@ const props = withDefaults(
          * 項目値
          */
         value: string | number | boolean | undefined;
-        /**
-         * 親Node
-         */
-        parentRef: Element;
         /**
          * 表示種類
          */
@@ -39,11 +36,16 @@ const props = withDefaults(
          * ポジション
          */
         position?: 'top' | 'bottom';
+        /**
+         * 枠外クリック除外要素
+         */
+        outsideClickIgnore?: (Element | string)[];
     }>(),
     {
         variant: 'secondary',
         size: 'medium',
-        position: 'bottom'
+        position: 'bottom',
+        outsideClickIgnore: () => []
     }
 );
 
@@ -56,31 +58,26 @@ const selectedItem = computed(
 );
 const onSelectItem = (item: MiFieldAccordionListItem) => {
     emit('change', item.value);
-    flg.value = false;
+    onClose();
 };
 
 // Accordion枠外制御
-const onCloseAccordion = (event: Event) => {
-    if (!flg.value || props.parentRef.contains(event.target as Node)) {
-        return;
-    }
-
+const { vOutsideClick } = useOutsideClick();
+const onClose = () => {
     flg.value = false;
 };
-
-onMounted(() => {
-    window.addEventListener('click', onCloseAccordion);
-});
-
-onBeforeUnmount(() => {
-    window.removeEventListener('click', onCloseAccordion);
-});
+const onOutsideClick = computed(() => ({
+    handler: onClose,
+    isActive: flg.value,
+    ignore: props.outsideClickIgnore
+}));
 </script>
 
 <template>
     <div
         class="component-input-accordion-list"
         :class="[variant, size, shape, position, { 'is-open': flg && items.length }]"
+        v-outside-click="onOutsideClick"
     >
         <div class="list-body">
             <div
@@ -109,13 +106,10 @@ onBeforeUnmount(() => {
     line-height: 1.5em;
     border: 1px solid var(--c-field-accordion-border-color);
     border-radius: 4px;
-    color: var(--color-theme-text-primary);
     display: grid;
     grid-template-rows: 0fr;
     transition:
-        color 0.2s,
         background-color 0.2s,
-        border-color 0.2s,
         opacity 0.2s,
         grid-template-rows 0.2s ease,
         opacity 0s 0.2s;
@@ -124,25 +118,28 @@ onBeforeUnmount(() => {
     z-index: 1;
     opacity: 0;
     font-size: var(--c-field-accordion-font-size);
+
     &.is-open {
         grid-template-rows: 1fr;
         opacity: 1;
         transition:
             color 0.2s,
             background-color 0.2s,
-            border-color 0.2s,
             opacity 0.2s,
             grid-template-rows 0.2s ease;
     }
+
     .list-body {
         overflow-x: hidden;
         overflow-y: auto;
+
         .list-item {
             display: flex;
             align-items: center;
             padding: 0 8px;
             min-height: var(--c-field-accordion-height);
             transition: background-color 0.2s;
+
             @media (hover: hover) {
                 &:hover {
                     background-color: var(--color-theme-bg-secondary);
@@ -154,9 +151,11 @@ onBeforeUnmount(() => {
                     background-color: var(--color-theme-bg-secondary);
                 }
             }
+
             &.is-selected {
                 background-color: var(--color-theme-bg-secondary);
             }
+
             &.is-disabled {
                 pointer-events: none;
                 opacity: 0.5;
@@ -182,26 +181,32 @@ onBeforeUnmount(() => {
     --c-field-accordion-hover-border-color: var(--color-status-brand);
     --c-field-accordion-border-color: var(--color-status-brand);
 }
+
 .secondary {
     --c-field-accordion-hover-border-color: var(--color-theme-border);
     --c-field-accordion-border-color: var(--color-theme-border);
 }
+
 .info {
     --c-field-accordion-hover-border-color: var(--color-status-info);
     --c-field-accordion-border-color: var(--color-status-info);
 }
+
 .success {
     --c-field-accordion-hover-border-color: var(--color-status-success);
     --c-field-accordion-border-color: var(--color-status-success);
 }
+
 .warning {
     --c-field-accordion-hover-border-color: var(--color-status-warning);
     --c-field-accordion-border-color: var(--color-status-warning);
 }
+
 .danger {
     --c-field-accordion-hover-border-color: var(--color-status-danger);
     --c-field-accordion-border-color: var(--color-status-danger);
 }
+
 /* ▲ variant ▲ */
 
 /* ▼ size ▼ */
@@ -209,22 +214,27 @@ onBeforeUnmount(() => {
     --c-field-accordion-height: 40px;
     --c-field-accordion-font-size: var(--font-size-medium);
 }
+
 .medium {
     --c-field-accordion-height: 32px;
     --c-field-accordion-font-size: var(--font-size-medium);
 }
+
 .small {
     --c-field-accordion-height: 24px;
     --c-field-accordion-font-size: var(--font-size-small);
 }
+
 /* ▲ size ▲ */
 
 /* ▼ position ▼ */
 .bottom {
     top: var(--c-field-accordion-height);
 }
+
 .top {
     bottom: var(--c-field-accordion-height);
 }
+
 /* ▲ position ▲ */
 </style>

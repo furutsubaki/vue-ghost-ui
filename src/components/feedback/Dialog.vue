@@ -10,8 +10,9 @@ import {
     AlertTriangle as IconAlertTriangle,
     XOctagon as IconXOctagon
 } from 'lucide-vue-next';
+import useOutsideClick from '@/directives/useOutsideClick';
 
-const flg = defineModel<boolean>({ default: true });
+const flg = defineModel<boolean>({ default: false });
 const props = withDefaults(
     defineProps<{
         /**
@@ -25,7 +26,7 @@ const props = withDefaults(
         /**
          * 形状
          */
-        shape?: 'normal' | 'rounded' | 'no-radius';
+        shape?: 'normal' | 'no-radius';
         /**
          * 位置
          */
@@ -50,6 +51,10 @@ const props = withDefaults(
          * シームレス
          */
         seamless?: boolean;
+        /**
+         * 枠外クリック除外要素
+         */
+        outsideClickIgnore?: (Element | string)[];
     }>(),
     {
         variant: 'secondary',
@@ -61,7 +66,8 @@ const props = withDefaults(
         scroll: false,
         center: false,
         persistent: false,
-        seamless: false
+        seamless: false,
+        outsideClickIgnore: () => ['button']
     }
 );
 const emit = defineEmits<{
@@ -96,6 +102,7 @@ const transitionFrom = computed(() => {
     }
 });
 
+// Accordion枠外制御
 const onClose = async () => {
     flg.value = false;
     await onClosed();
@@ -108,9 +115,11 @@ const onClosed = async () => {
         emit('closed');
     }
 };
-const onOutside = computed(() => ({
+const { vOutsideClick } = useOutsideClick();
+const onOutsideClick = computed(() => ({
     handler: onClose,
-    isActive: flg.value && !props.persistent && !props.seamless
+    isActive: flg.value && !props.persistent && !props.seamless,
+    ignore: props.outsideClickIgnore
 }));
 
 const slots = useSlots();
@@ -133,9 +142,10 @@ const hasSlot = (name: string) => {
             >
                 <dialog
                     v-show="flg"
+                    :open="flg"
                     class="dialog"
                     :class="[variant, size, shape, position, { 'is-center': center }]"
-                    v-click-outside="onOutside"
+                    v-outside-click="onOutsideClick"
                 >
                     <div class="inner">
                         <IconInfo v-if="variant === 'info'" class="icon" />
@@ -297,9 +307,6 @@ const hasSlot = (name: string) => {
 /* ▼ shape ▼ */
 .normal {
     --c-dialog-border-radius: 4px;
-}
-.rounded {
-    --c-dialog-border-radius: 2em;
 }
 .no-radius {
     --c-dialog-border-radius: 0;
