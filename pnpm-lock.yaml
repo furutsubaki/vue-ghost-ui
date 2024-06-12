@@ -56,8 +56,8 @@ devDependencies:
     specifier: ^8.1.5
     version: 8.1.5
   '@storybook/addon-backgrounds':
-    specifier: ^8.0.9
-    version: 8.0.9
+    specifier: ^8.1.7
+    version: 8.1.7
   '@storybook/addon-controls':
     specifier: ^8.0.10
     version: 8.0.10(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
@@ -2321,8 +2321,8 @@ packages:
       uuid: 9.0.1
     dev: true
 
-  /@storybook/addon-backgrounds@8.0.9:
-    resolution: {integrity: sha512-pCDecACrVyxPaJKEWS0sHsRb8xw+IPCSxDM1TkjaAQ6zZ468A/dcUnqW+LVK8bSXgQwWzn23wqnqPFSy5yptuQ==}
+  /@storybook/addon-backgrounds@8.1.7:
+    resolution: {integrity: sha512-5M/h8XVKmaPGG++Z+nOmgu5fUh7jCKfw3vpIqAKqx9gipLCSIdQatSLLOM4l36SPqKabT7+DUQ1ycgOTzncy+Q==}
     dependencies:
       '@storybook/global': 5.0.0
       memoizerific: 1.11.3
@@ -3153,7 +3153,7 @@ packages:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.4.27(typescript@5.4.5)
-      vue-component-type-helpers: 2.0.19
+      vue-component-type-helpers: 2.0.21
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -7892,8 +7892,8 @@ packages:
     resolution: {integrity: sha512-0vOfAtI67UjeO1G6UiX5Kd76CqaQ67wrRZiOe7UAb9Jm6GzlUr/fC7CV90XfwapJRjpCMaZFhv1V0ajWRmE9Dg==}
     dev: true
 
-  /vue-component-type-helpers@2.0.19:
-    resolution: {integrity: sha512-cN3f1aTxxKo4lzNeQAkVopswuImUrb5Iurll9Gaw5cqpnbTAxtEMM1mgi6ou4X79OCyqYv1U1mzBHJkzmiK82w==}
+  /vue-component-type-helpers@2.0.21:
+    resolution: {integrity: sha512-3NaicyZ7N4B6cft4bfb7dOnPbE9CjLcx+6wZWAg5zwszfO4qXRh+U52dN5r5ZZfc6iMaxKCEcoH9CmxxoFZHLg==}
     dev: true
 
   /vue-demi@0.14.6(vue@3.4.27):
