@@ -24,8 +24,8 @@ importers:
         specifier: ^1.11.11
         version: 1.11.11
       i18next:
-        specifier: ^23.11.5
-        version: 23.11.5
+        specifier: ^23.12.2
+        version: 23.12.2
       lucide-vue-next:
         specifier: ^0.356.0
         version: 0.356.0(vue@3.4.27(typescript@5.4.5))
@@ -49,7 +49,7 @@ importers:
         version: 3.23.8
       zod-i18n-map:
         specifier: ^2.27.0
-        version: 2.27.0(i18next@23.11.5)(zod@3.23.8)
+        version: 2.27.0(i18next@23.12.2)(zod@3.23.8)
     devDependencies:
       '@rushstack/eslint-patch':
         specifier: ^1.10.2
@@ -3070,8 +3070,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  i18next@23.11.5:
-    resolution: {integrity: sha512-41pvpVbW9rhZPk5xjCX2TPJi2861LEig/YRhUkY+1FQ2IQPS0bKUDYnEqY8XPPbB48h1uIwLnP9iiEfuSl20CA==}
+  i18next@23.12.2:
+    resolution: {integrity: sha512-XIeh5V+bi8SJSWGL3jqbTEBW5oD6rbP5L+E7dVQh1MNTxxYef0x15rhJVcRb7oiuq4jLtgy2SD8eFlf6P2cmqg==}
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -8493,7 +8493,7 @@ snapshots:
 
   husky@9.0.11: {}
 
-  i18next@23.11.5:
+  i18next@23.12.2:
     dependencies:
       '@babel/runtime': 7.23.8
 
@@ -10144,9 +10144,9 @@ snapshots:
 
   zhead@2.2.4: {}
 
-  zod-i18n-map@2.27.0(i18next@23.11.5)(zod@3.23.8):
+  zod-i18n-map@2.27.0(i18next@23.12.2)(zod@3.23.8):
     dependencies:
-      i18next: 23.11.5
+      i18next: 23.12.2
       zod: 3.23.8
 
   zod@3.23.8: {}
