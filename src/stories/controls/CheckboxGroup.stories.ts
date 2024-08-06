@@ -1,6 +1,6 @@
 import CheckboxGroup from '@/components/controls/CheckboxGroup.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
 
 const TEST_SCHEMA = object({
@@ -9,7 +9,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof CheckboxGroup> = {
     component: CheckboxGroup,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { CheckboxGroup },
         setup() {
             useFormData(TEST_SCHEMA, { test: ['dog'] });
@@ -41,7 +41,7 @@ export const Default: Story = {
 };
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { CheckboxGroup },
         setup: () => ({
             args,
@@ -72,7 +72,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { CheckboxGroup },
         setup: () => ({
             args,

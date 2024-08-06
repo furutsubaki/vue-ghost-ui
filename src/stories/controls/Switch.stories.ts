@@ -1,6 +1,6 @@
 import Switch from '@/components/controls/Switch.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { literal, object } from 'zod';
 import { X as IconX, Check as IconCheck } from 'lucide-vue-next';
 
@@ -10,7 +10,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof Switch> = {
     component: Switch,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Switch },
         setup() {
             useFormData(TEST_SCHEMA, { test: false });
@@ -39,7 +39,7 @@ export const Default: Story = {
 };
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Switch },
         setup: () => ({
             args,
@@ -70,7 +70,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Switch },
         setup: () => ({
             args,
@@ -123,7 +123,7 @@ export const PropsSlot: Story = {
     args: {
         ...Default.args
     },
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Switch, IconX, IconCheck },
         setup: () => ({
             args,

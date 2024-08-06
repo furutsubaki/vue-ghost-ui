@@ -2,12 +2,12 @@ import { ref } from 'vue';
 import Dialog from '@/components/feedback/Dialog.vue';
 import Button from '@/components/basic/Button.vue';
 import Progress from '@/components/feedback/Progress.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { Play as IconPlay, Pause as IconPause, X as IconX } from 'lucide-vue-next';
 
 const meta: Meta<typeof Dialog> = {
     component: Dialog,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Dialog, Button },
         setup() {
             return { args };
@@ -36,7 +36,7 @@ type Story = StoryObj<typeof Dialog>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Dialog, Button },
         setup: () => ({
             args,
@@ -81,7 +81,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Dialog, Button },
         setup: () => ({
             args,
@@ -122,7 +122,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Dialog, Button },
         setup: () => ({
             args,
@@ -151,7 +151,7 @@ export const PropsShape: Story = {
 };
 
 export const PropsPosition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Dialog, Button },
         setup: () => ({
             args,
@@ -192,7 +192,7 @@ export const PropsPosition: Story = {
 };
 
 export const PropsTransitionFrom: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Dialog, Button },
         setup: () => ({
             args,
@@ -258,7 +258,7 @@ export const PropsSeamless: Story = {
 };
 
 export const StoryPlayer: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Dialog, Button, Progress, IconPlay, IconPause, IconX },
         setup: () => ({ args, progressModel: 75 }),
         template: `

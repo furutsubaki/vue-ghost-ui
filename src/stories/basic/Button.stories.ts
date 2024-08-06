@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import Button from '@/components/basic/Button.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof Button> = {
     component: Button,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Button },
         setup() {
             return { args };
@@ -35,7 +35,7 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Button },
         setup: () => ({
             args,
@@ -65,7 +65,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Button },
         setup: () => ({
             args,
@@ -86,7 +86,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Button },
         setup: () => ({
             args,

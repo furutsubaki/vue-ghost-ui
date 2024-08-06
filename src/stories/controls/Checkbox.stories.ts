@@ -1,6 +1,6 @@
 import Checkbox from '@/components/controls/Checkbox.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { literal, object } from 'zod';
 
 const TEST_SCHEMA = object({
@@ -9,7 +9,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof Checkbox> = {
     component: Checkbox,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Checkbox },
         setup() {
             useFormData(TEST_SCHEMA, { test: false });
@@ -37,7 +37,7 @@ export const Default: Story = {
 };
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Checkbox },
         setup: () => ({
             args,
@@ -68,7 +68,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Checkbox },
         setup: () => ({
             args,

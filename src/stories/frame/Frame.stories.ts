@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import Frame from '@/components/frame/Frame.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof Frame> = {
     component: Frame,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Frame },
         setup() {
             return { args };
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Frame>;
 export const Default: Story = {};
 
 export const PropsLayout: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Frame },
         setup: () => ({
             args,
@@ -57,7 +57,7 @@ export const PropsLayout: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Frame },
         setup: () => ({
             args,
