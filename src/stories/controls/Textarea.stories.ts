@@ -1,6 +1,6 @@
 import Textarea from '@/components/controls/Textarea.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
 
 const TEST_SCHEMA = object({
@@ -9,7 +9,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof Textarea> = {
     component: Textarea,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Textarea },
         setup() {
             useFormData(TEST_SCHEMA, { test: 'ヤマダ タロウ' });
@@ -33,7 +33,7 @@ type Story = StoryObj<typeof Textarea>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Textarea },
         setup: () => ({
             args,
@@ -64,7 +64,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Textarea },
         setup: () => ({
             args,
@@ -86,7 +86,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Textarea },
         setup: () => ({
             args,

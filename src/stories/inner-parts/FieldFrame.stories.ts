@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import FieldFrame from '@/components/inner-parts/FieldFrame.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof FieldFrame> = {
     component: FieldFrame,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { FieldFrame },
         setup() {
             return { args };
@@ -21,7 +21,7 @@ type Story = StoryObj<typeof FieldFrame>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { FieldFrame },
         setup: () => ({
             args,
@@ -52,7 +52,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { FieldFrame },
         setup: () => ({
             args,
@@ -74,7 +74,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { FieldFrame },
         setup: () => ({
             args,

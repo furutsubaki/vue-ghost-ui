@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import Tab from '@/components/navigation/Tab.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { Home as IconHome } from 'lucide-vue-next';
 
 const meta: Meta<typeof Tab> = {
     component: Tab,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Tab },
         setup() {
             return { args };
@@ -50,7 +50,7 @@ type Story = StoryObj<typeof Tab>;
 export const Default: Story = {};
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Tab },
         setup: () => ({
             args,
@@ -88,7 +88,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsPosition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Tab },
         setup: () => ({
             args,
@@ -127,7 +127,7 @@ export const PropsPosition: Story = {
 };
 
 export const PropsTabAlign: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Tab },
         setup: () => ({
             args,
@@ -166,7 +166,7 @@ export const PropsTabAlign: Story = {
 };
 
 export const PropsTransition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Tab },
         setup: () => ({
             args,
@@ -203,7 +203,7 @@ export const PropsNoSeparator: Story = {
 };
 
 export const NoSlot: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Tab },
         setup: () => ({ args }),
         template: `<Tab v-bind="{...args}" />`

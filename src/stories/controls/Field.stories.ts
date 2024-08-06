@@ -1,6 +1,6 @@
 import Field from '@/components/controls/Field.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
 import { formatLocaleString, parseLocaleString } from '@/assets/ts/formatter';
 
@@ -10,7 +10,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof Field> = {
     component: Field,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Field },
         setup() {
             useFormData(TEST_SCHEMA, { test: 'ヤマダ タロウ' });
@@ -35,7 +35,7 @@ type Story = StoryObj<typeof Field>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Field },
         setup: () => ({
             args,
@@ -66,7 +66,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Field },
         setup: () => ({
             args,
@@ -88,7 +88,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Field },
         setup: () => ({
             args,
@@ -116,7 +116,7 @@ export const PropsLabel: Story = {
 };
 
 export const PropsPrefixSuffix: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Field },
         setup: () => ({
             args,
@@ -165,7 +165,7 @@ export const PropsDisabled: Story = {
     args: { ...Default.args, disabled: true }
 };
 export const PropsType: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Field },
         setup: () => ({
             args,
@@ -211,8 +211,8 @@ export const DisplayFormatterCurrency: Story = {
         label: '金額',
         placeholder: 'データは数値になります',
         prefix: '￥',
-        displayFormatter: (v) => formatLocaleString(v),
-        displayParser: (v) => parseLocaleString(v)
+        displayFormatter: (v: string) => formatLocaleString(v),
+        displayParser: (v: string) => parseLocaleString(v)
     }
 };
 
@@ -222,7 +222,7 @@ export const FormatterTel: Story = {
         type: 'tel',
         label: '電話番号',
         placeholder: 'ハイフンを入れてください',
-        formatter: (v) => v.replace(/[^0-9-]/g, '')
+        formatter: (v: string) => v.replace(/[^0-9-]/g, '')
     }
 };
 
