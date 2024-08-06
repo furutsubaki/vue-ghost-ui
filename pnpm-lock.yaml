@@ -55,8 +55,8 @@ importers:
         specifier: ^1.10.2
         version: 1.10.2
       '@storybook/addon-actions':
-        specifier: ^8.1.5
-        version: 8.1.5
+        specifier: ^8.1.11
+        version: 8.1.11
       '@storybook/addon-backgrounds':
         specifier: ^8.1.11
         version: 8.1.11
@@ -1560,8 +1560,8 @@ packages:
   '@rushstack/ts-command-line@4.19.1':
     resolution: {integrity: sha512-J7H768dgcpG60d7skZ5uSSwyCZs/S2HrWP1Ds8d1qYAyaaeJmpmmLr9BVw97RjFzmQPOYnoXcKA4GkqDCkduQg==}
 
-  '@storybook/addon-actions@8.1.5':
-    resolution: {integrity: sha512-XbCUGGXQ4XX/zTRgUsR1l1yZJQIWR33P/M1OEAn0HbsfwS+P87GqfApkj4N7QrMfLkUkoLtdfprp5BZul98AKA==}
+  '@storybook/addon-actions@8.1.11':
+    resolution: {integrity: sha512-jqYXgBgOVInStOCk//AA+dGkrfN8R7rDXA4lyu82zM59kvICtG9iqgmkSRDn0Z3zUkM+lIHZGoz0aLVQ8pxsgw==}
 
   '@storybook/addon-backgrounds@8.1.11':
     resolution: {integrity: sha512-naGf1ovmsU2pSWb270yRO1IidnO+0YCZ5Tcb8I4rPhZ0vsdXNURYKS1LPSk1OZkvaUXdeB4Im9HhHfUBJOW9oQ==}
@@ -6151,9 +6151,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@storybook/addon-actions@8.1.5':
+  '@storybook/addon-actions@8.1.11':
     dependencies:
-      '@storybook/core-events': 8.1.5
+      '@storybook/core-events': 8.1.11
       '@storybook/global': 5.0.0
       '@types/uuid': 9.0.7
       dequal: 2.0.3
