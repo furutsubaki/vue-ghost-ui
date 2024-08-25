@@ -111,9 +111,9 @@ const props = withDefaults(
     {
         name: Math.random().toString(),
         schema: undefined,
-        label: ' ',
-        prefix: ' ',
-        suffix: ' ',
+        label: '',
+        prefix: '',
+        suffix: '',
         format: DATE_FORMAT.YYYYMMDD_JA,
         dataFormat: DATE_FORMAT.YYYYMMDD,
         formatter: (v: string) => v,

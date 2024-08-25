@@ -54,7 +54,7 @@ const props = withDefaults(
     {
         name: Math.random().toString(),
         schema: undefined,
-        label: ' ',
+        label: '',
         required: false,
         disabled: false,
         variant: 'secondary',
