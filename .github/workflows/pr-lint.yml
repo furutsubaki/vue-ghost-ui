@@ -10,9 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
+      - name: Enable corepack
+        run: corepack enable
 
       - uses: actions/setup-node@v4
         with:
@@ -20,7 +19,7 @@ jobs:
           cache: 'pnpm'
 
       - name: npm module install
-        run: pnpm i
+        run: pnpm i --frozen-lockfile
 
       - name: Run Build
         run: pnpm build
