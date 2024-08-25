@@ -46,20 +46,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 ## 基本入力モデル
 
-### v-modelを使用
-
-zod schemaによる細かいバリデーション制御を行わず、親コンポーネント側で独自に行うケースか、
-バリデーションを使用せずに手軽に使いたい場合に用いることができる。
-
-```jsx
-// script
-const model = ref<string>('初期値');
-
-// template
-<MiField v-model="model" />
-```
-
-### useFormを使用
+### useFormを使用（推奨）
 
 バリデーションなどをzodスキーマにて設定が可能。
 各種フォーム入力欄を設定する場合に用いる。
@@ -72,10 +59,28 @@ const { $useFormData } = useNuxtApp();
 const TEST_SCHEMA = object({
     test: string().max(50).min(1)
 }).required();
-const { canSubmit, resetForm } = useFormData(TEST_SCHEMA, { test: '初期値' });
+const { canSubmit, resetForm, setValues, setFieldValue } = $useFormData(TEST_SCHEMA, { test: '初期値' });
+setValues({
+    test: '親から複数の項目に対して、値をセット'
+})
+setFieldValue('test', '親から任意の項目に対して、値をセット')
 
 // template
 <MiField name="test" :schema="TEST_SCHEMA.shape.test" />
+<MiButton :disabled="!canSubmit">投稿</MiButton>
+```
+
+### v-modelを使用
+
+zod schemaによる細かいバリデーション制御を行わず、親コンポーネント側で独自に行うケースか、
+バリデーションを使用せずに手軽に使いたい場合に用いることができる。
+
+```jsx
+// script
+const model = ref<string>('初期値');
+
+// template
+<MiField v-model="model" />
 ```
 
 ## バリデーションの日本語化

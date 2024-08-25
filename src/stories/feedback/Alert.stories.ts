@@ -1,10 +1,10 @@
 import Alert from '@/components/feedback/Alert.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { Pen as IconPen } from 'lucide-vue-next';
 
 const meta: Meta<typeof Alert> = {
     component: Alert,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Alert },
         setup() {
             return { args };
@@ -26,7 +26,7 @@ type Story = StoryObj<typeof Alert>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Alert },
         setup: () => ({
             args,
@@ -56,7 +56,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Alert },
         setup: () => ({
             args,

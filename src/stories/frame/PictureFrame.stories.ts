@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import PictureFrame from '@/components/frame/PictureFrame.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof PictureFrame> = {
     component: PictureFrame,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { PictureFrame },
         setup() {
             return { args };
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof PictureFrame>;
 export const Default: Story = {};
 
 export const PropsLayout: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { PictureFrame },
         setup: () => ({
             args,
@@ -57,7 +57,7 @@ export const PropsLayout: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { PictureFrame },
         setup: () => ({
             args,

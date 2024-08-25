@@ -1,9 +1,9 @@
 import Badge from '@/components/feedback/Badge.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof Badge> = {
     component: Badge,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Badge },
         setup() {
             return { args };
@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Badge>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Badge },
         setup: () => ({
             args,
@@ -51,7 +51,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Badge },
         setup: () => ({
             args,

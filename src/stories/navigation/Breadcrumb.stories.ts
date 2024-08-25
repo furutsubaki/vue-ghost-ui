@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import Breadcrumb from '@/components/navigation/Breadcrumb.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import {
     ChevronRight as IconChevronRight,
     Home as IconHome,
@@ -9,7 +9,7 @@ import {
 
 const meta: Meta<typeof Breadcrumb> = {
     component: Breadcrumb,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Breadcrumb, IconHome },
         setup() {
             return { args };
@@ -41,7 +41,7 @@ type Story = StoryObj<typeof Breadcrumb>;
 export const Default: Story = {};
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Breadcrumb },
         setup: () => ({
             args,
@@ -74,7 +74,7 @@ export const PropsTitle: Story = {
 };
 
 export const SlotPrefix: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Breadcrumb, IconHome },
         setup() {
             return { args };
@@ -84,7 +84,7 @@ export const SlotPrefix: Story = {
 };
 
 export const SlotSuffix: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Breadcrumb, IconLeaf },
         setup() {
             return { args };

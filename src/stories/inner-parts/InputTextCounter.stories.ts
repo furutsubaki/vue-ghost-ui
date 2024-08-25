@@ -1,9 +1,9 @@
 import InputTextCounter from '@/components/inner-parts/InputTextCounter.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof InputTextCounter> = {
     component: InputTextCounter,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { InputTextCounter },
         setup() {
             return { args };

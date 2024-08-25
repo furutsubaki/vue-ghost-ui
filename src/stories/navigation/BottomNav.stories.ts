@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import BottomNav from '@/components/navigation/BottomNav.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import {
     Home as IconHome,
     Newspaper as IconNewspaper,
@@ -9,7 +9,7 @@ import {
 
 const meta: Meta<typeof BottomNav> = {
     component: BottomNav,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { BottomNav, IconHome },
         setup() {
             return { args };
@@ -45,7 +45,7 @@ type Story = StoryObj<typeof BottomNav>;
 export const Default: Story = {};
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { BottomNav },
         setup: () => ({
             args,
@@ -66,7 +66,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { BottomNav },
         setup: () => ({
             args,

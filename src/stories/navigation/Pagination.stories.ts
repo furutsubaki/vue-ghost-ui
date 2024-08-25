@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import Pagination from '@/components/navigation/Pagination.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof Pagination> = {
     component: Pagination,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Pagination },
         setup() {
             return { args };
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof Pagination>;
 export const Default: Story = {};
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Pagination },
         setup: () => ({
             args,
@@ -45,7 +45,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Pagination },
         setup: () => ({
             args,
