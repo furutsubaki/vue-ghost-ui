@@ -167,6 +167,7 @@ watch(formatValue, (v) => {
 });
 watch(value, (v) => {
     model.value = v;
+    formatValue.value = v;
 });
 
 // NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする
