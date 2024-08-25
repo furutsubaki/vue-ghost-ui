@@ -14,11 +14,11 @@ export default function (
     schema: ZodEffects<ZodObject<ZodRawShape>> | ZodObject<ZodRawShape>,
     initialValues: { [key: string]: any } = {}
 ) {
-    const { handleSubmit, meta, isSubmitting, resetForm, values } = useForm({
+    const { handleSubmit, meta, isSubmitting, resetForm, values, setFieldValue, setValues } = useForm({
         validationSchema: toTypedSchema(schema),
         initialValues
     });
 
     const canSubmit = computed(() => !!meta.value.valid && !isSubmitting.value);
-    return { handleSubmit, canSubmit, resetForm, values };
+    return { handleSubmit, canSubmit, resetForm, values, setFieldValue, setValues };
 }
