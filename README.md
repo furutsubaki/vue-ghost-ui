@@ -59,10 +59,15 @@ const { $useFormData } = useNuxtApp();
 const TEST_SCHEMA = object({
     test: string().max(50).min(1)
 }).required();
-const { canSubmit, resetForm } = useFormData(TEST_SCHEMA, { test: '初期値' });
+const { canSubmit, resetForm, setValues, setFieldValue } = $useFormData(TEST_SCHEMA, { test: '初期値' });
+setValues({
+    test: '親から複数の項目に対して、値をセット'
+})
+setFieldValue('test', '親から任意の項目に対して、値をセット')
 
 // template
 <MiField name="test" :schema="TEST_SCHEMA.shape.test" />
+<MiButton :disabled="!canSubmit">投稿</MiButton>
 ```
 
 ### v-modelを使用
