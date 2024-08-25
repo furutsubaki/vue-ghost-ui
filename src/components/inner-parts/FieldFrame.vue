@@ -61,7 +61,7 @@ withDefaults(
         bodyTag?: string;
     }>(),
     {
-        label: ' ',
+        label: '',
         placeholder: '',
         disabled: false,
         required: false,
