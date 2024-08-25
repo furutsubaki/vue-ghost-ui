@@ -12,11 +12,11 @@ importers:
         specifier: ^0.10.0
         version: 0.10.0
       '@vee-validate/rules':
-        specifier: ^4.13.0
-        version: 4.13.0(vue@3.4.27(typescript@5.4.5))
+        specifier: ^4.13.2
+        version: 4.13.2(vue@3.4.27(typescript@5.4.5))
       '@vee-validate/zod':
-        specifier: ^4.13.0
-        version: 4.13.0(vue@3.4.27(typescript@5.4.5))
+        specifier: ^4.13.2
+        version: 4.13.2(vue@3.4.27(typescript@5.4.5))
       '@vuepic/vue-datepicker':
         specifier: ^8.5.1
         version: 8.5.1(vue@3.4.27(typescript@5.4.5))
@@ -1821,11 +1821,11 @@ packages:
   '@unhead/shared@1.9.12':
     resolution: {integrity: sha512-72wlLXG3FP3sXUrwd42Uv8jYpHSg4R6IFJcsl+QisRjKM89JnjOFSw1DqWO4IOftW5xOxS4J5v7SQyJ4NJo7Bw==}
 
-  '@vee-validate/rules@4.13.0':
-    resolution: {integrity: sha512-T01DuW4r6PODymJOGlQNQe1G76H+mSeLCcqUFvWH9dnDAX7z8VG2zvF1s3jOD7X85Ev9Yo+GU3MK715Wpo7qZA==}
+  '@vee-validate/rules@4.13.2':
+    resolution: {integrity: sha512-NrmjxXw/gZQVhjgwIdEOeRYxn74I/3BYXTuExdwbpCPVgFh0pjTQx9aPGkVBnueeszVqO2LfWyKUpvwSWLPXRA==}
 
-  '@vee-validate/zod@4.13.0':
-    resolution: {integrity: sha512-+ngXiAvUzlccI95a1TBzf3hk3wRWOYdlRgE/5pFpI4ZwH6I3wa3J/qD9T7vfTXk3xAMgAze6A8H/UwyNYeoBiA==}
+  '@vee-validate/zod@4.13.2':
+    resolution: {integrity: sha512-y1aqelutD6btX2ayZk3w8udClAykptphlGLwu0vlCqY2r9mrJqMn1EKqtcwXAvEom+ceTcHJOwGr2FUA7i+ZEg==}
 
   '@vitejs/plugin-vue@5.0.5':
     resolution: {integrity: sha512-LOjm7XeIimLBZyzinBQ6OSm3UBCNVCpLkxGC0oWmm2YPzVZoxMsdvNVimLTBzpAnR9hl/yn1SHGuRfe6/Td9rQ==}
@@ -4257,11 +4257,6 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vee-validate@4.13.0:
-    resolution: {integrity: sha512-8v4C36sdEZfQm77E3A+Fg5M/sV7knqXoVNUjoI/aUHoDlFcATIUFvWLT7lqsOvvhAw6i4qzw+Q/Xs9zm9ndjsQ==}
-    peerDependencies:
-      vue: ^3.4.26
-
   vee-validate@4.13.2:
     resolution: {integrity: sha512-HlpR/6MJ92TW9f135umMZKUqdd/tFQTxLNSf2ImbU4Y/MlLVAUpF1l64VdjTOhbClAqPjCb5p/SqHDxLpUHXrw==}
     peerDependencies:
@@ -6672,16 +6667,16 @@ snapshots:
     dependencies:
       '@unhead/schema': 1.9.12
 
-  '@vee-validate/rules@4.13.0(vue@3.4.27(typescript@5.4.5))':
+  '@vee-validate/rules@4.13.2(vue@3.4.27(typescript@5.4.5))':
     dependencies:
-      vee-validate: 4.13.0(vue@3.4.27(typescript@5.4.5))
+      vee-validate: 4.13.2(vue@3.4.27(typescript@5.4.5))
     transitivePeerDependencies:
       - vue
 
-  '@vee-validate/zod@4.13.0(vue@3.4.27(typescript@5.4.5))':
+  '@vee-validate/zod@4.13.2(vue@3.4.27(typescript@5.4.5))':
     dependencies:
       type-fest: 4.9.0
-      vee-validate: 4.13.0(vue@3.4.27(typescript@5.4.5))
+      vee-validate: 4.13.2(vue@3.4.27(typescript@5.4.5))
       zod: 3.23.8
     transitivePeerDependencies:
       - vue
@@ -9243,12 +9238,6 @@ snapshots:
   validator@13.11.0: {}
 
   vary@1.1.2: {}
-
-  vee-validate@4.13.0(vue@3.4.27(typescript@5.4.5)):
-    dependencies:
-      '@vue/devtools-api': 6.6.3
-      type-fest: 4.9.0
-      vue: 3.4.27(typescript@5.4.5)
 
   vee-validate@4.13.2(vue@3.4.27(typescript@5.4.5)):
     dependencies:
