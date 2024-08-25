@@ -1,9 +1,9 @@
 import Rating from '@/components/feedback/Rating.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof Rating> = {
     component: Rating,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Rating },
         setup() {
             return { args };
@@ -26,7 +26,7 @@ type Story = StoryObj<typeof Rating>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Rating },
         setup: () => ({
             args,
@@ -44,7 +44,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Rating },
         setup: () => ({
             args,

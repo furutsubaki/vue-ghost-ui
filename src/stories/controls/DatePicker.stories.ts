@@ -1,6 +1,6 @@
 import DatePicker from '@/components/controls/DatePicker.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
 
 const TEST_SCHEMA = object({
@@ -9,7 +9,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof DatePicker> = {
     component: DatePicker,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { DatePicker },
         setup() {
             useFormData(TEST_SCHEMA, { test: '20240201' });
@@ -33,7 +33,7 @@ type Story = StoryObj<typeof DatePicker>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { DatePicker },
         setup: () => ({
             args,
@@ -64,7 +64,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { DatePicker },
         setup: () => ({
             args,

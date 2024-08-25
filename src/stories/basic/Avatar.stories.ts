@@ -1,12 +1,12 @@
 import { ref } from 'vue';
 import Avatar from '@/components/basic/Avatar.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { Smile as IconSmile } from 'lucide-vue-next';
 import imgPath from '@/assets/logo.png';
 
 const meta: Meta<typeof Avatar> = {
     component: Avatar,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Avatar },
         setup() {
             return { args };
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Avatar>;
 export const Default: Story = {};
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Avatar },
         setup: () => ({
             args,
@@ -43,7 +43,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Avatar },
         setup: () => ({
             args,
@@ -84,7 +84,7 @@ export const PropsImage: Story = {
 };
 
 export const Slots: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Avatar },
         setup() {
             return { args };
@@ -94,7 +94,7 @@ export const Slots: Story = {
 };
 
 export const Overlapping: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Avatar },
         setup() {
             return { args };

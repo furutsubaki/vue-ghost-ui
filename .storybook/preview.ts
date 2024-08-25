@@ -6,7 +6,7 @@ import '../src/assets/css/style.css'
 import '../src/assets/css/override.css'
 
 import { defineRule } from 'vee-validate';
-import * as AllRules from '@vee-validate/rules'
+import { all } from '@vee-validate/rules'
 import { init } from 'i18next';
 import { z } from 'zod';
 import { zodI18nMap } from 'zod-i18n-map';
@@ -25,8 +25,8 @@ const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
     return zodI18nMap(issue, ctx);
 };
 
-Object.entries(AllRules).forEach(([id, validator]) => {
-    defineRule(id, validator);
+Object.entries(all).forEach(([name, rule]) => {
+    defineRule(name, rule);
 });
 
 // zod

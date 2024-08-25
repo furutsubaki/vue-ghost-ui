@@ -1,11 +1,11 @@
 import Notifications from '@/components/feedback/Notifications.vue';
 import Button from '@/components/basic/Button.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import useNotification, { type MiNotificationOption } from '@/composables/useNotification';
 
 const meta: Meta<typeof Notifications> = {
     component: Notifications,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup() {
             const { addNotification } = useNotification();
@@ -33,7 +33,7 @@ type Story = StoryObj<typeof Notifications>;
 export const Default: Story = {};
 
 export const ParamsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -77,7 +77,7 @@ export const ParamsVariant: Story = {
 };
 
 export const ParamsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -112,7 +112,7 @@ export const ParamsSize: Story = {
 };
 
 export const ParamsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -147,7 +147,7 @@ export const ParamsShape: Story = {
 };
 
 export const ParamsPosition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -185,7 +185,7 @@ export const ParamsPosition: Story = {
 };
 
 export const ParamsNoShadow: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -207,7 +207,7 @@ export const ParamsNoShadow: Story = {
 };
 
 export const ParamsCloseable: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -229,7 +229,7 @@ export const ParamsCloseable: Story = {
 };
 
 export const ParamsAutoRemove: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -251,7 +251,7 @@ export const ParamsAutoRemove: Story = {
 };
 
 export const TitleOnly: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();
@@ -272,7 +272,7 @@ export const TitleOnly: Story = {
 };
 
 export const MessageOnly: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Notifications, Button },
         setup: () => {
             const { addNotification } = useNotification();

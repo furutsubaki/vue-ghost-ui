@@ -65,7 +65,7 @@ const onClick = (item: MiBreadcrumbItem) => {
         <template v-for="(item, i) in items" :key="item.to + item.href">
             <span class="separator" v-if="i !== 0 || title"
                 ><template v-if="typeof separator === 'string'">{{ separator }}</template
-                ><component :is="separator" v-else
+                ><component v-else :is="separator as any"
             /></span>
             <span
                 class="link"

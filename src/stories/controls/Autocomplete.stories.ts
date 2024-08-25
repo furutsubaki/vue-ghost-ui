@@ -1,6 +1,6 @@
 import Autocomplete from '@/components/controls/Autocomplete.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { string, object } from 'zod';
 
 const TEST_SCHEMA = object({
@@ -9,7 +9,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof Autocomplete> = {
     component: Autocomplete,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Autocomplete },
         setup() {
             useFormData(TEST_SCHEMA, { test: 'ヤマダ タロウ' });
@@ -41,7 +41,7 @@ export const Default: Story = {
 };
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Autocomplete },
         setup: () => ({
             args,
@@ -72,7 +72,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Autocomplete },
         setup: () => ({
             args,
@@ -94,7 +94,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Autocomplete },
         setup: () => ({
             args,
@@ -123,7 +123,7 @@ export const PropsLabel: Story = {
 };
 
 export const PropsPrefixSuffix: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Autocomplete },
         setup: () => ({
             args,
@@ -150,7 +150,7 @@ export const PropsPrefixSuffix: Story = {
 };
 
 export const PropsPosition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Autocomplete },
         setup: () => ({
             args,

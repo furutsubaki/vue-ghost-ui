@@ -111,9 +111,9 @@ const props = withDefaults(
     {
         name: Math.random().toString(),
         schema: undefined,
-        label: ' ',
-        prefix: ' ',
-        suffix: ' ',
+        label: '',
+        prefix: '',
+        suffix: '',
         format: DATE_FORMAT.YYYYMMDD_JA,
         dataFormat: DATE_FORMAT.YYYYMMDD,
         formatter: (v: string) => v,
@@ -167,6 +167,7 @@ watch(formatValue, (v) => {
 });
 watch(value, (v) => {
     model.value = v;
+    formatValue.value = v;
 });
 
 // NOTE: 曖昧一致により、nullとundefinedを判定し、0は判定外とする

@@ -68,7 +68,7 @@ const props = withDefaults(
     {
         name: Math.random().toString(),
         schema: undefined,
-        label: ' ',
+        label: '',
         clearable: false,
         required: false,
         disabled: false,

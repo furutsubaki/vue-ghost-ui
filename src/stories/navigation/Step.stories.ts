@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import Step from '@/components/navigation/Step.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { Home as IconHome } from 'lucide-vue-next';
 
 const meta: Meta<typeof Step> = {
     component: Step,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Step },
         setup() {
             return { args };
@@ -50,7 +50,7 @@ type Story = StoryObj<typeof Step>;
 export const Default: Story = {};
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Step },
         setup: () => ({
             args,
@@ -88,7 +88,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsPosition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Step },
         setup: () => ({
             args,
@@ -127,7 +127,7 @@ export const PropsPosition: Story = {
 };
 
 export const PropsTransition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Step },
         setup: () => ({
             args,
@@ -164,7 +164,7 @@ export const PropsNoSeparator: Story = {
 };
 
 export const NoSlot: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Step },
         setup: () => ({ args }),
         template: `<Step v-bind="{...args}" />`

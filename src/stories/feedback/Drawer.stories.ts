@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import Drawer from '@/components/feedback/Drawer.vue';
 import Button from '@/components/basic/Button.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof Drawer> = {
     component: Drawer,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Drawer, Button },
         setup() {
             return { args };
@@ -32,7 +32,7 @@ type Story = StoryObj<typeof Drawer>;
 export const Default: Story = {};
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Drawer, Button },
         setup: () => ({
             args,
@@ -62,7 +62,7 @@ export const PropsSize: Story = {
 };
 
 export const PropsPosition: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Drawer, Button },
         setup: () => ({
             args,
@@ -96,7 +96,7 @@ export const PropsPosition: Story = {
 };
 
 export const PropsCenter: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Drawer, Button },
         setup() {
             return { args };

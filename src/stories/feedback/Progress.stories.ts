@@ -1,10 +1,10 @@
 import Progress from '@/components/feedback/Progress.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { Pen as IconPen } from 'lucide-vue-next';
 
 const meta: Meta<typeof Progress> = {
     component: Progress,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Progress, IconPen },
         setup() {
             return { args };
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Progress>;
 export const Default: Story = {};
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Progress },
         setup: () => ({
             args,
@@ -52,7 +52,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSizeAndShape: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Progress },
         setup: () => ({
             args,
@@ -112,7 +112,7 @@ export const PropsNoText: Story = {
 };
 
 export const CustomSlot: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Progress, IconPen },
         setup() {
             return { args };

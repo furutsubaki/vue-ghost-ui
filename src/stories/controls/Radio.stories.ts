@@ -1,6 +1,6 @@
 import Radio from '@/components/controls/Radio.vue';
 import useFormData from '@/composables/useFormData';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Args, Meta, StoryObj } from '@storybook/vue3';
 import { literal, object } from 'zod';
 
 const TEST_SCHEMA = object({
@@ -9,7 +9,7 @@ const TEST_SCHEMA = object({
 
 const meta: Meta<typeof Radio> = {
     component: Radio,
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Radio },
         setup() {
             useFormData(TEST_SCHEMA, { test: false });
@@ -37,7 +37,7 @@ export const Default: Story = {
 };
 
 export const PropsVariant: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Radio },
         setup: () => ({
             args,
@@ -68,7 +68,7 @@ export const PropsVariant: Story = {
 };
 
 export const PropsSize: Story = {
-    render: (args) => ({
+    render: (args: Args) => ({
         components: { Radio },
         setup: () => ({
             args,

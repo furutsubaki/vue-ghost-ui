@@ -260,22 +260,13 @@ onMounted(async () => {
 
 /* ▼ size ▼ */
 .large {
-    --c-notification-item-min-width: 320px;
-    --c-notification-item-min-height: 320px;
-    --c-notification-item-width: 40vw;
-    --c-notification-item-height: 40vh;
+    --c-notification-item-width: clamp(320px, 40vw, 480px);
 }
 .medium {
-    --c-notification-item-min-width: 240px;
-    --c-notification-item-min-height: 240px;
-    --c-notification-item-width: 32vw;
-    --c-notification-item-height: 32vh;
+    --c-notification-item-width: clamp(240px, 32vw, 360px);
 }
 .small {
-    --c-notification-item-min-width: 200px;
-    --c-notification-item-min-height: 200px;
-    --c-notification-item-width: 24vw;
-    --c-notification-item-height: 24vh;
+    --c-notification-item-width: clamp(200px, 24vw, 300px);
 }
 /* ▲ size ▲ */
 </style>
