@@ -11,17 +11,22 @@ jobs:
       packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '20'
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
           scope: '@furutsubaki'
-      - run: pnpm install --frozen-lockfile
+
+      - name: npm module install
+        run: pnpm i --frozen-lockfile
+
       - run: pnpm build
       - run: pnpm publish --no-git-checks --access public
         env:
