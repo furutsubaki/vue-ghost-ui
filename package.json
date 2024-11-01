@@ -72,7 +72,7 @@
     "zod-i18n-map": "^2.27.0"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.10.2",
+    "@rushstack/eslint-patch": "^1.10.4",
     "@storybook/addon-actions": "^8.1.11",
     "@storybook/addon-backgrounds": "^8.1.11",
     "@storybook/addon-controls": "^8.1.11",
@@ -95,7 +95,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "lodash.merge": "^4.6.2",
-    "npm-run-all2": "^6.2.0",
+    "npm-run-all2": "^6.2.2",
     "postcss-nesting": "^12.1.5",
     "prettier": "^3.2.2",
     "react": "^18.2.0",
