@@ -6,7 +6,7 @@
  */
 
 import { ref, watch } from 'vue';
-import { createHead, useHead } from 'unhead';
+import { useHead } from '@unhead/vue';
 import { toKebabCase } from '@/assets/ts/formatter';
 import merge from 'lodash.merge';
 
@@ -68,9 +68,6 @@ export interface MiTheme
     status?: MiThemeOptionStatus;
     theme?: MiThemeOptionTheme;
 }
-
-// 初期化
-createHead();
 
 // global state
 const currentTheme = ref<themeId>(
