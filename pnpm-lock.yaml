@@ -11,6 +11,9 @@ importers:
       '@acab/reset.css':
         specifier: ^0.10.0
         version: 0.10.0
+      '@unhead/vue':
+        specifier: ^1.11.19
+        version: 1.11.19(vue@3.4.27(typescript@5.4.5))
       '@vee-validate/rules':
         specifier: ^4.13.2
         version: 4.13.2(vue@3.4.27(typescript@5.4.5))
@@ -32,9 +35,6 @@ importers:
       pinia:
         specifier: ^2.2.2
         version: 2.2.2(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5))
-      unhead:
-        specifier: ^1.9.12
-        version: 1.9.12
       vee-validate:
         specifier: ^4.13.2
         version: 4.13.2(vue@3.4.27(typescript@5.4.5))
@@ -52,8 +52,8 @@ importers:
         version: 2.27.0(i18next@23.12.2)(zod@3.23.8)
     devDependencies:
       '@rushstack/eslint-patch':
-        specifier: ^1.10.2
-        version: 1.10.2
+        specifier: ^1.10.4
+        version: 1.10.4
       '@storybook/addon-actions':
         specifier: ^8.1.11
         version: 8.1.11
@@ -121,8 +121,8 @@ importers:
         specifier: ^4.6.2
         version: 4.6.2
       npm-run-all2:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.2.2
+        version: 6.2.2
       postcss-nesting:
         specifier: ^12.1.5
         version: 12.1.5(postcss@8.4.38)
@@ -1453,8 +1453,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@rushstack/eslint-patch@1.10.2':
-    resolution: {integrity: sha512-hw437iINopmQuxWPSUEvqE56NCPsiU8N4AYtfHmJFckclktzK9YQJieD3XkDCDH4OjL+C7zgPUh73R/nrcHrqw==}
+  '@rushstack/eslint-patch@1.10.4':
+    resolution: {integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==}
 
   '@rushstack/node-core-library@4.0.2':
     resolution: {integrity: sha512-hyES82QVpkfQMeBMteQUnrhASL/KHPhd7iJ8euduwNJG4mu2GSOKybf0rOEjOm1Wz7CwJEUm9y0yD7jg2C1bfg==}
@@ -1812,14 +1812,19 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@unhead/dom@1.9.12':
-    resolution: {integrity: sha512-3MY1TbZmEjGNZapi3wvJW0vWNS2CLKHt7/m57sScDHCNvNBe1mTwrIOhtZFDgAndhml2EVQ68RMa0Vhum/M+cw==}
+  '@unhead/dom@1.11.19':
+    resolution: {integrity: sha512-udkgITdIblEWH3hsoFQMKW+6QXNO2qFZlZ2FI37bVAplQSnK/PytTPt/5oA1GWkoVwT0DsQNGHbU6kOg/3SlNg==}
 
-  '@unhead/schema@1.9.12':
-    resolution: {integrity: sha512-ue2FKyIZKsuZDpWJBMlBGwMm4s+vFeU3NUWsNt8Z+2JkOUIqO/VG43LxNgY1M595bOS71Gdxk+G9VtzfKJ5uEA==}
+  '@unhead/schema@1.11.19':
+    resolution: {integrity: sha512-7VhYHWK7xHgljdv+C01MepCSYZO2v6OhgsfKWPxRQBDDGfUKCUaChox0XMq3tFvXP6u4zSp6yzcDw2yxCfVMwg==}
 
-  '@unhead/shared@1.9.12':
-    resolution: {integrity: sha512-72wlLXG3FP3sXUrwd42Uv8jYpHSg4R6IFJcsl+QisRjKM89JnjOFSw1DqWO4IOftW5xOxS4J5v7SQyJ4NJo7Bw==}
+  '@unhead/shared@1.11.19':
+    resolution: {integrity: sha512-UYE9EIeQLJOhx8vC71bWGkAGY4Zzq/H8qYlihowUg4NiFOfL+KKMnj96datb74PRxSDvHac9V3OLktNcsX2NuA==}
+
+  '@unhead/vue@1.11.19':
+    resolution: {integrity: sha512-/XATTP8wVLs3+2Pkj2crvr/Z55nybVQyOwISh+sAlr/48/9n3jGNiCZHKpHgL4MpOnGT4krwzWzbfhBO/G2BSQ==}
+    peerDependencies:
+      vue: '>=2.7 || >=3'
 
   '@vee-validate/rules@4.13.2':
     resolution: {integrity: sha512-NrmjxXw/gZQVhjgwIdEOeRYxn74I/3BYXTuExdwbpCPVgFh0pjTQx9aPGkVBnueeszVqO2LfWyKUpvwSWLPXRA==}
@@ -3340,9 +3345,9 @@ packages:
     resolution: {integrity: sha512-dMxCf+zZ+3zeQZXKxmyuCKlIDPGuv8EF940xbkC4kQVDTtqoh6rJFO+JTKSA6/Rwi0getWmtuy4Itup0AMcaDQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  npm-run-all2@6.2.0:
-    resolution: {integrity: sha512-wA7yVIkthe6qJBfiJ2g6aweaaRlw72itsFGF6HuwCHKwtwAx/4BY1vVpk6bw6lS8RLMsexoasOkd0aYOmsFG7Q==}
-    engines: {node: ^14.18.0 || >=16.0.0, npm: '>= 8'}
+  npm-run-all2@6.2.2:
+    resolution: {integrity: sha512-Q+alQAGIW7ZhKcxLt8GcSi3h3ryheD6xnmXahkMRVM5LYmajcUrSITm8h+OPC9RYWMV2GR0Q1ntTUCfxaNoOJw==}
+    engines: {node: ^14.18.0 || ^16.13.0 || >=18.0.0, npm: '>= 8'}
     hasBin: true
 
   npm-run-path@4.0.1:
@@ -3437,6 +3442,9 @@ packages:
   p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
+
+  packrup@0.1.2:
+    resolution: {integrity: sha512-ZcKU7zrr5GlonoS9cxxrb5HVswGnyj6jQvwFBa6p5VFw7G71VAHcUKL5wyZSU/ECtPM/9gacWxy2KFQKt1gMNA==}
 
   pako@0.2.9:
     resolution: {integrity: sha512-NUcwaKxUxWrZLpDG+z/xZaCgQITkA/Dv4V/T6bw7VON6l1Xz/VnrBqrYjZQ12TamKHzITTfOEIYUj48y2KXImA==}
@@ -4148,8 +4156,8 @@ packages:
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
-  unhead@1.9.12:
-    resolution: {integrity: sha512-s6VxcTV45hy8c/IioKQOonFnAO+kBOSpgDfqEHhnU0YVSQYaRPEp9pzW1qSPf0lx+bg9RKeOQyNNbSGGUP26aQ==}
+  unhead@1.11.19:
+    resolution: {integrity: sha512-O5AYb3+xUOzBlwDmPfC/DgGp9rDMoGkB4gFkhoaz8IonQqP8W8qqetxYf5ZyEdntvXnFsMWS8lZF//5176xo6Q==}
 
   unicode-canonical-property-names-ecmascript@2.0.0:
     resolution: {integrity: sha512-yY5PpDlfVIU5+y/BSCxAJRBIS1Zc2dDG3Ujq+sR0U+JjUevW2JhocOF+soROYDSaAezOzOKuyyixhD6mBknSmQ==}
@@ -4317,6 +4325,9 @@ packages:
 
   vue-component-type-helpers@2.0.29:
     resolution: {integrity: sha512-58i+ZhUAUpwQ+9h5Hck0D+jr1qbYl4voRt5KffBx8qzELViQ4XdT/Tuo+mzq8u63teAG8K0lLaOiL5ofqW38rg==}
+
+  vue-component-type-helpers@2.2.4:
+    resolution: {integrity: sha512-F66p0XLbAu92BRz6kakHyAcaUSF7HWpWX/THCqL0TxySSj7z/nok5UUMohfNkkCm1pZtawsdzoJ4p1cjNqCx0Q==}
 
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
@@ -5894,7 +5905,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.18.0':
     optional: true
 
-  '@rushstack/eslint-patch@1.10.2': {}
+  '@rushstack/eslint-patch@1.10.4': {}
 
   '@rushstack/node-core-library@4.0.2(@types/node@20.14.1)':
     dependencies:
@@ -6451,7 +6462,7 @@ snapshots:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.4.27(typescript@5.4.5)
-      vue-component-type-helpers: 2.0.29
+      vue-component-type-helpers: 2.2.4
     transitivePeerDependencies:
       - encoding
       - prettier
@@ -6653,19 +6664,28 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@unhead/dom@1.9.12':
+  '@unhead/dom@1.11.19':
     dependencies:
-      '@unhead/schema': 1.9.12
-      '@unhead/shared': 1.9.12
+      '@unhead/schema': 1.11.19
+      '@unhead/shared': 1.11.19
 
-  '@unhead/schema@1.9.12':
+  '@unhead/schema@1.11.19':
     dependencies:
       hookable: 5.5.3
       zhead: 2.2.4
 
-  '@unhead/shared@1.9.12':
+  '@unhead/shared@1.11.19':
     dependencies:
-      '@unhead/schema': 1.9.12
+      '@unhead/schema': 1.11.19
+      packrup: 0.1.2
+
+  '@unhead/vue@1.11.19(vue@3.4.27(typescript@5.4.5))':
+    dependencies:
+      '@unhead/schema': 1.11.19
+      '@unhead/shared': 1.11.19
+      hookable: 5.5.3
+      unhead: 1.11.19
+      vue: 3.4.27(typescript@5.4.5)
 
   '@vee-validate/rules@4.13.2(vue@3.4.27(typescript@5.4.5))':
     dependencies:
@@ -8274,7 +8294,7 @@ snapshots:
 
   npm-normalize-package-bin@3.0.1: {}
 
-  npm-run-all2@6.2.0:
+  npm-run-all2@6.2.2:
     dependencies:
       ansi-styles: 6.2.1
       cross-spawn: 7.0.3
@@ -8389,6 +8409,8 @@ snapshots:
       p-limit: 3.1.0
 
   p-try@2.2.0: {}
+
+  packrup@0.1.2: {}
 
   pako@0.2.9: {}
 
@@ -9137,11 +9159,11 @@ snapshots:
 
   undici-types@5.26.5: {}
 
-  unhead@1.9.12:
+  unhead@1.11.19:
     dependencies:
-      '@unhead/dom': 1.9.12
-      '@unhead/schema': 1.9.12
-      '@unhead/shared': 1.9.12
+      '@unhead/dom': 1.11.19
+      '@unhead/schema': 1.11.19
+      '@unhead/shared': 1.11.19
       hookable: 5.5.3
 
   unicode-canonical-property-names-ecmascript@2.0.0: {}
@@ -9285,6 +9307,8 @@ snapshots:
       typescript: 5.4.5
 
   vue-component-type-helpers@2.0.29: {}
+
+  vue-component-type-helpers@2.2.4: {}
 
   vue-demi@0.14.10(vue@3.4.27(typescript@5.4.5)):
     dependencies:

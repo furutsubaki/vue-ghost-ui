@@ -1,6 +1,6 @@
 {
   "name": "minazuki-ui",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "private": false,
   "license": "MIT",
   "type": "module",
@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@acab/reset.css": "^0.10.0",
+    "@unhead/vue": "^1.11.19",
     "@vee-validate/rules": "^4.13.2",
     "@vee-validate/zod": "^4.13.2",
     "@vuepic/vue-datepicker": "^8.5.1",
@@ -64,7 +65,6 @@
     "i18next": "^23.12.2",
     "lucide-vue-next": "^0.356.0",
     "pinia": "^2.2.2",
-    "unhead": "^1.9.12",
     "vee-validate": "^4.13.2",
     "vue": "^3.4.27",
     "vue-router": "^4.4.3",
@@ -72,7 +72,7 @@
     "zod-i18n-map": "^2.27.0"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.10.2",
+    "@rushstack/eslint-patch": "^1.10.4",
     "@storybook/addon-actions": "^8.1.11",
     "@storybook/addon-backgrounds": "^8.1.11",
     "@storybook/addon-controls": "^8.1.11",
@@ -95,7 +95,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "lodash.merge": "^4.6.2",
-    "npm-run-all2": "^6.2.0",
+    "npm-run-all2": "^6.2.2",
     "postcss-nesting": "^12.1.5",
     "prettier": "^3.2.2",
     "react": "^18.2.0",

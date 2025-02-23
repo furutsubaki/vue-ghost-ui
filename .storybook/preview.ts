@@ -14,6 +14,7 @@ import translation from 'zod-i18n-map/locales/ja/zod.json';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import useTheme from '../src/composables/useTheme';
+import { createHead } from '@unhead/vue';
 
 const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
     switch (issue.code) {
@@ -41,6 +42,8 @@ z.setErrorMap(customErrorMap);
 setup((app) => {
     app.component('VueDatePicker', VueDatePicker);
 
+    const head = createHead();
+    app.use(head);
     app.use(useTheme);
     const { currentTheme, setTheme } = useTheme();
     // 初期style設定
